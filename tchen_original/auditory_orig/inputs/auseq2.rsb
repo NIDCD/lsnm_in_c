@@ -1,0 +1,37 @@
+WPet 10
+
+Randseed 1754
+
+#include /home/bhguest/rongf/auditory/sfiles/reset_au.s	% reset
+#include /home/bhguest/rongf/auditory/sfiles/loattn_l.s
+#include /home/bhguest/rongf/auditory/sfiles/loattn_r.s
+#include /home/bhguest/rongf/auditory/inputs/noise1_ctrltask5.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+% **********************************
+%	TRIAL #2	(NON-MATCH)
+% **********************************
+
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_r.s
+
+#include /home/bhguest/rongf/auditory/inputs/a_noise2.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/inputs/noise5_ctrltask6.inp
+#include /home/bhguest/rongf/auditory/inputs/gtc2_ctrltask4.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/rongf/auditory/inputs/bothtc2.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/inputs/noise4_ctrltask1.inp
+
+#include /home/bhguest/rongf/auditory/sfiles/loattn_r.s
+#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+Run 200
+
+% **********************************
+%	INTERTRIAL INTERVAL
+% **********************************

@@ -1,0 +1,172 @@
+%---------------------------------------------------------------------
+% Connection weights from left MGN to left Ai
+%---------------------------------------------------------------------
+#include weights/left/gmgneg1u.w
+#include weights/left/gmgneg1d.w
+
+%---------------------------------------------------------------------
+% Connection weights within left Ai
+%---------------------------------------------------------------------
+#include weights/left/eg1ueg1u.w
+#include weights/left/ig1ueg1u.w
+#include weights/left/eg1uig1u.w
+#include weights/left/eg1deg1d.w
+#include weights/left/eg1dig1d.w
+#include weights/left/ig1deg1d.w
+
+%---------------------------------------------------------------------
+% Connection weights from left Ai to left Aii
+%---------------------------------------------------------------------
+#include weights/left/eg1ueg2u.w
+#include weights/left/eg1ueg2c.w
+#include weights/left/eg1deg2c.w
+#include weights/left/eg1deg2d.w
+
+%---------------------------------------------------------------------
+% Connection weights within left Aii
+%---------------------------------------------------------------------
+#include weights/left/eg2ueg2u.w
+#include weights/left/eg2uig2u.w
+#include weights/left/ig2ueg2u.w
+#include weights/left/eg2ceg2c.w
+#include weights/left/eg2cig2c.w
+#include weights/left/ig2ceg2c.w
+#include weights/left/eg2deg2d.w
+#include weights/left/eg2dig2d.w
+#include weights/left/ig2deg2d.w
+
+%---------------------------------------------------------------------
+% Connection weights from left Aii to left Ai
+% This feedback was eliminated recently: October 31, 2000
+%---------------------------------------------------------------------
+%#include weights/left/eg2ueg1u.w
+%#include weights/left/eg2deg1d.w
+
+%---------------------------------------------------------------------
+% Connection weights from left Aii to left STG
+%---------------------------------------------------------------------
+#include weights/left/eg2uegtg.w
+#include weights/left/eg2cegtg.w
+#include weights/left/eg2degtg.w
+
+%---------------------------------------------------------------------
+% Connection weights within left STG
+%---------------------------------------------------------------------
+#include weights/left/egtgegtg.w
+#include weights/left/egtgigtg.w
+#include weights/left/igtgegtg.w
+
+%---------------------------------------------------------------------
+% Connection weights from left STG to left Aii
+%---------------------------------------------------------------------
+#include weights/left/egtgeg2u.w
+#include weights/left/egtgeg2d.w
+#include weights/left/egtgeg2c.w
+%#include weights/left/sta2uhnhf2.w
+
+%---------------------------------------------------------------------
+% Connection weights from left STG to left PFC
+%---------------------------------------------------------------------
+#include weights/left/egtgegfs.w
+
+%---------------------------------------------------------------------
+% Connection weights between left FS and left D1
+%---------------------------------------------------------------------
+#include weights/left/egfsigd1.w
+#include weights/left/egd1igfs.w
+
+%---------------------------------------------------------------------
+% Connection weights between left FS and left D2
+%---------------------------------------------------------------------
+#include weights/left/egfsegd2.w
+
+%---------------------------------------------------------------------
+% Connection weights between left FS and left R
+%---------------------------------------------------------------------
+#include weights/left/egfsegfr.w
+
+%---------------------------------------------------------------------
+% Connection weights within left FS
+%---------------------------------------------------------------------
+#include weights/left/egfsegfs.w
+#include weights/left/egfsigfs.w
+#include weights/left/igfsegfs.w
+
+%---------------------------------------------------------------------
+% Connection weights between left D1 and left D2
+%---------------------------------------------------------------------
+#include weights/left/egd1egd2.w
+#include weights/left/egd2egd1.w
+
+%---------------------------------------------------------------------
+% Connection weights between left D1 and left R
+%---------------------------------------------------------------------
+#include weights/left/egd1egfr.w
+#include weights/left/egfrigd1.w
+
+%---------------------------------------------------------------------
+% Connection weights within left D1
+%---------------------------------------------------------------------
+#include weights/left/egd1egd1.w
+#include weights/left/egd1igd1.w
+#include weights/left/igd1egd1.w
+
+%---------------------------------------------------------------------
+% Connection weights between left D2 and left R
+%---------------------------------------------------------------------
+#include weights/left/egfrigd2.w
+
+%---------------------------------------------------------------------
+% Connection weights within left D2
+%---------------------------------------------------------------------
+#include weights/left/egd2egd2.w
+#include weights/left/egd2igd2.w
+#include weights/left/igd2egd2.w
+
+%---------------------------------------------------------------------
+% Connection weights within left R
+%---------------------------------------------------------------------
+#include weights/left/egfregfr.w
+#include weights/left/egfrigfr.w
+#include weights/left/igfregfr.w
+
+%---------------------------------------------------------------------
+% Connection weights from left PFC to left STG
+%---------------------------------------------------------------------
+#include weights/left/egd1igtg.w
+#include weights/left/egd2egtg.w
+
+%---------------------------------------------------------------------
+% Connection weights from left PFC to left Aii
+%---------------------------------------------------------------------
+#include weights/left/egd2eg2u.w
+#include weights/left/egd2eg2c.w
+#include weights/left/egd2eg2d.w
+%#include weights/left/d2a2usubsetmfh.w
+%#include weights/left/d2a2dsubsetmfh.w
+%#include weights/left/d2a2csubsetmfh.w
+%#include weights/left/d2a2u5n1f5.w
+%#include weights/left/d2a2den1f5.w
+
+
+%---------------------------------------------------------------------
+% Connection weights from Attention module to left PFC
+%---------------------------------------------------------------------
+#include weights/left/gatsegd2.w
+#include weights/left/attvgats.w
+
+%---------------------------------------------------------------------
+% Connection weights in control region
+%---------------------------------------------------------------------
+#include weights/right/ectlectl.w
+#include weights/right/ectlictl.w
+#include weights/right/ictlectl.w
+#include weights/right/ictlictl.w
+
+
+
+
+
+
+
+

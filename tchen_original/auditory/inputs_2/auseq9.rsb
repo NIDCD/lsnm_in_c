@@ -1,0 +1,31 @@
+WPet 1
+
+Randseed 71
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/reset_au.s	% reset
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise1.inp
+
+% ********************************
+%	TRIAL #9	(TC-nonMATCH)
+% ********************************
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_r.s
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/tc4_noise3.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise6.inp
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise8.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/tc5_noise4.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise10.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_r.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+Run 200

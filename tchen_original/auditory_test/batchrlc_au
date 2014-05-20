@@ -1,0 +1,622 @@
+#
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_l.s 0.22
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au loattn_l.s 0.12
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au loattn_r.s 0.05
+cd /home/bhguest/sgihome/tchen/auditory_test
+rm auseq1.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl1 > auseq1.s
+rm code/apprl1
+rm auseq2.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl2 > auseq2.s
+rm code/apprl2
+rm auseq3.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl3 > auseq3.s
+rm code/apprl3
+rm auseq4.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl4 > auseq4.s
+rm code/apprl4
+rm auseq5.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl5 > auseq5.s
+rm code/apprl5
+rm code/batchrlc_au
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test
+mkdir noisy
+cd /home/bhguest/sgihome/tchen/auditory_test/code
+/home/bhguest/sgihome/tchen/auditory_test/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+/home/bhguest/sgihome/tchen/auditory_test/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100
+echo Subject 1
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.15
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.15
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b15
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b15
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b15/trial1/
+mv *.out* noisy/b15/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b15/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b15
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b15/trial2/
+mv *.out* noisy/b15/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b15/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b15
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b15/trial3/
+mv *.out* noisy/b15/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b15/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b15
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b15/trial4/
+mv *.out* noisy/b15/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b15/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b15
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b15/trial5/
+mv *.out* noisy/b15/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b15/trial5/aucrosslist5.txt
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.18
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.18
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b18
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b18
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b18/trial1/
+mv *.out* noisy/b18/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b18/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b18
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b18/trial2/
+mv *.out* noisy/b18/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b18/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b18
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b18/trial3/
+mv *.out* noisy/b18/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b18/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b18
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b18/trial4/
+mv *.out* noisy/b18/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b18/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b18
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b18/trial5/
+mv *.out* noisy/b18/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b18/trial5/aucrosslist5.txt
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.21
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.21
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b21
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b21
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b21/trial1/
+mv *.out* noisy/b21/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b21/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b21
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b21/trial2/
+mv *.out* noisy/b21/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b21/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b21
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b21/trial3/
+mv *.out* noisy/b21/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b21/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b21
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b21/trial4/
+mv *.out* noisy/b21/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b21/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b21
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b21/trial5/
+mv *.out* noisy/b21/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b21/trial5/aucrosslist5.txt
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.24
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.24
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b24
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b24
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b24/trial1/
+mv *.out* noisy/b24/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b24/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b24
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b24/trial2/
+mv *.out* noisy/b24/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b24/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b24
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b24/trial3/
+mv *.out* noisy/b24/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b24/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b24
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b24/trial4/
+mv *.out* noisy/b24/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b24/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b24
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b24/trial5/
+mv *.out* noisy/b24/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b24/trial5/aucrosslist5.txt
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.27
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.27
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b27
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b27
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b27/trial1/
+mv *.out* noisy/b27/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b27/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b27
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b27/trial2/
+mv *.out* noisy/b27/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b27/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b27
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b27/trial3/
+mv *.out* noisy/b27/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b27/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b27
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b27/trial4/
+mv *.out* noisy/b27/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b27/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b27
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b27/trial5/
+mv *.out* noisy/b27/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b27/trial5/aucrosslist5.txt
+#
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/sfiles
+/home/bhguest/sgihome/tchen/auditory_test/bin/mkattn_au hiattn_r.s 0.30
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/right
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_au $file
+  done
+cd ../left
+for file in `ls *.ws`
+ do /home/bhguest/sgihome/tchen/auditory_test/bin/netgenC_L_au $file
+  done
+echo attn level: 0.30
+cd /home/bhguest/sgihome/tchen/auditory_test/noisy
+mkdir b30
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b30
+mkdir trial1
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b30/trial1/
+mv *.out* noisy/b30/trial1/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b30/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b30
+mkdir trial2
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b30/trial2/
+mv *.out* noisy/b30/trial2/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b30/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b30
+mkdir trial3
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b30/trial3/
+mv *.out* noisy/b30/trial3/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b30/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b30
+mkdir trial4
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b30/trial4/
+mv *.out* noisy/b30/trial4/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b30/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/sgihome/tchen/auditory_test/weights/cross
+/home/bhguest/sgihome/tchen/auditory_test/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+./sh_cross
+rm sh_cross
+cd /home/bhguest/sgihome/tchen/auditory_test
+/home/bhguest/sgihome/tchen/auditory_test/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b30
+mkdir trial5
+cd /home/bhguest/sgihome/tchen/auditory_test
+mv spec_pet.m noisy/b30/trial5/
+mv *.out* noisy/b30/trial5/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt noisy/b30/trial5/aucrosslist5.txt
+#
+mkdir -p /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/right
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/right/*.w /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/right/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/right/*.ws /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/right/
+mkdir -p /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/left
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/left/*.w /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/left/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/left/*.ws /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/left/
+mkdir -p /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/cross
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/*.w /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/cross/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/*.ws /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/cross/
+cp /home/bhguest/sgihome/tchen/auditory_test/weights/cross/aucrosslist.txt /home/bhguest/sgihome/tchen/auditory_test/noisy/weights/cross/
+cp /home/bhguest/sgihome/tchen/auditory_test/code/netgenC_au.in   /home/bhguest/sgihome/tchen/auditory_test/noisy/
+cp /home/bhguest/sgihome/tchen/auditory_test/code/netgenC_L_au.in /home/bhguest/sgihome/tchen/auditory_test/noisy/
+mkdir -p /home/bhguest/sgihome/tchen/auditory_test/noisy/sfiles
+cp /home/bhguest/sgihome/tchen/auditory_test/sfiles/*attn*.s /home/bhguest/sgihome/tchen/auditory_test/noisy/sfiles/
+cp /home/bhguest/sgihome/tchen/auditory_test/batchrlc_au   /home/bhguest/sgihome/tchen/auditory_test/noisy/ 
+mv noisy /data/bhguest/tchen/auditory_test/2009-06-24/newmodtest/subj1
+
+rm weights/right/*.w
+rm weights/left/*.w
+cd weights/cross
+rm aucrosslist.txt
+rm ea*.w
+rm eg*.w
+rm *.w
+cd /home/bhguest/sgihome/tchen/auditory_test
+rm sfiles/*attn*.s

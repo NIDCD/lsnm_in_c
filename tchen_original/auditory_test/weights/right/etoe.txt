@@ -1,0 +1,34 @@
+Connect(ev1h, ev1h) {
+Each 0.6
+}
+Connect(ev1v, ev1v) {
+Each 0.6
+}
+Connect(ev4h, ev4h) {
+Each 0.6
+}
+Connect(ev4v, ev4v) {
+Each 0.6
+}
+Connect(ev4c, ev4c) {
+Each 0.6
+}
+Connect(exss, exss) {
+Each 0.6
+}
+Connect(exfs, exfs) {
+Each 0.6
+}
+Connect(efd1, efd1) {
+Each 0.6
+}
+Connect(efd2, efd2) {
+Each 0.6
+}
+Connect(exfr, exfr) {
+Each 0.6
+}
+Connect(ectl, ectl) {
+Each 0.6
+}
+

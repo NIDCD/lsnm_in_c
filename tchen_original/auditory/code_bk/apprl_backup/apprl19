@@ -1,0 +1,4 @@
+#include /home/bhguest/sgihome/tchen/auditory/weights/right/aurightlist.txt
+#include /home/bhguest/sgihome/tchen/auditory/weights/left/auleftlist.txtn
+#include /home/bhguest/sgihome/tchen/auditory/weights/cross/aucrosslist.txt
+#include /home/bhguest/sgihome/tchen/auditory/inputs/auseq19.rsb

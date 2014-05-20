@@ -1,0 +1,61 @@
+/* altgenw_L.cc  written 07/18/03 by B. Warner
+produces netgenC_L.in to be used by netgenC_L
+
+Define capacity as the %strength with respect to the original 
+connection strength.  It is a command line input so we can incorporate
+it in a shell script generator for batch files.  It is entered
+as an integer. e.g. if we want the capacity to be 80%, at
+the system prompt enter:
+altgenw_L 80
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define maxstring 15
+#define maxline 80
+
+int main(int argc,char **argv)
+{
+FILE *infile, *outfile;
+char origin[maxstring], dest[maxstring], Infile[maxline],Outfile[maxline];
+int num_pairs, i;
+float capacity[40];
+
+  char *BASE= "/home/bhguest/brent/visual/code/";
+
+  strcpy(Infile,BASE);
+  strcpy(Outfile,BASE);
+  strcat(Infile,"altgenw_L.in");
+  strcat(Outfile,"netgenC_L.in");
+
+if( (infile = fopen(Infile, "r")) == NULL)
+    {
+      printf("can't open %s\n",Infile);
+      exit(0);
+    }
+outfile = fopen(Outfile,"w");
+for(i=1; i<argc; i++)
+  {
+    if(argv[i] != NULL)
+      capacity[i] = atof(argv[i])/100.0;
+    else 
+      {
+	capacity[i] = 0.0;
+	printf("you need to enter capacity in command line\n");
+      }
+  }
+fscanf(infile,"%d",&num_pairs);
+fprintf(outfile,"%d\n", num_pairs);
+for(i=0; i< num_pairs; i++)
+   {
+     fscanf(infile,"%s %s",origin, dest);
+     fprintf(outfile,"%s %s  %g\n",origin, dest,capacity[i+1]);
+   }
+fclose(infile);
+fclose(outfile);
+
+}
+
+

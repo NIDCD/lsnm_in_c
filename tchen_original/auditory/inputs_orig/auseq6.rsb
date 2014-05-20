@@ -1,0 +1,32 @@
+WPet 1
+
+Randseed 171
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/reset_au.s	% reset
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_r.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/gtc1_ctrltask5.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+% ********************************
+%	TRIAL #6	(MATCH)
+% ********************************
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise6_ctrltask5.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise8_ctrltask1.inp
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise4_ctrltask1.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise3_ctrltask4.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise5_ctrltask6.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_r.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+Run 200

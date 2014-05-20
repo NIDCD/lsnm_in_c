@@ -1,0 +1,14 @@
+13
+eg1d eg2c 0
+eg1d eg2d -7.00055e+06
+eg1u eg2c 327.67
+eg1u eg2u -7.00055e+06
+eg2c egtg 327.67
+eg2d egtg -7.2362e+06
+eg2u egtg 110.78
+egd1 egd2 0
+egd1 egfr 0
+egd2 egd1 -7.00056e+06
+egtg egfs 327.67
+egfs egd2 0
+egfs egfr 0

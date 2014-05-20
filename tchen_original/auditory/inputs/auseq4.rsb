@@ -1,0 +1,36 @@
+WPet 1
+
+
+Randseed 1251
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/reset_au.s
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise5.inp
+
+% **********************************
+%	TRIAL #4	(Tone_MATCH)
+% **********************************
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_r.s
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/both_tone8.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise4.inp
+#include /home/bhguest/sgihome/tchen/auditory/inputs/gtc3.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/both_tone3.inp
+%#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noise1.inp
+
+#include /home/bhguest/sgihome/tchen/auditory/sfiles/loattn_r.s
+#include /home/bhguest/sgihome/tchen/auditory/inputs/noinp_au.inp
+Run 200
+
+% **********************************
+%	INTERTRIAL INTERVAL
+% **********************************

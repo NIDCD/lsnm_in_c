@@ -1,0 +1,21 @@
+0	0.80
+5     5      0.0008     0.0004
+5     5      0.0008     0.0004
+
+seed  perc
+fanr  fanc  base       scale
+fanr  fanc  base       scale
+
+where
+seed: for random number, if seed = 0, sys clock is default
+perc: percent zero connection, in normalized form, i.e. 50% is 0.5
+	note that the greater this number, the sparser the fanout is filled
+fanr: number of rows for fanout
+fanc: number of columns for fanout
+base: base weight
+scale: weight = base+-scale
+
+The 2nd line is specification for homologous connection, excit. to excit.
+The 3rd line is specification for nonhomologous connection excit. to excit.
+weights for other connections (e.g. excit. to inh.) will be computed
+in the code according to the weight ratio in the basic unit connection

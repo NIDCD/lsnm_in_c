@@ -1,0 +1,3 @@
+#include /home/bhguest/rongf/auditory/weights/right/aurightlist.txt
+#include /home/bhguest/rongf/auditory/weights/left/auleftlist.txtn
+#include /home/bhguest/rongf/auditory/inputs/auseq5.rsb

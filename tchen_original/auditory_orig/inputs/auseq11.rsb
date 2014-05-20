@@ -1,0 +1,32 @@
+WPet 1
+
+Randseed 181
+
+#include /home/bhguest/rongf/auditory/sfiles/reset_au.s	% reset
+#include /home/bhguest/rongf/auditory/sfiles/loattn_l.s
+#include /home/bhguest/rongf/auditory/inputs/noise8.inp
+
+% ********************************
+%	TRIAL #11	(Tone-nonMATCH)
+% ********************************
+
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_r.s
+
+#include /home/bhguest/rongf/auditory/inputs/both_tone10.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/inputs/gtc1.inp
+#include /home/bhguest/rongf/auditory/inputs/gtc4.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/sfiles/hiattn_l.s
+#include /home/bhguest/rongf/auditory/inputs/both_tone2.inp
+%#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+
+#include /home/bhguest/rongf/auditory/inputs/noise2.inp
+
+#include /home/bhguest/rongf/auditory/sfiles/loattn_r.s
+#include /home/bhguest/rongf/auditory/inputs/noinp_au.inp
+Run 200
+

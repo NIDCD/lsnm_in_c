@@ -1,0 +1,1655 @@
+#
+#
+#
+cd /data/bhguest/brent/auditory/newscans/ITI_6sec/delay_6sec
+cd subj1
+cd b30
+echo subject 1, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 1, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 1, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 1, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 1, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 1, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj2
+cd b30
+echo subject 2, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 2, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 2, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 2, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 2, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 2, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj3
+cd b30
+echo subject 3, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 3, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 3, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 3, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 3, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 3, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj4
+cd b30
+echo subject 4, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 4, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 4, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 4, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 4, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 4, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj5
+cd b30
+echo subject 5, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 5, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 5, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 5, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 5, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 5, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj6
+cd b30
+echo subject 6, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 6, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 6, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 6, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 6, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 6, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj7
+cd b30
+echo subject 7, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 7, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 7, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 7, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 7, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 7, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj8
+cd b30
+echo subject 8, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 8, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 8, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 8, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 8, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 8, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj9
+cd b30
+echo subject 9, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 9, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 9, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 9, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 9, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 9, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd subj10
+cd b30
+echo subject 10, attn 30
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b27
+echo subject 10, attn 27
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b24
+echo subject 10, attn 24
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b21
+echo subject 10, attn 21
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b18
+echo subject 10, attn 18
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+cd b15
+echo subject 10, attn 15
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out trial3/efd1.out trial4/efd1.out trial5/efd1.out trial6/efd1.out > efd1.out
+cat trial1/efd2.out trial2/efd2.out trial3/efd2.out trial4/efd2.out trial5/efd2.out trial6/efd2.out > efd2.out
+cat trial1/eg1d.out trial2/eg1d.out trial3/eg1d.out trial4/eg1d.out trial5/eg1d.out trial6/eg1d.out > eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out trial3/eg1u.out trial4/eg1u.out trial5/eg1u.out trial6/eg1u.out > eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out trial3/eg2c.out trial4/eg2c.out trial5/eg2c.out trial6/eg2c.out > eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out trial3/eg2d.out trial4/eg2d.out trial5/eg2d.out trial6/eg2d.out > eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out trial3/eg2u.out trial4/eg2u.out trial5/eg2u.out trial6/eg2u.out > eg2u.out
+cat trial1/egd1.out trial2/egd1.out trial3/egd1.out trial4/egd1.out trial5/egd1.out trial6/egd1.out > egd1.out
+cat trial1/egd2.out trial2/egd2.out trial3/egd2.out trial4/egd2.out trial5/egd2.out trial6/egd2.out > egd2.out
+cat trial1/egfr.out trial2/egfr.out trial3/egfr.out trial4/egfr.out trial5/egfr.out trial6/egfr.out > egfr.out
+cat trial1/egfs.out trial2/egfs.out trial3/egfs.out trial4/egfs.out trial5/egfs.out trial6/egfs.out > egfs.out
+cat trial1/ea1d.out trial2/ea1d.out trial3/ea1d.out trial4/ea1d.out trial5/ea1d.out trial6/ea1d.out > ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out trial3/ea1u.out trial4/ea1u.out trial5/ea1u.out trial6/ea1u.out > ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out trial3/ea2c.out trial4/ea2c.out trial5/ea2c.out trial6/ea2c.out > ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out trial3/ea2d.out trial4/ea2d.out trial5/ea2d.out trial6/ea2d.out > ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out trial3/ea2u.out trial4/ea2u.out trial5/ea2u.out trial6/ea2u.out > ea2u.out
+cat trial1/exfr.out trial2/exfr.out trial3/exfr.out trial4/exfr.out trial5/exfr.out trial6/exfr.out > exfr.out
+cat trial1/exfs.out trial2/exfs.out trial3/exfs.out trial4/exfs.out trial5/exfs.out trial6/exfs.out > exfs.out
+cat trial1/egtg.out trial2/egtg.out trial3/egtg.out trial4/egtg.out trial5/egtg.out trial6/egtg.out > egtg.out
+cat trial1/estg.out trial2/estg.out trial3/estg.out trial4/estg.out trial5/estg.out trial6/estg.out > estg.out
+cat trial1/gmgn.out trial2/gmgn.out trial3/gmgn.out trial4/gmgn.out trial5/gmgn.out trial6/gmgn.out > gmgn.out
+cat trial1/mgns.out trial2/mgns.out trial3/mgns.out trial4/mgns.out trial5/mgns.out trial6/mgns.out > mgns.out
+gzip trial*/*.out
+cd ..
+gzip b*/*.out
+cd ..
+cd /home/bhguest/brent/auditory

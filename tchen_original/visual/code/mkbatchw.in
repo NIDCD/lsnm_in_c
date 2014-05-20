@@ -1,0 +1,45 @@
+/data/bhguest/brent/visual/fRnL
+3	12	0	30	30	5
+100	100	0	30	30	0
+----------------------------------------------------------------------
+line 1:
+	directory of where you want the final data to be moved to
+line 2:
+	parameters in line 2:
+	m,	ggns_in, seed,	lefthi, leftlo rightlo
+
+	m: number of input files for right brain
+	ggns_in: number of "on" blocks in the left brain's ggns input.  
+	ggnsseed: The code mkinput  will use this number to randomly select 
+          which block is turned on.  If seed = 0, system clock is the seed
+
+ 	attention parameters are:
+
+	lefthi -- for left brain
+	leftlo -- for left brain during intertrial period, if lefthi=leftlo, 
+          left side has sustained attention
+	rightlo-- for right brain during intertrial period
+	righthi steps thru "start_a" to "end_a" at an increment of "inc_a"
+	if increment = 0, only the start value will be used, and only once.
+ 
+	The attention levels are entered as integers.
+	e.g. if we want an attention level of 0.05, we enter 5.
+	This input will be converted to the proper unit in the code
+	We want integer entries because when we generate directory for a
+	subject with attention level 0.05, we will name that directory b05.
+	It is necessary to keep the directory names to be of the same length
+	so we can use petmanip.m later for data manipulation
+
+line 3: 
+start_c  end_c  inc_c  start_a  end_a  inc_a
+
+where suffix:
+_c ==> fraction of the connection strength in the connected network (in %)
+	e.g. 40 ==> 40% of conneciton strength
+       note that capacity < 99
+_a ==> attention level, 8 ==> attention level is 0.08
+      note that attn < 50
+
+All parameters are entered as integers.  They will be converted to proper
+values in the code
+if any of the inc's is 0, we do only the start value

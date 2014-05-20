@@ -1,0 +1,151 @@
+
+set (MGNs, 81)          % 1
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 1
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,71] 0.75) }
+   Node activation { ([1,72] 0.75) }
+}
+
+Run 10
+
+%---------------------------------------
+
+set (MGNs, 81)          % 2
+{
+   
+   Node activation {ALL 0.0 }
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 2
+{
+   
+   Node activation {ALL 0.0 }
+   Node activation { ([1,51] 0.75) }
+   Node activation { ([1,52] 0.75) }
+}
+
+
+Run 10
+
+
+%---------------------------------------
+
+
+set (MGNs, 81)          % 3
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 3
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,38] 0.75) }
+   Node activation { ([1,39] 0.75) }
+}
+Run 10
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+
+%---------------------------------------
+
+
+set (MGNs, 81)          % 4
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+set (GMGN, 81)          % 4
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,5] 0.75) }
+   Node activation { ([1,6] 0.75) }
+}
+Run 10
+
+%--------------------------------------
+
+set (MGNs, 81)          % 5
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 5
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,26] 0.75) }
+   Node activation { ([1,27] 0.75) }
+}
+
+Run 10
+
+%---------------------------------------
+
+set (MGNs, 81)          % 6
+{
+   
+   Node activation {ALL 0.0 }
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 6
+{
+   
+   Node activation {ALL 0.0 }
+   Node activation { ([1,11] 0.75) }
+   Node activation { ([1,12] 0.75) }
+}
+
+
+Run 10
+
+
+%---------------------------------------
+
+
+set (MGNs, 81)          % 7
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,74] 1.00) }
+   Node activation { ([1,75] 1.00) }
+}
+
+
+set (GMGN, 81)          % 7
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,31] 0.75) }
+   Node activation { ([1,32] 0.75) }
+}
+
+
+Run 10

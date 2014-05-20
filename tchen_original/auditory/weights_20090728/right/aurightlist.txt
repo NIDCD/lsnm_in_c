@@ -1,0 +1,186 @@
+%---------------------------------------------------------------------
+% Connection weights from MGN to Ai
+%---------------------------------------------------------------------
+#include weights/right/mgnsea1u.w
+#include weights/right/mgnsea1d.w
+%#include weights/right/mgnsea1pt.w
+
+%---------------------------------------------------------------------
+% Connection weights within Ai
+%---------------------------------------------------------------------
+#include weights/right/ea1uea1u.w
+#include weights/right/ia1uea1u.w
+#include weights/right/ea1uia1u.w
+#include weights/right/ea1dea1d.w
+#include weights/right/ea1dia1d.w
+#include weights/right/ia1dea1d.w
+%#include weights/right/ea1ptea1pt.w
+%#include weights/right/ea1ptia1pt.w
+%#include weights/right/ia1ptea1pt.w
+
+%---------------------------------------------------------------------
+% Connection weights from Ai to Aii
+%---------------------------------------------------------------------
+#include weights/right/ea1uea2u.w
+#include weights/right/ea1uea2c.w
+#include weights/right/ea1dea2c.w
+#include weights/right/ea1dea2d.w
+
+%---------------------------------------------------------------------
+% Connection weights within Aii
+%---------------------------------------------------------------------
+#include weights/right/ea2uea2u.w
+#include weights/right/ea2uia2u.w
+#include weights/right/ia2uea2u.w
+#include weights/right/ea2cea2c.w
+#include weights/right/ea2cia2c.w
+#include weights/right/ia2cea2c.w
+#include weights/right/ea2dea2d.w
+#include weights/right/ea2dia2d.w
+#include weights/right/ia2dea2d.w
+
+%---------------------------------------------------------------------
+% Connection weights from Aii to Ai
+% This feedback was eliminated recently: October 31, 2000
+%---------------------------------------------------------------------
+%#include weights/right/ea2uea1u.w
+%#include weights/right/ea2dea1d.w
+
+%---------------------------------------------------------------------
+% Connection weights from Aii to STG
+%---------------------------------------------------------------------
+#include weights/right/ea2uestg.w
+#include weights/right/ea2cestg.w
+#include weights/right/ea2destg.w
+
+%---------------------------------------------------------------------
+% Connection weights within STG
+%---------------------------------------------------------------------
+#include weights/right/estgestg.w
+#include weights/right/estgistg.w
+#include weights/right/istgestg.w
+
+%---------------------------------------------------------------------
+% Connection weights from STG to Aii
+%---------------------------------------------------------------------
+#include weights/right/estgea2u.w
+#include weights/right/estgea2d.w
+#include weights/right/estgea2c.w
+%#include weights/right/sta2uhnhf2.w
+
+%---------------------------------------------------------------------
+% Connection weights from STG to PFC
+%---------------------------------------------------------------------
+#include weights/right/estgexfs.w
+
+%---------------------------------------------------------------------
+% Connection weights between FS and D1
+%---------------------------------------------------------------------
+#include weights/right/exfsifd1.w
+#include weights/right/efd1infs.w
+
+%---------------------------------------------------------------------
+% Connection weights between FS and D2
+%---------------------------------------------------------------------
+#include weights/right/exfsefd2.w
+
+%---------------------------------------------------------------------
+% Connection weights between FS and R
+%---------------------------------------------------------------------
+#include weights/right/exfsexfr.w
+
+%---------------------------------------------------------------------
+% Connection weights within FS
+%---------------------------------------------------------------------
+#include weights/right/exfsexfs.w
+#include weights/right/exfsinfs.w
+#include weights/right/infsexfs.w
+
+%---------------------------------------------------------------------
+% Connection weights between D1 and D2
+%---------------------------------------------------------------------
+#include weights/right/efd1efd2.w
+#include weights/right/efd2efd1.w
+
+%---------------------------------------------------------------------
+% Connection weights between D1 and R
+%---------------------------------------------------------------------
+#include weights/right/efd1exfr.w
+#include weights/right/exfrifd1.w
+
+%---------------------------------------------------------------------
+% Connection weights within D1
+%---------------------------------------------------------------------
+#include weights/right/efd1efd1.w
+#include weights/right/efd1ifd1.w
+#include weights/right/ifd1efd1.w
+
+%---------------------------------------------------------------------
+% Connection weights between D2 and R
+%---------------------------------------------------------------------
+#include weights/right/exfrifd2.w
+
+%---------------------------------------------------------------------
+% Connection weights within D2
+%---------------------------------------------------------------------
+#include weights/right/efd2efd2.w
+#include weights/right/efd2ifd2.w
+#include weights/right/ifd2efd2.w
+
+%---------------------------------------------------------------------
+% Connection weights within R
+%---------------------------------------------------------------------
+#include weights/right/exfrexfr.w
+#include weights/right/exfrinfr.w
+#include weights/right/infrexfr.w
+
+%---------------------------------------------------------------------
+% Connection weights from PFC to STG
+%---------------------------------------------------------------------
+#include weights/right/efd1istg.w
+#include weights/right/efd2estg.w
+
+%---------------------------------------------------------------------
+% Connection weights from PFC to Aii
+%---------------------------------------------------------------------
+#include weights/right/efd2ea2u.w
+#include weights/right/efd2ea2c.w
+#include weights/right/efd2ea2d.w
+%#include weights/right/d2a2usubsetmfh.w
+%#include weights/right/d2a2dsubsetmfh.w
+%#include weights/right/d2a2csubsetmfh.w
+%#include weights/right/d2a2u5n1f5.w
+%#include weights/right/d2a2den1f5.w
+
+%---------------------------------------------------------------------
+% Connection weights from PFC to Ai
+%---------------------------------------------------------------------
+%#include weights/right/efd2ia1pt.w
+%#include weights/right/efd2ia1d.w
+%#include weights/right/efd2ia1u.w
+
+%---------------------------------------------------------------------
+% Connection weights from Attention module to PFC
+%---------------------------------------------------------------------
+#include weights/right/attsefd2.w
+#include weights/right/attvatts.w
+
+%---------------------------------------------------------------------
+% Connection weights in control region
+%---------------------------------------------------------------------
+#include weights/right/ectlectl.w
+#include weights/right/ectlictl.w
+#include weights/right/ictlectl.w
+#include weights/right/ictlictl.w
+
+
+
+
+
+
+
+
+
+
+
+

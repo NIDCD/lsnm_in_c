@@ -1,0 +1,15 @@
+/data/bhguest/brent/visual/RLcombo/
+1	3	30	30	0
+------------------------------------------------------------
+line 1:
+	output directory for batchb.  should contain hierarchy as such:
+
+	~/RGC/subj1,subj2,subj3..../b20,b30,...../trial1,trial2,....
+
+line 2:
+	n_subjects	n_trials     start_a	end_a	inc_a
+
+	n_subjects:  # of subjects
+	n_trial:  # of trials
+	attention levels begin at start_a, increment by inc_a, and finish
+	at end_a 

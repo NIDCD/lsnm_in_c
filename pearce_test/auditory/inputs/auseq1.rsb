@@ -1,0 +1,33 @@
+WAPet 5
+
+Randseed 1251
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc2_ctrltask4.inp %10*5
+
+% **********************************
+%	TRIAL #1	(MATCH)
+% **********************************
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/bothtc1.inp %10*5+1*20=14*5
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc3_ctrltask3.inp %10*5
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1_ctrltask5.inp %10*5
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/tc1_noise2.inp %14*5
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise4_ctrltask5.inp %10*5
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+Run 200
+
+% **********************************
+%	INTERTRIAL INTERVAL
+% **********************************

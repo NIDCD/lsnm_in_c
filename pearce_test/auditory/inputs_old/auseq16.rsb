@@ -1,0 +1,32 @@
+WPet 1
+
+Randseed 13325
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise9.inp
+
+% ********************************
+%	TRIAL #11	(Tone-nonMATCH)
+% ********************************
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/both_tone3.inp
+%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc4.inp
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1.inp
+%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/both_tone4.inp
+%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise2.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+Run 200
+

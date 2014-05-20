@@ -1,0 +1,116 @@
+#include weights\attsefd2.w
+#include weights\attvatts.w
+
+
+% WTIHIN_AREA CONNECITIONS
+
+%  E -> E Connections
+
+#include weights\ectlectl.w
+
+#include weights\ev1hev1h.w
+#include weights\ev1vev1v.w
+
+#include weights\ev4cev4c.w
+#include weights\ev4hev4h.w
+#include weights\ev4vev4v.w
+
+#include weights\exssexss.w
+
+#include weights\exfsexfs.w
+#include weights\efd1efd1.w
+#include weights\efd2efd2.w
+#include weights\exfrexfr.w
+
+% E -> I Connections
+#include weights\ectlictl.w
+#include weights\ev1hiv1h.w
+#include weights\ev1viv1v.w
+#include weights\ev4civ4c.w
+#include weights\ev4hiv4h.w
+#include weights\ev4viv4v.w
+
+#include weights\exssinss.w
+#include weights\exfsinfs.w
+#include weights\efd1ifd1.w
+#include weights\efd2ifd2.w
+#include weights\exfrinfr.w
+
+#include weights\ictlectl.w
+#include weights\iv1hev1h.w
+#include weights\iv1vev1v.w
+#include weights\iv4cev4c.w
+#include weights\iv4hev4h.w
+#include weights\iv4vev4v.w
+#include weights\inssexss.w
+#include weights\infsexfs.w
+#include weights\ifd1efd1.w
+#include weights\ifd2efd2.w
+#include weights\infrexfr.w
+
+% BETWEEN-AREAS CONNECTIONS
+% From LGN
+
+#include weights\lgnsev1v.w
+#include weights\lgnsev1h.w
+
+% From V1
+
+#include weights\ev1vev4v.w
+#include weights\ev1hev4h.w
+#include weights\ev1vev4c.w
+#include weights\ev1hev4c.w
+
+% From V4
+
+%TMP #include weights\ev4vexss.wt	% Learned FF weights from V4 to IT
+%TMP #include weights\ev4hexss.wt	% Learned FF weights from V4 to IT
+%TMP #include weights\ev4cexss.wt	% Learned FF weights from V4 to IT
+
+#include weights\ev4vev1v.w
+#include weights\ev4hev1h.w
+
+% From TEO/IT
+
+#include weights\exssexfs.w
+
+%TMP #include weights\exss.wt	%  Learned feedback weights to IT from V4
+
+% FromPF
+
+#include weights\exfsefd2.w
+#include weights\exfsexfr.w
+#include weights\exfsifd1.w
+#include weights\efd1efd2.w
+#include weights\efd1exfr.w
+#include weights\efd1infs.w
+#include weights\efd2efd1.w
+#include weights\exfrifd1.w
+#include weights\exfrifd2.w
+
+#include weights\efd2ev4c.w
+#include weights\efd2ev4h.w
+#include weights\efd2ev4v.w
+
+#include weights\efd2exss.w
+#include weights\efd1inss.w
+
+
+
+
+WLearn  1     %%%% Turn ON LEARNING for the following connections
+
+#include weights\ev4vexss.w      
+#include weights\ev4hexss.w
+#include weights\ev4cexss.w
+
+#include weights\exssev4v.w
+#include weights\exssev4h.w
+#include weights\exssev4c.w
+
+#include weights\efd2ev4c.w
+#include weights\efd2ev4h.w
+#include weights\efd2ev4v.w
+
+WLearn 0	% Turn OFF learning for the following connections
+

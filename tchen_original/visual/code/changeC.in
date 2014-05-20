@@ -1,0 +1,43 @@
+/home/horwitz/barrysimfc/visual
+/home/bhguest/brent/visual
+28
+alz.cc
+alzbatchr.cc
+bar.cc
+crossws.cc
+crosswt.cc
+crosswt_i.cc
+genw.cc
+makews.cc
+mkbatch.cc
+mkbatchd.cc
+mkbatchl.cc
+mkbatchln.cc
+mkbatchn.cc
+mkbatchr.cc
+mkbatchrn.cc
+mkbatchw.cc
+mkbatchdw.cc
+mkbatchnw.cc
+mkbatchrw.cc
+mkdots.cc
+mketoe.cc
+mklist.cc
+r2batch.cc
+fMRI.cc
+makefile
+netgen/makefile
+netgen/generateC.cc
+netgen/generateA.cc
+sim/makefile
+-----------------------
+changing the BASE directory listed in the source code (or makefile) 
+line 1:
+	name of directory to change from
+line 2:
+	name of directory to change to
+line 3:
+	number of source codes to change
+line 4 - end:
+	name of the source coce, 1 file/line
+

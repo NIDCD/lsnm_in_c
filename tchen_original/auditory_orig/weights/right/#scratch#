@@ -1,0 +1,9 @@
+set(GMGN,81)
+  {
+	Write 1
+	Topology:  Rect(1,81)
+	ActRule: Clamp
+	OutputRule: SumOut
+
+	Node Activation { ALL 0.01 }
+  }

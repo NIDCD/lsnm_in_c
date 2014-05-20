@@ -1,0 +1,562 @@
+#
+#
+#
+cd /home/bhguest/rongf/auditory/sfiles
+/home/bhguest/rongf/auditory/bin/mkattn_au hiattn_l.s 0.20
+/home/bhguest/rongf/auditory/bin/mkattn_au loattn_l.s 0.10
+/home/bhguest/rongf/auditory/bin/mkattn_au loattn_r.s 0.05
+cd /home/bhguest/rongf/auditory
+rm auseq1.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl1 > auseq1.s
+rm code/apprl1
+rm auseq2.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl2 > auseq2.s
+rm code/apprl2
+rm auseq3.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl3 > auseq3.s
+rm code/apprl3
+rm auseq4.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl4 > auseq4.s
+rm code/apprl4
+rm auseq5.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl5 > auseq5.s
+rm code/apprl5
+rm auseq6.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl6 > auseq6.s
+rm code/apprl6
+rm auseq7.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl7 > auseq7.s
+rm code/apprl7
+rm auseq8.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl8 > auseq8.s
+rm code/apprl8
+rm auseq9.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl9 > auseq9.s
+rm code/apprl9
+rm auseq10.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl10 > auseq10.s
+rm code/apprl10
+rm auseq11.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl11 > auseq11.s
+rm code/apprl11
+rm auseq12.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl12 > auseq12.s
+rm code/apprl12
+rm auseq13.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl13 > auseq13.s
+rm code/apprl13
+rm auseq14.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl14 > auseq14.s
+rm code/apprl14
+rm auseq15.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl15 > auseq15.s
+rm code/apprl15
+rm auseq16.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl16 > auseq16.s
+rm code/apprl16
+rm auseq17.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl17 > auseq17.s
+rm code/apprl17
+rm auseq18.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl18 > auseq18.s
+rm code/apprl18
+rm auseq19.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl19 > auseq19.s
+rm code/apprl19
+rm auseq20.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl20 > auseq20.s
+rm code/apprl20
+rm code/batchrlc_au
+#
+#
+cd /home/bhguest/rongf/auditory
+#mkdir noisy
+cd /home/bhguest/rongf/auditory/code
+/home/bhguest/rongf/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+/home/bhguest/rongf/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+echo Subject 1
+#
+cd /home/bhguest/rongf/auditory/sfiles
+/home/bhguest/rongf/auditory/bin/mkattn_au hiattn_r.s 0.15
+cd /home/bhguest/rongf/auditory/weights/right
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_au $file
+  end
+cd ../left
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_L_au $file
+  end
+echo attn level for tones: 0.15
+cd /home/bhguest/rongf/auditory/noisy
+mkdir b15
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b15
+mkdir trial1
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial1/
+mv *.out* noisy/b15/trial1/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial1/aucrosslist1.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq2
+gzip *.out
+cd noisy/b15
+mkdir trial2
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial2/
+mv *.out* noisy/b15/trial2/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial2/aucrosslist2.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq3
+gzip *.out
+cd noisy/b15
+mkdir trial3
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial3/
+mv *.out* noisy/b15/trial3/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial3/aucrosslist3.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq4
+gzip *.out
+cd noisy/b15
+mkdir trial4
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial4/
+mv *.out* noisy/b15/trial4/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial4/aucrosslist4.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq10
+gzip *.out
+cd noisy/b15
+mkdir trial10
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial10/
+mv *.out* noisy/b15/trial10/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial10/aucrosslist10.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq11
+gzip *.out
+cd noisy/b15
+mkdir trial11
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial11/
+mv *.out* noisy/b15/trial11/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial11/aucrosslist11.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq13
+gzip *.out
+cd noisy/b15
+mkdir trial13
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial13/
+mv *.out* noisy/b15/trial13/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial13/aucrosslist13.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq15
+gzip *.out
+cd noisy/b15
+mkdir trial15
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial15/
+mv *.out* noisy/b15/trial15/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial15/aucrosslist15.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq16
+gzip *.out
+cd noisy/b15
+mkdir trial16
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial16/
+mv *.out* noisy/b15/trial16/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial16/aucrosslist16.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq17
+gzip *.out
+cd noisy/b15
+mkdir trial17
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b15/trial17/
+mv *.out* noisy/b15/trial17/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b15/trial17/aucrosslist17.txt
+#
+#
+#
+cd /home/bhguest/rongf/auditory/sfiles
+/home/bhguest/rongf/auditory/bin/mkattn_au hiattn_r.s 0.30
+cd /home/bhguest/rongf/auditory/weights/right
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_au $file
+end
+cd ../left
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_L_au $file
+end
+echo attn level for tonal contours: 0.30
+cd /home/bhguest/rongf/auditory/noisy
+mkdir b30
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq5
+gzip *.out
+cd noisy/b30
+mkdir trial5
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial5/
+mv *.out* noisy/b30/trial5/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial5/aucrosslist5.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq6
+gzip *.out
+cd noisy/b30
+mkdir trial6
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial6/
+mv *.out* noisy/b30/trial6/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial6/aucrosslist6.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq7
+gzip *.out
+cd noisy/b30
+mkdir trial7
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial7/
+mv *.out* noisy/b30/trial7/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial7/aucrosslist7.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq8
+gzip *.out
+cd noisy/b30
+mkdir trial8
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial8/
+mv *.out* noisy/b30/trial8/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial8/aucrosslist8.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq9
+gzip *.out
+cd noisy/b30
+mkdir trial9
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial9/
+mv *.out* noisy/b30/trial9/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial9/aucrosslist9.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq12
+gzip *.out
+cd noisy/b30
+mkdir trial12
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial12/
+mv *.out* noisy/b30/trial12/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial12/aucrosslist12.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq14
+gzip *.out
+cd noisy/b30
+mkdir trial14
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial14/
+mv *.out* noisy/b30/trial14/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial14/aucrosslist14.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq18
+gzip *.out
+cd noisy/b30
+mkdir trial18
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial18/
+mv *.out* noisy/b30/trial18/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial18/aucrosslist18.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq19
+gzip *.out
+cd noisy/b30
+mkdir trial19
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial19/
+mv *.out* noisy/b30/trial19/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial19/aucrosslist19.txt
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
+cat sh_cross crossinhibsh.txt > sh_cross1
+rm aucrosslist.txt
+rm sh_cross
+mv aucrosslist1.txt aucrosslist.txt
+mv sh_cross1 sh_cross
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq20
+gzip *.out
+cd noisy/b30
+mkdir trial20
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b30/trial20/
+mv *.out* noisy/b30/trial20/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b30/trial20/aucrosslist20.txt
+#
+#
+
+rm weights/right/*.w
+rm weights/left/*.w
+cd weights/cross
+rm aucrosslist.txt
+rm ea*.w
+rm eg*.w
+rm *.w
+cd /home/bhguest/rongf/auditory
+rm code/netgenC_au.in
+rm code/netgenC_L_au.in
+rm sfiles/*attn*.s
+

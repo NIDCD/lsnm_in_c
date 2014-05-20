@@ -1,0 +1,35 @@
+WPet 10
+
+
+Randseed 851
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise1.inp
+
+% **********************************
+%	TRIAL #2	(NON-MATCH)
+% **********************************
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/a_noise2.inp
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc3.inp
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1.inp
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/bothtc2.inp
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise3.inp
+
+#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
+#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+Run 300
+
+% **********************************
+%	INTERTRIAL INTERVAL
+% **********************************

@@ -1,0 +1,63 @@
+#
+#
+#
+cd /home/bhguest/rongf/auditory/sfiles
+/home/bhguest/rongf/auditory/bin/mkattn_au hiattn_l.s 0.20
+/home/bhguest/rongf/auditory/bin/mkattn_au loattn_l.s 0.10
+/home/bhguest/rongf/auditory/bin/mkattn_au loattn_r.s 0.05
+cd /home/bhguest/rongf/auditory
+rm auseq1.s
+cat weights/right/auright.s weights/left/auleft.sn code/apprl1 > auseq1.s
+rm code/apprl1
+rm code/batchrlc_au1
+#
+#
+cd /home/bhguest/rongf/auditory
+mkdir noisy
+cd /home/bhguest/rongf/auditory/code
+/home/bhguest/rongf/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+/home/bhguest/rongf/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+echo Subject 1
+#
+cd /home/bhguest/rongf/auditory/sfiles
+/home/bhguest/rongf/auditory/bin/mkattn_au hiattn_r.s 0.0~[21~fakdkf5
+cd /home/bhguest/rongf/auditory/weights/right
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_au $file
+  end
+cd ../left
+foreach file (*.ws)
+  /home/bhguest/rongf/auditory/bin/netgenC_L_au $file
+  end
+echo attn level: 0.05
+cd /home/bhguest/rongf/auditory/noisy
+mkdir b05
+#
+cd /home/bhguest/rongf/auditory/weights/cross
+/home/bhguest/rongf/auditory/bin/crosswt_au_i netgenC_au
+chmod u+x sh_cross
+echo Building cross connections...
+sh_cross
+rm sh_cross
+cd /home/bhguest/rongf/auditory
+/home/bhguest/rongf/auditory/bin/au_sim1 auseq1
+gzip *.out
+cd noisy/b05
+mkdir trial1
+cd /home/bhguest/rongf/auditory
+mv spec_pet.m noisy/b05/trial1/
+mv *.out* noisy/b05/trial1/
+cp /home/bhguest/rongf/auditory/weights/cross/aucrosslist.txt noisy/b05/trial1/aucrosslist1.txt
+
+rm weights/right/*.w
+rm weights/left/*.w
+cd weights/cross
+rm aucrosslist.txt
+rm ea*.w
+rm eg*.w
+rm *.w
+cd /home/bhguest/rongf/auditory
+rm code/netgenC_au.in
+rm code/netgenC_L_au.in
+rm sfiles/*attn*.s
+

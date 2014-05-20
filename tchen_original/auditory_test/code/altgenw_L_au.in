@@ -1,0 +1,34 @@
+16
+eg1d eg2c
+eg1d eg2d
+eg1u eg2c
+eg1u eg2u
+eg2c egtg
+eg2d egtg
+eg2u egtg
+egd1 egd2
+egd1 egfr
+egd2 egd1
+egtg egfs
+egfs egd2
+egfs egfr
+egte egd2
+egte eg1d
+egte eg2c
+--------------------------------------------------------------------
+line 1:
+	num_pairs (number of source/destination pairs)
+line 2 - num_pairs+1
+	source, destination
+
+Possible regions are:
+
+  right hemisphere:
+	ea1d, ea1u, ea2c, ea2d, ea2u, estg, exfs, efd1, efd2, exfr,
+	ia1d, ia1u, ia2c, ia2d, ia2u, istg, infs, ifd1, ifd2, infr ;
+
+  left hemisphere:
+	eg1d, eg1u, eg2c, eg2d, eg2u, egtg, egfs, egd1, egd2, egfr,
+	ig1d, ig1u, ig2c, ig2d, ig2u, igtg, igfs, igd1, igd2, igfr ;
+
+  three attention parameters -- atts, attv, gats

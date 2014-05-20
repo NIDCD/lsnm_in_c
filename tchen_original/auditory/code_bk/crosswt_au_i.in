@@ -1,0 +1,42 @@
+1  1  y  50
+------------------------------------------------------
+crosswt_au_i.in
+
+/* sample input if we want randomly generated connecition
+1              1      y    50   
+startregion ex_in  rangen  p     
+
+startregion: a number in (1:4). states which region is the first region for
+             non-homologous cross connection.  1=>a1, 2=>a2, 3=>STG,4=>PFC.
+	     for example, if we don't want
+             any connections to a1 from regions coming after A1 in the path
+             we will enter 1 so that only A2,STG, PFC will have non-homologous
+             connection
+ex_in: 1 or 2, 1=>excitatory connection only, 2=>excitatory and inhibitory
+rangen: y for random connection, n for specified connection
+p:  % of nonhomologous connection (0-100), i.e. 0.5 probability is 50%
+   so we enter 50 here 
+
+note that seed for the random number generator has been removed from
+this input file and became a command line input  
+                seed: for random number, 0=>sys clock is default
+
+/* sample input if we want specified connection
+1 1  n  (ex_in and rangen)
+9  2  4  6  /*areas connected from area 1:  9,2,4,6*/
+6	    /*areas connected from 2*/
+8 	    /*areas connected from 3*/
+0	    /*noconnection from 4*/
+0	    /*noconnection from 5*/
+6 5 1 	    /*areas connected from 6*/
+4 	    /*areas connected from 7*/
+9 7 	    /*areas connected from 8*/
+4 	    /*areas connected from 9*/
+ where line i+1 is the list of destination nodes from source i
+if we enter 0 for line i, no connection
+
+The above is for excitatory to excitatory connections.  If we want include 
+inhibitory nodes too, then the destination line for each node is replaced
+with 4 lines. The 1st line is excitatory-excitatory. The 2nd line is
+excitatory-inhibitory. The 3rd line is inhibitory-excitatory.
+The 4th line is inhibitory-inhibitory

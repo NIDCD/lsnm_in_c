@@ -1,0 +1,51 @@
+set(MGNs,  81)        % Turn off MGN,  the Input                              
+{ 
+  Node activation {ALL 0.05 }
+}                          
+set(GMGN,81)	% Turn off GMGN
+{
+  Node activation { ALL 0.05 }
+}
+
+% Turn off A1 units 
+                    
+Set(EA1u,81)
+{
+  Noise { ALL 0.05 }
+  % Node Activation { ALL 0.00 }
+}
+Set(EA1d,81) 
+{
+  Noise { ALL 0.05 }
+  % Node Activation { ALL 0.00 }
+}
+Set(IA1u,81) 
+{
+  Noise { ALL 0.05 }
+  % Node Activation { ALL 0.00 }
+}
+Set(IA1d,81) 
+{
+  Noise { ALL 0.05 }
+  % Node Activation { ALL 0.00 }
+}
+
+Set(EG1u,81)
+{
+  Noise { ALL 0.05 }
+}
+Set(EG1d,81)
+{
+  Noise { ALL 0.05 }
+}
+Set(IG1u,81)
+{
+  Noise { ALL 0.05 }
+}
+Set(IG1d,81)
+{
+  Noise { ALL 0.05 }
+}
+
+
+

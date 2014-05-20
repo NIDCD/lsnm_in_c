@@ -1,0 +1,4 @@
+// code.cc
+#include <code.h>
+char* BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
+char* increment(void) { return BASE++);

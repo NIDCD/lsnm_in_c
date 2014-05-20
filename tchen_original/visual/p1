@@ -1,0 +1,12 @@
+#
+
+cd /home/bhguest/brent/visual/weights/right
+foreach file (*.ws)
+  /home/bhguest/brent/visual/bin/netgenC $file
+  end
+cd ../left
+foreach file (*.ws)
+  /home/bhguest/brent/visual/bin/netgenC $file
+  end
+
+
