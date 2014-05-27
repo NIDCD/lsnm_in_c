@@ -578,7 +578,3 @@ set(GMGN,81)
   }
 
  
-#include /home/deckerp/software/lsnm/pearce_test/auditory/weights/right/aurightlist.txt
-#include /home/deckerp/software/lsnm/pearce_test/auditory/weights/left/auleftlist.txtn
-#include /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/auseq5.rsb
