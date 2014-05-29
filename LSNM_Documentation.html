@@ -1649,13 +1649,13 @@ DESCRIPTION: Given an experimental trial script, it runs a simulation and genera
 
 In addition to the code described above, there were other branches of the code made over the years, such as the simulations of Transcranial Magnetic Stimulation (TMS) around 2001 (see [[Husain et al, 2002|http://www.ncbi.nlm.nih.gov/pubmed/11771974]]),  the simulation of perceptual grouping around 2002 (see [[Husain et al, 2005|http://www.ncbi.nlm.nih.gov/pubmed/16197683]]), the simulations of long-duration auditory stimuli around 2003 (see [[Ulloa et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/19132798]]), and the simulation of a decision module around 2004 (see [[Wen et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/18496711]]).</pre>
 </div>
-<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201405291652" changecount="10">
+<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201405291701" changecount="12">
 <pre>[[Introduction]]
 [[Programs]]
 [[Commands]]
 [[&lt;netgen&gt; code files]]
 [[&lt;sim&gt; code files]]
-[[Useful GIT commands]]
+[[Version Control (VCS)]]
 [[Useful Linux commands]]
 [[Transferring files to/from Helix]]</pre>
 </div>
@@ -1853,7 +1853,7 @@ Major Documents
 <div title="SiteTitle" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221418" changecount="1">
 <pre>LSNM 2.0 Documentation</pre>
 </div>
-<div title="Transferring files to/from Helix" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271627" modified="201405291652" changecount="3">
+<div title="Transferring files to/from Helix" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271627" modified="201405291707" changecount="4">
 <pre>To download a file from Helix:
 
 scp username@helix.nih.gov:/home/username/myfile .
@@ -1862,8 +1862,21 @@ To upload a local file to Helix:
 
 scp mylocalfile username@helix.nih.gov:/home/username </pre>
 </div>
-<div title="Useful GIT commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" changecount="1">
-<pre>To show the status of changes to the code:
+<div title="Useful Linux commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221445" changecount="1">
+<pre>To tar and zip a directory prior to copying or transferring:
+
+$ tar -cvzf file_name.tar.gz directory_name
+
+To unpack and unzip a tar.gz file:
+
+$ tar -xzvf file_name.tar.gz   </pre>
+</div>
+<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201405291706" changecount="6">
+<pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description).
+
+The following basic commands are useful to keep track of changes to the LSNM software: 
+
+To show the status of changes to the code:
 
 $ git status 
 
@@ -1907,15 +1920,6 @@ To declare your email address (for labeling purposes only):
 
 $ git config --global user.email &quot;john.doe@nih.gov&quot;
 </pre>
-</div>
-<div title="Useful Linux commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221445" changecount="1">
-<pre>To tar and zip a directory prior to copying or transferring:
-
-$ tar -cvzf file_name.tar.gz directory_name
-
-To unpack and unzip a tar.gz file:
-
-$ tar -xzvf file_name.tar.gz   </pre>
 </div>
 <div title="Visual README file, by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221552" changecount="1">
 <pre>Written by Brent Warner
