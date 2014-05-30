@@ -791,7 +791,6 @@ current directory.
 </div>
 <div title="Command Reference by Antonio Ulloa, August 15, 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271629" modified="201405291555" changecount="10">
 <pre>
-
 !!6. DEFINITION OF A NETWORK
 
 !!!6.1 COMMANDS
@@ -1871,7 +1870,7 @@ To unpack and unzip a tar.gz file:
 
 $ tar -xzvf file_name.tar.gz   </pre>
 </div>
-<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201405291706" changecount="6">
+<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201405301636" changecount="7">
 <pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description).
 
 The following basic commands are useful to keep track of changes to the LSNM software: 
@@ -1919,6 +1918,19 @@ $ git config --global user.name &quot;John Doe&quot;
 To declare your email address (for labeling purposes only):
 
 $ git config --global user.email &quot;john.doe@nih.gov&quot;
+
+How to clone a git repository in preparation to put it on a git server:
+
+$ git clone --bare LSNM LSNM.git
+
+How to copy a git repository to a server (shared folder in Helix, for example):
+
+$ scp -r LSNM.git user@helix.nih.gov:/home/horwitzb/bhguest/sgihome
+
+How other users can clone the git repository found in the server so they can work on the code locally:
+
+$ git clone user@helix.nih.gov:/home/horwitzb/ghguest/sgihome/LSNM.git
+
 </pre>
 </div>
 <div title="Visual README file, by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221552" changecount="1">
