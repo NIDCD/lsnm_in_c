@@ -541,7 +541,7 @@ The following headers are necessary to run the cc programs:
 A makefile is used to generate the executable netgen:
 ;makefile</pre>
 </div>
-<div title="&lt;sim&gt; code files" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291528" modified="201405291630" changecount="13">
+<div title="&lt;sim&gt; code files" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291528" modified="201406251427" changecount="14">
 <pre>Programs used by ''sim'' are in C++, and they are:
 
 ;unixmain.cc 
@@ -789,843 +789,6 @@ current directory.
         maketopo -- useful when you would like to see the shape of your inputs.
         Run this and then plot mgns or gmgn.</pre>
 </div>
-<div title="Command Reference by Antonio Ulloa, August 15, 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271629" modified="201405291555" changecount="10">
-<pre>
-!!6. DEFINITION OF A NETWORK
-
-!!!6.1 COMMANDS
-
-The following commands are available to design experimental trials:
-\begin{description}
-  \item[SET] Creates a new network module.
-  \item[\#INCLUDE] Reads specifications from external file.
-  \item[RUN] Runs simulation for specific number of iterations. 
-  \item[CONNECT] Connects one module to the other by using the
-                 specified pattern of connections.
-\end{description}
-
-!!!!6.1.1. OBJECT PROPERTIES FOR THE COMMAND &quot;SET&quot;
-
-\begin{description}
-  \item[ACTRULE] {\em ActRule}. Possible values are: Clamp, clamp
-  activations to set values; SigAct, non-differential style sigmoid
-  rule in which a new activation is just a sigmoid of the difference
-  between input and threshold; 
-  DiffSig, differential equation-style sigmoid activation which add
-  sigmoid of the input-threshold difference to old activation and 
-  subtracts from it the product of decay and old activation;
-  Lin, linear activation rule, Noise, noisy clamp; Sigm, sigmoidal
-  activation; Shift, shifting activation rule which shifts the clamped
-  activation by $dx$ every $delta$ iterations (useful for learning
-  invariance of position of an object). 
-  \item[INPUTRULE] In case of input rules. Not implemented.
-  \item[LEARNRULE] {\em LearnRule}. Possible values are: Off, no learning;
-  Aff, afferent hebbian; Eff, efferent hebbian. 
-  \item[OUTPUTRULE] {\em OutputRule}. Possible values are: C; SumOut.
-  \item[NODEACT] {\em Node Activation}. Initialize activation
-  values. Possible values: ALL, all nodes; 
-  \item[BINACT] Initial activation values, set by input matrix
-  \item[PHASE] Initial phase values. Possible values: ALL.
-  \item[PARAMETER] {\em Parameters}. Set parameter values. Possible
-  values: ALL.
-  \item[LEARNPARAM]. Learning rule parameter values. Possible values:
-  ALL, learn all parameters.
-  \item[SHIFT] Explicitly shift activations
-  \item[TOPOLOGY]. {\em Topology}. Specifies the network
-  topology. Possible values: LINEAR, linear topology; RECT,
-  rectangular topology. 
-  \item[WRITEOUT] {\em Write}. Set file output to every i iterations 
-  \item[WRITEWEIGHTS] {\em WW}. Set weight writeout output to every i 
-  iterations
-\end{description}
-
-!!!!6.1.2. OBJECT PROPERTIES FOR THE COMMAND &quot;#INCLUDE&quot;
-
-The only parameter here is the name of the file.
-
- 
-!!!!6.1.3 OBJECT PROPERTIES FOR THE COMMAND &quot;RUN&quot;
- 
-The only parameter here is the number of iterations.
-
-!!!!6.1.4 OBJECT PROPERTES FOR THE COMMAND &quot;CONNECT&quot;
-
-\begin{description}
-  \item[FROM] {\em From}. 
-\end{description}
-
-!!!6.2. DATA STRUCTURES
-
-The global data structure used in the programming of LSNM is
-illustrated in Fig.~\ref{structure}. NodeSet is a set of nodes that
-can be called a module. Initially, there is reserved space for up to
-{\em max} number of modules. Every module has its properties plus a
-pointer to the actual array of nodes that compose that structure. This
-nodes are of type NodeStruct and can be of different lengths (although
-in the current models this number is the same for all modules). Each
-node of the module contains its own specification plus pointers to the
-weights to which is connected, thereby affecting other nodes in any
-location of the network. WeightStruct is the data structure for a
-connection weight between two modules. Every connection weight
-contains its own set of specifications plus a pointer to the node to
-which it affects. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htp]
-  \centerline{\psfig{figure=FIGS/structure.eps,width=5in,angle=-90}}
-  \caption{Global structure of an LSNM model. }
-  \label{structure}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Note: only the relevant functions are defined below.
-Figure~\ref{nodeSet} illustrates the structure of a module in the
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htp]
-  \centerline{\psfig{figure=FIGS/nodeSet.eps,width=2in,angle=-90}}
-  \caption{Data structure for a network module. Pointer values are
-  located at the right and non-pointer values are located at the
-  left. }
-  \label{nodeSet}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-network. The pointer values that make up this structure are as
-follows: 
-\begin{description}
-  \item[Sfs] Points to a file
-  \item[Wtfs] Points to a weight file
-  \item[Params]
-  \item[LrnParams]
-  \item[Vars]
-  \item[InitSet]
-  \item[OutputRule]
-  \item[InputRule]
-  \item[ActRule]
-  \item[Update]
-  \item[LearnRule]
-  \item[Node] Points to the first of the actual nodes of the current 
-              structure
-\end{description}
-The non-pointer values that make up this structure are as 
-follows:
-\begin{description}
-  \item[SetName] Character string containing structure name
-  \item[SetIndex]
-  \item[WriteOut] How frequency the state of the structure are output
-                  to a file
-  \item[WriteWts] How frequency the weights of the structure are output
-                  to a file
-  \item[Topology] Network topology
-  \item[XDim] Number of elements along the x axis of matrix
-  \item[YDim] Number of elements along the y axis of matrix
-  \item[NSetParams]
-  \item[NLrnParams]
-  \item[NSetVars]
-  \item[N\_Nodes] Number of nodes in this structure
-\end{description} 
-Every node of the structure described above is a structure of the type
-{\em NodeStruct}.
-Figure~\ref{nodeStruct} illustrates the structure of a node in each
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htp]
-  \centerline{\psfig{figure=FIGS/nodeStruct.eps,width=2in,angle=-90}}
-  \caption{Data structure for a single node. Pointer values are
-  located at the right and non-pointer values are located at the
-  left. }
-  \label{nodeStruct}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-module of the network. The pointer values that make up this structure 
-are as follows: 
-\begin{description}
-  \item[InputPtr]
-  \item[AltInputPtr]
-  \item[InWt] Points to a weight class
-  \item[OutWt]
-  \item[AltWt]
-\end{description}
-The non-pointer values that make up this structure are as 
-follows:
-\begin{description}
-  \item[Index] Index of the current node 
-  \item[Act]
-  \item[OldAct]
-  \item[MaxAct]
-  \item[SumAct]
-  \item[SumInput]
-  \item[SumExInput]
-  \item[SumInhInput]
-  \item[SumWeight]
-  \item[Receptor]
-  \item[Phase]
-  \item[Output]
-  \item[Input]
-\end{description}
-Figure~\ref{weightStruct} illustrates the structure of each of the
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htp]
-  \centerline{\psfig{figure=FIGS/weightStruct.eps,width=2in,angle=-90}}
-  \caption{Data structure for a single weight. Pointer values are
-  located at the right and non-pointer values are located at the
-  left. }
-  \label{weightStruct}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-weights interconnecting the modules of the network. The pointer values
-that make up this structure are as follows:
-\begin{description}
-  \item[Set]
-  \item[DestNode]
-\end{description}
-The non-pointer values that make up this structure are as 
-follows:
-\begin{description}
-  \item[LearnOn]
-  \item[Value]
-  \item[WtVar]
-\end{description} 
-
-!!!6.3 HOW TO DEFINE A NETWORK
- 
-The following example illustrates the use of the command SET. In this
-example, the MGN module was defined for
-the auditory model (taken from {\em auseq.s}, a script file for the
-sequences memory model):
-\begin{verbatim} 
-set(MGNs,81) {
-  Write 5
-  Topology: Rect(1,81)
-  ActRule: Clamp
-  OutputRule: SumOut
-  Node Activation { ALL 0.01 }
-}
-\end{verbatim}
-The command {\em set} creates a new structure called {\em MGNs}, 
-consisting of 81 nodes, and initializes all of the structures'
-elements to zero. The instruction {\em Write 5} indicates that the
-state of each of the 81 nodes will be recorded in an output file every
-5 iterations. The instruction {\em Topology: Rect(1,81)} sets the 
-topology of the network to a vector of one column by 81 rows.
-
-The following example illustrates how to use the commands \#INCLUDE
-and RUN (taken from {\em auseq.rs}, a script file for the sequences
-memory model):
-\begin{verbatim}
-#include noinp_au.inp
-Run 200 		% &lt;----------- 1000 ms
-\end{verbatim}
-
-The following example shows the first few lines of a network
-connection specifications
-(taken from {\em mgnsea1d.w}, a file containing connection weights
-between MGN and the excitatory part of down-selective Ai of the
-sequences memory model):
-\begin{verbatim}
-Connect(mgns, ea1d)  {
-  From:  (1, 1)  {
-    ([ 1,81]  0.047928)     ([ 1, 1]  0.099059)     |              | 
-  }
-\end{verbatim}
-This example file of specification of connection weights was generated
-by the command {\bf netgen}. The command {\bf netgen} takes a {\em
-*.ws} file and generates the connection code. The original file of
-corresponding to the connections above is {\em mgnsea1d.ws}, which
-contains the following lines:
-\begin{verbatim}
-mgns ea1d SV I(1 81) O(1 81) F(1 3) 0 0.0 Offset: 0 0
-0.05:0.003 0.10:0.002 0.00:0.002
-\end{verbatim}
-{\em Note: strict observation of syntax in these files is important 
-since a simple syntax mistake can make the weight generation process
-to reverberate indefinitely.}
-The first two strings in this file, {\em mgns} and {\em ea1d},
-represent the two modules between which the weights are being
-defined, that is, MGN and Ai excitatory down-selective module. {\em S} 
-indicates that the fanout weights will be specified in
-the current weights file. Other options are {\em R} and {\em A}. The R
-option allows to specify that random weights will be generated. The A
-option allows to specify that absolute weights positions will be
-used. The symbol {\em V} after the {\em S} indicates a verbose output.  
-The expressions $I(1 81)$, $O(1 81)$, and $F(1 3)$ specify the input
-set size, output set size, and fanout size, respectively. The three
-groups of number in the second row of the weights file indicates each
-of the weights used for each of the connections. In the above example,
-a fanout size of 1 to 3 was specified, which means that each unit of
-MGNs will be connected to 3 units in EAid. The connections from the
-MGN module will made from the current unit to the corresponding unit
-in the EAid module and to the 2 nearest neighbors of that unit. The 
-weights of those
-connections are the numbers in the second row of the
-file. Accordingly, $0.05:0.003$ specifies that the first of those
-weights will equal $0.05 \pm 0.003$. The second weight, $0.10:0.002$,
-represents a connection weight of $0.10 \pm 0.002$. The third weight,
-$0.00:0.002$, represents connection weights of $0.00 \pm 0.002$. The
-small variations around the specified weight values are made by
-addition of bounded random noise. 
-
-!!7. SIMULATING AN EXPERIMENTAL TRIAL
-
-
-!!!7.1 STEPS TO RUN THE SIMULATION
- 
-{\bf sim} $&lt;au*&gt;$,
-where $&lt;au*&gt;$ is a file with extension *.s, and contains all the
-specifications needed to execute one simulation of the network. 
-
-!!!7.2. TO PLOT RASTER FILES OF THE SIMULATIONS
-  
-run plotoutput.m in MatLab
-
-!!!7.3. TO EXECUTE THE DECISION MODULE OF A SIMULATION
-
-run decision.m in matlab
-
-Note that this module can be executed independently of the others.
-The code counts the number of neurons in R that responded. If this
-number exceeds a given threshold, say 5, then it signals a match.
-A mismatch is signaled otherwise. 
-
-%---------------------------------------------------------------------
-\bibliographystyle{apalike}
-\bibliography{lsnm}
-%---------------------------------------------------------------------
-
-%---------------------------------------------------------------------
-\appendix
-%--------------------------------------------------------------------- 
-
-%---------------------------------------------------------------------
-\section{The extended auditory model}
-%--------------------------------------------------------------------- 
-The diagram of the auditory model before modifications is shown in 
-Fig.~\ref{model}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htp]
-  \centerline{\psfig{figure=FIGS/model.eps,width=6in,angle=-90}}
-  \caption{Model of prefrontal working memory of auditory 
-           stimuli. For simplicity, only main connections are depicted.
-           Each module is composed of both an excitatory and
-           an inhibitory submodules.}
-  \label{model}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-This network was extended in order to perform pattern recognition of
-long sequences of tonal patterns. The extended network includes three
-modules for each prefrontal module in the old network. That is,
-the modules FS$_a$ and FS$_b$ were added to FS, D1$_a$ and D1$_b$ were
-added to D1, D2$_a$ and D2$_b$ were added to D2, and FR$_a$ and FR$_b$
-were added to FR. In order to make this modifications, a set of {\bf
-set} instructions were added in the file {\em auseq.s} (see
-description of {\bf set} above). 
-
-After adding the new modules in the script file {\em auseq.s},
-connection weights were also added by creating {\em *.ws} files in the
-{\em weights} directory. The connection weights among the
-new modules and between each of the new modules and STG were identical
-to the connection weights among the old modules and the old modules
-and STG (see below subsections on connection weights between modules 
-and submodules). As an example, the names of the new connection 
-weights files, 
-{\bf estgexfs\_a.w} and {\bf estgexfs\_b.w}, were added to the script
-files containing connections weights, namely, the following lines were
-added to {\bf ausimweightlist.txt}: 
-\begin{verbatim}
-#include weights/estgexfs_a.w
-#include weights/estgexfs_b.w
-\end{verbatim}
-The connections internal to the FS module were also added:
-\begin{verbatim}
-#include weights/exfs_aexfs_a.w
-#include weights/exfs_ainfs_a.w
-#include weights/infs_aexfs_a.w
-#include weights/exfs_bexfs_b.w
-#include weights/exfs_binfs_b.w
-#include weights/infs_bexfs_b.w
-\end{verbatim}
-A similar procedure was followed in order to add the connection
-weights of the new buffers for modules D1, D2, and R. 
-
-Next, the {\bf *.w} files were regenerated by using the shell script 
-{\bf mkweights}, after which the simulation was executed. Remember
-that the shell script {\bf mkweights} executes {\bf netgen} for each
-of the {\bf *.ws} files:
-\begin{verbatim}
-#! /bin/csh
-
-foreach file (*.ws)
-  ../bin/netgen $file
-end
-\end{verbatim}
-
-It is assumed that a directory WEIGHTS already exists. The 
-WEIGHTS directory contains all the connection weights 
-between regions. These weights are contained in *.w files.
-The *.w files were generated by executing the command
-$netgen1 &lt;*.ws&gt;$
-for each of the *.ws files. The shell script $mkweights$
-can be used to execute netgen1 for each of those files.
-The *.ws files can be modified by hand, unlike most of 
-the other input files for network generation and simulation.
-
-The original *.ws files are named in the following way:
-
-%---------------------------------------------------------------------
-\subsection{New brain regions}
-%--------------------------------------------------------------------- 
-A gating mechanism was added, by adding the following structure in the
-file {\em auseq.s}:
-\begin{verbatim}
-set(Gate,1) {
-  Write 5 
-  ActRule: Clamp
-  OutputRule: SumOut
-  Node Activation { ALL 1.0 }
-}
-\end{verbatim}
-This command creates a module called {\bf Gate}, writes its state to
-an output file every 5 iterations, clamps its activity to the set
-activation, and intializes the structure's units to 1. 
-
-This gating mechanism was connected to the FS module in PFC, by adding
-a weights file {\em gateinfs.ws} to the weights directory. The
-corresponding {\em gateinfs.w} file was generated by {\bf netgen}, and
-the following input was added to the file {\em ausimweightlist.txt}:
-\begin{verbatim}
-#include weights/gateinfs.w
-\end{verbatim}
-Similar entries were created for the gating signals of the other two
-elements of the buffer. 
-
-%---------------------------------------------------------------------
-\subsection{Input files}
-%--------------------------------------------------------------------- 
-\begin{tabular}{ll}
-  {\bf auseq.s}             &amp; Contains all the necessary information to 
-                              execute \\
-  { }                       &amp; an experimental trial \\
-  {\bf ausimweightlist.txt} &amp; Description of connections among regions \\ 
-  {\bf auseq.rs}            &amp; Timeline of events in an exp. trial \\
-
-  {\bf noinp\_au.inp}       &amp; Useful for a no input stream \\
-  {\bf pethiattn.s}         &amp; Something related to attention \\
-  {\bf auseq$&lt;n&gt;$.inp}      &amp; Contains the time-varying input for
-                              a sound sequence \\  
-  {\bf resetall\_au.inp}    &amp; Useful to reset all the nodes
-\end{tabular}
-
-%---------------------------------------------------------------------
-\subsection{Output files}
-%--------------------------------------------------------------------- 
-\begin{tabular}{ll}
-  {\bf au*.out}    &amp;  General output of the simulation \\
-  {\bf debug.txt}  &amp;  Usually empty                    \\
-  {\bf mgns.out}   &amp;  MGN units                        \\
-  {\bf ea1u.out}   &amp;  Ai up-selective units            \\
-  {\bf ea1d.out}   &amp;  Ai down-selective units          \\
-  {\bf ea2u.out}   &amp;  Aii up-selective units           \\
-  {\bf ea2c.out}   &amp;  Aii contour-selective units      \\
-  {\bf ea2d.out}   &amp;  Aii down-selective units         \\
-  {\bf estg.out}   &amp;  STG units                        \\
-  {\bf efd1.out}   &amp;  D1 units                         \\
-  {\bf efd2.out}   &amp;  D2 units                         \\
-  {\bf exfr.out}   &amp;  R units                          \\
-  {\bf exfs.out}   &amp;  C units                          \\
-  {\bf spec\_pet.m} &amp;  MatLab specification of PET      
-\end{tabular}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights within MGN}
-%--------------------------------------------------------------------- 
-None
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from MGN to Ai}
-%--------------------------------------------------------------------- 
-\begin{description}
- \item[mgnsea1u.ws] MGN $\rightarrow$ 
-                     excitatory Ai up-selective
-  \item[mgnsea1d.ws] MGN $\rightarrow$ 
-                     excitatory Ai down-selective 
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights within Ai}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[ea1uea1u.ws] Excitatory Ai up-selective $\rightarrow$
-                     excitatory Ai up-selective
-  \item[ia1uea1u.ws] Inhibitory Ai up-selective $\rightarrow$
-                     excitatory Ai up-selective
-  \item[ea1uia1u.ws] Excitatory Ai up-selective $\rightarrow$
-                     inhibitory Ai up-selective
-  \item[ea1dea1d.ws] Excitatory Ai down-selective $\rightarrow$ 
-                     excitatory Ai down-selective
-  \item[ea1dia1d.ws] Excitatory Ai down-selective $\rightarrow$
-                     inhibitory Ai down-selective
-  \item[ia1dea1d.ws] Inhibitory Ai down-selective $\rightarrow$
-                     excitatory Ai down-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from Ai to Aii}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[ea1uea2u.ws] Excitatory Ai up-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[ea1uea2c.ws] Excitatory Ai up-selective $\rightarrow$ 
-                     excitatory Aii contour-selective
-  \item[ea1dea2c.ws] Excitatory Ai down-selective $\rightarrow$ 
-                     excitatory Aii contour-selective
-  \item[ea1dea2d.ws] Excitatory Ai down-selective $\rightarrow$ 
-                     excitatory Aii down-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights within Aii}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[ea2uea2u.ws] Excitatory Aii up-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[ea2uia2u.ws] Excitatory Aii up-selective $\rightarrow$
-                     inhibitory Aii up-selective
-  \item[ia2uea2u.ws] Inhibitory Aii up-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[ea2cea2c.ws] Excitatory Aii contour-selective $\rightarrow$
-                     excitatory Aii contour-selective
-  \item[ea2cia2c.ws] Excitatory Aii contour-selective $\rightarrow$
-                     inhibitory Aii contour-selective
-  \item[ia2cea2c.ws] Inhibitory Aii contour-selective $\rightarrow$
-                     excitatory Aii contour-selective
-  \item[ea2dea2d.ws] Excitatory Aii down-selective $\rightarrow$
-                     excitatory Aii down-selective
-  \item[ea2dia2d.ws] Excitatory Aii down-selective $\rightarrow$
-                     inhibitory Aii down-selective
-  \item[ia2dea2d.ws] Inhibitory Aii down-selective $\rightarrow$
-                     excitatory Aii down-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from Aii to Ai}
-%--------------------------------------------------------------------- 
-The following feedback has been deprecated, and is not currently used
-in the simulations. 
-\begin{description}
-  \item[ea2uea1u.ws] Excitatory Aii up-selective $\rightarrow$
-                     excitatory Ai up-selective
-  \item[ea2dea1d.ws] Excitatory Aii down-selective $\rightarrow$
-                     excitatory Aii down-selective
-\end{description}
-Note that there is not feedback from Aii contour-selective units to
-Ai. 
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from Aii to STG}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[ea2uestg.ws] Excitatory Aii up-selective $\rightarrow$
-                     excitatory STG
-  \item[ea2cestg.ws] Excitatory Aii contour-selective $\rightarrow$
-                     excitatory STG
-  \item[ea2destg.ws] Excitatory Aii down-selective $\rightarrow$
-                     excitatory STG 
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights within STG}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[estgestg.ws] Excitatory STG $\rightarrow$ excitatory STG
-  \item[estgistg.ws] Excitatory STG $\rightarrow$ inhibitory STG
-  \item[istgestg.ws] Inhibitory STG $\rightarrow$ excitatory STG
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from STG to Aii}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[estgea2u.ws] Excitatory STG $\rightarrow$ 
-                     excitatory Aii up-selective
-  \item[estgea2c.ws] Excitatory STG $\rightarrow$ 
-                     excitatory Aii contour-selective 
-  \item[estgea2d.ws] Excitatory STG $\rightarrow$
-                     excitatory down-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from STG to PFC}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[estgexfs.ws] Excitatory STG $\rightarrow$ 
-                     Excitatory cue-selective (first in buffer).
-  \item[estgexfs\_a.ws] Excitatory STG $\rightarrow$ 
-                     Excitatory cue-selective (second in buffer). 
-  \item[estgexfs\_b.ws] Excitatory STG $\rightarrow$ 
-                     Excitatory cue-selective (third in buffer).
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights within PFC}
-%--------------------------------------------------------------------- 
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between FS and D1}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfsifd1.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory delay-selective (1st in buffer)
-  \item[efd1infs.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory cue-selective (1st in buffer)
-  \item[exfs\_aifd1\_a.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory delay-selective (2nd in buffer)
-  \item[efd1\_ainfs\_a.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory cue-selective (2nd in buffer)
-  \item[exfs\_bifd1\_b.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory delay-selective (3rd in buffer)
-  \item[efd1\_binfs\_b.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory cue-selective (3rd in buffer)
-\end{description}
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between FS and D2}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfsefd2.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (1st in buffer)
-  \item[exfs\_aefd2\_a.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (2nd in buffer)
-  \item[exfs\_befd2\_b.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (3rd in buffer)
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between FS and R}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfsexfr.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory response (1st in buffer)
-  \item[exfs\_aexfr\_a.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory response (2nd in buffer)
-  \item[exfs\_bexfr\_b.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory response (3rd in buffer)
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights within FS}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfsexfs.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-selective (1st in buffer)
-  \item[exfsinfs.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory cue-selective(1st in buffer)
-  \item[infsexfs.ws] Inhibitory cue-selective $\rightarrow$
-                     excitatory cue-selective(1st in buffer)
-  \item[exfs\_aexfs\_a.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-selective (2nd in buffer)
-  \item[exfs\_ainfs\_a.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory cue-selective (2nd in buffer)
-  \item[infs\_aexfs\_a.ws] Inhibitory cue-selective $\rightarrow$
-                     excitatory cue-selective (2nd in buffer)
-  \item[exfs\_bexfs\_b.ws] Excitatory cue-selective $\rightarrow$
-                     excitatory cue-selective (3rd in buffer)
-  \item[exfs\_binfs\_b.ws] Excitatory cue-selective $\rightarrow$
-                     inhibitory cue-selective (3rd in buffer)
-  \item[infs\_bexfs\_b.ws] Inhibitory cue-selective $\rightarrow$
-                     excitatory cue-selective (3rd in buffer)
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between D1 and D2}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd1efd2.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (1st in buffer)
-  \item[efd2efd1.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory delay-selective (1st in buffer)
-  \item[efd1\_aefd2\_a.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (2nd in buffer)
-  \item[efd2\_aefd1\_a.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory delay-selective (2nd in buffer)
-  \item[efd1\_befd2\_b.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective (3rd in buffer)
-  \item[efd2\_befd1\_b.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory delay-selective (3rd in buffer)
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between D1 and R}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd1exfr.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory response
-  \item[exfrifd1.ws] Excitatory response $\rightarrow$
-                     inhibitory delay-selective
-  \item[efd1\_aexfr\_a.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory response
-  \item[exfr\_aifd1\_a.ws] Excitatory response $\rightarrow$
-                     inhibitory delay-selective
-  \item[efd1\_bexfr\_b.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory response
-  \item[exfr\_bifd1\_b.ws] Excitatory response $\rightarrow$
-                     inhibitory delay-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights within D1}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd1efd1.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory delay-selective
-  \item[efd1ifd1.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory delay-selective  
-  \item[ifd1efd1.ws] Inhibitory delay-selective $\rightarrow$
-                     excitatory delay-selective
-  \item[efd1\_aefd1\_a.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory delay-selective
-  \item[efd1\_aifd1\_a.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory delay-selective  
-  \item[ifd1\_aefd1\_a.ws] Inhibitory delay-selective $\rightarrow$
-                     excitatory delay-selective
-  \item[efd1\_befd1\_b.ws] Excitatory delay-selective $\rightarrow$
-                     excitatory delay-selective
-  \item[efd1\_bifd1\_b.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory delay-selective  
-  \item[ifd1\_befd1\_b.ws] Inhibitory delay-selective $\rightarrow$
-                     excitatory delay-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights between D2 and R}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfrifd2.ws] Excitatory response $\rightarrow$
-                     inhibitory cue-and-delay-selective
-  \item[exfr\_aifd2\_a.ws] Excitatory response $\rightarrow$
-                     inhibitory cue-and-delay-selective
-  \item[exfr\_bifd2\_b.ws] Excitatory response $\rightarrow$
-                     inhibitory cue-and-delay-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights within D2}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd2efd2.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-  \item[efd2ifd2.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     inhibitory cue-and-delay-selective
-  \item[ifd2efd2.ws] Inhibitory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-  \item[efd2\_aefd2\_a.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-  \item[efd2\_aifd2\_a.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     inhibitory cue-and-delay-selective
-  \item[ifd2\_aefd2\_a.ws] Inhibitory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-  \item[efd2\_befd2\_b.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-  \item[efd2\_bifd2\_b.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     inhibitory cue-and-delay-selective
-  \item[ifd2\_befd2\_b.ws] Inhibitory cue-and-delay-selective $\rightarrow$
-                     excitatory cue-and-delay-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsubsection{Connection weights within R}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[exfrexfr.ws] Excitatory response $\rightarrow$ 
-                     excitatory response
-  \item[exfrinfr.ws] Excitatory response $\rightarrow$
-                     inhibitory response
-  \item[infrexfr.ws] Inhibitory response $\rightarrow$
-                     excitatory response
-  \item[exfr\_aexfr\_a.ws] Excitatory response $\rightarrow$ 
-                     excitatory response
-  \item[exfr\_ainfr\_a.ws] Excitatory response $\rightarrow$
-                     inhibitory response
-  \item[infr\_aexfr\_a.ws] Inhibitory response $\rightarrow$
-                     excitatory response
-  \item[exfr\_bexfr\_b.ws] Excitatory response $\rightarrow$ 
-                     excitatory response
-  \item[exfr\_binfr\_b.ws] Excitatory response $\rightarrow$
-                     inhibitory response
-  \item[infr\_bexfr\_b.ws] Inhibitory response $\rightarrow$
-                     excitatory response
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from PFC to STG}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd1istg.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory STG
-  \item[efd2estg.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory STG
-  \item[efd1\_aistg.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory STG
-  \item[efd2\_aestg.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory STG
-  \item[efd1\_bistg.ws] Excitatory delay-selective $\rightarrow$
-                     inhibitory STG
-  \item[efd2\_bestg.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory STG
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from PFC to Aii}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[efd2ea2u.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[efd2ea2c.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii contour-selective
-  \item[efd2ea2d.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii down-selective
-  \item[efd2\_aea2u.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[efd2\_aea2c.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii contour-selective
-  \item[efd2\_aea2d.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii down-selective
-  \item[efd2\_bea2u.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii up-selective
-  \item[efd2\_bea2c.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii contour-selective
-  \item[efd2\_bea2d.ws] Excitatory cue-and-delay-selective $\rightarrow$
-                     excitatory Aii down-selective
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights from Attention module to PFC}
-%--------------------------------------------------------------------- 
-\begin{description}
-  \item[attsefd2.ws]  Attention $\rightarrow$
-                      excitatory cue-and-delay-selective
-  \item[attsefd2\_a.ws]  Attention $\rightarrow$
-                      excitatory cue-and-delay-selective
-  \item[attsefd2\_b.ws]  Attention $\rightarrow$
-                      excitatory cue-and-delay-selective
-  \item[attvatts.ws]  Attention $\rightarrow$ attention         
-\end{description}
-
-%---------------------------------------------------------------------
-\subsection{Connection weights in control region}
-%--------------------------------------------------------------------- 
-This region is independent of all the other regions, and is useful as
-a control area in order to normalize the activity in the network. 
-\begin{description}
-  \item[ectlectl.ws] Excitatory control $\rightarrow$
-                     excitatory control
-  \item[ectlictl.ws] Excitatory control $\rightarrow$
-                     inhibitory control
-  \item[ictlectl.ws] Inhibitory control $\rightarrow$
-                     excitatory control
-  \item[ictlictl.ws] Inhibitory control $\rightarrow$
-                     inhibitory control
-\end{description}
-
-%---------------------------------------------------------------------
-\end{document}
-%---------------------------------------------------------------------
-</pre>
-</div>
 <div title="Commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291525" modified="201405291628" changecount="5">
 <pre>Two executables are used: ''netgen'', to generate the network, and ''sim'', to execute a given simulation:
 
@@ -1643,20 +806,685 @@ DESCRIPTION: Given an experimental trial script, it runs a simulation and genera
 <div title="DefaultTiddlers" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" changecount="1">
 <pre>[[Introduction]]</pre>
 </div>
+<div title="Definition of a Network" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406251726" modified="201406251748" changecount="5">
+<pre>!!DEFINITION OF A NETWORK
+
+!!!COMMANDS
+
+The following commands are available to design experimental trials:
+
+;SET
+:Creates a new network module.
+;&quot;&quot;&quot;#INCLUDE&quot;&quot;&quot;
+:Reads specifications from external file.
+;RUN
+:Runs simulation for specific number of iterations. 
+;CONNECT
+:Connects one module to the other by using the specified pattern of connections.
+
+!!!!OBJECT PROPERTIES FOR THE COMMAND &quot;SET&quot;
+
+;ACTRULE (ActRule) 
+:Possible values are: Clamp, clamp activations to set values; SigAct, non-differential style sigmoid rule in which a new activation is just a sigmoid of the difference between input and threshold; DiffSig, differential equation-style sigmoid activation which adds sigmoid of the input-threshold difference to old activation and subtracts from it the product of decay and old activation; Lin, linear activation rule, Noise, noisy clamp; Sigm, sigmoidal activation; Shift, shifting activation rule which shifts the clamped activation by dx every delta iterations (useful for learning invariance of position of an object). 
+
+;INPUTRULE
+:In case of input rules. Not implemented.
+
+;LEARNRULE (LearnRule) 
+:Possible values are: Off, no learning; Aff, afferent hebbian; Eff, efferent hebbian.
+
+;OUTPUTRULE (OutputRule)
+:Possible values are: C; SumOut.
+
+;NODEACT (Node Activation)
+:Initialize activation values. Possible values: ALL, all nodes; 
+  
+;BINACT
+:Initial activation values, set by input matrix
+  
+;PHASE
+:Initial phase values. Possible values: ALL.
+  
+;PARAMETER (Parameters)
+:Set parameter values. Possible values: ALL.
+  
+;LEARNPARAM
+:Learning rule parameter values. Possible values: ALL, learn all parameters.
+  
+;SHIFT
+:Explicitly shift activations
+  
+;TOPOLOGY (Topology)
+:Specifies the network topology. Possible values: LINEAR, linear topology; RECT, rectangular topology. 
+  
+;WRITEOUT (Write)
+:Set file output to every i iterations.
+  
+;WRITEWEIGHTS (WW)
+:Set weight writeout output to every i iterations
+
+!!!!OBJECT PROPERTIES FOR THE COMMAND &quot;&quot;&quot;&quot;#INCLUDE&quot;&quot;&quot;&quot;
+
+The only parameter here is the name of the file.
+
+ 
+!!!!OBJECT PROPERTIES FOR THE COMMAND &quot;&quot;&quot;&quot;RUN&quot;&quot;&quot;&quot;
+ 
+The only parameter here is the number of iterations.
+
+!!!!OBJECT PROPERTES FOR THE COMMAND &quot;&quot;&quot;&quot;CONNECT&quot;&quot;&quot;&quot;
+
+;FROM (From)
+
+!!!DATA STRUCTURES
+
+The global data structure used in the programming of LSNM is
+illustrated below: 
+
+[img[DOCS/structure.jpg]]
+
+where NodeSet is a set of nodes that can be called a module. Initially, there is reserved space for up to max number of modules. Every module has its properties plus a pointer to the actual array of nodes that compose that structure. This nodes are of type NodeStruct and can be of different lengths (although in the current models this number is the same for all modules). Each node of the module contains its own specification plus pointers to the weights to which is connected, thereby affecting other nodes in any location of the network. WeightStruct is the data structure for a connection weight between two modules. Every connection weight contains its own set of specifications plus a pointer to the node to which it affects. 
+
+Note: only the relevant functions are defined below.
+
+The structure of a module in the network (Pointer values are located at the right and non-pointer values are located at the left) is shown below:
+
+[img[DOCS/nodeSet.jpg]]
+
+ The pointer values that make up this structure are as follows:
+ 
+;Sfs
+:Points to a file
+;Wtfs
+:Points to a weight file
+;Params
+:LrnParams
+;Vars
+;InitSet
+;OutputRule
+;InputRule]
+;ActRule
+;Update
+;LearnRule
+;Node
+:Points to the first of the actual nodes of the current structure
+
+The non-pointer values that make up this structure are as follows:
+
+;SetName
+:Character string containing structure name
+;SetIndex
+;WriteOut
+:How frequently the state of the structure is written to an output file
+;WriteWts
+:How frequently the weights of the structure is written to an output file
+;Topology
+:Network topology
+;XDim
+:Number of elements along the x axis of matrix
+;YDim
+:Number of elements along the y axis of matrix
+;NSetParams
+;NLrnParams
+;NSetVars
+;N_Nodes 
+:Number of nodes in this structure
+
+Every node of the structure described above is a structure of the type NodeStruct.
+
+
+The figure below illustrates the structure of a node in each module of the network (Pointer values are located at the right and non-pointer values are located at the
+  left.)
+
+[img[DOCS/nodeStruct.jpg]] 
+
+The pointer values that make up this structure are as follows: 
+
+;InputPtr
+;AltInputPtr
+;InWt 
+:Points to a weight class
+;OutWt
+;AltWt
+
+The non-pointer values that make up this structure are as follows:
+
+;Index
+:Index of the current node 
+;Act
+;OldAct
+;MaxAct
+;SumAct
+;SumInput
+;SumExInput
+;SumInhInput
+;SumWeight
+;Receptor
+;Phase
+;Output
+;Input
+
+The structure of each of the weights interconnecting the modules of the network (Pointer values are located at the right and non-pointer values are located at the left.) is illustrated below:
+
+[img[DOCS/weightStruct.jpg]]
+
+The pointer values that make up this structure are as follows:
+
+;Set
+;DestNode
+
+The non-pointer values that make up this structure are as follows:
+
+;LearnOn
+;Value
+;WtVar
+
+!!!HOW TO DEFINE A NETWORK
+ 
+The following example illustrates the use of the command SET. In this
+example, the MGN module was defined for
+the auditory model (taken from auseq.s, a script file for the sequences memory model):
+{{{
+set(MGNs,81) {
+  Write 5
+  Topology: Rect(1,81)
+  ActRule: Clamp
+  OutputRule: SumOut
+  Node Activation { ALL 0.01 }
+}
+}}}
+
+The command ''set'' creates a new structure called ''MGNs'', consisting of 81 nodes, and initializes all of the structures' elements to zero. The instruction ''Write 5'' indicates that the state of each of the 81 nodes will be recorded in an output file every 5 iterations. The instruction ''Topology: Rect(1,81)'' sets the topology of the network to a vector of one column by 81 rows.
+
+The following example illustrates how to use the commands \#INCLUDE and RUN (taken from {\em auseq.rs}, a script file for the sequences memory model):
+{{{
+#include noinp_au.inp
+Run 200 		% &lt;----------- 1000 ms
+}}}
+
+The following example shows the first few lines of a network
+connection specifications (taken from ''mgnsea1d.w'', a file containing connection weights between MGN and the excitatory part of down-selective Ai of the
+sequences memory model):
+{{{
+Connect(mgns, ea1d)  {
+  From:  (1, 1)  {
+    ([ 1,81]  0.047928)     ([ 1, 1]  0.099059)     |              | 
+  }
+}}}
+
+This example file of specification of connection weights was generated by the command ''netgen''. The command ''netgen'' takes a ''*.ws'' file and generates the connection code. The original file of corresponding to the connections above is ''mgnsea1d.ws'', which contains the following lines:
+{{{
+mgns ea1d SV I(1 81) O(1 81) F(1 3) 0 0.0 Offset: 0 0
+0.05:0.003 0.10:0.002 0.00:0.002
+}}}
+
+Note: strict observation of syntax in these files is important since a simple syntax mistake can make the weight generation process to reverberate indefinitely.
+
+The first two strings in this file, ''mgns'' and ''ea1d'', represent the two modules between which the weights are being defined, that is, MGN and Ai excitatory down-selective module. ''S'' indicates that the fanout weights will be specified in the current weights file. Other options are ''R'' and ''A''. The R
+option allows to specify that random weights will be generated. The A option allows to specify that absolute weights positions will be used. The symbol ''V'' after the ''S'' indicates a verbose output.  
+
+The expressions ''I(1 81)'', ''O(1 81)'', and ''F(1 3)'' specify the input set size, output set size, and fanout size, respectively. The three groups of number in the second row of the weights file indicates each of the weights used for each of the connections. In the above example, a fanout size of 1 to 3 was specified, which means that each unit of MGNs will be connected to 3 units in EAid. The connections from the MGN module will made from the current unit to the corresponding unit in the EAid module and to the 2 nearest neighbors of that unit. The weights of those connections are the numbers in the second row of the file. Accordingly, ''0.05:0.003'' specifies that the first of those weights will equal $0.05 \pm 0.003$. The second weight, $0.10:0.002$, represents a connection weight of $0.10 \pm 0.002$. The third weight,
+''0.00:0.002'', represents connection weights of ''0.00 to 0.002''. The small variations around the specified weight values are made by addition of bounded random noise.</pre>
+</div>
+<div title="Example: Extended auditory model" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271629" modified="201406251815" changecount="34">
+<pre>The diagram of the auditory working memory model before modifications is shown below:
+
+[img[DOCS/model.jpg]]
+
+For simplicity, only main connections are depicted. Each module is composed of both an excitatory and an inhibitory submodules. This network was extended in order to perform pattern recognition of long sequences of tonal patterns. The extended network includes three modules for each prefrontal module in the old network. That is,
+the modules FS$_a$ and FS$_b$ were added to FS, D1$_a$ and D1$_b$ were added to D1, D2$_a$ and D2$_b$ were added to D2, and FR$_a$ and FR$_b$
+were added to FR. In order to make this modifications, a set of {\bf set} instructions were added in the file {\em auseq.s} (see description of {\bf set} above). 
+
+After adding the new modules in the script file {\em auseq.s}, connection weights were also added by creating {\em *.ws} files in the
+{\em weights} directory. The connection weights among the new modules and between each of the new modules and STG were identical
+to the connection weights among the old modules and the old modules and STG (see below subsections on connection weights between modules 
+and submodules). As an example, the names of the new connection weights files, {\bf estgexfs\_a.w} and {\bf estgexfs\_b.w}, were added to the script
+files containing connections weights, namely, the following lines were added to {\bf ausimweightlist.txt}: 
+
+{{{
+#include weights/estgexfs_a.w
+#include weights/estgexfs_b.w
+}}}
+
+The connections internal to the FS module were also added:
+
+{{{
+#include weights/exfs_aexfs_a.w
+#include weights/exfs_ainfs_a.w
+#include weights/infs_aexfs_a.w
+#include weights/exfs_bexfs_b.w
+#include weights/exfs_binfs_b.w
+#include weights/infs_bexfs_b.w
+}}}
+
+A similar procedure was followed in order to add the connection
+weights of the new buffers for modules D1, D2, and R. 
+
+Next, the {\bf *.w} files were regenerated by using the shell script {\bf mkweights}, after which the simulation was executed. Remember that the shell script {\bf mkweights} executes {\bf netgen} for each of the {\bf *.ws} files:
+
+{{{
+#! /bin/csh
+
+foreach file (*.ws)
+  ../bin/netgen $file
+end
+}}}
+
+It is assumed that a directory WEIGHTS already exists. The WEIGHTS directory contains all the connection weights between regions. These weights are contained in *.w files. The *.w files were generated by executing the command $netgen1 &lt;*.ws&gt;$ for each of the *.ws files. The shell script $mkweights$
+can be used to execute netgen1 for each of those files. The *.ws files can be modified by hand, unlike most of the other input files for network generation and simulation.
+
+The original *.ws files are named in the following way:
+
+!!New brain regions
+
+A gating mechanism was added, by adding the following structure in the file {\em auseq.s}:
+{{{
+set(Gate,1) {
+  Write 5 
+  ActRule: Clamp
+  OutputRule: SumOut
+  Node Activation { ALL 1.0 }
+}
+}}}
+
+This command creates a module called {\bf Gate}, writes its state to an output file every 5 iterations, clamps its activity to the set activation, and intializes the structure's units to 1. 
+
+This gating mechanism was connected to the FS module in PFC, by adding a weights file {\em gateinfs.ws} to the weights directory. The corresponding {\em gateinfs.w} file was generated by {\bf netgen}, and the following input was added to the file {\em ausimweightlist.txt}:
+
+{{{
+#include weights/gateinfs.w
+}}}
+
+Similar entries were created for the gating signals of the other two elements of the buffer. 
+
+
+!!Input files
+
+;auseq.s             
+:Contains all the necessary information to execute an experimental trial
+;ausimweightlist.txt
+:Description of connections among regions
+;auseq.rs
+:Timeline of events in an exp. trial
+;noinp_au.inp
+:Useful for a no input stream
+;pethiattn.s 
+:Something related to attention
+;auseq.inp
+:Contains the time-varying input for a sound sequence
+;resetall_au.inp
+:Useful to reset all the nodes
+
+!!Output files}
+
+;au*.out
+:General output of the simulation 
+;debug.txt  
+:Usually empty                    
+;mgns.out
+:MGN units                        
+;ea1u.out
+:Ai up-selective units            
+;ea1d.out  
+:Ai down-selective units          
+;ea2u.out 
+:Aii up-selective units           
+;ea2c.out  
+:Aii contour-selective units      
+;ea2d.out  
+:Aii down-selective units         
+;estg.out  
+:STG units                        
+;efd1.out  
+:D1 units                         
+;efd2.out 
+:D2 units                        
+;exfr.out 
+:R units                          
+;exfs.out 
+:C units                          
+;spec_pet.m  
+:MatLab specification of PET      </pre>
+</div>
 <div title="Introduction" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221433" modified="201405221629" changecount="6">
 <pre>LSNM (Large Scale Neural Modeling) is a set of programs written in C and Matlab to simulate auditory and visual working memory experiments. The code was originally developed by Malle Tagamets and Barry Horwitz around 1997 to simulate a visual working memory experiment (see [[Tagamets and Horwitz, 1998|http://www.ncbi.nlm.nih.gov/pubmed/9651128]]) and later adapted/modified by Fatima Husain around 2000 to simulate an auditory working memory experiment (see [[Husain et al, 2004|http://www.ncbi.nlm.nih.gov/pubmed/15050592]]). The system was significantly expanded around 2003 by Theresa Long and Barry Horwitz by adding batch processing and by Brent Warner and Barry Horwitz by adding functional connectivity simulations (see [[Horwitz et al, 2005|http://www.ncbi.nlm.nih.gov/pubmed/16087450]]). Although the code was originally developed for simulating electrical neuronal activity and PET (Tagamets and Horwitz), extensions were added to the code to simulate fMRI (husain and Horwitz) and MEG (Feng Rong and Horwitz). The code to build a neuronal network and synaptic weights are written in C++ and the code to simulate (and display) PET, fMRI and MEG are written in Matlab.
 
 In addition to the code described above, there were other branches of the code made over the years, such as the simulations of Transcranial Magnetic Stimulation (TMS) around 2001 (see [[Husain et al, 2002|http://www.ncbi.nlm.nih.gov/pubmed/11771974]]),  the simulation of perceptual grouping around 2002 (see [[Husain et al, 2005|http://www.ncbi.nlm.nih.gov/pubmed/16197683]]), the simulations of long-duration auditory stimuli around 2003 (see [[Ulloa et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/19132798]]), and the simulation of a decision module around 2004 (see [[Wen et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/18496711]]).</pre>
 </div>
-<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201405291701" changecount="12">
+<div title="List of programs that generate BATCH files, by Theresa Long, last updated May 2000" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406301819" changecount="1">
+<pre>~lnspet/tlong/save/code/BATCH.txt  rev. 8/18/98
+
+List of codes for generating shell script to run sim1 for multi-cases
+
+All source codes and input files are in helix's /home/horwitz/theresa/code.
+All executables are in helix's /home/horwitz/theresa/bin.
+~lnspet/tlong/save/code on alw has an identical copy of the code directory
+/u1/optic/fmri/code on freud has an identical copy of the helix code directory
+/u1/optic/fmri/bin on freud has an identical copy of the helix bin directory
+
+
+CASE		 	SHELL SCRIPT 	INPUT PARAM.	OUTPUT
+			GENERATOR	FILE 		FILE
+
+right side only		mkbatchr	mkbatchr.in	batchr
+form input
+
+right side only		mkbatchrn	mkbatchrn.in	batchrn
+random noise input
+
+right side only		r2batch		r2batch.in	batchr2
+two paths
+
+right side only		alzbatchr	alzbatchr.in	batchalz
+alzheimer
+
+left side only		mkbatchl	mkbatchl.in	batchl (that's el)
+form input
+
+left side only		mkbatchln	mkbatchln.in	batchln	(that's el)
+random noise input
+
+both sides		mkbatch		mkbatch.in	batch0
+right-form input
+left-ran. noise input
+
+same as above, but	mkbatchw	mkbatchw.in	batchw
+with weakened connections
+
+both sides		mkbatchn	mkbatchn.in	batchn
+right-ran. noise input
+left-ran. noise input
+
+same as above, but	mkbatchnw	mkbatchnw.in	batchnw
+with weakened connections
+
+both sides		mkbatchd	mkbatchd.in	batchd
+right-degraded input
+left-ran. noise input
+
+same as above, but	mkbatchdw	mkbatchdw.in	batchdw
+with weakened connection
+
+
+
+COMPILING THE GENERARTOR
+The source code for the generator has the same name lpus a .cc suffix.
+To recompile, for example, mkbatch, cd to the &quot;code&quot; directory, then
+&gt;/usr/ccs/bin/make  mkbatch
+If we have the &quot;/usr/ccs/bin&quot; path in .cshrc, we can just type
+&gt;make mkbatch
+
+
+
+
+INPUT FILES for generating the batch run shell script
+
+- One hemisphere 
+  Enter parameters in the input file listed in column 4. 
+
+- Two hemispheres with cross hemisphere connection
+  Enter parameters in the input file listed in column 4.
+
+  For example, the input file for mkbatch is mkbatch.in.  We can enter
+
+	1. attention levels of subject
+	2. option for a single subject  which has fixed connectivity for all 
+		tasks (FMRI), or different subject (different connectivity)
+		for each task(PET).  The single subject option is available for
+		all cases except the weakened connectivity and alzheimer
+		disease because there is no fixed connectivity when we
+		are varying the connectivity for weakened strength and varying
+		the sick neuron population for the alzheimer disease.
+		Will write a code in the future to run tasks for single sick
+		subject.
+	3. number of &quot;lit&quot; blocks in the visual input matrix
+	4. seed for randomly picking the &quot;lit&quot; blocks
+	5. output file destination
+
+  Additionally, we need to enter parameters in the crossws.in and crosswt_i.in
+  input files.  crossws.in specifies the fanout, sparsity,weights and noise of
+  cross brain connection.  crosswt_i.in specifies % of regions for cross
+  connection, we can also specify exactly what regions should be connected.
+  These two input files have appropriate values set.  Unless there is a 
+  change in design, should leave these two files alone.
+
+  For the special cases of weakened connections, enter the connections we 
+  want to weaken in the file genw.in.  The batch generator will call genw 
+  which looks at genw.in and generate appropriate files for netgen.  
+  Similarly, if we want to do the alzheimer case, we need to fill in the 
+  parameters in the file alz.in which states the percentage of sick neurons 
+  and how sick they are.
+
+  Each input file  contains a section explaining the input parameters
+
+
+SHELL SCRIPT BATCH FILE
+
+We are running sim1 on both churn and freud.  
+If on freud, the working directory is /u1/optic/fmri
+If on churn, the working directory is /home/horwitz/theresa
+
+To make the shell script file for the mkbatch case, go to the code directory. 
+If &quot;&gt;&quot; is the system prompt:
+&gt;mkbatch
+A shell script called &quot;batch0&quot; is produced.  Note, do not use
+the word &quot;batch&quot;, which is a system call.  To run batch0, move batch0 out of 
+code to the directory above code then use chmod to make it an executable.
+
+&gt; mv batch0 ..
+&gt; cd ..
+&gt; chmod u+x batch0
+&gt; batch0
+
+Each time we want to run a batch script, we must generate it.  Do not reuse
+previous batch script.  This is because the batch script will look
+for a file called app which is generated at the time the batch script
+is generated, and deleted in the end of a batch run.  Therefore we need to
+regenerate the batch script.  The deletion has two purposes: to minimize
+cluttering the directory, and to give the user a chance to check the 
+generator's input file as part of regenerating the script.
+The output of the batch runs is always in the directory noisy.  At the end of
+the batch, we rename noisy and move it to a specified destination.
+
+For the case when the two hemispheres are connected, it is recommended to run
+the batch on churn to take advantage of its speed and space in its scratch
+disk. The huge amount of .w files and .out files takes up 50 Mbytes requires
+diligent disk spave management. At the end of the batch.
+
+
+A WORD ABOUT HELIX AND CHURN
+
+helix and churn share the same hard disk, so we can not run identical jobs on
+both computers.  The output of one job will write over the other.
+Each computer has its own scratch disk. The scratch disks are not transparent,
+i.e. we can only access helix scratch from helix, and churn scratch from churn.
+The scratch directory we have on helix is /scratch/theresa/. On churn, it is 
+/scratch/theresa_churn. Any 7-day old files on scratch will be deleted by the
+system administrator. 
+
+Since churn runs twice as fast as helix, we run the batch job on churn.  The 
+output files are moved to churn's scratch disk automatically.  To consolidate
+all test data in helix scratch disk, we need to move data from churn's scratch
+disk to churn's main disk, then get on helix, and move test data from main
+disk to helix's scratch disk.
+
+
+PORTING CODES and INPUT FILES to a different computer
+
+All the codes specifies where the &quot;BASE&quot; directory is so that any file movement
+is with respect to this reference BASE.  All the input file specifies where
+the output data destination. Additionally, the makefiles specifies where the
+executable should reside.  When we port them to a different computer, these
+addresses ought to be changed. To change the BASE definition, edit the
+file &quot;changeC.in.  Fill in the &quot;change from&quot; line and the &quot;change to&quot;
+line. Then type at the prompt, change c. This will change all the BASE
+definition in all the source codes.  To change the &quot;destination&quot; definition,
+edit the file &quot;changeIN.in&quot;,  Fill in the &quot;change from&quot; line and the 
+&quot;change to&quot; line. Then type at the prompt, change in. This will change all 
+the destination definition in all the input files.
+
+-----------------------------------------
+5/19/2000
+
+1. wrote fMRI.cc to generate a shell script fmri.sh, which can
+   be used to run fmri tests
+
+   fMRI.cc is in helix's /home/horwitz/theresa_hold/code/
+   input to fMRI.cc is fMRI.in + command line input
+   output file is fmri.sh
+
+   To compile:
+      go to the code directory, then type
+      make fmri
+
+      the executable goes to /home/horwitz/theresa_hold/bin
+
+   to run fmri
+      stay in the code directory, tpye
+      ../bin/fmri x y z
+      where:
+        x = cross_select_seed, it is the random number
+            generator seed for picking which of
+            the cross connections exists
+        y = ggnseed, it is the random number
+            generator seed for picking which of the input
+            pixel will be lit
+         if x or y is 0, system clock will be used for that seed
+
+        z = perl_seed, 
+            if no entry for z , Fatima's perl script for changing 
+            random number generator for scaling bias of the weight
+            is not called
+
+    The input file for fMRI.cc is fMRI.in.  It has the same format as
+    mkbatchw.in.  However, I have added a nsubj parameter,  which 
+    is not used right now.  I am using it as a place holder for 
+    future versions when we want to have block tests.
+
+    Edit fMRI.in to get the desired attention level, 
+    and the weakening degrees fro connection strength. 
+
+    The output of fmri is the shell script fmri.sh.  
+    move it above the code directory to run. 
+    before you run fmri.sh, (you are now in /home/horwitz) type 
+         chmod +x fmri.sh
+
+    to run the script, type
+         fmri.sh
+
+2. changed crosswt_i.cc so that the cross_select_seed is now a
+   command line entry , and not to be read from the input file.
+
+3. Aside from fRMI.cc, I have not changed other shell script.
+   generators such as *batch*.cc. They also call crosswt_i.cc.
+   Since I changed crosswt_i.cc to accomodate the seed
+   selection in fMRI.cc, if you try to run them from 
+   ~/theresa/code directory, there will be inconsistency.
+   you cn  still run the old version of crosswt_i from 
+   barrysim/code.
+
+4. I will change other shell script generators when needed.
+------------------------------------------------
+
+</pre>
+</div>
+<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201406251818" changecount="14">
 <pre>[[Introduction]]
 [[Programs]]
 [[Commands]]
 [[&lt;netgen&gt; code files]]
 [[&lt;sim&gt; code files]]
+[[Definition of a Network]]
+[[Running a simulation]]
+[[Example: Extended auditory model]]
 [[Version Control (VCS)]]
 [[Useful Linux commands]]
-[[Transferring files to/from Helix]]</pre>
+[[Transferring files to/from Helix]]
+[[Running Matlab remotely]]</pre>
+</div>
+<div title="Matlab README file by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406301730" changecount="1">
+<pre>Written by Brent Warner
+Summer 2003
+
+OUTLINE OF MATLAB PROGRAMS
+
+1.  PLOTTING PROGRAMS
+The format for calling any of the following is to simply type the filename
+(minus the .m extension) at the matlab command line.
+
+--VISUAL
+
+	plotvisual.m - Plots all regions in visual model on two separate
+	figures.  Figure 1 contains the V1h, V1v, V4h, V4c, V4v regions.
+	Figure 2 contains the IT, FS, D1, D2, FR.  These plots are the
+	electrical activity from the *.out files. 
+
+	plotvis_rl.m - This is for use with the combined hemisphere model
+	(mkbatchrlcomb).  It plots the electrical activity in the same
+	plot configuration as plotvisual.m, except this time it includes
+	both the &quot;specific&quot; and &quot;non-specific&quot; neurons.  Specific = red.
+	Non-specific = blue.
+
+--AUDITORY
+
+	plotauditory.m - Plots all regions in auditory model on two separate
+	figures.  Figure 1 contains A1d, A1u, A2d, A2c, A2u.  Figure 2
+	contains ST, FS, D1, D2, FR.  These plots are of electrical activity.
+
+	plotaud_rl.m - For use with combined hemisphere model (mkbatchrlc_au).
+	It plots electrical activity in the same configuration as above, but
+	plots both specific and non-specific nurons.  Specific = red.
+	Non-specific = blue.
+
+	plot_audleft.m - Plots only left hemisphere or non-specific electrical
+	activity in the same plot configuration as above.
+
+	maketopo.m - This is useful for visualizing your auditory inputs.  It
+	manipulates the input units so that, when plotted, appear in a
+	topographical fashion, i.e. you can see the shape of the inputs, up-
+	sweeps, down-sweeps, etc.
+
+2.  MOVIE PROGRAMS
+All of these programs call either mov.m or mov2.m
+
+FORMAT:  m=loadmovie*;
+	 movie(m,nt);  (nt is number of times to play movie, m)
+
+--VISUAL
+
+	loadmovieB.m - Creates a movie of the electrical activity.  The movie
+	window is divided into left/non-specific on the top row and right/
+	specific on the bottom.  From left to right the squares are:
+	LGN, V1, V4, IT, FS, D1, D2, FR.
+	
+	loadmovieR.m - Right hemisphere only.
+
+--AUDITORY
+
+	loadmovieB_au.m - Same as visual version.  From left to right the
+	regions are:  MGN, A1, A2, ST, FS, D1, D2, FR.
+
+	loadmovieR_au.m - Same as visual version.
+
+3.  ANALYSIS PROGRAMS
+I am only listing the programs that I have used this summer.  Some of the other
+programs in the directory are old versions of new programs, are called by
+programs I discuss, or I simply don't know what they do!
+
+First, to run any of these you must construct a few files.  These should all be
+included in the directory containing all of the &quot;subject&quot; directories.
+
+	subjectlist.mat - A list of the subjects in the simulation you wish
+	to analyze.  Enter matlab and construct it as follows:
+		subjectlist = ['subj1 ';'subj2 ';....'subjxx'];
+		save subjectlist;
+	Note that if you have &gt;= 10 subjects you must include spaces in the
+	earlier elements so that every element is the same length.
+
+	attnlist.mat - A list of the attention levels in the simulation.
+	Construct it similarly to subjectlist.
+		attnlist = ['b18';'b19';.....'bxx'];
+		save attnlist;</pre>
 </div>
 <div title="Outline of Matlab Programs by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271600" modified="201405271600" changecount="2">
 <pre>Written by Brent Warner
@@ -1843,8 +1671,41 @@ Major Documents
 	batchrlc_au (for auditory; only a partial file)
 	batchrlcomb(for visual; only a partial file)</pre>
 </div>
-<div title="Programs" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291522" modified="201405291642" changecount="5">
-<pre>''au*.out'' and all of the other output files for each module of the network are generated by executing the command ''sim au*.s'', where ''au*.s'' contains pointers to the files ''au*.rs'' and ''ausimweightlist.txt''. The file ''au*.rs'' contains a script of the experimental timeline for one trial. The file ''ausimweightlist.txt'' contains a list of the files containing the connection weights of the network. The timeline script specifies the stimuli by using the ''*.inp'' files, which contains a description of the stimulus. The list of files with the network connection weights are in the format ''*.w''. This format is generated by the ''netgen *.ws'' command, where ''*.ws'' is a file created by hand (or backprop in the visual model) containing weight values. The script ''makeweights'' can be used to execute ''netgen'' for each one of the ''*.ws'' files. </pre>
+<div title="Programs" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291522" modified="201406251631" changecount="10">
+<pre>The process of network generation and simulation for a neural network model is schematized below:
+
+[img[DOCS/lsnm.jpg]]
+
+where ''au*.out'' and all of the other output files for each module of the network are generated by executing the command ''sim au*.s'', where ''au*.s'' contains pointers to the files ''au*.rs'' and ''ausimweightlist.txt''. The file ''au*.rs'' contains a script of the experimental timeline for one trial. The file ''ausimweightlist.txt'' contains a list of the files containing the connection weights of the network. The timeline script specifies the stimuli by using the ''*.inp'' files, which contains a description of the stimulus. The list of files with the network connection weights are in the format ''*.w''. This format is generated by the ''netgen *.ws'' command, where ''*.ws'' is a file created by hand (or backprop in the visual model) containing weight values. The script ''makeweights'' can be used to execute ''netgen'' for each one of the ''*.ws'' files. </pre>
+</div>
+<div title="Running Matlab remotely" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406251400" modified="201406251819" changecount="4">
+<pre>Tu run Matlab remotely, for example, to run Helix Matlab from a local linux terminal, one needs to tunnel the X-windows connection through the SSH connection as follows:
+{{{
+&gt; ssh -X username@helix.nih.gov
+}}}
+After pressing &lt;Enter&gt;, you will have to provide your Helix password, after which the Matlab window will be displayed on your local terminal.</pre>
+</div>
+<div title="Running a simulation" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406251757" changecount="1">
+<pre>!!SIMULATING AN EXPERIMENTAL TRIAL
+
+
+!!!STEPS TO RUN THE SIMULATION
+ 
+{{{
+&gt;sim au*
+}}}
+
+where au* is a file with extension *.s, and contains all the specifications needed to execute one simulation of the network. 
+
+!!!TO PLOT RASTER FILES OF THE SIMULATIONS
+  
+run plotoutput.m in MatLab
+
+!!!TO EXECUTE THE DECISION MODULE OF A SIMULATION
+
+run decision.m in matlab
+
+Note that this module can be executed independently of the others. The code counts the number of neurons in R that responded. If this number exceeds a given threshold, say 5, then it signals a match. A mismatch is signaled otherwise. </pre>
 </div>
 <div title="SiteSubtitle" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221418" modified="201405221459" changecount="3">
 <pre>Large Scale Neural Modeling at the Brain Imaging and Modeling Section, VSLB/NIDCD/NIH</pre>
@@ -1870,74 +1731,90 @@ To unpack and unzip a tar.gz file:
 
 $ tar -xzvf file_name.tar.gz   </pre>
 </div>
-<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201405301703" changecount="12">
+<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201406301913" changecount="16">
 <pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description).
 
 The following basic commands are useful to keep track of changes to the LSNM software: 
 
 To show the status of changes to the code:
-
+{{{
 $ git status 
+}}}
 
 To commit a file that has been modified or recently created (it skips the 'staging' area):
-
+{{{
 $ git commit -a -m 'include a relevant comment here'
+}}}
 
 To rename a file that is currently being tracked:
-
+{{{
 $ git mv old_file_name new_file_name
+}}}
 
 To erase a file (physically and from the tracking system):
-
+{{{
 $ git rm file_not_needed
+}}}
 
 To add a new (existing) file or directory to the tracking system:
-
+{{{
 $ git add file_name
+}}}
 
 To invoke a GUI that shows you history of changes to the code
-
+{{{
 $ gitk
+}}}
 
 To use git on a GUI interface rather than on the command line, use the following command:
-
+{{{
 $ git gui
+}}}
 
 To initialize git in current directory (you only need to do this once at the very beginning and when you need to start from scratch):
-
+{{{
 $ git init
+}}}
 
 To change editor used in git:
-
+{{{
 $ git config --global core.editor emacs
+}}}
 
 To declare your name in the git version control system (you only need to this once and git with label changes you make with YOUR name declared here):
-
+{{{
 $ git config --global user.name &quot;John Doe&quot;
+}}}
 
 To declare your email address (for labeling purposes only):
-
+{{{
 $ git config --global user.email &quot;john.doe@nih.gov&quot;
+}}}
 
 How to clone a git repository in preparation to put it on a git server:
-
+{{{
 $ git clone --bare LSNM LSNM.git
+}}}
 
 How to copy a git repository to a server (shared folder in Helix, for example):
-
+{{{
 $ scp -r LSNM.git user@helix.nih.gov:/home/horwitzb/bhguest/sgihome
+}}}
 
 How other users can clone down the git repository found in the server so they can work on the code locally:
-
+{{{
 $ git clone user@helix.nih.gov:/home/horwitzb/ghguest/sgihome/LSNM.git
+}}}
 
 How to push changes to the repository on the server:
-
+{{{
 $ git push origin master
+}}}
 
 Where 'origin' has been defined as:
-
-$ git remote add origin user@helix.nih.gov:/home/horwitzb/bhguest/sgihome/LSNM.git</pre>
+{{{
+$ git remote add origin user@helix.nih.gov:/home/horwitzb/bhguest/sgihome/LSNM.git
+}}}</pre>
 </div>
 <div title="Visual README file, by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221552" changecount="1">
 <pre>Written by Brent Warner
