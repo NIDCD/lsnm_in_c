@@ -38,7 +38,7 @@ int main()
   char bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline];
 
-  const char *BASE= (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
+  const char *BASE= (char*)"$LSNM";
 
   strcpy(bin,BASE);
   strcat(bin,"/bin/");
@@ -54,10 +54,10 @@ int main()
 
   outfile = fopen("batchw_au","w");
   appfile = fopen("appw_au","w");
-  fprintf(appfile,"#include %s/weights/right/aurightlist.txt\n",BASE);
-  fprintf(appfile,"#include %s/weights/left/auleftlist.txtn\n",BASE);
-  fprintf(appfile,"#include %s/weights/cross/aucrosslist.txt\n",BASE);
-  fprintf(appfile,"#include %s/inputs/au_test.rs\n",BASE);
+  fprintf(appfile,"#include %sweights/right/aurightlist.txt\n",BASE);
+  fprintf(appfile,"#include %sweights/left/auleftlist.txtn\n",BASE);
+  fprintf(appfile,"#include %sweights/cross/aucrosslist.txt\n",BASE);
+  fprintf(appfile,"#include %sinputs/au_test.rs\n",BASE);
   fclose(appfile);
   fscanf(infile,"%s",whereto);
   fscanf(infile,"%d %d %d %f %f %f",
@@ -86,7 +86,7 @@ int main()
   /* start*/
   fprintf(outfile,"#\n#\n#\n");
 /*lo attn on right and attn on left do not change among subjects*/
-  fprintf(outfile,"cd %s/sfiles\n",BASE);
+  fprintf(outfile,"cd %ssfiles\n",BASE);
   fprintf(outfile,"%smkattn_au hiattn_l.s %4.2f\n",bin,lefthi);
   fprintf(outfile,"%smkattn_au loattn_l.s %4.2f\n",bin,leftlo);
   fprintf(outfile,"%smkattn_au loattn_r.s %4.2f\n",bin,rightlo);
@@ -98,10 +98,10 @@ int main()
 */
 
   fprintf(outfile,"cd %s\n",BASE);
-  fprintf(outfile,"rm au_test.s\n");
+  fprintf(outfile,"rm $LSNM/au_test.s\n");
   fprintf(outfile,
-   "cat weights/right/auright.s weights/left/auleft.sn code/appw_au > au_test.s\n");
-  fprintf(outfile,"rm code/appw_au\nrm code/batchw_au\n");
+   "cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/appw_au > $LSNM/au_test.s\n");
+  fprintf(outfile,"rm $LSNM/code/appw_au\nrm $LSNM/code/batchw_au\n");
 
   for(k = 0; k < num_c; k++)/*capacity loop */
     {
@@ -112,10 +112,10 @@ int main()
 	itoa(C,sc);
       fprintf(outfile,"#\n#\n");
       fprintf(outfile,"cd %s\n",BASE);
-      fprintf(outfile,"mkdir noisy\n");
+      fprintf(outfile,"mkdir $LSNM/noisy\n");
 
       /* make an input file for netgenC_au, must be in the code directory*/
-      fprintf(outfile,"cd %s/code\n",BASE);
+      fprintf(outfile,"cd %scode\n",BASE);
       fprintf(outfile,"echo Connection strength: %d\n",C);
       fprintf(outfile,"%sgenw_au %d\n",bin,C);
 
@@ -126,40 +126,40 @@ int main()
 	  itoa(attni,sa);
 	  fprintf(outfile,"echo Attn level: %d\n",attni);
 	  fprintf(outfile,"#\n");
-	  fprintf(outfile,"cd %s/sfiles\n",BASE);
+	  fprintf(outfile,"cd %ssfiles\n",BASE);
 	  fprintf(outfile,"%smkattn_au hiattn_r.s %4.2f\n",bin,attn);
 	  
-	  fprintf(outfile,"cd %s/weights/right\n",BASE);
+	  fprintf(outfile,"cd %sweights/right\n",BASE);
 	  fprintf(outfile,"for file in *.ws; do\n");
 	  fprintf(outfile," %s $file\n  done\n",netgen);
-	  fprintf(outfile,"cd ../left\n");
+	  fprintf(outfile,"cd $LSNM/weights/left\n");
 	  fprintf(outfile,"for file in *.ws; do\n");
 	  fprintf(outfile,"  %s $file\n  done\n",netgen);
-	  fprintf(outfile,"cd ../cross\n");
-	  fprintf(outfile,"%scrosswt_au_i netgenC_au\nchmod u+x sh_cross\n",bin);
+	  fprintf(outfile,"cd $LSNM/weights/cross\n");
+	  fprintf(outfile,"%scrosswt_au_i $LSNM/bin/netgenC_au\nchmod u+x sh_cross\n",bin);
 	  fprintf(outfile,"./sh_cross\nrm sh_cross\n");
 	  fprintf(outfile,"cd %s\n",BASE);
 	  fprintf(outfile,"%sau_sim1 au_test\n",bin);
 	  fprintf(outfile,"gzip *.out\n");
-	  fprintf(outfile,"cd noisy\nmkdir b%s\n",sa);
+	  fprintf(outfile,"cd $LSNM/noisy\nmkdir b%s\n",sa);
 	  fprintf(outfile,"cd %s\n",BASE);
 	  fprintf(outfile,
-	"mv spec_pet.m noisy/b%s/\nmv *.out* noisy/b%s/\n",sa,sa);
+	"mv spec_pet.m $LSNM/noisy/b%s/\nmv *.out* $LSNM/noisy/b%s/\n",sa,sa);
 	}/* end of j loop - attn loop*/
 
-      fprintf(outfile,"mv noisy %s/wken%s\n",whereto,sc);
+      fprintf(outfile,"mv $LSNM/noisy %s/wken%s\n",whereto,sc);
 
     }/* end of k loop -- capacity loop*/
 
-  fprintf(outfile,"\nrm weights/right/*.w\n");
-  fprintf(outfile,"rm weights/left/*.w\n");
+  fprintf(outfile,"\nrm $LSNM/weights/right/*.w\n");
+  fprintf(outfile,"rm $LSNM/weights/left/*.w\n");
 
 /* there are 800 .ws files in the cross directory, the max number of .w
    files also reaches 800. The memory space 
    for shell script is too small to rm all in one sweep,
    so we split up the chore*/
 
-  fprintf(outfile,"cd weights/cross\n");
+  fprintf(outfile,"cd $LSNM/weights/cross\n");
   fprintf(outfile,"rm ea*.w\n");
   fprintf(outfile,"rm eg*.w\n");
   fprintf(outfile,"rm *.w\n");
@@ -178,8 +178,8 @@ int main()
   fprintf(outfile,"cd %s\n",BASE);
 
   
-  fprintf(outfile,"rm code/netgenC_au.in\n");
-  fprintf(outfile,"rm sfiles/*attn*.s\n");
+  fprintf(outfile,"rm $LSNM/code/netgenC_au.in\n");
+  fprintf(outfile,"rm $LSNM/sfiles/*attn*.s\n");
 
   fclose(infile);
   fclose(outfile);

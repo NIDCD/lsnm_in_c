@@ -23,7 +23,7 @@ char origin[maxstring], dest[maxstring], Infile[maxline],Outfile[maxline];
 int num_pairs, i;
 float capacity;
 
-  char *BASE= (char*)"/home/deckerp/software/lsnm/pearce_test/auditory/code/";
+  char *BASE= (char*)"$LSNM/code/";
 
   strcpy(Infile,BASE);
   strcpy(Outfile,BASE);

@@ -43,7 +43,7 @@ int netgen(char *Outfile, struct NetGenStruct Net)
   float ratio = 1.0;
   char  area_name[unitlen], line[maxlen];
 
-  char *BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory/code/netgenC_au.in";
+  char *BASE = (char*)"code/netgenC_au.in";
 
   float	x,y;
   struct weights *wts;

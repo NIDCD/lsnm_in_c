@@ -1388,8 +1388,9 @@ the destination definition in all the input files.
 
 </pre>
 </div>
-<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201406251818" changecount="14">
+<div title="MainMenu" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221434" modified="201407032036" changecount="15">
 <pre>[[Introduction]]
+[[Setting the path for LSNM]]
 [[Programs]]
 [[Commands]]
 [[&lt;netgen&gt; code files]]
@@ -1707,29 +1708,50 @@ run decision.m in matlab
 
 Note that this module can be executed independently of the others. The code counts the number of neurons in R that responded. If this number exceeds a given threshold, say 5, then it signals a match. A mismatch is signaled otherwise. </pre>
 </div>
+<div title="Setting the path for LSNM" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407032024" changecount="1">
+<pre>To set up the path of the directory of LSNM, you need to add the following lines to your .bash_profile:
+{{{
+LSNM=$HOME/location/of/LSNM/files
+
+export LSNM
+}}}
+
+The first time you set that up you will need to force linux to read the .bash_profile and upload it to memory by doing the following:
+{{{
+$ source .bash_profile
+}}}
+
+You do not need to do that again because linux will read the .bash_profile everytime you log in and upload the variables contained there into memory.
+
+The code uses the environmental variable LSNM to locate the working directory for input/output of simulations, as well as for finding the executables.</pre>
+</div>
 <div title="SiteSubtitle" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221418" modified="201405221459" changecount="3">
 <pre>Large Scale Neural Modeling at the Brain Imaging and Modeling Section, VSLB/NIDCD/NIH</pre>
 </div>
 <div title="SiteTitle" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221418" changecount="1">
 <pre>LSNM 2.0 Documentation</pre>
 </div>
-<div title="Transferring files to/from Helix" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271627" modified="201405291707" changecount="4">
+<div title="Transferring files to/from Helix" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405271627" modified="201406301917" changecount="5">
 <pre>To download a file from Helix:
-
+{{{
 scp username@helix.nih.gov:/home/username/myfile .
+}}}
 
 To upload a local file to Helix:
-
-scp mylocalfile username@helix.nih.gov:/home/username </pre>
+{{{
+scp mylocalfile username@helix.nih.gov:/home/username
+}}}</pre>
 </div>
-<div title="Useful Linux commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221445" changecount="1">
+<div title="Useful Linux commands" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221445" modified="201406301918" changecount="2">
 <pre>To tar and zip a directory prior to copying or transferring:
-
+{{{
 $ tar -cvzf file_name.tar.gz directory_name
+}}}
 
 To unpack and unzip a tar.gz file:
-
-$ tar -xzvf file_name.tar.gz   </pre>
+{{{
+$ tar -xzvf file_name.tar.gz
+}}}</pre>
 </div>
 <div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201406301913" changecount="16">
 <pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description).

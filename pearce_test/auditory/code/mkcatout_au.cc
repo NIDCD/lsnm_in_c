@@ -33,7 +33,7 @@ int main()
   int num_regions = 22;
   char Infile[maxline], whereis[maxline], *regions[num_regions];
 
-  const char *BASE= (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
+  const char *BASE= (char*)"$LSNM";
 
   strcpy(Infile,BASE);
   strcat(Infile,"/code/mkcatout_au.in");

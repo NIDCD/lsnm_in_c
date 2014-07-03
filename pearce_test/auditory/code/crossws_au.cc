@@ -40,7 +40,7 @@ int main ()
 
   char Infile[maxline];
 
-  char *BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
+  char *BASE = (char*)"$LSNM";
 
   strcpy(Infile,BASE);
   strcat(Infile,"/code/crossws_au.in");

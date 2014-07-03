@@ -578,3 +578,7 @@ set(GMGN,81)
   }
 
  
+#include /home/ulloa/LSNM/pearce_test/auditory/weights/right/aurightlist.txt
+#include /home/ulloa/LSNM/pearce_test/auditory/weights/left/auleftlist.txtn
+#include /home/ulloa/LSNM/pearce_test/auditory/weights/cross/aucrosslist.txt
+#include /home/ulloa/LSNM/pearce_test/auditory/inputs/auseq1.rsb

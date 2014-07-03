@@ -37,14 +37,14 @@ int main()
   char bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline];
 
-  const char *BASE = "/home/deckerp/software/lsnm/pearce_test/auditory";
+  const char *BASE = getenv("LSNM");
 
   strcpy(bin,BASE);
-  strcat(bin,"/bin/");
+  strcat(bin,"bin/");
   strcpy(netgen,bin);
   strcat(netgen,"netgenC_au");
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/mkbatchb_au.in");
+  strcat(Infile,"code/mkbatchb_au.in");
 
   if( (infile = fopen(Infile, "r")) == NULL)
     {
@@ -60,14 +60,15 @@ int main()
 
   for(i=1; i<=n_trials; i++)
     {
-      strcpy(appname,"appb");
+      strcpy(appname,BASE);
+      strcat(appname,"code/appb");
       sprintf(temp,"%d",i);
       strcat(appname,temp);
       appfile = fopen(appname,"w");
-      fprintf(appfile,"#include %s/weights/right/aurightlist.txt\n",BASE);
-      fprintf(appfile,"#include %s/weights/left/auleftlist.txtn\n",BASE);
-      fprintf(appfile,"#include %s/weights/cross/aucrosslist.txt\n",BASE);
-      fprintf(appfile,"#include %s/inputs/auseq%d.rsb\n",BASE,i);
+      fprintf(appfile,"#include %sweights/right/aurightlist.txt\n",BASE);
+      fprintf(appfile,"#include %sweights/left/auleftlist.txtn\n",BASE);
+      fprintf(appfile,"#include %sweights/cross/aucrosslist.txt\n",BASE);
+      fprintf(appfile,"#include %sinputs/auseq%d.rsb\n",BASE,i);
       fclose(appfile);
     }
 
@@ -108,21 +109,21 @@ to run it again with the batch simply uncomment this block.
   for(i=1; i<=n_trials; i++)
     {
       fprintf(outfile,"rm auseq%d.s\n",i);
-      fprintf(outfile,"cat weights/right/auright.s weights/left/auleft.sn code/appb%d > auseq%d.s\n",i,i);
-      fprintf(outfile,"rm code/appb%d\n",i);
+      fprintf(outfile,"cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/appb%d > auseq%d.s\n",i,i);
+      fprintf(outfile,"rm $LSNM/code/appb%d\n",i);
     }
 
-  fprintf(outfile,"rm code/batchb_au\n");
+  fprintf(outfile,"rm $LSNM/code/batchb_au\n");
 
   for(k=1; k<=n_subj; k++) /*subject loop*/
     {
       fprintf(outfile,"#\n#\n");
       fprintf(outfile,"cd %s\n",BASE);
-      fprintf(outfile,"mkdir noisy\n");
+      fprintf(outfile,"mkdir $LSNM/noisy\n");
 
        /* make an input file for netgenC_au, must be in the code directory*/
       fprintf(outfile,"cd %s/code\n",BASE);
-      fprintf(outfile,"%saltgenw_au %d %d %d %d %d %d %d %d %d %d %d %d %d\n",bin,rweights[k][0],rweights[k][1],rweights[k][2],rweights[k][3],rweights[k][4],rweights[k][5],rweights[k][6],rweights[k][7],rweights[k][8],rweights[k][9],rweights[k][10],rweights[k][11],rweights[k][12]);
+      fprintf(outfile,"%s/altgenw_au %d %d %d %d %d %d %d %d %d %d %d %d %d\n",bin,rweights[k][0],rweights[k][1],rweights[k][2],rweights[k][3],rweights[k][4],rweights[k][5],rweights[k][6],rweights[k][7],rweights[k][8],rweights[k][9],rweights[k][10],rweights[k][11],rweights[k][12]);
       fprintf(outfile,"echo Subject %d\n",k);
 
       for(j=0; j < num_a; j++) /* attn loop */
@@ -131,25 +132,25 @@ to run it again with the batch simply uncomment this block.
 	  attn = (float)attni/100.0;
 	  itoa(attni,sa);
 	  fprintf(outfile,"#\n");
-	  fprintf(outfile,"cd %s/sfiles\n",BASE);
+	  fprintf(outfile,"cd %ssfiles\n",BASE);
 	  fprintf(outfile,"%smkattn_au hiattn_r.s %4.2f\n",bin,attn);
 
-	  fprintf(outfile,"cd %s/weights/right\n",BASE);
+	  fprintf(outfile,"cd %sweights/right\n",BASE);
 	  fprintf(outfile,"for file in *.ws ; do\n");
 	  // fprintf(outfile,"foreach file (*.ws)\n");
 	  fprintf(outfile,"  %s $file\n  done\n",netgen);
 	  // fprintf(outfile,"  %s $file\n  end\n",netgen);
-	  fprintf(outfile,"cd ../left\n");
+	  fprintf(outfile,"cd $LSNM/weights/left\n");
 	  fprintf(outfile,"for file in *.ws ; do\n");
 	  // fprintf(outfile,"foreach file (*.ws)\n");
 	  fprintf(outfile,"  %s $file\n  done\n",netgen);
 	  // fprintf(outfile,"  %s $file\n  end\n",netgen);
 	  fprintf(outfile,"echo attn level: %4.2f\n",attn);
-	  fprintf(outfile,"cd %s/noisy\nmkdir b%s\n",BASE,sa);
+	  fprintf(outfile,"cd %snoisy\nmkdir b%s\n",BASE,sa);
 
 	   for(i=1; i<=n_trials; i++)
 	    {	      
-	      fprintf(outfile,"cd %s/weights/cross\n",BASE);
+	      fprintf(outfile,"cd %sweights/cross\n",BASE);
 	      fprintf(outfile,"%scrosswt_au_i netgenC_au\nchmod u+x sh_cross\n",bin);
 	      fprintf(outfile,"echo Building cross connections...\n");
 	      fprintf(outfile,"./sh_cross\nrm sh_cross\n");
@@ -157,11 +158,11 @@ to run it again with the batch simply uncomment this block.
 	      fprintf(outfile,"cd %s\n",BASE);
 	      fprintf(outfile,"%sau_sim1 auseq%d\n",bin,i);
 	      fprintf(outfile,"gzip *.out\n");
-	      fprintf(outfile,"cd noisy/b%s\nmkdir trial%d\n",sa,i);
+	      fprintf(outfile,"cd $LSNM/noisy/b%s\nmkdir trial%d\n",sa,i);
 	      fprintf(outfile,"cd %s\n",BASE);
 	      fprintf(outfile,
- "mv spec_pet.m noisy/b%s/trial%d/\nmv *.out* noisy/b%s/trial%d/\n",sa,i,sa,i);
-	      fprintf(outfile,"cp %s/weights/cross/aucrosslist.txt noisy/b%s/trial%d/aucrosslist%d.txt\n",BASE,sa,i,i);
+ "mv spec_pet.m $LSNM/noisy/b%s/trial%d/\nmv *.out* $LSNM/noisy/b%s/trial%d/\n",sa,i,sa,i);
+	      fprintf(outfile,"cp %sweights/cross/aucrosslist.txt $LSNM/noisy/b%s/trial%d/aucrosslist%d.txt\n",BASE,sa,i,i);
 	      fprintf(outfile,"#\n");
 	    } /* end of stimulus pairs */
 	} /* end of j loop - attn loop */
@@ -169,10 +170,10 @@ to run it again with the batch simply uncomment this block.
       fprintf(outfile,"mv noisy %s/subj%d\n",whereto,k);
     } /* end of k loop - subject loop */
 
-  fprintf(outfile,"\nrm weights/right/*.w\n");
-  fprintf(outfile,"rm weights/left/*.w\n");
+  fprintf(outfile,"\nrm $LSNM/weights/right/*.w\n");
+  fprintf(outfile,"rm $LSNM/weights/left/*.w\n");
   
-  fprintf(outfile,"cd weights/cross\n");
+  fprintf(outfile,"cd $LSNM/weights/cross\n");
   fprintf(outfile,"rm ea*.w\n");
   fprintf(outfile,"rm eg*.w\n");
   fprintf(outfile,"rm *.w\n");

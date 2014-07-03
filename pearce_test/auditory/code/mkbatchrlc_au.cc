@@ -40,7 +40,7 @@ int main()
   char bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline];
 
-  const char *BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
+  const char *BASE = (char*)"$LSNM";
 
   strcpy(bin,BASE);
   strcat(bin,"/bin/");
@@ -94,7 +94,7 @@ int main()
   /*start of output to batchrlc_au*/
   fprintf(outfile,"#\n#\n#\n");
 
-  fprintf(outfile,"cd %s/sfiles\n",BASE);
+  fprintf(outfile,"cd %ssfiles\n",BASE);
   fprintf(outfile,"%smkattn_au hiattn_l.s %4.2f\n",bin,lefthi);
   fprintf(outfile,"%smkattn_au loattn_l.s %4.2f\n",bin,leftlo);
   fprintf(outfile,"%smkattn_au loattn_r.s %4.2f\n",bin,rightlo);
@@ -110,17 +110,17 @@ int main()
   for(i=1; i<=n_trials; i++)
     {
       fprintf(outfile,"rm autrial%d.s\n",i);
-      fprintf(outfile,"cat weights/right/auright.s weights/left/auleft.sn code/apprl%d > auseq%d.s\n",i,i);
-      fprintf(outfile,"rm code/apprl%d\n",i);
+      fprintf(outfile,"cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/apprl%d > auseq%d.s\n",i,i);
+      fprintf(outfile,"rm $LSNM/code/apprl%d\n",i);
     }
 
-  fprintf(outfile,"rm code/batchrlc_au\n");
+  fprintf(outfile,"rm $LSNM/code/batchrlc_au\n");
 
   for(k=1; k<=n_subj; k++)/* subject loop */
     {
       fprintf(outfile,"#\n#\n");
       fprintf(outfile,"cd %s\n",BASE);
-      fprintf(outfile,"mkdir noisy\n");
+      fprintf(outfile,"mkdir $LSNM/noisy\n");
 
       /* make an input file for netgenC_au, must be in the code directory*/
       fprintf(outfile,"cd %s/code\n",BASE);
@@ -138,17 +138,17 @@ int main()
 	  attn = (float)attni/100.0;
 	  itoa(attni,sa);
 	  fprintf(outfile,"#\n");
-	  fprintf(outfile,"cd %s/sfiles\n",BASE);
+	  fprintf(outfile,"cd %ssfiles\n",BASE);
 	  fprintf(outfile,"%smkattn_au hiattn_r.s %4.2f\n",bin,attn);
 
-	  fprintf(outfile,"cd %s/weights/right\n",BASE);
+	  fprintf(outfile,"cd %sweights/right\n",BASE);
 	  fprintf(outfile,"for file in `ls *.ws`\n");
 	  fprintf(outfile," do %s $file\n  done\n",netgen);
 	  fprintf(outfile,"cd ../left\n");
 	  fprintf(outfile,"for file in `ls *.ws`\n");
 	  fprintf(outfile," do %snetgenC_L_au $file\n  done\n",bin);
 	  fprintf(outfile,"echo attn level: %4.2f\n",attn);
-	  fprintf(outfile,"cd %s/noisy\nmkdir b%s\n",BASE,sa);
+	  fprintf(outfile,"cd %snoisy\nmkdir b%s\n",BASE,sa);
 
 	  for(i=1; i<=n_trials; i++)
 	    {	      
@@ -156,11 +156,11 @@ int main()
 /* Added for concatenating crosslist for Fengs Sims --By Ajay */
 	fprintf(outfile,"%scrosswt_au_i netgenC_au\n",bin);
 	
-	fprintf(outfile,"cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt\n");
-	fprintf(outfile,"cat sh_cross crossinhibsh.txt > sh_cross1\n");
-	fprintf(outfile,"rm aucrosslist.txt\nrm sh_cross\n");
-	fprintf(outfile,"mv aucrosslist1.txt aucrosslist.txt\n");
-	fprintf(outfile,"mv sh_cross1 sh_cross\n");
+	fprintf(outfile,"cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt\n");
+	fprintf(outfile,"cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1\n");
+	fprintf(outfile,"rm $LSNM/aucrosslist.txt\nrm $LSNM/sh_cross\n");
+	fprintf(outfile,"mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt\n");
+	fprintf(outfile,"mv $LSNM/sh_cross1 $LSNM/sh_cross\n");
 
 
 
@@ -176,31 +176,31 @@ int main()
 	      fprintf(outfile,"cd %s\n",BASE);
 	      fprintf(outfile,
  "mv spec_pet.m noisy/b%s/trial%d/\nmv *.out* noisy/b%s/trial%d/\n",sa,i,sa,i);
-	      fprintf(outfile,"cp %s/weights/cross/aucrosslist.txt noisy/b%s/trial%d/aucrosslist%d.txt\n",BASE,sa,i,i);
+	      fprintf(outfile,"cp %sweights/cross/aucrosslist.txt noisy/b%s/trial%d/aucrosslist%d.txt\n",BASE,sa,i,i);
 	      fprintf(outfile,"#\n");
 	    } /* end of stimulus pairs */
 
 	} /* end of j loop - attn loop */
 
 	/* save current .w and .ws files */
-	fprintf(outfile,"mkdir -p %s/noisy/weights/right\n",BASE);		
-	fprintf(outfile,"cp %s/weights/right/*.w %s/noisy/weights/right/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/weights/right/*.ws %s/noisy/weights/right/\n",BASE,BASE);
+	fprintf(outfile,"mkdir -p %snoisy/weights/right\n",BASE);		
+	fprintf(outfile,"cp %sweights/right/*.w %snoisy/weights/right/\n",BASE,BASE);
+	fprintf(outfile,"cp %sweights/right/*.ws %snoisy/weights/right/\n",BASE,BASE);
 	
-	fprintf(outfile,"mkdir -p %s/noisy/weights/left\n",BASE);		
-	fprintf(outfile,"cp %s/weights/left/*.w %s/noisy/weights/left/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/weights/left/*.ws %s/noisy/weights/left/\n",BASE,BASE);
+	fprintf(outfile,"mkdir -p %snoisy/weights/left\n",BASE);		
+	fprintf(outfile,"cp %sweights/left/*.w %snoisy/weights/left/\n",BASE,BASE);
+	fprintf(outfile,"cp %sweights/left/*.ws %snoisy/weights/left/\n",BASE,BASE);
 	
-	fprintf(outfile,"mkdir -p %s/noisy/weights/cross\n",BASE);		
-	fprintf(outfile,"cp %s/weights/cross/*.w %s/noisy/weights/cross/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/weights/cross/*.ws %s/noisy/weights/cross/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/weights/cross/aucrosslist.txt %s/noisy/weights/cross/\n",BASE,BASE);
+	fprintf(outfile,"mkdir -p %snoisy/weights/cross\n",BASE);		
+	fprintf(outfile,"cp %sweights/cross/*.w %snoisy/weights/cross/\n",BASE,BASE);
+	fprintf(outfile,"cp %sweights/cross/*.ws %snoisy/weights/cross/\n",BASE,BASE);
+	fprintf(outfile,"cp %sweights/cross/aucrosslist.txt %snoisy/weights/cross/\n",BASE,BASE);
 	
-	fprintf(outfile,"cp %s/code/netgenC_au.in   %s/noisy/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/code/netgenC_L_au.in %s/noisy/\n",BASE,BASE);	
-	fprintf(outfile,"mkdir -p %s/noisy/sfiles\n",BASE);
-	fprintf(outfile,"cp %s/sfiles/*attn*.s %s/noisy/sfiles/\n",BASE,BASE);
-	fprintf(outfile,"cp %s/batchrlc_au   %s/noisy/ \n",BASE,BASE);
+	fprintf(outfile,"cp %scode/netgenC_au.in   %snoisy/\n",BASE,BASE);
+	fprintf(outfile,"cp %scode/netgenC_L_au.in %snoisy/\n",BASE,BASE);	
+	fprintf(outfile,"mkdir -p %snoisy/sfiles\n",BASE);
+	fprintf(outfile,"cp %ssfiles/*attn*.s %snoisy/sfiles/\n",BASE,BASE);
+	fprintf(outfile,"cp %sbatchrlc_au   %snoisy/ \n",BASE,BASE);
 	fprintf(outfile,"mv noisy %s/subj%d\n",whereto,k);
 
     } /* end of k loop - subject loop */

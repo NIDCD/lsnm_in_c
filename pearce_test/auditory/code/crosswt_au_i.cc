@@ -60,10 +60,10 @@ int main(int argc, char** argv)
   char Infile[maxline], netgen[maxline];
   float p;
 
-  const char *BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory/";
+  const char *BASE = (char*)"$LSNM";
 
   strcpy(netgen,BASE);
-  strcat(netgen,"bin/");
+  strcat(netgen,"/bin/");
   if(argv[1] != NULL)
     strcat(netgen, argv[1]);
   else strcat(netgen,"netgen1");
@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 
 
   strcpy(Infile,BASE);
-  strcat(Infile,"code/crosswt_au_i.in");
+  strcat(Infile,"/code/crosswt_au_i.in");
   if( (infile = fopen(Infile, "r")) == NULL)
     {
       printf("can't open %s\n", Infile);
@@ -163,9 +163,9 @@ int main(int argc, char** argv)
 	{
 	  for(i=0; i<ex_in; i++)
 	    {
-	      fprintf(outfile,"#include weights/cross/%s%s.w\n",
+	      fprintf(outfile,"#include $LSNM/weights/cross/%s%s.w\n",
 		      left[i][k],right[i][k]);  /*forward*/
-	      fprintf(outfile,"#include weights/cross/%s%s.w\n",
+	      fprintf(outfile,"#include $LSNM/weights/cross/%s%s.w\n",
 		      right[i][k],left[i][k]);  /*feedback*/
 	      Bmap[i][k][k] = 1;
 	      /*write the shell command for making .w from .ws file*/
@@ -194,9 +194,9 @@ int main(int argc, char** argv)
 		    i = ii*2 + jj;
 		    if(probability <= p && Bmap[i][k][j] == 0 )
 		      {
-			fprintf(outfile,"#include weights/cross/%s%s.w\n",
+			fprintf(outfile,"#include $LSNM/weights/cross/%s%s.w\n",
 				left[ii][k],right[jj][j]);  /*forward*/
-			fprintf(outfile,"#include weights/cross/%s%s.w\n",
+			fprintf(outfile,"#include $LSNM/weights/cross/%s%s.w\n",
 				right[jj][j],left[ii][k]);  /*feedback*/
 
 			Bmap[i][k][j] = 1;
@@ -296,9 +296,9 @@ so that the user's indication is consistent with the index in the code
 	  if(Bmap[sourceindex][j] == 0)
 	    {
 	      fprintf(outfile,
-               "#include weights/cross/%s%s.w\n",source,destination[j]);
+               "#include $LSNM/weights/cross/%s%s.w\n",source,destination[j]);
 	      fprintf(outfile,
-               "#include weights/cross/%s%s.w\n",destination[j],source);
+               "#include $LSNM/weights/cross/%s%s.w\n",destination[j],source);
 	      Bmap[sourceindex][j] = 1;
 	      /*write the shell command for making .w from .ws file*/
 	      fprintf(shfile,"%s %s%s.ws\n",netgen,
