@@ -38,14 +38,14 @@ int main()
   char sp[3],bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline],temp[maxstring];
 
-  const char *BASE = (char*)"$LSNM";
+  const char *BASE = getenv("LSNM");
  
 
   strcpy(bin,BASE);
-  strcat(bin,"/bin/");
+  strcat(bin,"bin/");
   strcpy(netgen,bin);
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/mkbatchr_au.in");
+  strcat(Infile,"code/mkbatchr_au.in");
   if((infile = fopen(Infile,"r")) == NULL)
     {
       printf("can't open %s\n",Infile);

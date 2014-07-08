@@ -1,4 +1,0 @@
-#include ..//weights/right/aurightlist.txt
-#include ..//weights/left/auleftlist.txtn
-#include ..//weights/cross/aucrosslist.txt
-#include ..//inputs/auseq3.rsb

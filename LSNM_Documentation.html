@@ -1753,7 +1753,7 @@ To unpack and unzip a tar.gz file:
 $ tar -xzvf file_name.tar.gz
 }}}</pre>
 </div>
-<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201406301913" changecount="16">
+<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201407032302" changecount="17">
 <pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description).
 
 The following basic commands are useful to keep track of changes to the LSNM software: 
@@ -1781,6 +1781,11 @@ $ git rm file_not_needed
 To add a new (existing) file or directory to the tracking system:
 {{{
 $ git add file_name
+}}}
+
+To add all new (untracked) files to the tracking system:
+{{{
+$ git add -A
 }}}
 
 To invoke a GUI that shows you history of changes to the code

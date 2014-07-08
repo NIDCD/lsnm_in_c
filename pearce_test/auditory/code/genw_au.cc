@@ -23,12 +23,12 @@ char origin[maxstring], dest[maxstring], Infile[maxline],Outfile[maxline];
 int num_pairs, i;
 float capacity;
 
-  char *BASE= (char*)"$LSNM/code/";
+ const char *BASE= getenv("LSNM");
 
   strcpy(Infile,BASE);
   strcpy(Outfile,BASE);
-  strcat(Infile,"genw_au.in");
-  strcat(Outfile,"netgenC_au.in");
+  strcat(Infile,"code/genw_au.in");
+  strcat(Outfile,"code/netgenC_au.in");
 
 if( (infile = fopen(Infile, "r")) == NULL)
     {

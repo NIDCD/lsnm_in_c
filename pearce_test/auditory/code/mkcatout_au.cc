@@ -33,10 +33,10 @@ int main()
   int num_regions = 22;
   char Infile[maxline], whereis[maxline], *regions[num_regions];
 
-  const char *BASE= (char*)"$LSNM";
+  const char *BASE= getenv("LSNM");
 
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/mkcatout_au.in");
+  strcat(Infile,"code/mkcatout_au.in");
 
   if( (infile = fopen(Infile, "r")) == NULL)
     {

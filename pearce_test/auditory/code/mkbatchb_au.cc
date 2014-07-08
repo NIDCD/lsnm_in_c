@@ -33,7 +33,7 @@ int main()
   int rweights[maxsubjects][13];
   int num_a,start_a,end_a,inc_a,n_trials;
   int attni,m,ggns_in,ggnseed,n_subj;
-  char sa[3], appname[maxline], temp[2];
+  char sa[3], appname[maxline], temp[2], batchFile[maxline];
   char bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline];
 
@@ -56,7 +56,9 @@ int main()
   fscanf(infile,"%d %d %d %f %f %f",&m,&ggns_in, &ggnseed, &lefthi,&leftlo,&rightlo);
   fscanf(infile,"%d %d %d %d %d",&n_subj,&n_trials,&start_a,&end_a,&inc_a);
 
-  outfile = fopen("batchb_au","w");
+  strcpy(batchFile,BASE);           // Attach BASE path to file name 
+  strcat(batchFile,"batchb_au");     // ...now attach file name
+  outfile = fopen(batchFile,"w");   // ...now open it for writing
 
   for(i=1; i<=n_trials; i++)
     {
@@ -113,7 +115,7 @@ to run it again with the batch simply uncomment this block.
       fprintf(outfile,"rm $LSNM/code/appb%d\n",i);
     }
 
-  fprintf(outfile,"rm $LSNM/code/batchb_au\n");
+  //fprintf(outfile,"rm $LSNM/code/batchb_au\n");
 
   for(k=1; k<=n_subj; k++) /*subject loop*/
     {
@@ -180,7 +182,7 @@ to run it again with the batch simply uncomment this block.
   fprintf(outfile,"rm aucrosslist.txt\n");
   
   fprintf(outfile,"cd %s\n",BASE);
-  fprintf(outfile,"rm code/netgenC_au.in\n");
+  //fprintf(outfile,"rm code/netgenC_au.in\n");
   fprintf(outfile,"rm sfiles/*attn*.s\n");
 
   fclose(infile);

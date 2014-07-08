@@ -31,12 +31,12 @@ int main(int argc,char **argv)
   int num_pairs, i;
   float capacity[40];
 
-  char *BASE = (char*)"$LSNM/code/";
+  const char *BASE = getenv("LSNM");
 
   strcpy(Infile,BASE);
   strcpy(Outfile,BASE);
-  strcat(Infile,"altgenw_au.in");
-  strcat(Outfile,"netgenC_au.in");
+  strcat(Infile,"code/altgenw_au.in");
+  strcat(Outfile,"code/netgenC_au.in");
 
   if((infile=fopen(Infile,"r")) == NULL)
     {

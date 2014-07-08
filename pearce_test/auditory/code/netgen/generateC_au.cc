@@ -43,10 +43,13 @@ int netgen(char *Outfile, struct NetGenStruct Net)
   float ratio = 1.0;
   char  area_name[unitlen], line[maxlen];
 
-  char *BASE = (char*)"code/netgenC_au.in";
+  const char *BASE = getenv("LSNM");
 
   float	x,y;
   struct weights *wts;
+
+  strcpy(Outfile,BASE);
+  strcat(Outfile,"code/netgenC_au.in");
 
   ofs = fopen(Outfile,"w");
 

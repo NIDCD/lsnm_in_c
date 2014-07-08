@@ -7,20 +7,20 @@
 %---------------------------------------------------------------------
 % Connection weights within left Ai
 %---------------------------------------------------------------------
+#include weights/left/eg1ueg1u.w
+#include weights/left/ig1ueg1u.w
+#include weights/left/eg1uig1u.w
 #include weights/left/eg1deg1d.w
 #include weights/left/eg1dig1d.w
 #include weights/left/ig1deg1d.w
-#include weights/left/eg1ueg1u.w
-#include weights/left/eg1uig1u.w
-#include weights/left/ig1ueg1u.w
 
 %---------------------------------------------------------------------
 % Connection weights from left Ai to left Aii
 %---------------------------------------------------------------------
-#include weights/left/eg1deg2c.w
-#include weights/left/eg1deg2d.w
 #include weights/left/eg1ueg2u.w
 #include weights/left/eg1ueg2c.w
+#include weights/left/eg1deg2c.w
+#include weights/left/eg1deg2d.w
 
 %---------------------------------------------------------------------
 % Connection weights within left Aii
@@ -165,8 +165,15 @@
 
 
 
-
-
+%---------------------------------------------------------------------
+% Connection weights from Ted
+%---------------------------------------------------------------------
+#include weights/left/egteegte.w
+#include weights/left/egteigte.w
+#include weights/left/igteegte.w
+#include weights/left/egteeg1d.w
+#include weights/left/egteeg2c.w
+#include weights/left/egteegd2.w
 
 
 

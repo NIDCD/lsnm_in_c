@@ -60,10 +60,10 @@ int main(int argc, char** argv)
   char Infile[maxline], netgen[maxline];
   float p;
 
-  const char *BASE = (char*)"$LSNM";
+  const char *BASE = getenv("LSNM");
 
   strcpy(netgen,BASE);
-  strcat(netgen,"/bin/");
+  strcat(netgen,"bin/");
   if(argv[1] != NULL)
     strcat(netgen, argv[1]);
   else strcat(netgen,"netgen1");
@@ -74,7 +74,7 @@ int main(int argc, char** argv)
 
 
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/crosswt_au_i.in");
+  strcat(Infile,"code/crosswt_au_i.in");
   if( (infile = fopen(Infile, "r")) == NULL)
     {
       printf("can't open %s\n", Infile);

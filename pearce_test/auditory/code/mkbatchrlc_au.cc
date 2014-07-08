@@ -40,14 +40,14 @@ int main()
   char bin[maxline],whereto[maxline],netgen[maxline];
   char Infile[maxline];
 
-  const char *BASE = (char*)"$LSNM";
+  const char *BASE = getenv("LSNM");
 
   strcpy(bin,BASE);
-  strcat(bin,"/bin/");
+  strcat(bin,"bin/");
   strcpy(netgen,bin);
   strcat(netgen,"netgenC_au");
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/mkbatchrlc_au.in");
+  strcat(Infile,"code/mkbatchrlc_au.in");
 
   if( (infile = fopen(Infile, "r")) == NULL)
     {

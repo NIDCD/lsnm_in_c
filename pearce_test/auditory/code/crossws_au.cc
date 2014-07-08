@@ -40,10 +40,10 @@ int main ()
 
   char Infile[maxline];
 
-  char *BASE = (char*)"$LSNM";
+  const char *BASE = getenv("LSNM");
 
   strcpy(Infile,BASE);
-  strcat(Infile,"/code/crossws_au.in");
+  strcat(Infile,"code/crossws_au.in");
   if( (infile = fopen(Infile, "r")) == NULL)
     {
       printf("can't open %s\n", Infile);
