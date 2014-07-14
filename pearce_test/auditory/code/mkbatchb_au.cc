@@ -182,7 +182,7 @@ to run it again with the batch simply uncomment this block.
   fprintf(outfile,"rm aucrosslist.txt\n");
   
   fprintf(outfile,"cd %s\n",BASE);
-  //fprintf(outfile,"rm code/netgenC_au.in\n");
+  fprintf(outfile,"rm code/netgenC_au.in\n");
   fprintf(outfile,"rm sfiles/*attn*.s\n");
 
   fclose(infile);

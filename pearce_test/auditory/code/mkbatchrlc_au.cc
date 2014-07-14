@@ -63,7 +63,7 @@ int main()
 
   for(i=1; i<=n_trials; i++)
     {
-      strcpy(appname,"apprl");
+      strcpy(appname,"code/apprl");
       sprintf(temp,"%d",i);
       strcat(appname,temp);
       appfile = fopen(appname,"w");
@@ -109,12 +109,12 @@ int main()
 
   for(i=1; i<=n_trials; i++)
     {
-      fprintf(outfile,"rm autrial%d.s\n",i);
+      fprintf(outfile,"rm auseq%d.s\n",i);
       fprintf(outfile,"cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/apprl%d > auseq%d.s\n",i,i);
       fprintf(outfile,"rm $LSNM/code/apprl%d\n",i);
     }
 
-  fprintf(outfile,"rm $LSNM/code/batchrlc_au\n");
+  //fprintf(outfile,"rm $LSNM/code/batchrlc_au\n");
 
   for(k=1; k<=n_subj; k++)/* subject loop */
     {
@@ -171,7 +171,7 @@ int main()
 	      fprintf(outfile,"./sh_cross\nrm sh_cross\n");
 	      fprintf(outfile,"cd %s\n",BASE);
 	      fprintf(outfile,"%sau_sim1 auseq%d\n",bin,i);
-	      // fprintf(outfile,"gzip *.out\n");
+	      fprintf(outfile,"gzip *.out\n");
 	      fprintf(outfile,"cd noisy/b%s\nmkdir trial%d\n",sa,i);
 	      fprintf(outfile,"cd %s\n",BASE);
 	      fprintf(outfile,
@@ -213,8 +213,8 @@ int main()
   fprintf(outfile,"rm *.w\n");
 
   fprintf(outfile,"cd %s\n",BASE);
- // fprintf(outfile,"rm code/netgenC_au.in\n");
- // fprintf(outfile,"rm code/netgenC_L_au.in\n");
+  fprintf(outfile,"rm code/netgenC_au.in\n");
+  fprintf(outfile,"rm code/netgenC_L_au.in\n");
   fprintf(outfile,"rm sfiles/*attn*.s\n");
 
   fclose(infile);

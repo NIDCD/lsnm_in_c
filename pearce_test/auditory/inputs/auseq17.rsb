@@ -3,32 +3,32 @@ WPet 1
 
 Randseed 9986
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc4.inp
+#include sfiles/reset_au.s
+#include sfiles/loattn_l.s
+#include inputs/gtc4.inp
 
 % **********************************
 %	TRIAL #17	(Tone-MATCH)
 % **********************************
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
+#include sfiles/hiattn_l.s
+#include sfiles/hiattn_r.s
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/both_tone7.inp
-%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include inputs/both_tone7.inp
+%#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise2.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3.inp
-%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include inputs/noise2.inp
+#include inputs/gtc3.inp
+%#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/both_tone2.inp
-%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/hiattn_l.s
+#include inputs/both_tone2.inp
+%#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise9.inp
+#include inputs/noise9.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/loattn_r.s
+#include inputs/noinp_au.inp
 Run 200
 
 % **********************************

@@ -1,5 +1,5 @@
-$LSNM/auditory/batchrlc_output
-2	2	05	30	25
+$LSNM/batchrlc_output
+2	2	20	35	15
 -------------------------------------------------------------
 line 1:
 	output directory for batch.  should contain hierarchy as such:

@@ -2,30 +2,30 @@ WAPet 5
 
 Randseed 1754
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc2_ctrltask6.inp %10*5
+#include sfiles/reset_au.s	% reset
+#include sfiles/loattn_l.s
+#include sfiles/loattn_r.s
+#include inputs/gtc2_ctrltask6.inp %10*5
 
 % **********************************
 %	TRIAL #2	(NON-MATCH)
 % **********************************
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
+#include sfiles/hiattn_l.s
+#include sfiles/hiattn_r.s
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc3.inp %10*5 + 1*20 = 14*5
+#include inputs/bothtc3.inp %10*5 + 1*20 = 14*5
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3_ctrltask2.inp %10*5
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc1_ctrltask1.inp %10*5
+#include inputs/gtc3_ctrltask2.inp %10*5
+#include inputs/gtc1_ctrltask1.inp %10*5
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc2.inp %10*5 + 1*20 = 14*5
+#include sfiles/hiattn_l.s
+#include inputs/bothtc2.inp %10*5 + 1*20 = 14*5
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise3_ctrltask3.inp %10*5
+#include inputs/noise3_ctrltask3.inp %10*5
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/loattn_r.s
+#include inputs/noinp_au.inp
 Run 200
 
 % **********************************

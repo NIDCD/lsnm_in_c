@@ -83,7 +83,7 @@ set (GMGN, 81)          % 5
 }
 
 Run 5
-#include /home/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+#include home/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
 
 %-----------------------------------
 set (MGNs, 81)          % 6

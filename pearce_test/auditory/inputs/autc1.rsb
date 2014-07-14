@@ -2,32 +2,32 @@ WPet 10
 
 Randseed 665
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc2.inp
+#include sfiles/loattn_r.s
+#include inputs/gtc2.inp
 
 
 % **********************************
 %	TRIAL #1	(MATCH)
 % **********************************
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s	% Attn, Left
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s	% Hi Attn, Right
+#include sfiles/hiattn_l.s	% Attn, Left
+#include sfiles/hiattn_r.s	% Hi Attn, Right
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc1.inp %input to L&R
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp %input off
+#include inputs/bothtc1.inp %input to L&R
+#include inputs/noinp_au.inp %input off
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise5.inp  %noise inputs to L
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include inputs/noise5.inp  %noise inputs to L
+#include inputs/gtc3.inp
+#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/tc1_noise2.inp   %input to L&R
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp	% input OFF
+#include sfiles/hiattn_l.s
+#include inputs/tc1_noise2.inp   %input to L&R
+#include inputs/noinp_au.inp	% input OFF
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise4.inp
+#include inputs/noise4.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s	% Lo Attn, Right
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/loattn_r.s	% Lo Attn, Right
+#include inputs/noinp_au.inp
 Run 300
 
 % **********************************

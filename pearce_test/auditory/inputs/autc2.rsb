@@ -3,31 +3,31 @@ WPet 10
 
 Randseed 851
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise1.inp
+#include sfiles/reset_au.s	% reset
+#include inputs/noise1.inp
 
 % **********************************
 %	TRIAL #2	(NON-MATCH)
 % **********************************
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
+#include sfiles/hiattn_l.s
+#include sfiles/hiattn_r.s
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/a_noise2.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include inputs/a_noise2.inp
+#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc1.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include inputs/gtc3.inp
+#include inputs/gtc1.inp
+#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc2.inp
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/hiattn_l.s
+#include inputs/bothtc2.inp
+#include inputs/noinp_au.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise3.inp
+#include inputs/noise3.inp
 
-#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
-#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
+#include sfiles/loattn_r.s
+#include inputs/noinp_au.inp
 Run 300
 
 % **********************************
