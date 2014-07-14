@@ -169,7 +169,7 @@ to run it again with the batch simply uncomment this block.
 	    } /* end of stimulus pairs */
 	} /* end of j loop - attn loop */
 
-      fprintf(outfile,"mv noisy %s/subj%d\n",whereto,k);
+      fprintf(outfile,"mv $LSNM/noisy %s/subj%d\n",whereto,k);
     } /* end of k loop - subject loop */
 
   fprintf(outfile,"\nrm $LSNM/weights/right/*.w\n");

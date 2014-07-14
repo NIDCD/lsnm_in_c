@@ -3,33 +3,33 @@ WPet 10
 
 Randseed 1251
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc2_ctrltask4.inp %Ctrl | Run 50 = 500 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc2_ctrltask4.inp %Ctrl | Run 50 = 500 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
 % **********************************
 %	TRIAL #1	(MATCH)
 % **********************************
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/bothtc1.inp %TC inp | Run 70 = 350 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc1.inp %TC inp | Run 70 = 350 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc3_ctrltask3.inp %Ctrl | Run 50 = 500 ms
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1_ctrltask5.inp %Ctrl | Run 50 = 500 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3_ctrltask3.inp %Ctrl | Run 50 = 500 ms
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc1_ctrltask5.inp %Ctrl | Run 50 = 500 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/tc1_noise2.inp %TC inp | Run 70 = 350 ms **Not sure how this is different from bothtc1.inp... don't know why they have such different names**
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s 
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/tc1_noise2.inp %TC inp | Run 70 = 350 ms **Not sure how this is different from bothtc1.inp... don't know why they have such different names**
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise4_ctrltask5.inp %Ctrl | Run 50 = 500 ms
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise4_ctrltask5.inp %Ctrl | Run 50 = 500 ms
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp %Reset systeam by turning off (G)MGN and filling EA1 with noise (NOTE: this should not be implemented this way if we want to claim that the system only gets input through MGN)
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp %Reset systeam by turning off (G)MGN and filling EA1 with noise (NOTE: this should not be implemented this way if we want to claim that the system only gets input through MGN)
 Run 200
 
 % **********************************
@@ -50,34 +50,34 @@ WPet 10
 
 Randseed 171
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset **
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1_ctrltask5.inp %Ctrl | 500 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset **
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc1_ctrltask5.inp %Ctrl | 500 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
 % ********************************
 %	TRIAL #3	(MATCH)
 % ********************************
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/b_gtc2.inp %TC inp | 350 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/b_gtc2.inp %TC inp | 350 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise8_ctrltask1.inp %Ctrl | 500 ms
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise4_ctrltask1.inp %Ctrl | 500 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise8_ctrltask1.inp %Ctrl | 500 ms
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise4_ctrltask1.inp %Ctrl | 500 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/b_noise3.inp %TC inp | 350 ms
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/b_noise3.inp %TC inp | 350 ms
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise5_ctrltask6.inp %Ctrl | 500 ms
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise5_ctrltask6.inp %Ctrl | 500 ms
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 Run 200
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset **
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset **

@@ -2,32 +2,32 @@ WPet 1
 
 Randseed 14425
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise4.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise4.inp
 
 % **********************************
 %	TRIAL #14	(TC-MATCH)
 % **********************************
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/a_noise1.inp
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/a_noise1.inp
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc3.inp
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise9.inp
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise9.inp
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/a_noise2.inp
-%#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/a_noise2.inp
+%#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise7.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise7.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 Run 200
 
 % **********************************

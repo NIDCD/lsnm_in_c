@@ -102,7 +102,7 @@ set (GMGN, 81)          % 101~125 ms
    Node activation { ([1,2] 0.75) }
 }
 Run 5
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+#include sfiles/loattn_l.s
 
 %---------------------------------------
 

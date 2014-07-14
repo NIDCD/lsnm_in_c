@@ -1,918 +1,290 @@
 #
 #
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_l.s 0.20
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au loattn_l.s 0.10
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au loattn_r.s 0.05
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/sfiles
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_l.s 0.20
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au loattn_l.s 0.10
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au loattn_r.s 0.05
+cd /home/ulloa/lsnm/pearce_test/auditory/
 rm autrial1.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl1 > auseq1.s
-rm code/apprl1
+cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/apprl1 > auseq1.s
+rm $LSNM/code/apprl1
 rm autrial2.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl2 > auseq2.s
-rm code/apprl2
-rm autrial3.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl3 > auseq3.s
-rm code/apprl3
-rm autrial4.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl4 > auseq4.s
-rm code/apprl4
-rm autrial5.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl5 > auseq5.s
-rm code/apprl5
-rm autrial6.s
-cat weights/right/auright.s weights/left/auleft.sn code/apprl6 > auseq6.s
-rm code/apprl6
-rm code/batchrlc_au
+cat $LSNM/weights/right/auright.s $LSNM/weights/left/auleft.sn $LSNM/code/apprl2 > auseq2.s
+rm $LSNM/code/apprl2
+rm $LSNM/code/batchrlc_au
 #
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mkdir noisy
-cd /home/deckerp/software/lsnm/pearce_test/auditory/code
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+cd /home/ulloa/lsnm/pearce_test/auditory/
+mkdir $LSNM/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory//code
+/home/ulloa/lsnm/pearce_test/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+/home/ulloa/lsnm/pearce_test/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
 echo Subject 1
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
+cd /home/ulloa/lsnm/pearce_test/auditory/sfiles
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.20
+cd /home/ulloa/lsnm/pearce_test/auditory/weights/right
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_au $file
   done
 cd ../left
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
-  done
-echo attn level: 0.05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
-mkdir b05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
-cd noisy/b05
-mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial1/
-mv *.out* noisy/b05/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial1/aucrosslist1.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
-cd noisy/b05
-mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial2/
-mv *.out* noisy/b05/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial2/aucrosslist2.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b05
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial3/
-mv *.out* noisy/b05/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b05
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial4/
-mv *.out* noisy/b05/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b05
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial5/
-mv *.out* noisy/b05/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b05
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial6/
-mv *.out* noisy/b05/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial6/aucrosslist6.txt
-#
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
-for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
-  done
-cd ../left
-for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
   done
 echo attn level: 0.20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory/noisy
 mkdir b20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
 cd noisy/b20
 mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b20/trial1/
 mv *.out* noisy/b20/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial1/aucrosslist1.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial1/aucrosslist1.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
 cd noisy/b20
 mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b20/trial2/
 mv *.out* noisy/b20/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial2/aucrosslist2.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b20
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial3/
-mv *.out* noisy/b20/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b20
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial4/
-mv *.out* noisy/b20/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b20
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial5/
-mv *.out* noisy/b20/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b20
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial6/
-mv *.out* noisy/b20/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial6/aucrosslist6.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial2/aucrosslist2.txt
 #
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
+cd /home/ulloa/lsnm/pearce_test/auditory/sfiles
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.35
+cd /home/ulloa/lsnm/pearce_test/auditory/weights/right
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_au $file
   done
 cd ../left
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
   done
 echo attn level: 0.35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory/noisy
 mkdir b35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
 cd noisy/b35
 mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b35/trial1/
 mv *.out* noisy/b35/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial1/aucrosslist1.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial1/aucrosslist1.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
 cd noisy/b35
 mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b35/trial2/
 mv *.out* noisy/b35/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial2/aucrosslist2.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial2/aucrosslist2.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b35
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial3/
-mv *.out* noisy/b35/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b35
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial4/
-mv *.out* noisy/b35/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b35
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial5/
-mv *.out* noisy/b35/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b35
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial6/
-mv *.out* noisy/b35/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial6/aucrosslist6.txt
-#
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/right/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/right/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/left/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/left/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/code/netgenC_au.in   /home/deckerp/software/lsnm/pearce_test/auditory/noisy/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/code/netgenC_L_au.in /home/deckerp/software/lsnm/pearce_test/auditory/noisy/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/sfiles
-cp /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/*attn*.s /home/deckerp/software/lsnm/pearce_test/auditory/noisy/sfiles/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/batchrlc_au   /home/deckerp/software/lsnm/pearce_test/auditory/noisy/ 
-mv noisy /home/deckerp/software/lsnm/pearce_test/auditory/batchrlc_output/subj1
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/right/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/right/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/left/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/left/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/code/netgenC_au.in   /home/ulloa/lsnm/pearce_test/auditory/noisy/
+cp /home/ulloa/lsnm/pearce_test/auditory/code/netgenC_L_au.in /home/ulloa/lsnm/pearce_test/auditory/noisy/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/sfiles
+cp /home/ulloa/lsnm/pearce_test/auditory/sfiles/*attn*.s /home/ulloa/lsnm/pearce_test/auditory/noisy/sfiles/
+cp /home/ulloa/lsnm/pearce_test/auditory/batchrlc_au   /home/ulloa/lsnm/pearce_test/auditory/noisy/ 
+mv noisy $LSNM/batchrlc_output/subj1
 #
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mkdir noisy
-cd /home/deckerp/software/lsnm/pearce_test/auditory/code
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+cd /home/ulloa/lsnm/pearce_test/auditory/
+mkdir $LSNM/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory//code
+/home/ulloa/lsnm/pearce_test/auditory/bin/altgenw_au 100 100 100 100 100 100 100 100 100 100 100 100 100
+/home/ulloa/lsnm/pearce_test/auditory/bin/altgenw_L_au 100 100 100 100 100 100 100 100 100 100 100 100 100
 echo Subject 2
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
+cd /home/ulloa/lsnm/pearce_test/auditory/sfiles
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.20
+cd /home/ulloa/lsnm/pearce_test/auditory/weights/right
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_au $file
   done
 cd ../left
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
-  done
-echo attn level: 0.05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
-mkdir b05
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
-cd noisy/b05
-mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial1/
-mv *.out* noisy/b05/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial1/aucrosslist1.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
-cd noisy/b05
-mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial2/
-mv *.out* noisy/b05/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial2/aucrosslist2.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b05
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial3/
-mv *.out* noisy/b05/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b05
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial4/
-mv *.out* noisy/b05/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b05
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial5/
-mv *.out* noisy/b05/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b05
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b05/trial6/
-mv *.out* noisy/b05/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b05/trial6/aucrosslist6.txt
-#
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
-for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
-  done
-cd ../left
-for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
   done
 echo attn level: 0.20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory/noisy
 mkdir b20
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
 cd noisy/b20
 mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b20/trial1/
 mv *.out* noisy/b20/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial1/aucrosslist1.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial1/aucrosslist1.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
 cd noisy/b20
 mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b20/trial2/
 mv *.out* noisy/b20/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial2/aucrosslist2.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b20
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial3/
-mv *.out* noisy/b20/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b20
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial4/
-mv *.out* noisy/b20/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b20
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial5/
-mv *.out* noisy/b20/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b20
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b20/trial6/
-mv *.out* noisy/b20/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial6/aucrosslist6.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b20/trial2/aucrosslist2.txt
 #
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/sfiles
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/right
+cd /home/ulloa/lsnm/pearce_test/auditory/sfiles
+/home/ulloa/lsnm/pearce_test/auditory/bin/mkattn_au hiattn_r.s 0.35
+cd /home/ulloa/lsnm/pearce_test/auditory/weights/right
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_au $file
   done
 cd ../left
 for file in `ls *.ws`
- do /home/deckerp/software/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
+ do /home/ulloa/lsnm/pearce_test/auditory/bin/netgenC_L_au $file
   done
 echo attn level: 0.35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/noisy
+cd /home/ulloa/lsnm/pearce_test/auditory/noisy
 mkdir b35
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq1
 cd noisy/b35
 mkdir trial1
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b35/trial1/
 mv *.out* noisy/b35/trial1/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial1/aucrosslist1.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial1/aucrosslist1.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
+cd /home/ulloa/lsnm/pearce_test/auditory//weights/cross
+/home/ulloa/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
+cat $LSNM/aucrosslist.txt crossinhib.txt > $LSNM/aucrosslist1.txt
+cat $LSNM/sh_cross crossinhibsh.txt > $LSNM/sh_cross1
+rm $LSNM/aucrosslist.txt
+rm $LSNM/sh_cross
+mv $LSNM/aucrosslist1.txt $LSNM/aucrosslist.txt
+mv $LSNM/sh_cross1 $LSNM/sh_cross
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
+cd /home/ulloa/lsnm/pearce_test/auditory/
+/home/ulloa/lsnm/pearce_test/auditory/bin/au_sim1 auseq2
 cd noisy/b35
 mkdir trial2
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 mv spec_pet.m noisy/b35/trial2/
 mv *.out* noisy/b35/trial2/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial2/aucrosslist2.txt
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial2/aucrosslist2.txt
 #
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq3
-cd noisy/b35
-mkdir trial3
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial3/
-mv *.out* noisy/b35/trial3/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial3/aucrosslist3.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq4
-cd noisy/b35
-mkdir trial4
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial4/
-mv *.out* noisy/b35/trial4/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial4/aucrosslist4.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq5
-cd noisy/b35
-mkdir trial5
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial5/
-mv *.out* noisy/b35/trial5/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial5/aucrosslist5.txt
-#
-cd /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/crosswt_au_i netgenC_au
-cat aucrosslist.txt crossinhib.txt > aucrosslist1.txt
-cat sh_cross crossinhibsh.txt > sh_cross1
-rm aucrosslist.txt
-rm sh_cross
-mv aucrosslist1.txt aucrosslist.txt
-mv sh_cross1 sh_cross
-chmod u+x sh_cross
-echo Building cross connections...
-./sh_cross
-rm sh_cross
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-/home/deckerp/software/lsnm/pearce_test/auditory/bin/au_sim1 auseq6
-cd noisy/b35
-mkdir trial6
-cd /home/deckerp/software/lsnm/pearce_test/auditory
-mv spec_pet.m noisy/b35/trial6/
-mv *.out* noisy/b35/trial6/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt noisy/b35/trial6/aucrosslist6.txt
-#
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/right/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/right/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/right/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/left/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/left/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/left/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/*.w /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/*.ws /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt /home/deckerp/software/lsnm/pearce_test/auditory/noisy/weights/cross/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/code/netgenC_au.in   /home/deckerp/software/lsnm/pearce_test/auditory/noisy/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/code/netgenC_L_au.in /home/deckerp/software/lsnm/pearce_test/auditory/noisy/
-mkdir -p /home/deckerp/software/lsnm/pearce_test/auditory/noisy/sfiles
-cp /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/*attn*.s /home/deckerp/software/lsnm/pearce_test/auditory/noisy/sfiles/
-cp /home/deckerp/software/lsnm/pearce_test/auditory/batchrlc_au   /home/deckerp/software/lsnm/pearce_test/auditory/noisy/ 
-mv noisy /home/deckerp/software/lsnm/pearce_test/auditory/batchrlc_output/subj2
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/right/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/right/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/right/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/left/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/left/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/left/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/*.w /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/*.ws /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/weights/cross/aucrosslist.txt /home/ulloa/lsnm/pearce_test/auditory/noisy/weights/cross/
+cp /home/ulloa/lsnm/pearce_test/auditory/code/netgenC_au.in   /home/ulloa/lsnm/pearce_test/auditory/noisy/
+cp /home/ulloa/lsnm/pearce_test/auditory/code/netgenC_L_au.in /home/ulloa/lsnm/pearce_test/auditory/noisy/
+mkdir -p /home/ulloa/lsnm/pearce_test/auditory/noisy/sfiles
+cp /home/ulloa/lsnm/pearce_test/auditory/sfiles/*attn*.s /home/ulloa/lsnm/pearce_test/auditory/noisy/sfiles/
+cp /home/ulloa/lsnm/pearce_test/auditory/batchrlc_au   /home/ulloa/lsnm/pearce_test/auditory/noisy/ 
+mv noisy $LSNM/batchrlc_output/subj2
 
 rm weights/right/*.w
 rm weights/left/*.w
@@ -921,5 +293,5 @@ rm aucrosslist.txt
 rm ea*.w
 rm eg*.w
 rm *.w
-cd /home/deckerp/software/lsnm/pearce_test/auditory
+cd /home/ulloa/lsnm/pearce_test/auditory/
 rm sfiles/*attn*.s

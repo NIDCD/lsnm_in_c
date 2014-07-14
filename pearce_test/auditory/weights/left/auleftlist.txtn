@@ -168,12 +168,12 @@
 %---------------------------------------------------------------------
 % Connection weights from Ted
 %---------------------------------------------------------------------
-#include weights/left/egteegte.w
-#include weights/left/egteigte.w
-#include weights/left/igteegte.w
-#include weights/left/egteeg1d.w
-#include weights/left/egteeg2c.w
-#include weights/left/egteegd2.w
+%#include weights/left/egteegte.w
+%#include weights/left/egteigte.w
+%#include weights/left/igteegte.w
+%#include weights/left/egteeg1d.w
+%#include weights/left/egteeg2c.w
+%#include weights/left/egteegd2.w
 
 
 

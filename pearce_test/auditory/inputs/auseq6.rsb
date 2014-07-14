@@ -2,30 +2,30 @@ WAPet 5
 
 Randseed 1236
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/reset_au.s	% reset
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc3_ctrltask2.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/reset_au.s	% reset
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc3_ctrltask2.inp
 
 % **********************************
 %	TRIAL #2	(NON-MATCH)
 % **********************************
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_r.s
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/bothtc1.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc1.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc1_ctrltask1.inp
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/gtc2_ctrltask6.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc1_ctrltask1.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/gtc2_ctrltask6.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/hiattn_l.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/bothtc2.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/hiattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/bothtc2.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noise3_ctrltask4.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noise3_ctrltask4.inp
 
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_r.s
-#include /home/deckerp/software/lsnm/pearce_test/auditory/inputs/noinp_au.inp
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_r.s
+#include /home/ulloa/lsnm/pearce_test/auditory//inputs/noinp_au.inp
 Run 200
 
 % **********************************

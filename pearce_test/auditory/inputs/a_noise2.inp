@@ -58,7 +58,7 @@ set(GMGN,81)		%5
   Node activation { ([1,42] 0.75)	([1,43] 0.75)	([1,44] 0.75) }
 }
 Run 5
-#include /home/deckerp/software/lsnm/pearce_test/auditory/sfiles/loattn_l.s
+#include /home/ulloa/lsnm/pearce_test/auditory//sfiles/loattn_l.s
 
 set(MGNs,81)
 {
