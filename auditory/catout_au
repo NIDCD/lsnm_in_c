@@ -122,4 +122,4 @@ gzip trial*/*.out
 gzip catout/*.out
 cd ..
 cd ..
-cd /home/ulloa/lsnm/pearce_test/auditory/
+cd /home/ulloa/lsnm/auditory/

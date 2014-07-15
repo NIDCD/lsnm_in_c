@@ -1,4 +1,4 @@
-% Mon Jul 14 15:00:12 2014
+% Tue Jul 15 10:31:49 2014
 
 % Input layer: (1, 1)
 % Output layer: (1, 1)
@@ -8,6 +8,6 @@
 
 Connect(attv, gats)  {
   From:  (1, 1)  {
-    ([ 1, 1] -0.003498) 
+    ([ 1, 1]  0.115675) 
   }
 }
