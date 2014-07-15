@@ -1143,17 +1143,17 @@ Similar entries were created for the gating signals of the other two elements of
 ;spec_pet.m  
 :MatLab specification of PET      </pre>
 </div>
-<div title="Introduction" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221433" modified="201407141434" changecount="8">
+<div title="Introduction" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221433" modified="201407151425" changecount="9">
 <pre>LSNM (Large Scale Neural Modeling) is a set of programs written in C and Matlab to simulate auditory and visual working memory experiments. The code was originally developed by Malle Tagamets and Barry Horwitz around 1997 to simulate a visual working memory experiment (see [[Tagamets and Horwitz, 1998|http://www.ncbi.nlm.nih.gov/pubmed/9651128]]) and later adapted/modified by Fatima Husain around 2000 to simulate an auditory working memory experiment (see [[Husain et al, 2004|http://www.ncbi.nlm.nih.gov/pubmed/15050592]]). The system was significantly expanded around 2003 by Theresa Long and Barry Horwitz by adding batch processing and by Brent Warner and Barry Horwitz by adding functional connectivity simulations (see [[Horwitz et al, 2005|http://www.ncbi.nlm.nih.gov/pubmed/16087450]]). Although the code was originally developed for simulating electrical neuronal activity and PET (Tagamets and Horwitz), extensions were added to the code to simulate fMRI (husain and Horwitz) and MEG (Feng Rong and Horwitz). The code to build a neuronal network and synaptic weights are written in C++ and the code to simulate (and display) PET, fMRI and MEG are written in Matlab.
 
 In addition to the code described above, there were other branches of the code made over the years, such as the simulations of Transcranial Magnetic Stimulation (TMS) around 2001 (see [[Husain et al, 2002|http://www.ncbi.nlm.nih.gov/pubmed/11771974]]),  the simulation of perceptual grouping around 2002 (see [[Husain et al, 2005|http://www.ncbi.nlm.nih.gov/pubmed/16197683]]), the simulations of long-duration auditory stimuli around 2003 (see [[Ulloa et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/19132798]]), and the simulation of a decision module around 2004 (see [[Wen et al, 2008|http://www.ncbi.nlm.nih.gov/pubmed/18496711]]).
 
-[img[DOCS/LSNM_Timeline.jpg]]</pre>
+[img[LSNM_Timeline.jpg]]</pre>
 </div>
-<div title="LSNM Directory structure" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407141427" modified="201407141602" changecount="21">
+<div title="LSNM Directory structure" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407141427" modified="201407151425" changecount="22">
 <pre>The directory structure of the LSNM software is shown below. The box labeled ''$LSNM'' corresponds to the root directory where the software is located. Please see [[Setting the path for LSNM]] for a description of how to define the unix environment variable ''$LSNM''. The ''batch files'', which are in charge of executing simulations across different subjects, scans, trials, and attention levels, are located at the ''$LSNM'' directory level. Also cointaned at the ''$LSNM'' directory level are the ''*.s'' files that are used as the input timeline for the simulation. Additionnaly, the ''$LSNM'' directory level contains the output subdirectory (specified in ''code/mkbatch*.in'') of the batchfiles. The ''bin'' directory contains all the executable files, which have been compiled using the C code contained in the directory ''code''. The ''code'' directory contains C++ programs that generate the batch files cointaned at the ''$LSNM'' level, as well as ''*.in'' files that in in turn cointan input variables to make the batch files. The ''code'' directory also contains the ''netgen'' and ''sim'' directories, which contain the connection weight generation code and simulation execution code, respectively. The ''netgen'' and ''sim'' directories also contain the makefiles needed to compile the source code contained in them. The subdirectory ''inputs'' cointans ''*.inp'' and ''*.rsb'' files. ''*.inp'' files cointan input stimuli and ''*.rsb'' files contain a sequence of events in one trial. The subdirectory ''sfiles'' contains files that alter attention levels and that reset the system. Finally, the subdirectory ''weights'' contains the connection weights among the brain regions modeled.
 
-[img[DOCS/LSNM_Directory_Structure.jpg]]</pre>
+[img[LSNM_Directory_Structure.jpg]]</pre>
 </div>
 <div title="List of programs that generate BATCH files, by Theresa Long, last updated May 2000" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201406301819" changecount="1">
 <pre>~lnspet/tlong/save/code/BATCH.txt  rev. 8/18/98
@@ -1677,10 +1677,10 @@ Major Documents
 	batchrlc_au (for auditory; only a partial file)
 	batchrlcomb(for visual; only a partial file)</pre>
 </div>
-<div title="Programs" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291522" modified="201407141425" changecount="11">
+<div title="Programs" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405291522" modified="201407151426" changecount="12">
 <pre>The process of network generation and simulation for a neural network model is schematized below:
 
-[img[DOCS/lsnm.jpg]]
+[img[lsnm.jpg]]
 
 where ''au*.out'' and all of the other output files for each module of the network are generated by executing the command ''sim au*.s'', where ''au*.s'' contains pointers to the files ''au*.rs'' and ''ausimweightlist.txt''. The file ''au*.rs'' contains a script of the experimental timeline for one trial. The file ''ausimweightlist.txt'' contains a list of the files containing the connection weights of the network. The timeline script specifies the stimuli by using the ''*.inp'' files, which contains a description of the stimulus. The list of files with the network connection weights are in the format ''*.w''. This format is generated by the ''netgen *.ws'' command, where ''*.ws'' is a file created by hand (or backprop in the visual model) containing weight values. The script ''makeweights'' can be used to execute ''netgen'' for each one of the ''*.ws'' files. </pre>
 </div>
@@ -1758,7 +1758,7 @@ To unpack and unzip a tar.gz file:
 $ tar -xzvf file_name.tar.gz
 }}}</pre>
 </div>
-<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201407141441" changecount="18">
+<div title="Version Control (VCS)" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221441" modified="201407151426" changecount="19">
 <pre>We are using a Version Control System called ''git'' to keep track of documents and programs contained in the LSNM system. ''git'' is a standard opend-source VCS that is incluided with the basic linux distribution. It can be used on the command line or by using two GUIs: ''gitk'' and ''git gui'' (see below for a description and an example screenshot from gitk).
 
 The following basic commands are useful to keep track of changes to the LSNM software: 
@@ -1850,7 +1850,7 @@ $ git remote add origin user@helix.nih.gov:/home/horwitzb/bhguest/sgihome/LSNM.g
 
 The following is an example screenshot of the gitk application, which allows you to visulalize the history of changes/updates to the LSNM directory:
 
-[img[DOCS/gitk.jpg]]</pre>
+[img[gitk.jpg]]</pre>
 </div>
 <div title="Visual README file, by Brent Warner, Summer 2003" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201405221552" changecount="1">
 <pre>Written by Brent Warner
