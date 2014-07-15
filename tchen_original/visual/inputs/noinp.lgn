@@ -1,4 +1,0 @@
-set  (LGNs,  81)        % Turn on LGN,  the Input                               
-{                                                                               
-Node activation  {ALL 0.05}                                                     
-}                                                                               

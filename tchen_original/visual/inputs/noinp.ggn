@@ -1,4 +1,0 @@
-set  (GGNs,  81)        % Turn off GGN,  the Input                               
-{                                                                               
-Node activation  {ALL 0.05}                                                     
-}                                                                               

@@ -1,4 +1,0 @@
-Connect(ev1h, iv1h) {
-Each 0.15
-}
-

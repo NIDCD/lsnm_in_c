@@ -1,5 +1,0 @@
-%#include weights/cross/efd2ig1d.w
-%#include weights/cross/efd2ig1u.w
-%#include weights/cross/efd2ig2d.w
-%#include weights/cross/efd2ig2u.w
-%#include weights/cross/efd2ig2c.w
