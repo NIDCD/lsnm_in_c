@@ -1,0 +1,31 @@
+WPet 1
+
+Randseed 5478
+
+#include sfiles/reset_au.s	% reset
+#include sfiles/loattn_l.s
+#include inputs/noise3.inp
+
+% ********************************
+%	TRIAL #19	(TC-nonMATCH)
+% ********************************
+
+#include sfiles/hiattn_l.s
+#include sfiles/hiattn_r.s
+
+#include inputs/tc5_noise4.inp
+%#include inputs/noinp_au.inp
+
+#include inputs/noise5.inp
+#include inputs/noise10.inp
+%#include inputs/noinp_au.inp
+
+#include sfiles/hiattn_l.s
+#include inputs/bothtc1.inp
+%#include inputs/noinp_au.inp
+
+#include inputs/noise9.inp
+
+#include sfiles/loattn_r.s
+#include inputs/noinp_au.inp
+Run 200

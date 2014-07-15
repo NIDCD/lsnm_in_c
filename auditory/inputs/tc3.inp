@@ -1,0 +1,75 @@
+
+set (MGNs, 81)          % 1
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,51] 1.00) }
+   Node activation { ([1,52] 1.00) }
+}
+Run 5
+set (MGNs, 81)          % 2
+{
+   
+   Node activation {ALL 0.0 }
+   Node activation { ([1,50] 1.00) }
+   Node activation { ([1,51] 1.00) }
+}
+Run 5
+set (MGNs, 81)          % 3
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,49] 1.00) }
+   Node activation { ([1,50] 1.00) }
+}
+Run 5
+set (MGNs, 81)          % 4,5,6,7
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,48] 1.00) }
+   Node activation { ([1,49] 1.00) }
+}
+Run 40
+
+
+
+set (MGNs, 81)          % 8
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,49] 1.00) }
+   Node activation { ([1,50] 1.00) }
+}
+Run 5
+set (MGNs, 81)          % 9
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,50] 1.00) }
+   Node activation { ([1,51] 1.00) }
+}
+Run 5
+set (MGNs, 81)          % 10
+{
+   Node activation {ALL 0.0 }
+
+   Node activation { ([1,51] 1.00) }
+   Node activation { ([1,52] 1.00) }
+}
+Run 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+#
+#
+#
+cd $LSNM/batchrlc_output
+cd subj1
+cd b20
+echo subject 1, attn 20
+mkdir catout
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out > catout/efd1.out
+cat trial1/efd2.out trial2/efd2.out > catout/efd2.out
+cat trial1/eg1d.out trial2/eg1d.out > catout/eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out > catout/eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out > catout/eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out > catout/eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out > catout/eg2u.out
+cat trial1/egd1.out trial2/egd1.out > catout/egd1.out
+cat trial1/egd2.out trial2/egd2.out > catout/egd2.out
+cat trial1/egfr.out trial2/egfr.out > catout/egfr.out
+cat trial1/egfs.out trial2/egfs.out > catout/egfs.out
+cat trial1/ea1d.out trial2/ea1d.out > catout/ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out > catout/ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out > catout/ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out > catout/ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out > catout/ea2u.out
+cat trial1/exfr.out trial2/exfr.out > catout/exfr.out
+cat trial1/exfs.out trial2/exfs.out > catout/exfs.out
+cat trial1/egtg.out trial2/egtg.out > catout/egtg.out
+cat trial1/estg.out trial2/estg.out > catout/estg.out
+cat trial1/gmgn.out trial2/gmgn.out > catout/gmgn.out
+cat trial1/mgns.out trial2/mgns.out > catout/mgns.out
+gzip trial*/*.out
+gzip catout/*.out
+cd ..
+cd b35
+echo subject 1, attn 35
+mkdir catout
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out > catout/efd1.out
+cat trial1/efd2.out trial2/efd2.out > catout/efd2.out
+cat trial1/eg1d.out trial2/eg1d.out > catout/eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out > catout/eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out > catout/eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out > catout/eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out > catout/eg2u.out
+cat trial1/egd1.out trial2/egd1.out > catout/egd1.out
+cat trial1/egd2.out trial2/egd2.out > catout/egd2.out
+cat trial1/egfr.out trial2/egfr.out > catout/egfr.out
+cat trial1/egfs.out trial2/egfs.out > catout/egfs.out
+cat trial1/ea1d.out trial2/ea1d.out > catout/ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out > catout/ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out > catout/ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out > catout/ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out > catout/ea2u.out
+cat trial1/exfr.out trial2/exfr.out > catout/exfr.out
+cat trial1/exfs.out trial2/exfs.out > catout/exfs.out
+cat trial1/egtg.out trial2/egtg.out > catout/egtg.out
+cat trial1/estg.out trial2/estg.out > catout/estg.out
+cat trial1/gmgn.out trial2/gmgn.out > catout/gmgn.out
+cat trial1/mgns.out trial2/mgns.out > catout/mgns.out
+gzip trial*/*.out
+gzip catout/*.out
+cd ..
+cd ..
+cd subj2
+cd b20
+echo subject 2, attn 20
+mkdir catout
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out > catout/efd1.out
+cat trial1/efd2.out trial2/efd2.out > catout/efd2.out
+cat trial1/eg1d.out trial2/eg1d.out > catout/eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out > catout/eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out > catout/eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out > catout/eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out > catout/eg2u.out
+cat trial1/egd1.out trial2/egd1.out > catout/egd1.out
+cat trial1/egd2.out trial2/egd2.out > catout/egd2.out
+cat trial1/egfr.out trial2/egfr.out > catout/egfr.out
+cat trial1/egfs.out trial2/egfs.out > catout/egfs.out
+cat trial1/ea1d.out trial2/ea1d.out > catout/ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out > catout/ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out > catout/ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out > catout/ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out > catout/ea2u.out
+cat trial1/exfr.out trial2/exfr.out > catout/exfr.out
+cat trial1/exfs.out trial2/exfs.out > catout/exfs.out
+cat trial1/egtg.out trial2/egtg.out > catout/egtg.out
+cat trial1/estg.out trial2/estg.out > catout/estg.out
+cat trial1/gmgn.out trial2/gmgn.out > catout/gmgn.out
+cat trial1/mgns.out trial2/mgns.out > catout/mgns.out
+gzip trial*/*.out
+gzip catout/*.out
+cd ..
+cd b35
+echo subject 2, attn 35
+mkdir catout
+gunzip trial*/*.gz
+cat trial1/efd1.out trial2/efd1.out > catout/efd1.out
+cat trial1/efd2.out trial2/efd2.out > catout/efd2.out
+cat trial1/eg1d.out trial2/eg1d.out > catout/eg1d.out
+cat trial1/eg1u.out trial2/eg1u.out > catout/eg1u.out
+cat trial1/eg2c.out trial2/eg2c.out > catout/eg2c.out
+cat trial1/eg2d.out trial2/eg2d.out > catout/eg2d.out
+cat trial1/eg2u.out trial2/eg2u.out > catout/eg2u.out
+cat trial1/egd1.out trial2/egd1.out > catout/egd1.out
+cat trial1/egd2.out trial2/egd2.out > catout/egd2.out
+cat trial1/egfr.out trial2/egfr.out > catout/egfr.out
+cat trial1/egfs.out trial2/egfs.out > catout/egfs.out
+cat trial1/ea1d.out trial2/ea1d.out > catout/ea1d.out
+cat trial1/ea1u.out trial2/ea1u.out > catout/ea1u.out
+cat trial1/ea2c.out trial2/ea2c.out > catout/ea2c.out
+cat trial1/ea2d.out trial2/ea2d.out > catout/ea2d.out
+cat trial1/ea2u.out trial2/ea2u.out > catout/ea2u.out
+cat trial1/exfr.out trial2/exfr.out > catout/exfr.out
+cat trial1/exfs.out trial2/exfs.out > catout/exfs.out
+cat trial1/egtg.out trial2/egtg.out > catout/egtg.out
+cat trial1/estg.out trial2/estg.out > catout/estg.out
+cat trial1/gmgn.out trial2/gmgn.out > catout/gmgn.out
+cat trial1/mgns.out trial2/mgns.out > catout/mgns.out
+gzip trial*/*.out
+gzip catout/*.out
+cd ..
+cd ..
+cd /home/ulloa/lsnm/pearce_test/auditory/

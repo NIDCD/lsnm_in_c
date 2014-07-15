@@ -1,0 +1,33 @@
+WAPet 5
+
+Randseed 193
+
+#include sfiles/reset_au.s	% reset
+#include sfiles/loattn_l.s
+#include sfiles/loattn_r.s
+#include inputs/gtc3_ctrltask3.inp
+
+% ********************************
+%	TRIAL #3	(MATCH)
+% ********************************
+
+#include sfiles/hiattn_l.s
+#include sfiles/hiattn_r.s
+
+#include inputs/bothtc3.inp
+
+#include inputs/gtc1_ctrltask5.inp
+#include inputs/gtc2_ctrltask4.inp
+
+#include sfiles/hiattn_l.s
+#include inputs/tc3_noise6.inp
+
+#include inputs/noise4_ctrltask1.inp
+
+#include sfiles/loattn_r.s
+#include inputs/noinp_au.inp
+Run 200
+
+% **********************************
+%	INTERTRIAL INTERVAL
+% **********************************
