@@ -1143,65 +1143,9 @@ Similar entries were created for the gating signals of the other two elements of
 ;spec_pet.m  
 :MatLab specification of PET      </pre>
 </div>
-<div title="How to run an auditory simulation" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407151621" modified="201407161425" changecount="23">
+<div title="How to run an auditory simulation" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407151621" modified="201407161431" changecount="24">
 <pre>Written by Brent Warner, Summer 2003
 (Updated by Antonio Ulloa, Summer 2014)
-
-!SUMMARY OF DIRECTORY STRUCTURE
-
-      ''dir:  /bin''
-       file types:  Contains all of the executable programs.  When a program 
-       is compiled in the ''/code'' directory it is placed here.  If you are setting 
-       up the simulation for the first time, this directory should be empty.  
-       For simulations after the first one, unless a change is made to the C 
-       code, these files will not be altered.
-
-       ''dir:  /code''
-        file types:  *.cc and corresponding *.in files, makefile
-        Contains all of the C code for the simulation, including batch jobs.  
-        Most of the *.cc files have a *.in file that goes along with them
-        and specifies several parameters that can be altered from sim to sim.
-
-                ''subdir:  /netgen''
-                file types:  *.cc, *.h, *.o, makefile
-                Contains the code for the network generator that creates all
-                of the region-region connections within a hemisphere.  Has its
-                own makefile.
-
-                ''subdir:  /sim''
-                file types:  *.cc, *.h, *.o, makefile
-                Contains the code for the actual simulation program.  Has its
-                own makefile as well.
-
-        ''dir:  /inputs''
-        file types: *.inp, *.rs*
-        *.inp files are the actual inputs to the model.  They specify which
-        nodes in the inputs regions (MGNs and GMGN) are turned on.  *.rs files
-        are the sequence files...i.e. the order in which inputs occur,
-        switching from high to low attention, resets, etc.
-
-        ''dir:  /sfiles''
-        file types:  *.s
-        *.s files are sort of like inputs.  They are responsible for switching
-        between high and low attention and resetting the system.
-
-        ''dir:  /weights''
-        file types:  *.ws
-
-                ''subdir:  /cross''
-                *.ws files are &quot;weight&quot; files that specify the connections
-                between regions.  This directory contains the *.ws file for 
-                EVERY possible left-right and right-left connection.  Note
-                that not every one is used in every run....the ones used
-                are chosen at random by the simulation unless it is set that
-                all are used.  These *.ws files can be regenerated using
-                the crossws_au program.
-
-                ''subdir:  /left, /right''
-                Contains the *.ws files for that hemisphere's within-
-                hemisphere connection made, both excitatory and inhibitory.
-
-Once all of this setup has been done once, it does not need to be done again.
 
 !MAKING THE NECESSARY PROGRAMS
 
@@ -1331,8 +1275,60 @@ In addition to the code described above, there were other branches of the code m
 
 [img[LSNM_Timeline.jpg]]</pre>
 </div>
-<div title="LSNM Directory structure" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407141427" modified="201407151425" changecount="22">
+<div title="LSNM Directory structure" creator="Antonio Ulloa" modifier="Antonio Ulloa" created="201407141427" modified="201407161437" changecount="24">
 <pre>The directory structure of the LSNM software is shown below. The box labeled ''$LSNM'' corresponds to the root directory where the software is located. Please see [[Setting the path for LSNM]] for a description of how to define the unix environment variable ''$LSNM''. The ''batch files'', which are in charge of executing simulations across different subjects, scans, trials, and attention levels, are located at the ''$LSNM'' directory level. Also cointaned at the ''$LSNM'' directory level are the ''*.s'' files that are used as the input timeline for the simulation. Additionnaly, the ''$LSNM'' directory level contains the output subdirectory (specified in ''code/mkbatch*.in'') of the batchfiles. The ''bin'' directory contains all the executable files, which have been compiled using the C code contained in the directory ''code''. The ''code'' directory contains C++ programs that generate the batch files cointaned at the ''$LSNM'' level, as well as ''*.in'' files that in in turn cointan input variables to make the batch files. The ''code'' directory also contains the ''netgen'' and ''sim'' directories, which contain the connection weight generation code and simulation execution code, respectively. The ''netgen'' and ''sim'' directories also contain the makefiles needed to compile the source code contained in them. The subdirectory ''inputs'' cointans ''*.inp'' and ''*.rsb'' files. ''*.inp'' files cointan input stimuli and ''*.rsb'' files contain a sequence of events in one trial. The subdirectory ''sfiles'' contains files that alter attention levels and that reset the system. Finally, the subdirectory ''weights'' contains the connection weights among the brain regions modeled.
+
+      ''dir:  /bin''
+       file types:  Contains all of the executable programs.  When a program 
+       from the ''/code'' directory is compiled, it is placed in the /bin directory.  
+       If you are setting up the simulation for the first time, this directory should 
+       be empty. For simulations after the first one, unless a change is made to 
+       the C code, these files will not be altered.
+
+       ''dir:  /code''
+        file types:  *.cc and corresponding *.in files, makefile
+        Contains all of the C code for the simulation, including batch jobs.  
+        Most of the *.cc files have a *.in file that goes along with them
+        and specifies several parameters that can be altered from sim to sim.
+
+                ''subdir:  /netgen''
+                file types:  *.cc, *.h, *.o, makefile
+                Contains the code for the network generator that creates all
+                of the region-region connections within a hemisphere.  Has its
+                own makefile.
+
+                ''subdir:  /sim''
+                file types:  *.cc, *.h, *.o, makefile
+                Contains the code for the actual simulation program.  Has its
+                own makefile as well.
+
+        ''dir:  /inputs''
+        file types: *.inp, *.rs*
+        *.inp files are the actual inputs to the model.  They specify which
+        nodes in the inputs regions (MGNs and GMGN) are turned on.  *.rs files
+        are the sequence files...i.e. the order in which inputs occur,
+        switching from high to low attention, resets, etc.
+
+        ''dir:  /sfiles''
+        file types:  *.s
+        *.s files are sort of like inputs.  They are responsible for switching
+        between high and low attention and resetting the system.
+
+        ''dir:  /weights''
+        file types:  *.ws
+
+                ''subdir:  /cross''
+                *.ws files are &quot;weight&quot; files that specify the connections
+                between regions.  This directory contains the *.ws file for 
+                EVERY possible left-right and right-left connection.  Note
+                that not every one is used in every run....the ones used
+                are chosen at random by the simulation unless it is set that
+                all are used.  These *.ws files can be regenerated using
+                the crossws_au program.
+
+                ''subdir:  /left, /right''
+                Contains the *.ws files for that hemisphere's within-
+                hemisphere connection made, both excitatory and inhibitory.
 
 [img[LSNM_Directory_Structure.jpg]]</pre>
 </div>
