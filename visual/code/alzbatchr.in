@@ -1,0 +1,28 @@
+$LSNM
+3	5	  
+5  20  5   0     80     20     15  30  0
+----------------------------------------------------------------------
+
+line 1:
+	where you want to store the data after the run is finished
+line 2: 
+	m: number of trials in pethi.rs
+	rightlo, 5 ==> 0.05 attention level
+line 3:
+start_p  end_p  inc_p  start_c  end_c  inc_c  start_a  end_a  inc_a
+
+start value, end value, and increment
+where suffix:
+_p ==> percent neuron sick, e.g. 5 ==> 5% neuron sick
+      note that percent < 99
+_c ==> capacity of a sick neuron wrt to a health neuron, e.g. 40 ==> sick
+       neuron has 40% activation of a healthy one
+       note that capacity < 99
+_a ==> attention level, 8 ==> attention level is 0.08
+      note that attn < 50
+
+All parameters are entered as integers.  They will be converted to proper
+values in the code
+if any of the inc's is 0, we do the start value only
+
+

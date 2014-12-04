@@ -1,0 +1,214 @@
+README file for visual simulation (Horwitz et al, 2005)
+
+Written by Brent Warner
+Summer 2003
+
+Updated by Antonio Ulloa
+October 2014
+
+
+1. 	CHECKING DIRECTORY STRUCTURE
+
+In home directory (where you want to run the sim), ensure that the
+following directories exist and contain these file types.
+
+	dir:  /bin
+	file types:  Contains all of the executable programs.  When a program
+	is compiled in the /code directory it is placed here.  If you are
+	setting up the simulation for the first time, this directory should
+	be empty.  For simulations after the first one, unless a change is
+	made to the C code, these files will not be altered.
+
+	dir:  /code
+	file types:  *.cc and corresponding *.in files, makefile
+	Contains all of the C code for the simulation, including batch jobs.  
+	Most of the *.cc files have a *.in file that goes along with them
+	and specifies several parameters that can be altered from sim to sim.
+
+		subdir:  /netgen
+		file types:  *.cc, *.h, *.o, makefile
+		Contains the code for the network generator that creates all
+		of the region-region connections within a hemisphere.  Has its
+		own makefile.
+
+		subdir:  /sim
+		file types:  *.cc, *.h, *.o, makefile
+		Contains the code for the actual simulation program.  Has its
+		own makefile as well.
+
+		subdir: /input_generation
+		contains matlab scripts for generating input stimuli (not 
+		implemented yet).
+
+		subdir: /postprocessing
+		contains matlab scripts for processing output data generated
+		by the simulation, for example, PET, fMRI, and MEG generation.
+
+		subdir: /visualization
+		contains matlab scripts for visualizing output data.
+
+	dir:  /inputs
+	file types: *.inp, *.rs*
+	*.inp files are the actual inputs to the model.  They specify which
+	nodes in the inputs regions (LGNs and GLGN) are turned on.  *.rs files
+	are the sequence files...i.e. the order in which inputs occur,
+	switching from high to low attention, resets, etc.
+
+	dir:  /sfiles
+	file types:  *.s
+	*.s files are sort of like inputs.  They are responsible for switching
+	between high and low attention and resetting the system.
+
+	dir:  /weights
+	file types:  *.ws
+		subdir:  /cross
+		*.ws files are "weight" files that specify the connections
+		between regions.  This directory contains the *.ws file for 
+		EVERY possible left-right and right-left connection.  Note
+		that not every one is used in every run....the ones used
+		are chosen at random by the simulation unless it is set that
+		all are used.  These *.ws files can be regenerated using
+		the crossws_au program.
+		subdir:  /left, /right
+		Contains the *.ws files for that hemisphere's within-
+		hemisphere connection made, both excitatory and inhibitory.
+
+Once all of this setup has been done once, it does not need to be done again.
+
+
+2.	SETTING THE ENVIRONMENT PATH VARIABLE $LSNM
+ 
+To set up the path of the directory of LSNM, you need to add the following 
+lines to your .bash_profile:
+
+      LSNM=$HOME/location/of/LSNM/files/visual
+
+      export LSNM
+
+
+The first time you set that up you will need to force linux to read the 
+.bash_profile and upload it to memory by doing the following:
+
+      $ source .bash_profile
+
+You do not need to do that again because linux will read the .bash_profile 
+everytime you log in and upload the variables contained there into memory.
+
+The code uses the environmental variable LSNM to locate the working directory
+for input/output of simulations, as well as for finding the executables.
+
+
+3.	MAKING THE NECESSARY PROGRAMS
+
+Each batch job runs a number of the same programs which must be made so that
+they exist in your /bin.  
+
+in /code:
+
+$ make altgenw, 
+$ make altgenw_L
+$ make crossw
+$ make crosswt_i
+$ make genw
+$ make mkattn
+$ make mkinput
+
+in /code/netgen:
+
+make netgenC 
+make netgenC_L
+
+in /code/sim:
+
+make sim1
+
+Note that there are other programs (*.cc files) that exist in these
+directories.  These are others will be made when they are necessary.
+
+
+4.	RUNNING A SIMULATION
+
+The simulations are all run in a batch format, meaning that several simulations
+are run using varying parameters to represent multiple subjects, inputs,
+attention levels, region connections, etc.  The batches that I have used are:
+
+mkbatchr.cc -- Right hemisphere only.  Can alter attention level and one
+	region-region connection (usually STG->FS, but can be changed in
+	genw.in)
+	Uses pethir.rs for sequence file
+mkbatchw.cc -- Both R and L hemispheres.  R receives form input, L receives
+	noise.  Can alter attention levels and one region-region connection as
+	in above.
+	Uses pethi.rsn for sequence file (currently)
+mkbatchb.cc -- Same as mkbatchw, except now allows user to change
+	connection strengths for multiple region-region connections in RIGHT
+	HEMISPHERE ONLY.  Additionally, cross-hemisphere connections are 
+	regenerated for each trial.
+	Uses pethi1.rsb, pethi2.rsb,... for sequence files (number corresponds
+	to total number of trials)
+mkbatchrlcomb.cc -- Essentially like mkbatchb, except the left and right
+	hemispheres have been combined into one large hemisphere with half
+	specific neurons (old right) that are task-dedicated and half 
+	non-specific neurons (old left) that are "distracted".  The only real
+	difference from mkbatchb is that now any alterations of connection
+	strength in the specific (right) are mirrored in the non-specific 
+	(left).  Before, the left hemisphere connections remained constant.
+	Uses same sequence files as mkbatchb.
+
+Each of these has a *.in file to go along with it.  Before running one, check
+*.in file and set the desired values.  This file will specify many parameters,
+which are explained in the actual file.  Also, you should change the sequence
+file(s) that particular batch uses to reflect the organization of inputs you
+want.
+
+TO ACTUALLY RUN THE SIMULATION (using mkbatchb as an example)
+
+go the the /code directory and use the following command sequence.
+
+$ make mkbatchb		        -- makes the executable in the /bin
+$ cd ..
+$ ./bin/mkbatchb		-- runs the executable to produce the batchfile,
+$ ./batchb			-- runs the batch
+
+All of the output files from the batch will be placed in the directory
+specified in line 1 of the corresponding *.in file.
+
+5.	SOME OTHER USEFUL PROGRAMS
+
+C PROGRAMS:
+The mkbatchb and mkbatchrlc versions have a sequence file for each trial
+that is done.  Thus, the output files are split up trial-by-trial.  Since it
+is useful to see all of the trials at once when analyzing the data, there is a
+program that combines them called mkcatout.cc
+
+mkcatout is run similarly to the batch jobs.  Go to its *.in file, change
+the necessary parameters outlined there (make sure the output directory is set)
+and use the following sequence of commands while in /code.
+
+$ make mkcatout
+$ ../bin/mkcatout
+$ catout
+
+Depending on the number of subjects/attention level/trials, this program can
+take quite awhile.  It traverses all of the output directories, unzips the
+files, concatenates them for a subject/attn level, places the new files in the
+attention level directory (/b30 for example), and then rezips everything.
+
+MATLAB PROGRAMS:
+There are several useful matlab programs for visualizing output.  All of these
+are currently located in code/visualization.  Make sure this is
+added to you matlab path (or copy them over to your directory and add that
+path).  Note that each of these programs only work on the files in the
+current directory.
+
+	loadmovieB -- creates a movie of the output.  Left hemisphere
+	regions are on the top row, right on the bottom.  The order in both
+	from left to right is:  LGN, V1, V4, IT, FS, D1, D2, FR
+
+	
+	plotvisual -- plots the electrical activity for the right hemisphere.
+	pre-IT units are on figure 1, IT-PFC are on figure 2.
+
+	plotvis_rl -- plots the homologous left and right hemisphere regions on
+	top of each other on the same plot to represent a combined hemisphere.
+	Used with mkbatchrlcomb.cc

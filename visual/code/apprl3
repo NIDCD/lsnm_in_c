@@ -1,0 +1,4 @@
+#include /home/bhguest/brent/visual/weights/right/rightlist.txt
+#include /home/bhguest/brent/visual/weights/left/leftlist.txtn
+#include /home/bhguest/brent/visual/weights/cross/crosslist.txt
+#include /home/bhguest/brent/visual/inputs/pethi3.rsb

@@ -1,0 +1,20 @@
+1
+efd2 efd1
+-----------------------------------
+line 1:
+	num_pairs (number of pairs of regions-- origin, destination)
+line 2 to line num_pairs+1
+origin, destination
+
+The names of the regions are
+
+ right side regions :
+     ev1h, ev1v, ev4h, ev4v, ev4c, exss, exfs, efd1, efd2, exfr,
+     iv1h, iv1v, iv4h, iv4v, iv4c, inss, infs, ifd1, ifd2, infr ;
+
+ left side regions : 
+     eg1h, eg1v, eg4h, eg4v, eg4c, exgt, egfs, egd1, egd2, egfr, 
+     ig1h, ig1v, ig4h, ig4v, ig4c, ingt, igfs, igd1, igd2, igfr ;
+
+In addtion, there are three attention input units: attv, atts and gats
+ 

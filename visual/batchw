@@ -1,0 +1,76 @@
+#
+#
+#
+cd /home/bhguest/brent/visual/sfiles
+/home/bhguest/brent/visual/bin/mkattn hiattn_l.s 0.30
+/home/bhguest/brent/visual/bin/mkattn loattn_l.s 0.30
+/home/bhguest/brent/visual/bin/mkattn loattn_r.s 0.05
+cd /home/bhguest/brent/visual/weights/cross
+/home/bhguest/brent/visual/bin/crossws
+cd /home/bhguest/brent/visual
+rm pethi.s
+cat weights/right/right.s weights/left/left.sn code/appw > pethi.s
+rm code/appw
+rm code/batchw
+cd inputs
+cp input11.inp input1.inp
+cp input21.inp input2.inp
+cp input31.inp input3.inp
+#
+#
+cd /home/bhguest/brent/visual
+mkdir noisy
+cd /home/bhguest/brent/visual/code
+/home/bhguest/brent/visual/bin/genw 100
+#
+cd /home/bhguest/brent/visual/sfiles
+/home/bhguest/brent/visual/bin/mkattn hiattn_r.s 0.30
+cd /home/bhguest/brent/visual/inputs
+/home/bhguest/brent/visual/bin/mkinput l 12 1057242371
+mv ggns.inp ggns1.inp
+/home/bhguest/brent/visual/bin/mkinput l 12 1057242372
+mv ggns.inp ggns2.inp
+/home/bhguest/brent/visual/bin/mkinput l 12 1057242373
+mv ggns.inp ggns3.inp
+cd /home/bhguest/brent/visual/weights/right
+foreach file (*.ws)
+  /home/bhguest/brent/visual/bin/netgenC $file
+  end
+cd ../left
+foreach file (*.ws)
+  /home/bhguest/brent/visual/bin/netgenC $file
+  end
+cd ../cross
+/home/bhguest/brent/visual/bin/crosswt_i netgenC
+chmod u+x sh_cross
+sh_cross
+rm sh_cross
+cd /home/bhguest/brent/visual
+echo cxn strength: 100  attn: 0.30
+/home/bhguest/brent/visual/bin/sim1 pethi
+gzip *.out
+cd noisy
+mkdir b30
+cd /home/bhguest/brent/visual
+mv spec_pet.m noisy/b30/
+mv *.out* noisy/b30/
+mv noisy /data/bhguest/brent/visual/fRnL/wken100
+
+rm weights/right/*.w
+rm weights/left/*.w
+cd weights/cross
+rm crosslist.txt
+rm ev*.w
+rm ev*.ws
+rm eg*.w
+rm eg*.ws
+rm iv*.w
+rm iv*.ws
+rm ig*.w
+rm ig*.ws
+rm *.w
+rm *.ws
+cd /home/bhguest/brent/visual
+rm inputs/ggns*.inp
+rm code/netgenC.in
+rm sfiles/*attn*.s

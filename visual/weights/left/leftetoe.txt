@@ -1,0 +1,35 @@
+Connect(eg1h, eg1h) {
+Each 0.6
+}
+Connect(eg1v, eg1v) {
+Each 0.6
+}
+Connect(eg4h, eg4h) {
+Each 0.6
+}
+Connect(eg4v, eg4v) {
+Each 0.6
+}
+Connect(eg4c, eg4c) {
+Each 0.6
+}
+Connect(exgt, exgt) {
+Each 0.6
+}
+Connect(egfs, egfs) {
+Each 0.6
+}
+Connect(egd1, egd1) {
+Each 0.6
+}
+Connect(egd2, egd2) {
+Each 0.6
+}
+Connect(egfr, egfr) {
+Each 0.6
+}
+Connect(ectl, ectl) {
+Each 0.6
+}
+
+

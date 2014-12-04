@@ -1,0 +1,43 @@
+$LSNM/RGC
+3	12	0	30	30	5
+1	3	30	30	0
+99	85	92	90	98	95	89	80	96	89	92	95	98
+----------------------------------------------------------------------------
+line 1:  
+	directory of where you want the final data to be moved to
+line 2:
+	parameters in line 2:
+	m, ggns_in, seed, lefthi, leftlo, rightlo
+
+	m: number of input files for right brain
+	ggns_in: number of "on" blocks in the left brain's ggns input.  
+	ggnsseed: The code mkinput  will use this number to randomly select 
+          which block is turned on.  If seed = 0, system clock is the seed
+
+	attention parameters are:
+
+	lefthi -- for left brain
+	leftlo -- for left brain during intertrial period, if lefthi=leftlo, 
+          left side has sustained attention
+	rightlo-- for right brain during intertrial period
+	righthi steps thru "start_a" to "end_a" at an increment of "inc_a"
+	if increment = 0, only the start value will be used, and only once.
+
+line 3:
+	n_subj	n_pairs	start_a	 end_a	inc_a
+
+	n_subj:  the number of different subjects, defined by new within
+	hemisphere connections.  thus, n_subj lines will follow line 3 in
+	this .in file.
+	n_pairs:  the number of pairs of stimuli presented.  i.e., the number
+	of pethi* files used
+
+other:
+	lines 4 through "end" contain the connection strengths for the
+	13 different connections we are changing for each subject in the right
+	hemisphere
+
+	the 13 connections are as such:
+	efd1->efd2, efd1->exfr, efd2->efd1, ev1h->ev4c, ev1h->ev4h, 
+	ev1v->ev4c, ev1v->ev4v, ev4c->exss, ev4h->exss, ev4v->exss, 
+	exfs->efd2, exfs->exfr, exss->exfs

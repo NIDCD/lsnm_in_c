@@ -1,0 +1,30 @@
+WAPet 10		% Write PET every 10 iterations and reset
+
+Randseed  1000		%seed for random number generator
+
+#include sfiles/reset.s    %rt & lt Input OFF and reset delay units
+
+#include inputs/ggns2.inp 	%left Input ON
+Run 200
+
+
+% *************************************************************
+%  TRIAL # 2
+% *********************
+
+
+#include sfiles/hiattn_r.s	% High Attention
+ 
+#include inputs/input2.inp 	%right Input ON
+
+Run 200					 %  200=1sec.
+#include inputs/noinp.lgn  	%right Input OFF
+Run 300					 %  Delay	
+#include inputs/input1.inp 	%right Input ON-match
+Run 200
+#include inputs/noinp.lgn  	%right Input OFF
+#include sfiles/loattn_r.s
+
+Run 200
+
+% ********************   INTERTRIAL INTERVAL

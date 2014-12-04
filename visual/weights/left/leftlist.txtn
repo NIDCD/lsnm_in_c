@@ -1,0 +1,95 @@
+%right brain gets the lgns input
+%but left brain gets input from ggns
+
+#include weights/left/gatsegd2.w
+#include weights/left/attvgats.w
+
+
+% Begin self-connections
+
+#include weights/left/leftetoe.txt
+
+#include weights/right/ectlectl.w
+#include weights/right/ectlictl.w
+#include weights/right/ictlectl.w
+
+#include weights/left/eg1hig1h.w
+#include weights/left/ig1heg1h.w
+
+#include weights/left/eg1vig1v.w
+#include weights/left/ig1veg1v.w
+
+#include weights/left/eg4cig4c.w
+#include weights/left/ig4ceg4c.w
+
+#include weights/left/eg4hig4h.w
+#include weights/left/ig4heg4h.w
+
+#include weights/left/eg4vig4v.w
+#include weights/left/ig4veg4v.w
+
+#include weights/left/exgtingt.w
+#include weights/left/ingtexgt.w
+
+
+#include weights/left/egfsigfs.w
+#include weights/left/igfsegfs.w
+
+#include weights/left/egd1igd1.w
+#include weights/left/igd1egd1.w
+
+#include weights/left/egd2igd2.w
+#include weights/left/igd2egd2.w
+
+#include weights/left/egfrigfr.w
+#include weights/left/igfregfr.w
+
+% Begin Between-area Connections
+
+#include weights/left/ggnseg1v.w
+#include weights/left/ggnseg1h.w
+
+#include weights/left/eg1veg4v.w
+#include weights/left/eg1veg4c.w
+#include weights/left/eg1heg4h.w
+#include weights/left/eg1heg4c.w
+
+% comment out one of the next two sets. set1 is random v4-it, set2 is shift
+% invariant trained weights v4-it
+#include weights/left/eg4vexgt.w
+#include weights/left/eg4hexgt.w
+#include weights/left/eg4cexgt.w
+
+%#include weights/left/eg4v.wt
+%#include weights/left/eg4h.wt
+%#include weights/left/eg4c.wt
+
+#include weights/left/exgtegfs.w
+
+% The working memory circuit
+
+#include weights/left/egd1egd2.w
+#include weights/left/egd2egd1.w
+#include weights/left/egd1egfr.w
+#include weights/left/egd1igfs.w
+#include weights/left/egfrigd1.w
+#include weights/left/egfrigd2.w
+#include weights/left/egfsegd2.w
+#include weights/left/egfsegfr.w
+#include weights/left/egfsigd1.w
+
+% Feeback connections
+
+#include weights/left/eg4veg1v.w
+#include weights/left/eg4heg1h.w
+
+#include weights/left/egd2exgt.w
+#include weights/left/egd1ingt.w
+
+#include weights/left/egd2eg4c.w
+#include weights/left/egd2eg4h.w
+#include weights/left/egd2eg4v.w
+
+#include weights/left/exgteg4v.w
+#include weights/left/exgteg4h.w
+#include weights/left/exgteg4c.w

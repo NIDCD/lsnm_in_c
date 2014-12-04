@@ -1,0 +1,49 @@
+  strcpy(regions[0],"efd1.out");
+  strcpy(regions[1],"efd2.out");
+  strcpy(regions[2],"eg1h.out");
+  strcpy(regions[3],"eg1v.out");
+  strcpy(regions[4],"eg4c.out");
+  strcpy(regions[5],"eg4h.out");
+  strcpy(regions[6],"eg4v.out");
+  strcpy(regions[7],"egd1.out");
+  strcpy(regions[8],"egd2.out");
+  strcpy(regions[9],"egfr.out");
+  strcpy(regions[10],"egfs.out");
+  strcpy(regions[11],"ev1h.out");
+  strcpy(regions[12],"ev1v.out");
+  strcpy(regions[13],"ev4c.out");
+  strcpy(regions[14],"ev4h.out");
+  strcpy(regions[15],"ev4v.out");
+  strcpy(regions[16],"exfr.out");
+  strcpy(regions[17],"exfs.out");
+  strcpy(regions[18],"exgt.out");
+  strcpy(regions[19],"exss.out");
+  strcpy(regions[20],"ggns.out");
+  strcpy(regions[21],"lgns.out");
+
+  regions[21] = "lgns.out";
+
+  /*start of output*/
+  fprintf(outfile,"#\n#\n#\n");
+  fprintf(outfile,"cd %s\n",whereis);
+  fprintf(outfile,"gunzip subj*/b*/trial*/*.out.gz\n");
+
+  for(i=1; i<=n_subjects; i++)
+    {
+      fprintf(outfile,"cd subj%d\n",i);
+      for(j=0; j<num_a; j++)
+	{
+	  attni = start_a + inc_a*j;
+	  fprintf(outfile,"cd b%d\n",attni);
+	  for(k=0; k<22; k++)
+	    {
+	      fprintf(outfile,"cat trial1/%s trial2/%s trial3/%s > %s\n",regions[k],regions[k],regions[k],regions[k]);
+	    }
+	  fprintf(outfile,"cd ..\n");
+	}
+      fprintf(outfile,"cd ..\n");
+    }
+
+  fprintf(outfile,"gzip subj*/b*/*.out");
+  fprintf(outfile,"gzip subj*/b*/trial*/*.out");
+  fprintf(outfile,"cd %s\n",BASE);
