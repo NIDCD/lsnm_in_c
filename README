@@ -47,7 +47,8 @@ of output data.
 
 Software that simulates visual working memory during a delay match to sample task. Includes 
 batch processing written in bash and C++ to run several trials, several subjects, etc., as 
-well as matlab scrpits for input generation and post-processing and visualization of ouput data.
+well as matlab scrpits for input generation and post-processing and visualization of ouput 
+data.
 
 * documents: 
 
