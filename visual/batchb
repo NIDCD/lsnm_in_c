@@ -31,11 +31,11 @@ cd /home/ulloa/lsnm/visual/code
 cd /home/ulloa/lsnm/visual/sfiles
 /home/ulloa/lsnm/visual/bin/mkattn hiattn_r.s 0.30
 cd /home/ulloa/lsnm/visual/inputs
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1417715942
+/home/ulloa/lsnm/visual/bin/mkinput l 12 1419176109
 mv ggns.inp ggns1.inp
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1417715943
+/home/ulloa/lsnm/visual/bin/mkinput l 12 1419176110
 mv ggns.inp ggns2.inp
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1417715944
+/home/ulloa/lsnm/visual/bin/mkinput l 12 1419176111
 mv ggns.inp ggns3.inp
 cd /home/ulloa/lsnm/visual/weights/right
 for file in *.ws ; do
