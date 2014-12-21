@@ -196,7 +196,7 @@ ETMP */
 
 
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   SimClass      *MainThing;
   char               FileName[MAXPATH];

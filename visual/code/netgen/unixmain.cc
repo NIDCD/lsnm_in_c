@@ -69,7 +69,7 @@ void GetNetSpecs(FILE *fs, struct NetGenStruct *Net)
   return;
 }
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   FILE *fs;
   char InFile[120], OutFile[120];
