@@ -1,3 +1,0 @@
-// code.c
-#include <code.h>
-const char* BASE = (char*)"/home/deckerp/software/lsnm/pearce_test/auditory";
