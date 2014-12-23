@@ -9,5 +9,12 @@
 *.out
 *.app
 
+# Ignore everything in bin directories
+# except info.dir file
+auditory/bin/*
+!auditory/bin/dir.info
+visual/bin/*
+!visual/bin/dir.info
+
 # Emacs backups
 *~
