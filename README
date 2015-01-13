@@ -30,7 +30,7 @@ Brain Imaging and Modeling Section
 
 VSLB/NIDCD/NIH
 
-This README file was last modified on December 15, 2014.
+This README file was last modified on January 13, 2014.
 
 Subdirectories within "lsnm" directory:
 
@@ -44,4 +44,4 @@ Software that simulates visual working memory during a delay match to sample tas
 
 * documents: 
 
-Documents explaining the theory and implementation of LSNM. 
+Documents that describe the theory and implementation of LSNM. 
