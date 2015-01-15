@@ -2,7 +2,7 @@ WPet 10		% Write PET every 10 iterations and reset
 
 Randseed  1000		%seed for random number generator
 
-#include reset.s
+#include input/reset.s
 Run 200		% 200 ticks without right input
 
 % *************************************************************
@@ -10,17 +10,17 @@ Run 200		% 200 ticks without right input
 % *********************
 
 
-#include hiattn_r.s	% High Attention
+#include input/hiattn_r.s	% High Attention
 
-#include input1.inp 	%right Input ON
+#include input/input1.inp 	%right Input ON
 
 Run 200					 %  200=1sec. 
-#include noinp.lgn  	%right Input OFF
+#include input/noinp.lgn  	%right Input OFF
 Run 300					 %  Delay	
-#include input1.inp 	%right Input ON-match
+#include input/input1.inp 	%right Input ON-match
 Run 200
-#include noinp.lgn  	%right Input OFF
-#include loattn_r.s
+#include input/noinp.lgn  	%right Input OFF
+#include input/loattn_r.s
 
 Run 200
 
