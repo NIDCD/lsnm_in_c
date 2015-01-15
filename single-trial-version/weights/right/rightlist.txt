@@ -1,0 +1,108 @@
+
+#include weights/right/attsefd2.w
+#include weights/right/attvatts.w
+
+
+% Begin self-connections
+
+%#include weights/right/rightetoe.txt
+
+#include weights/right/ev1hev1h.w
+#include weights/right/ev1vev1v.w
+#include weights/right/ev4hev4h.w
+#include weights/right/ev4vev4v.w
+#include weights/right/ev4cev4c.w
+#include weights/right/exssexss.w
+#include weights/right/exfsexfs.w
+#include weights/right/efd1efd1.w
+#include weights/right/efd2efd2.w
+#include weights/right/exfrexfr.w
+
+#include weights/right/ectlectl.w
+#include weights/right/ectlictl.w
+#include weights/right/ictlectl.w
+
+#include weights/right/ev1hiv1h.w
+#include weights/right/iv1hev1h.w
+
+#include weights/right/ev1viv1v.w
+#include weights/right/iv1vev1v.w
+
+#include weights/right/ev4civ4c.w
+#include weights/right/iv4cev4c.w
+
+#include weights/right/ev4hiv4h.w
+#include weights/right/iv4hev4h.w
+
+#include weights/right/ev4viv4v.w
+#include weights/right/iv4vev4v.w
+
+#include weights/right/exssinss.w
+#include weights/right/inssexss.w
+
+
+#include weights/right/exfsinfs.w
+#include weights/right/infsexfs.w
+
+#include weights/right/efd1ifd1.w
+#include weights/right/ifd1efd1.w
+
+#include weights/right/efd2ifd2.w
+#include weights/right/ifd2efd2.w
+
+#include weights/right/exfrinfr.w
+#include weights/right/infrexfr.w
+
+% Begin Between-area Connections
+
+#include weights/right/lgnsev1v.w
+#include weights/right/lgnsev1h.w
+
+#include weights/right/ev1vev4v.w
+#include weights/right/ev1vev4c.w
+#include weights/right/ev1hev4h.w
+#include weights/right/ev1hev4c.w
+
+% there are 2 sets of v4-IT weights.
+% use only one set at a time
+%set 1-  variable
+%#include weights/right/ev4vexss.w
+%#include weights/right/ev4hexss.w
+%#include weights/right/ev4cexss.w
+%set 2-- trained
+#include weights/right/ev4v.wt	% Learned FF weights from V4 to IT
+#include weights/right/ev4h.wt	% Learned FF weights from V4 to IT
+#include weights/right/ev4c.wt	% Learned FF weights from V4 to IT
+
+#include weights/right/exssexfs.w
+
+% The working memory circuit
+
+#include weights/right/efd1efd2.w
+#include weights/right/efd2efd1.w
+#include weights/right/efd1exfr.w
+#include weights/right/efd1infs.w
+#include weights/right/exfrifd1.w
+#include weights/right/exfrifd2.w
+#include weights/right/exfsefd2.w
+#include weights/right/exfsexfr.w
+#include weights/right/exfsifd1.w
+
+% Feeback connections
+
+#include weights/right/ev4vev1v.w
+#include weights/right/ev4hev1h.w
+
+#include weights/right/efd2exss.w
+#include weights/right/efd1inss.w
+
+#include weights/right/efd2ev4c.w
+#include weights/right/efd2ev4h.w
+#include weights/right/efd2ev4v.w
+% TMP #include weights/right/efd2.wt   	% Learned feedback weights from PFD2 to V4
+
+#include weights/right/exssev4v.w
+#include weights/right/exssev4h.w
+#include weights/right/exssev4c.w
+
+% TMP #include weights/right/exss.wt	%  Learned feedback weights to IT from V4
