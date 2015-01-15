@@ -18,5 +18,10 @@ visual/bin/*
 single-trial-version/bin/*
 !single-trial-version/bin/dir.info
 
+# Ignore output data files
+# except for info.dir file
+single-trial-version/output
+!single-trial-version/output/dir.info
+
 # Emacs backups
 *~

@@ -271,5 +271,5 @@ set(AttV,1)
     Node Activation { ALL 1.0 }
   }
 
-#include weights/right/rightlist.txt
-#include inputs/pethi1.rsb
+#include ../weights/rightlist.txt
+#include pethi1.rsb
