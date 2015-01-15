@@ -15,6 +15,8 @@ auditory/bin/*
 !auditory/bin/dir.info
 visual/bin/*
 !visual/bin/dir.info
+single-trial-version/bin/*
+!single-trial-version/dir.info
 
 # Emacs backups
 *~
