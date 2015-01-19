@@ -67,6 +67,7 @@ ax.plot(ev1h)
 ax.set_xticks([])
 ax.set_yticks([])
 
+
 plt.subplot(10,1,2)
 plt.plot(ev1v)
 plt.axis('off')
