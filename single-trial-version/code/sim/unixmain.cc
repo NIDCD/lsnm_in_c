@@ -130,15 +130,12 @@ BOOL SimClass::ParseFile(char *File)
      fclose(Outfs);
    if((Outfs = fopen(OutFile,"w")) == NULL)
      return(FALSE);
-   // buggy = fopen("debug.txt","w");
    if(siminit(NULL, InFile, Outfs) > 0) {
      InvalidateRect(NULL, NULL, 1);
      NotInit = 0;
-     //  fclose(buggy);
      return(TRUE);
    }
    else {
-     //  fclose(buggy);
      return(FALSE);
    }
 }
