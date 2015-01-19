@@ -1,3 +1,45 @@
+/*============================================================================
+ *
+ *                    PUBLIC DOMAIN NOTICE
+ *
+ *   National Institute on Deafness and Other Communication Disorders
+ *
+ * This software/database is a "United States Government Work" under the 
+ * terms of the United States Copyright Act. It was written as part of 
+ * the author's official duties as a United States Government employee and 
+ * thus cannot be copyrighted. This software/database is freely available 
+ * to the public for use. The NIDCD and the U.S. Government have not placed 
+ * any restriction on its use or reproduction. 
+ *
+ * Although all reasonable efforts have been taken to ensure the accuracy 
+ * and reliability of the software and data, the NIDCD and the U.S. Government 
+ * do not and cannot warrant the performance or results that may be obtained 
+ * by using this software or data. The NIDCD and the U.S. Government disclaim 
+ * all warranties, express or implied, including warranties of performance, 
+ * merchantability or fitness for any particular purpose.
+ *
+ * Please cite the author in any work or product based on this material.
+ * 
+ * ==========================================================================
+ *
+ */
+
+/* **************************************************************************
+
+   Large-Scale Neural Modeling software (LSNM)
+
+   Section on Brain Imaging and Modeling
+   Voice, Speech and Language Branch
+   National Institute on Deafness and Other Communication Disorders
+   National Institutes of Health
+
+   This file (unixmain.cc) was last modified on January 18, 2015.
+
+
+   Author: Malle Tagamets. Last updated by Antonio Ulloa on January 18 2015  
+* **************************************************************************/
+
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -40,14 +82,6 @@ public:
   SimClass(PTWindowsObject AParent, char *File);
   ~SimClass();
   BOOL ParseFile(char *File);
-/*
-  virtual void CMRun(RTMessage Msg)
-    = [CM_FIRST + CM_RUN];
-  virtual void CMSetIter(RTMessage Msg)
-    = [CM_FIRST + CM_ITER];
-  virtual void CMVerbose(RTMessage Msg)
-    = [CM_FIRST + CM_VERBOSE];
-*/
 };
 
 
@@ -96,96 +130,18 @@ BOOL SimClass::ParseFile(char *File)
      fclose(Outfs);
    if((Outfs = fopen(OutFile,"w")) == NULL)
      return(FALSE);
-   buggy = fopen("debug.txt","w");
+   // buggy = fopen("debug.txt","w");
    if(siminit(NULL, InFile, Outfs) > 0) {
      InvalidateRect(NULL, NULL, 1);
      NotInit = 0;
-     fclose(buggy);
+     //  fclose(buggy);
      return(TRUE);
    }
    else {
-     fclose(buggy);
+     //  fclose(buggy);
      return(FALSE);
    }
 }
-
-
-/****************************************/
-
-
-/* TMP
-
-void SimClass::CMRun(RTMessage)
-{
-  if(!InFileFlag)   {
-    Message("Need to open a valid input file", "Error!");
-    return;
-  }
-  if(!OutFileFlag)   {
-    Message("Need to open an output file", "Error!");
-    return;
-  }
-  if(Outfs == NULL) {
-    if((Outfs = fopen(OutFile,"w")) != NULL) {
-      OutFileFlag = TRUE;
-      strcpy(OutputFile, OutFile);
-    }
-    else {
-      OutFileFlag = FALSE;
-      sprintf(MsgStr,"Run: Cannot open output file %s",OutFile);
-      Errmsg(MsgStr);
-    }
-  }
-  if(NotInit) {
-    if(siminit(HWindow, InFile, Outfs) > 0) {
-      InvalidateRect(HWindow, NULL, 1);
-      NotInit = 0;
-    }
-  }
-  else
-    simulate(HWindow, Outfs);
-}
-
-ETMP */
-
-/****************************************/
-
-/* TMP
-
-void SimClass::CMSetIter(RTMessage)
-{
-  int iter;
-  PTInputDialog Iter;
-
-  sprintf(MsgStr, "%d", N_Iter);
-  Iter = new TInputDialog(this, "Iterations", "Enter number of iterations:",
-                      MsgStr, sizeof(MsgStr));
-
-  if ( GetApplication()->ExecDialog(Iter) == IDOK )
-  {
-      iter = atoi(MsgStr);
-      if ( Iter < 0 )
-         Errmsg("Iteration size must be greater than 0");
-      else
-       N_Iter = iter;
-      }
-}
-
-ETMP */
-
-/****************************************/
-
-/* TMP
-
-void SimClass::CMVerbose(RTMessage)
-{
-  if(Verbose == 0)
-     Verbose = 1;
-  else
-     Verbose = 0;
-}
-
-ETMP */
 
 
 /****************************************/
