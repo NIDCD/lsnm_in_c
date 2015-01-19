@@ -47,6 +47,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load data files
+lgns = np.loadtxt('../../output/lgns.out')
 efd1 = np.loadtxt('../../output/efd1.out')
 efd2 = np.loadtxt('../../output/efd2.out')
 ev1h = np.loadtxt('../../output/ev1h.out')
@@ -61,70 +62,77 @@ exss = np.loadtxt('../../output/exss.out')
 # Set up plot
 plt.figure(1)
 
+# Plot LGN module
+ax = plt.subplot(11,1,1)
+ax.plot(lgns)
+ax.set_xticks([])
+ax.set_yticks([])
+plt.ylabel('LGN', rotation='horizontal', horizontalalignment='right')
+
 # Plot V1 module
-ax = plt.subplot(10,1,1)
+ax = plt.subplot(11,1,2)
 ax.plot(ev1h)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('V1h', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(10,1,2)
+ax = plt.subplot(11,1,3)
 ax.plot(ev1v)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('V1v', rotation='horizontal', horizontalalignment='right')
 
 # Plot V4 module
-ax = plt.subplot(10,1,3)
+ax = plt.subplot(11,1,4)
 ax.plot(ev4h)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('V4h', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(10,1,4)
+ax = plt.subplot(11,1,5)
 ax.plot(ev4c)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('V4c', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(10,1,5)
+ax = plt.subplot(11,1,6)
 ax.plot(ev4v)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('V4v', rotation='horizontal', horizontalalignment='right')
 
-# Plot STG module
-ax = plt.subplot(10,1,6)
+# Plot IT module
+ax = plt.subplot(11,1,7)
 ax.plot(exss)
 ax.set_xticks([])
 ax.set_yticks([])
-plt.ylabel('STG', rotation='horizontal', horizontalalignment='right')
+plt.ylabel('IT', rotation='horizontal', horizontalalignment='right')
 
 # Plot PFC modules FS, FD1, and FD2
-ax = plt.subplot(10,1,7)
+ax = plt.subplot(11,1,8)
 ax.plot(exfs)
 ax.set_xticks([])
 ax.set_yticks([])
 plt.ylabel('FS', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(10,1,8)
+ax = plt.subplot(11,1,9)
 ax.plot(efd1)
 ax.set_xticks([])
 ax.set_yticks([])
-plt.ylabel('FD1', rotation='horizontal', horizontalalignment='right')
+plt.ylabel('D1', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(10,1,9)
+ax = plt.subplot(11,1,10)
 ax.plot(efd2)
 ax.set_xticks([])
 ax.set_yticks([])
-plt.ylabel('FD2', rotation='horizontal', horizontalalignment='right')
+plt.ylabel('D2', rotation='horizontal', horizontalalignment='right')
 
 # Plot FR (Response module)
-ax = plt.subplot(10,1,10)
+ax = plt.subplot(11,1,11)
 ax.plot(exfr)
 ax.set_xticks([])
 ax.set_yticks([])
-plt.ylabel('FR', rotation='horizontal', horizontalalignment='right')
+plt.ylabel('R', rotation='horizontal', horizontalalignment='right')
 plt.xlabel('Timesteps')
 
 # Show the plot on the screen
