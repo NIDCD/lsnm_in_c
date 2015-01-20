@@ -45,6 +45,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 # Load data files
 lgns = np.loadtxt('../../output/lgns.out')
@@ -135,5 +136,19 @@ ax.set_yticks([])
 plt.ylabel('R', rotation='horizontal', horizontalalignment='right')
 plt.xlabel('Timesteps')
 
+# Now display a window with animation
+#t,n = lgns.shape
+#lgns = lgns.reshape(t, 9, 9)
+#print lgns.shape
+
+fig = plt.figure(2)
+ax =  plt.subplot(11,1,1)
+lgns = lgns[0]
+lgns = lgns.reshape(9, 9)
+ax.plot(lgns)
+
+# anim = animation.FuncAnimation(fig, plt.plot(lgns[9,9]))
+
 # Show the plot on the screen
-plt.show() 
+plt.show()
+
