@@ -243,9 +243,6 @@ img.set_cmap('hot')
 ax.set_xticks([])
 ax.set_yticks([])
 
-# Display a reference color bar
-plt.colorbar()
-
 # anim = animation.FuncAnimation(fig, plt.plot(lgns[9,9]))
 
 # Show the plot on the screen
