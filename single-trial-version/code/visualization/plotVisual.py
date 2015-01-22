@@ -45,8 +45,6 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-import matplotlib.animation as animation
 
 # Load data files
 lgns = np.loadtxt('../../output/lgns.out')

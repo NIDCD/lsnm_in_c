@@ -43,15 +43,30 @@
 #
 # Plays a movie using output data files of visual delay-match-to-sample simulation
 
-plt.figure(1)
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button, RadioButtons
 
-#t,n = lgns.shape
-#lgns = lgns.reshape(t, 9, 9)
-#print lgns.shape
+i=75
+
+# Load data files
+lgns = np.loadtxt('../../output/lgns.out')
+efd1 = np.loadtxt('../../output/efd1.out')
+efd2 = np.loadtxt('../../output/efd2.out')
+ev1h = np.loadtxt('../../output/ev1h.out')
+ev1v = np.loadtxt('../../output/ev1v.out')
+ev4c = np.loadtxt('../../output/ev4c.out')
+ev4h = np.loadtxt('../../output/ev4h.out')
+ev4v = np.loadtxt('../../output/ev4v.out')
+exfr = np.loadtxt('../../output/exfr.out')
+exfs = np.loadtxt('../../output/exfs.out')
+exss = np.loadtxt('../../output/exss.out')
+
+plt.figure(1)
 
 # Render LGN array in a colormap
 ax = plt.subplot(3,6,7)
-lgns = lgns[75]
+lgns = lgns[i]
 lgns = lgns.reshape(9, 9)
 img = plt.imshow(lgns)
 img.set_cmap('hot')
@@ -60,7 +75,7 @@ ax.set_yticks([])
 
 # Render EV1h array in a colormap
 ax=plt.subplot(3,6,14)
-ev1h = ev1h[75]
+ev1h = ev1h[i]
 ev1h = ev1h.reshape(9, 9)
 img = plt.imshow(ev1h)
 img.set_cmap('hot')
@@ -69,7 +84,7 @@ ax.set_yticks([])
 
 # Render EV1v array in a colormap
 ax=plt.subplot(3,6,2)
-ev1v = ev1v[75]
+ev1v = ev1v[i]
 ev1v = ev1v.reshape(9, 9)
 img = plt.imshow(ev1v)
 img.set_cmap('hot')
@@ -78,7 +93,7 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,3)
-ev4h = ev4h[75]
+ev4h = ev4h[i]
 ev4h = ev4h.reshape(9, 9)
 img = plt.imshow(ev4h)
 img.set_cmap('hot')
@@ -87,7 +102,7 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,9)
-ev4c = ev4c[75]
+ev4c = ev4c[i]
 ev4c = ev4c.reshape(9, 9)
 img = plt.imshow(ev4c)
 img.set_cmap('hot')
@@ -105,7 +120,7 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,10)
-exss = exss[75]
+exss = exss[i]
 exss = exss.reshape(9, 9)
 img = plt.imshow(exss)
 img.set_cmap('hot')
@@ -114,7 +129,7 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,5)
-exfs = exfs[75]
+exfs = exfs[i]
 exfs = exfs.reshape(9, 9)
 img = plt.imshow(exfs)
 img.set_cmap('hot')
@@ -123,7 +138,7 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,11)
-efd1 = efd1[75]
+efd1 = efd1[i]
 efd1 = efd1.reshape(9, 9)
 img = plt.imshow(efd1)
 img.set_cmap('hot')
@@ -141,14 +156,24 @@ ax.set_yticks([])
 
 # Render array in a colormap
 ax=plt.subplot(3,6,12)
-exfr = exfr[75]
+exfr = exfr[i]
 exfr = exfr.reshape(9, 9)
 img = plt.imshow(exfr)
 img.set_cmap('hot')
 ax.set_xticks([])
 ax.set_yticks([])
 
-# anim = animation.FuncAnimation(fig, plt.plot(lgns[9,9]))
+# now draw interactive slider
+axtimesteps = plt.axes([0.25, 0.1, 0.65, 0.03])
+
+stimesteps = Slider(axtimesteps, 'TimeSteps', 0, 220, valinit=75)
+
+def update(val):
+    timesteps = stimesteps.val
+    ax.set_xdata(timesteps)
+    fig.canvas.draw_idle()
+
+stimesteps.on_changed(update)
 
 # Show the plot on the screen
 plt.show()
