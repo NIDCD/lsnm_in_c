@@ -24,4 +24,5 @@ single-trial-version/output/*
 !single-trial-version/output/dir.info
 
 # Emacs backups
+*#
 *~
