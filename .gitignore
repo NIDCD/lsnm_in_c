@@ -25,4 +25,5 @@ single-trial-version/output/*
 
 # Emacs backups
 *#
+*.#*
 *~
