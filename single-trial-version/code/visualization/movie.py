@@ -60,12 +60,14 @@ exfr = np.loadtxt('../../output/exfr.out')
 exfs = np.loadtxt('../../output/exfs.out')
 exss = np.loadtxt('../../output/exss.out')
 
-# extract number of timesteps from one of the matrices
+# Extract number of timesteps from one of the matrices
 timesteps = lgns.shape[0]
 
-# This is the dimension of each module i.e., dxd = 9x9
+# Initialize the dimension of each module i.e., dxd = 9x9
 d=9
 
+
+# Reshape all matrices to reflect dimensionality of visual modules
 lgn = lgns.reshape(timesteps,d,d)
 v1h = ev1h.reshape(timesteps,d,d)
 v1v = ev1v.reshape(timesteps,d,d)
@@ -81,89 +83,89 @@ fr  = exfr.reshape(timesteps,d,d)
 fig = plt.figure(1)
 
 # Render LGN array in a colormap
-plt.subplot(3,6,7)
+plt.subplot(3,4,1)
 plt.imshow(lgn[0,:,:])
 
 # Render EV1h array in a colormap
-plt.subplot(3,6,14)
+plt.subplot(3,4,5)
 plt.imshow(v1h[0,:,:])
 
 # Render EV1v array in a colormap
-plt.subplot(3,6,2)
+plt.subplot(3,4,9)
 plt.imshow(v1v[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,3)
+plt.subplot(3,4,2)
 plt.imshow(v4h[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,9)
+plt.subplot(3,4,6)
 plt.imshow(v4c[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,15)
+plt.subplot(3,4,10)
 plt.imshow(v4v[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,10)
+plt.subplot(3,4,3)
 plt.imshow(ss[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,5)
+plt.subplot(3,4,7)
 plt.imshow(fs[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,11)
+plt.subplot(3,4,11)
 plt.imshow(fd1[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,17)
+plt.subplot(3,4,4)
 plt.imshow(fd2[0,:,:])
 
 # Render array in a colormap
-plt.subplot(3,6,12)
+plt.subplot(3,4,8)
 plt.imshow(fr[0,:,:])
 
-# now draw interactive slider
-axtimesteps = plt.axes([0.25, 0.1, 0.65, 0.03])
+# now draw interactive slider at [x, y, length, width]   
+axtimesteps = plt.axes([0.1, 0, 0.8, 0.03])
 
-stimesteps = Slider(axtimesteps, 'TimeSteps', 0, 219, valinit=0)
+stimesteps = Slider(axtimesteps, 'Slider', 0, timesteps-1, valinit=0)
 
 # now define the function that updates plots as slider is moved
 def update(val):
     timesteps = stimesteps.val
 
-    plt.subplot(3,6,7)
+    plt.subplot(3,4,1)
     plt.imshow(lgn[timesteps,:,:])
     
-    plt.subplot(3,6,14)
+    plt.subplot(3,4,5)
     plt.imshow(v1h[timesteps,:,:])
     
-    plt.subplot(3,6,2)
+    plt.subplot(3,4,9)
     plt.imshow(v1v[timesteps,:,:])
     
-    plt.subplot(3,6,3)
+    plt.subplot(3,4,2)
     plt.imshow(v4h[timesteps,:,:])
     
-    plt.subplot(3,6,9)
+    plt.subplot(3,4,6)
     plt.imshow(v4c[timesteps,:,:])
     
-    plt.subplot(3,6,15)
+    plt.subplot(3,4,10)
     plt.imshow(v4v[timesteps,:,:])
     
-    plt.subplot(3,6,10)
+    plt.subplot(3,4,3)
     plt.imshow(ss[timesteps,:,:])
     
-    plt.subplot(3,6,5)
+    plt.subplot(3,4,7)
     plt.imshow(fs[timesteps,:,:])
     
-    plt.subplot(3,6,11)
+    plt.subplot(3,4,11)
     plt.imshow(fd1[timesteps,:,:])
     
-    plt.subplot(3,6,17)
+    plt.subplot(3,4,4)
     plt.imshow(fd2[timesteps,:,:])
     
-    plt.subplot(3,6,12)
+    plt.subplot(3,4,8)
     plt.imshow(fr[timesteps,:,:])
     
 stimesteps.on_changed(update)
