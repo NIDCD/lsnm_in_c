@@ -60,150 +60,111 @@ exfr = np.loadtxt('../../output/exfr.out')
 exfs = np.loadtxt('../../output/exfs.out')
 exss = np.loadtxt('../../output/exss.out')
 
-plt.figure(1)
+# extract number of timesteps from one of the matrices
+timesteps = lgns.shape[0]
 
-lgn = lgns.reshape(9,9,220)
-print lgn.shape
+# This is the dimension of each module i.e., dxd = 9x9
+d=9
+
+lgn = lgns.reshape(timesteps,d,d)
+v1h = ev1h.reshape(timesteps,d,d)
+v1v = ev1v.reshape(timesteps,d,d)
+v4h = ev4h.reshape(timesteps,d,d)
+v4c = ev4c.reshape(timesteps,d,d)
+v4v = ev4v.reshape(timesteps,d,d)
+ss  = exss.reshape(timesteps,d,d)
+fd1 = efd1.reshape(timesteps,d,d)
+fd2 = efd2.reshape(timesteps,d,d)
+fs  = exfs.reshape(timesteps,d,d)
+fr  = exfr.reshape(timesteps,d,d)
+
+fig = plt.figure(1)
 
 # Render LGN array in a colormap
-ax = plt.subplot(3,6,7)
-lgn = lgns[0]
-img = plt.imshow(lgn.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,7)
+plt.imshow(lgn[0,:,:])
 
 # Render EV1h array in a colormap
-ax=plt.subplot(3,6,14)
-v1h = ev1h[0]
-img = plt.imshow(v1h.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,14)
+plt.imshow(v1h[0,:,:])
 
 # Render EV1v array in a colormap
-ax=plt.subplot(3,6,2)
-v1v = ev1v[0]
-img = plt.imshow(v1v.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,2)
+plt.imshow(v1v[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,3)
-v4h = ev4h[0]
-img = plt.imshow(v4h.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,3)
+plt.imshow(v4h[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,9)
-v4c = ev4c[0]
-img = plt.imshow(v4c.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,9)
+plt.imshow(v4c[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,15)
-v4v = ev4v[0]
-img = plt.imshow(v4v.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,15)
+plt.imshow(v4v[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,10)
-ss = exss[0]
-img = plt.imshow(ss.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,10)
+plt.imshow(ss[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,5)
-fs = exfs[0]
-img = plt.imshow(fs.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,5)
+plt.imshow(fs[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,11)
-fd1 = efd1[0]
-img = plt.imshow(fd1.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,11)
+plt.imshow(fd1[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,17)
-fd2 = efd2[0]
-img = plt.imshow(fd2.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,17)
+plt.imshow(fd2[0,:,:])
 
 # Render array in a colormap
-ax=plt.subplot(3,6,12)
-fr = exfr[0]
-img = plt.imshow(fr.reshape(9,9))
-img.set_cmap('hot')
-ax.set_xticks([])
-ax.set_yticks([])
+plt.subplot(3,6,12)
+plt.imshow(fr[0,:,:])
 
 # now draw interactive slider
 axtimesteps = plt.axes([0.25, 0.1, 0.65, 0.03])
 
 stimesteps = Slider(axtimesteps, 'TimeSteps', 0, 219, valinit=0)
 
+# now define the function that updates plots as slider is moved
 def update(val):
     timesteps = stimesteps.val
 
-    ax = plt.subplot(3,6,7)
-    lgn = lgns[timesteps]
-    img = plt.imshow(lgn.reshape(9,9))
+    plt.subplot(3,6,7)
+    plt.imshow(lgn[timesteps,:,:])
     
-    ax=plt.subplot(3,6,14)
-    v1h = ev1h[timesteps]
-    img = plt.imshow(v1h.reshape(9,9))
+    plt.subplot(3,6,14)
+    plt.imshow(v1h[timesteps,:,:])
     
-    ax=plt.subplot(3,6,2)
-    v1v = ev1v[timesteps]
-    img = plt.imshow(v1v.reshape(9,9))
+    plt.subplot(3,6,2)
+    plt.imshow(v1v[timesteps,:,:])
     
-    ax=plt.subplot(3,6,3)
-    v4h = ev4h[timesteps]
-    img = plt.imshow(v4h.reshape(9,9))
+    plt.subplot(3,6,3)
+    plt.imshow(v4h[timesteps,:,:])
     
-    ax=plt.subplot(3,6,9)
-    v4c = ev4c[timesteps]
-    img = plt.imshow(v4c.reshape(9,9))
+    plt.subplot(3,6,9)
+    plt.imshow(v4c[timesteps,:,:])
     
-    ax=plt.subplot(3,6,15)
-    v4v = ev4v[timesteps]
-    img = plt.imshow(v4v.reshape(9,9))
+    plt.subplot(3,6,15)
+    plt.imshow(v4v[timesteps,:,:])
     
-    ax=plt.subplot(3,6,10)
-    ss = exss[timesteps]
-    img = plt.imshow(ss.reshape(9,9))
+    plt.subplot(3,6,10)
+    plt.imshow(ss[timesteps,:,:])
     
-    ax=plt.subplot(3,6,5)
-    fs = exfs[timesteps]
-    img = plt.imshow(fs.reshape(9,9))
+    plt.subplot(3,6,5)
+    plt.imshow(fs[timesteps,:,:])
     
-    ax=plt.subplot(3,6,11)
-    fd1 = efd1[timesteps]
-    img = plt.imshow(fd1.reshape(9,9))
+    plt.subplot(3,6,11)
+    plt.imshow(fd1[timesteps,:,:])
     
-    ax=plt.subplot(3,6,17)
-    fd2 = efd2[timesteps]
-    img = plt.imshow(fd2.reshape(9,9))
+    plt.subplot(3,6,17)
+    plt.imshow(fd2[timesteps,:,:])
     
-    ax=plt.subplot(3,6,12)
-    fr = exfr[timesteps]
-    img = plt.imshow(fr.reshape(9,9))
+    plt.subplot(3,6,12)
+    plt.imshow(fr[timesteps,:,:])
     
 stimesteps.on_changed(update)
 
