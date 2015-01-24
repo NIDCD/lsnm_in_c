@@ -62,6 +62,8 @@ exss = np.loadtxt('../../output/exss.out')
 # Set up plot
 plt.figure(1)
 
+plt.suptitle('SIMULATED NEURAL ACTIVITY')
+
 # Plot LGN module
 ax = plt.subplot(11,1,1)
 ax.plot(lgns)

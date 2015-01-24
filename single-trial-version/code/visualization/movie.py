@@ -45,7 +45,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider, Button, RadioButtons
+from matplotlib.widgets import Slider
 
 # Load data files
 lgns = np.loadtxt('../../output/lgns.out')
@@ -66,7 +66,6 @@ timesteps = lgns.shape[0]
 # Initialize the dimension of each module i.e., dxd = 9x9
 d=9
 
-
 # Reshape all matrices to reflect dimensionality of visual modules
 lgn = lgns.reshape(timesteps,d,d)
 v1h = ev1h.reshape(timesteps,d,d)
@@ -82,49 +81,73 @@ fr  = exfr.reshape(timesteps,d,d)
 
 fig = plt.figure(1)
 
+plt.suptitle('SIMULATED NEURAL ACTIVITY')
+
 # Render LGN array in a colormap
 plt.subplot(3,4,1)
 plt.imshow(lgn[0,:,:])
+plt.title('LGN')
+plt.axis('off')
 
 # Render EV1h array in a colormap
 plt.subplot(3,4,5)
 plt.imshow(v1h[0,:,:])
+plt.title('V1h')
+plt.axis('off')
 
 # Render EV1v array in a colormap
 plt.subplot(3,4,9)
 plt.imshow(v1v[0,:,:])
+plt.title('V1v')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,2)
 plt.imshow(v4h[0,:,:])
+plt.title('V4h')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,6)
 plt.imshow(v4c[0,:,:])
+plt.title('V4c')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,10)
 plt.imshow(v4v[0,:,:])
+plt.title('V4v')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,3)
 plt.imshow(ss[0,:,:])
+plt.title('IT')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,7)
 plt.imshow(fs[0,:,:])
+plt.title('FS')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,11)
 plt.imshow(fd1[0,:,:])
+plt.title('FD1')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,4)
 plt.imshow(fd2[0,:,:])
+plt.title('FD2')
+plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,8)
 plt.imshow(fr[0,:,:])
+plt.title('FR')
+plt.axis('off')
 
 # now draw interactive slider at [x, y, length, width]   
 axtimesteps = plt.axes([0.1, 0, 0.8, 0.03])
