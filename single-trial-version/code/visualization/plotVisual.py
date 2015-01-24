@@ -59,6 +59,12 @@ exfr = np.loadtxt('../../output/exfr.out')
 exfs = np.loadtxt('../../output/exfs.out')
 exss = np.loadtxt('../../output/exss.out')
 
+# Extract number of timesteps from one of the matrices
+timesteps = lgns.shape[0]
+
+# Contruct a numpy array of timesteps (data points provided in data file)
+t = np.arange(0, timesteps, 1)
+
 # Set up plot
 plt.figure(1)
 
@@ -66,75 +72,86 @@ plt.suptitle('SIMULATED NEURAL ACTIVITY')
 
 # Plot LGN module
 ax = plt.subplot(11,1,1)
-ax.plot(lgns)
+ax.plot(t, lgns)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('LGN', rotation='horizontal', horizontalalignment='right')
 
 # Plot V1 module
 ax = plt.subplot(11,1,2)
-ax.plot(ev1h)
+ax.plot(t, ev1h)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('V1h', rotation='horizontal', horizontalalignment='right')
 
 ax = plt.subplot(11,1,3)
-ax.plot(ev1v)
+ax.plot(t, ev1v)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('V1v', rotation='horizontal', horizontalalignment='right')
 
 # Plot V4 module
 ax = plt.subplot(11,1,4)
-ax.plot(ev4h)
+ax.plot(t, ev4h)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('V4h', rotation='horizontal', horizontalalignment='right')
 
 ax = plt.subplot(11,1,5)
-ax.plot(ev4c)
+ax.plot(t, ev4c)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('V4c', rotation='horizontal', horizontalalignment='right')
 
 ax = plt.subplot(11,1,6)
-ax.plot(ev4v)
+ax.plot(t, ev4v)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('V4v', rotation='horizontal', horizontalalignment='right')
 
 # Plot IT module
 ax = plt.subplot(11,1,7)
-ax.plot(exss)
+ax.plot(t, exss)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('IT', rotation='horizontal', horizontalalignment='right')
 
 # Plot PFC modules FS, FD1, and FD2
 ax = plt.subplot(11,1,8)
-ax.plot(exfs)
+ax.plot(t, exfs)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('FS', rotation='horizontal', horizontalalignment='right')
 
 ax = plt.subplot(11,1,9)
-ax.plot(efd1)
+ax.plot(t, efd1)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('D1', rotation='horizontal', horizontalalignment='right')
 
 ax = plt.subplot(11,1,10)
-ax.plot(efd2)
+ax.plot(t, efd2)
 ax.set_xticks([])
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('D2', rotation='horizontal', horizontalalignment='right')
 
 # Plot FR (Response module)
 ax = plt.subplot(11,1,11)
-ax.plot(exfr)
+ax.plot(t, exfr)
 ax.set_yticks([])
+ax.set_xlim(0,timesteps)
 plt.ylabel('R', rotation='horizontal', horizontalalignment='right')
-plt.xlabel('Timesteps')
+plt.xlabel('Timesteps (i.e., Data points)')
 
 # Show the plot on the screen
 plt.show()

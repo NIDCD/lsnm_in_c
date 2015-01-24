@@ -85,69 +85,73 @@ plt.suptitle('SIMULATED NEURAL ACTIVITY')
 
 # Render LGN array in a colormap
 plt.subplot(3,4,1)
-plt.imshow(lgn[0,:,:])
+plt.imshow(lgn[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('LGN')
 plt.axis('off')
 
 # Render EV1h array in a colormap
 plt.subplot(3,4,5)
-plt.imshow(v1h[0,:,:])
+plt.imshow(v1h[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('V1h')
 plt.axis('off')
 
 # Render EV1v array in a colormap
 plt.subplot(3,4,9)
-plt.imshow(v1v[0,:,:])
+plt.imshow(v1v[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('V1v')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,2)
-plt.imshow(v4h[0,:,:])
+plt.imshow(v4h[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('V4h')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,6)
-plt.imshow(v4c[0,:,:])
+plt.imshow(v4c[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('V4c')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,10)
-plt.imshow(v4v[0,:,:])
+plt.imshow(v4v[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('V4v')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,3)
-plt.imshow(ss[0,:,:])
+plt.imshow(ss[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('IT')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,7)
-plt.imshow(fs[0,:,:])
+plt.imshow(fs[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('FS')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,11)
-plt.imshow(fd1[0,:,:])
+plt.imshow(fd1[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('FD1')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,4)
-plt.imshow(fd2[0,:,:])
+plt.imshow(fd2[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('FD2')
 plt.axis('off')
 
 # Render array in a colormap
 plt.subplot(3,4,8)
-plt.imshow(fr[0,:,:])
+plt.imshow(fr[0,:,:], vmin=0, vmax=1, cmap='hot')
 plt.title('FR')
 plt.axis('off')
+
+# Display reference colorbar [left, bottom, width, height]
+cbaxes = fig.add_axes([0.92, 0.1, 0.03, 0.8])
+cb = plt.colorbar(cax=cbaxes)
 
 # now draw interactive slider at [x, y, length, width]   
 axtimesteps = plt.axes([0.1, 0, 0.8, 0.03])
@@ -159,37 +163,37 @@ def update(val):
     timesteps = stimesteps.val
 
     plt.subplot(3,4,1)
-    plt.imshow(lgn[timesteps,:,:])
+    plt.imshow(lgn[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,5)
-    plt.imshow(v1h[timesteps,:,:])
+    plt.imshow(v1h[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,9)
-    plt.imshow(v1v[timesteps,:,:])
+    plt.imshow(v1v[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,2)
-    plt.imshow(v4h[timesteps,:,:])
+    plt.imshow(v4h[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,6)
-    plt.imshow(v4c[timesteps,:,:])
+    plt.imshow(v4c[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,10)
-    plt.imshow(v4v[timesteps,:,:])
+    plt.imshow(v4v[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,3)
-    plt.imshow(ss[timesteps,:,:])
+    plt.imshow(ss[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,7)
-    plt.imshow(fs[timesteps,:,:])
+    plt.imshow(fs[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,11)
-    plt.imshow(fd1[timesteps,:,:])
+    plt.imshow(fd1[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,4)
-    plt.imshow(fd2[timesteps,:,:])
+    plt.imshow(fd2[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
     plt.subplot(3,4,8)
-    plt.imshow(fr[timesteps,:,:])
+    plt.imshow(fr[timesteps,:,:], vmin=0, vmax=1, cmap='hot')
     
 stimesteps.on_changed(update)
 
