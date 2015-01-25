@@ -23,6 +23,9 @@ single-trial-version/bin/*
 single-trial-version/output/*
 !single-trial-version/output/dir.info
 
+# Ignore python data files (too large)
+*.npy
+
 # Emacs backups
 *#
 *.#*
