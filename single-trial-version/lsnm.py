@@ -45,8 +45,11 @@
 
 import os
 
+# Define input file (i.e., network creation parameters)
+network = 'pethi1'
+
 # Define simulation command
-cmd = 'bin/sim1 pethi1'
+cmd = 'bin/sim1' + ' ' + network
 
 # Execute simulation
 os.system(cmd)
