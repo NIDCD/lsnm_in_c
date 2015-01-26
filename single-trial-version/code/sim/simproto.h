@@ -84,6 +84,9 @@ void ReceptorAct(struct NodeSet *Nset);
 void ShiftActInit(struct NodeSet *Nset);
 void Shift_activation(struct NodeSet *Nset);	// Shifts activations in space regularly
 
+void TvbActInit(struct NodeSet *Nset);
+void TvbAct(struct NodeSet *Nset);
+
 void ClampActInit(struct NodeSet *Nset);
 void ClampAct(struct NodeSet *Nset);
 

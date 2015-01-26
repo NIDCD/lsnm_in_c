@@ -289,6 +289,11 @@ int parseSet(FILE *ifd)
 		  break;
 		}
 	      break;
+
+	    case 't':         // TVB input matrix to set activation values
+	      Nset->ActRule = TvbAct;
+	      TvbActInit(Nset);
+	      break;
 	    }    
 	  break;
 

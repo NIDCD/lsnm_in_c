@@ -57,8 +57,6 @@
 #define SET_File(setp)                  (setp->Sfs)
 #define SET_WtFile(setp)              (setp->Wtfs)
 
-//#define SET_Write(setp)           (setp->WriteOut)
-
 #define SET_NodeAddress(setp,i)         (&(setp->Node[i]))
 #define SET_XDim(setp)                        (setp->XDim)
 #define SET_YDim(setp)                      (setp->YDim)

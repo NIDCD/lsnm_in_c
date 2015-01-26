@@ -24,10 +24,8 @@ void SumOut(struct NodeSet *Nset) {
       // the destination node
       if(output > 0.0)
       NODE_SumExInput(Destnode) += output;
-//  NODE_SumExInput(Destnode) += fabs(output);
       else
     NODE_SumInhInput(Destnode) += output;
-//         NODE_SumInhInput(Destnode) += fabs(output);
       j++;
     }
   }

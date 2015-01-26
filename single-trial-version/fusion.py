@@ -64,15 +64,19 @@ RAW = np.load("demo_raw_data_region_5.5s_2048Hz.npy")
 print RAW.shape
 
 # sample TVB RAW activity file to extract 220 data points
-RAW = RAW[::410]    # round(90112 / 220) = 410 
+RAW_internal = RAW[::81] # round(90112 / 1100) = 81
+RAW = RAW[::410]    # round(90112 / 220) = 410
 
 print RAW.shape
+print RAW_internal.shape
 
-print RAW
+RAW_internal = RAW_internal[:,0,72,0]
+
+np.savetxt("tvb_node.txt", RAW_internal, fmt='%10.5f')
 
 white_matter = connectivity.Connectivity(load_default=True)
 
-print white_matter.weights[73]
+print white_matter.weights[72]
 
 print white_matter.region_labels
 

@@ -112,7 +112,7 @@ int parseConnect(FILE *ifd)
 	  if(ReadNodeIndex(ifd,set1,&i)) 
 	    {
 	      sprintf(MsgStr,
-		      "Error in parsing connection source %s(%d)",set1,i);
+		      "Error in parsing connection source set1(%d)",i);
 	      Message(MsgStr,(char*)"From");
 	      code = ENDFILE;
 	      break;
@@ -144,7 +144,7 @@ int parseConnect(FILE *ifd)
 		  if(ReadNodeIndex(ifd,set2,&tonode)) 
 		    {
 		      sprintf(MsgStr,
-		      "Error in parsing connection from %s(%d)",set1,fromnode);
+		      "Error in parsing connection from set1(%d)",fromnode);
 		      Message(MsgStr,(char*)"Onject parse");
 		      code = ENDFILE;
 		      break;
@@ -244,7 +244,7 @@ BOOL TWeightClass::NewWeight(struct NodeSet *destset, int destnode, float value)
     if((Weight = (WeightStruct *)calloc((unsigned)WTARRAY_INC, sizeof(*Weight))) == NULL) 
       {
 	sprintf(MsgStr,
-         "Error: Not enough memory to add weights in Set %d ", destset);
+         "Error: Not enough memory to add weights in Set <destset>");
 	Errmsg(MsgStr);
 	return FALSE;
       }
@@ -256,14 +256,11 @@ BOOL TWeightClass::NewWeight(struct NodeSet *destset, int destnode, float value)
       if((Weight = (WeightStruct *)realloc(Weight, sizeof(*Weight)*(WTARRAY_INC+N_Weights))) == NULL) 
 	{
 	  sprintf(MsgStr,
-          "Error: Not enough memory to add weights in Set %d ", destset);
+          "Error: Not enough memory to add weights in Set <destset> ");
 	  Errmsg(MsgStr);
 	  return FALSE;
 	}
       CurMaxWeight = WTARRAY_INC;
-//    sprintf(MsgStr,"Reallocating weight from node %d with %d weights, to node %s(%d): First node's dest set is %s",
-//    NodeIndex,N_Weights,SET_Name(destset),destnode,SET_Name(Weight[0].Set));
-//    Errmsg(MsgStr,"Weight add..");
     }
 
   //Now add the weight

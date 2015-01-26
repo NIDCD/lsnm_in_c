@@ -13,9 +13,6 @@
 
 extern FILE *buggy;
     
-/* UNIX  time_t time(time_t *x);*/
-    
-    
 /**************************************************************
        Activation Rule  SigAct
     
@@ -277,6 +274,22 @@ void ClampInitParams(struct NodeSet *Nset)
       strcpy(SET_ParamName(Nset,C_NOISE_INDEX),"noise");
       C_NOISE(Nset) = 0.0;
     }
+}
+
+/* Initializaton of the TVB activation function */
+/* Call once at the beginning */
+void TvbActInit(struct NodeSet *Nset)
+{
+
+  struct NodeStruct *Nodeptr;
+
+}
+
+void TvbAct(struct NodeSet *Nset)
+{
+
+  struct NodeStruct *Nodeptr;
+  
 }
 
 /* Initialization of the linear activation function*/

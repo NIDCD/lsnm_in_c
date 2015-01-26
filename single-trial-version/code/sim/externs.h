@@ -5,8 +5,6 @@
 
 // Variables for initialization functions
 extern int      n_line;
-//extern int       old_line;
-// extern char    codestr[LINESIZE];
 
 extern char   OutputFile[MAXPATH];
 
