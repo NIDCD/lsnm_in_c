@@ -250,7 +250,57 @@ void LinearAct(struct NodeSet *Nset)
     }
 }
     
-    
+/********* TVB activation matrix ****************/
+#define TVB_PARAMS 0
+
+void TvbInitParams(struct NodeSet *Nset)
+{
+
+  if(SET_ParamAddress(Nset) == NULL) 
+    {
+      SET_ParamAddress(Nset) =
+	(struct ParamStruct*)calloc(TVB_PARAMS,sizeof(*SET_ParamAddress(Nset)));
+      SET_NumParams(Nset) = TVB_PARAMS;
+    }
+}
+
+/* Initializaton of the TVB activation function */
+/* Call once at the beginning */
+void TvbActInit(struct NodeSet *Nset)
+{
+
+  struct NodeStruct *Nodeptr;
+
+  TvbInitParams(Nset);
+  for(int i=0; i<SET_NumNodes(Nset); i++) 
+    {
+      Nodeptr = SET_NodeAddress(Nset,i);
+      NODE_OldAct(Nodeptr) = NODE_Act(Nodeptr);
+      NODE_SumAct(Nodeptr) = 0.0;
+      NODE_SumInput(Nodeptr) = 0.0;
+      NODE_SumExInput(Nodeptr) = 0.0;
+      NODE_SumInhInput(Nodeptr) = 0.0;
+    }
+
+}
+
+void TvbAct(struct NodeSet *Nset)
+{
+
+  struct NodeStruct *Nodeptr;
+
+  for(int i=0; i < SET_NumNodes(Nset); i++) 
+    {
+      Nodeptr = SET_NodeAddress(Nset,i);
+      NODE_Act(Nodeptr) += 0.0;
+      NODE_SumAct(Nodeptr) += NODE_Act(Nodeptr);
+      NODE_SumInput(Nodeptr) += fabs(NODE_InputVal(Nodeptr,0));
+      NODE_InputVal(Nodeptr,0) = 0.0;
+    }
+
+}
+
+
 
 /* ***********   CLAMP WITH NOISE */
 
@@ -274,22 +324,6 @@ void ClampInitParams(struct NodeSet *Nset)
       strcpy(SET_ParamName(Nset,C_NOISE_INDEX),"noise");
       C_NOISE(Nset) = 0.0;
     }
-}
-
-/* Initializaton of the TVB activation function */
-/* Call once at the beginning */
-void TvbActInit(struct NodeSet *Nset)
-{
-
-  struct NodeStruct *Nodeptr;
-
-}
-
-void TvbAct(struct NodeSet *Nset)
-{
-
-  struct NodeStruct *Nodeptr;
-  
 }
 
 /* Initialization of the linear activation function*/

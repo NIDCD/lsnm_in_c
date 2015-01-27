@@ -107,7 +107,7 @@ int simulate(HWND TheWind, FILE *out_fd)
       }
    }
    Tot_Iter += N_Iter;
-
+   printf("\nTotal number of iterations was %d\n", Tot_Iter);
 
    return(1);
 }

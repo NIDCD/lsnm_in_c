@@ -273,115 +273,15 @@ set(AttV,1)
 
 % The following brain areas are TVB brain areas
 
-	set(lV1, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
+set(lV1, 1)
+  {
+    Write 5
+    Actrule:	 TVB
+    OutputRule:	 SumOut
 	
 
-	  Node Activation {All 0.0}
-
-	}
-
-
-	set(rAMYG, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-
-	set(rPCI, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-	
-	set(rPCIP, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-
-	set(rPHC, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-
-	set(rTCC, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-
-
-	set(rTCS, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-	
-	set(rV1, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
-
-	set(rV2, 1)
-
-	{
-	  Write -1
-          Actrule:	 TVB
-          OutputRule:	 SumOut
-	
-
-	  Node Activation {All 0.0}
-
-	}
+    Node Activation {All 0.3}
+}
 
 	
 #include weights/rightlist.txt

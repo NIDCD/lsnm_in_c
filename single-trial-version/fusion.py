@@ -34,6 +34,10 @@
 #   National Institutes of Health
 #
 #   This file (fusion.py) was created on January 24 2015.
+#
+#   fusion.py uses The Virtual Brain toolbox <tvb-library> and data file
+#   set <tvb-data>, both downloaded from the TVB Github page.
+#   
 #   
 #   Author: Antonio Ulloa
 #
@@ -67,20 +71,28 @@ print RAW.shape
 RAW_internal = RAW[::81] # round(90112 / 1100) = 81
 RAW = RAW[::410]    # round(90112 / 220) = 410
 
+# print dimensions of raw activities output data files
 print RAW.shape
 print RAW_internal.shape
 
+# we are only interested at the moment in examining area 72 (rV1) 
 RAW_internal = RAW_internal[:,0,72,0]
 
+# save it in a data file
 np.savetxt("tvb_node.txt", RAW_internal, fmt='%10.5f')
 
+# now load white matter connectivity
 white_matter = connectivity.Connectivity(load_default=True)
-
-print white_matter.weights[72]
-
-print white_matter.region_labels
-
 white_matter.configure()
+
+# scale weights so that maximum absolute value is 1
+white_matter.weights = white_matter.scaled_weights(mode='tract')
+
+print white_matter.weights[73]
+
+print white_matter.region_labels[73]
+
+print white_matter.tract_lengths[73]
 
 ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
 # Define input file (i.e., network creation parameters)
