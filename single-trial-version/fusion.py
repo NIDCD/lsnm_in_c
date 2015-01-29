@@ -63,7 +63,7 @@ import numpy as np
 import os
 
 ########## THE FOLLOWING SIMULATES TVB NETWORK'S #######################
-RAW = np.load("demo_raw_data_region_5.5s_2048Hz.npy")
+RAW = np.load("wilson_cowan_brain_74_nodes.npy")
 
 print RAW.shape
 
@@ -90,7 +90,7 @@ white_matter.weights = white_matter.scaled_weights(mode='tract')
 
 print white_matter.weights[73]
 
-print white_matter.region_labels[73]
+print white_matter.region_labels
 
 print white_matter.tract_lengths[73]
 
