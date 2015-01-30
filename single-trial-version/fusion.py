@@ -76,9 +76,9 @@ print RAW.shape
 print RAW_internal.shape
 
 # we are only interested at the moment in examining area 72 (rV1) 
-RAW_internal = RAW_internal[:,0,72,0]
+RAW_internal = RAW_internal[:,:,72,0]
 
-# save it in a data file
+# save activity of brain node 72 (rV1) in a data file
 np.savetxt("tvb_node.txt", RAW_internal, fmt='%10.5f')
 
 # now load white matter connectivity

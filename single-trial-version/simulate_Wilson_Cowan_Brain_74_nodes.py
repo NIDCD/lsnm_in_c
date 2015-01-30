@@ -49,41 +49,40 @@
 
 from tvb.simulator.lab import *
 
+# Defines the population model to be used
+WC = models.WilsonCowan(variables_of_interest=['E','I'])
 
-WC = models.WilsonCowan()
-
+# Define which connectivity is going to be used and which parameters
 white_matter = connectivity.Connectivity(load_default=True)
 white_matter.speed = numpy.array([4.0])
 white_matter_coupling = coupling.Linear(a=0.033)
 
-#Initialize Integrator
+# Define noise and integrator to be used
 hiss = noise.Additive(nsig=numpy.array([2 ** -10, ]))
 heunint = integrators.HeunStochastic(dt=0.06103515625, noise=hiss) 
 
-#Initialise a Monitor with period in physical time
-what_to_watch = monitors.Raw()
+# Define a monitor to be used (i.e., simulated data to be collected)
+what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
 
-#Initialise a Simulator -- Model, Connectivity, Integrator, and Monitors.
+# Initialise a Simulator -- Model, Connectivity, Integrator, and Monitors.
 sim = simulator.Simulator(model=WC, connectivity=white_matter,
                           coupling=white_matter_coupling,
                           integrator=heunint, monitors=what_to_watch)
 
 sim.configure()
 
-#Perform the simulation
+# Run the simulation for 5500 miliseconds
 raw_data = []
 raw_time = []
-LOG.info("Starting simulation...")
 for raw in sim(simulation_length=5500):
     if raw is not None:
-        raw_time.append(raw[0][0])    # TODO:The first [0] is a hack for single monitor
-        raw_data.append(raw[0][1])    # TODO:The first [0] is a hack for single monitor
+        raw_time.append(raw[0][0]) 
+        raw_data.append(raw[0][1])
 
-
-#Make the list a numpy.array.
+# Convert data list to a numpy array
 RAW = numpy.array(raw_data)
+print RAW.shape
 
-#Save it
+# Save the array to a file for future use
 FILE_NAME = "wilson_cowan_brain_74_nodes.npy"
-LOG.info("Saving array to %s..." % FILE_NAME)
 numpy.save(FILE_NAME, RAW)
