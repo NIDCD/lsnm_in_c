@@ -34,27 +34,34 @@
 #   National Institutes of Health
 #
 #   This file (simulate_Wilson_Cowan_Brain_74_nodes.py) was created on 01/29/15,
-#   based on 'generate_region_demo_data by Stuart A. Knock (part of the
-#   The Virtual Brain team).
+#   based on 'generate_region_demo_data.py' by Stuart A. Knock 
 #
 #   This program makes use of The Virtual Brain library toolbox, downloaded
 #   from the TVB GitHub page.
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 29 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 30 2015  
 # **************************************************************************/
 #
-# simulate_Wilson_Cowan_Brain.74_nodes.py
+# simulate_Wilson_Cowan_Brain_74_nodes.py
 #
-# Simulates resting brain activity using Wilson Cowan units and 74 nodes.
+# Simulates resting brain activity using Wilson Cowan model and 74 nodes.
+# The activation of state variable E and I are collected at each time step
+# of the simulation and are written out to a data file that can be accessed
+# later.
+#
 
 from tvb.simulator.lab import *
 
-# Defines the population model to be used
+# Define the population model to be used and state variables to be collected
 WC = models.WilsonCowan(variables_of_interest=['E','I'])
 
-# Define which connectivity is going to be used and which parameters
+# Define which connectivity is going to be used (74-node brain from TVB demo
 white_matter = connectivity.Connectivity(load_default=True)
+
+# Define the transmission speed of white matter tracts (m/s)
 white_matter.speed = numpy.array([4.0])
+
+# Define the coupling function between white matter tracts and brain regions
 white_matter_coupling = coupling.Linear(a=0.033)
 
 # Define noise and integrator to be used
@@ -80,9 +87,11 @@ for raw in sim(simulation_length=5500):
         raw_data.append(raw[0][1])
 
 # Convert data list to a numpy array
-RAW = numpy.array(raw_data)
-print RAW.shape
+RawData = numpy.array(raw_data)
+
+# write output dimension to the console
+print RawData.shape
 
 # Save the array to a file for future use
 FILE_NAME = "wilson_cowan_brain_74_nodes.npy"
-numpy.save(FILE_NAME, RAW)
+numpy.save(FILE_NAME, RawData)

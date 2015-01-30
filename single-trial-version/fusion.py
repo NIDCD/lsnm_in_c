@@ -41,12 +41,15 @@
 #   
 #   Author: Antonio Ulloa
 #
-#   Last updated by Antonio Ulloa on January 24 2015  
+#   Last updated by Antonio Ulloa on January 30 2015  
 # **************************************************************************/
 
 # fusion.py
 #
-# loads a TVB network and uses it to provide inputs to an LSNM network
+# loads a TVB simulation of a 74-node brain and uses it to provide variability
+# to an LSNM visual model network. It runs a simulation of the LSNM visual
+# network and writes out neural activities for each LSNM node and -relevant-
+# TVB nodes. Plots output as well.
 
 from tvb.simulator.lab import *
 
@@ -63,36 +66,36 @@ import numpy as np
 import os
 
 ########## THE FOLLOWING SIMULATES TVB NETWORK'S #######################
-RAW = np.load("wilson_cowan_brain_74_nodes.npy")
+# The TVB Wilson Cowan simulation has been preprocessed and it is located
+# in an 'npy' data file. Thus, we just need to load that data file onto
+# a numpy array
+# The data file contains array of 3 dimensions as follows:
+# [state_variable_E, state_variable_I, node_number]
+RawData = np.load("wilson_cowan_brain_74_nodes.npy")
 
-print RAW.shape
+print RawData.shape
 
-# sample TVB RAW activity file to extract 220 data points
-RAW_internal = RAW[::81] # round(90112 / 1100) = 81
-RAW = RAW[::410]    # round(90112 / 220) = 410
+# sample TVB raw data array to extract 220 data points (for plotting only)
+RAW = RawData[::410]    # round(90112 / 220) = 410
+
+# sample TVB raw data array file to extract 1100 data points 
+RawData = RawData[::81] # round(90112 / 1100) = 81
 
 # print dimensions of raw activities output data files
 print RAW.shape
-print RAW_internal.shape
+print RawData.shape
 
 # we are only interested at the moment in examining area 72 (rV1) 
-RAW_internal = RAW_internal[:,:,72,0]
+RawData = RawData[:,:,72]
 
 # save activity of brain node 72 (rV1) in a data file
-np.savetxt("tvb_node.txt", RAW_internal, fmt='%10.5f')
+np.savetxt("tvb_node.txt", RawData, fmt='%10.5f')
 
 # now load white matter connectivity
 white_matter = connectivity.Connectivity(load_default=True)
 white_matter.configure()
 
-# scale weights so that maximum absolute value is 1
-white_matter.weights = white_matter.scaled_weights(mode='tract')
-
-print white_matter.weights[73]
-
 print white_matter.region_labels
-
-print white_matter.tract_lengths[73]
 
 ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
 # Define input file (i.e., network creation parameters)
