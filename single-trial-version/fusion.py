@@ -76,10 +76,10 @@ RawData = np.load("wilson_cowan_brain_74_nodes.npy")
 print RawData.shape
 
 # sample TVB raw data array to extract 220 data points (for plotting only)
-RAW = RawData[::410]    # round(90112 / 220) = 410
+RAW = RawData[::400]    # round(88000 / 220) = 400
 
 # sample TVB raw data array file to extract 1100 data points 
-RawData = RawData[::81] # round(90112 / 1100) = 81
+RawData = RawData[::80] # round(8800 / 1100) = 80
 
 # print dimensions of raw activities output data files
 print RAW.shape

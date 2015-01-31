@@ -34,7 +34,8 @@
 #   National Institutes of Health
 #
 #   This file (simulate_Wilson_Cowan_Brain_74_nodes.py) was created on 01/29/15,
-#   based on 'generate_region_demo_data.py' by Stuart A. Knock 
+#   based on 'generate_region_demo_data.py' by Stuart A. Knock and
+#            'region_deterministic_bnm_wc.py' by Paula Sanz-Leon
 #
 #   This program makes use of The Virtual Brain library toolbox, downloaded
 #   from the TVB GitHub page.
@@ -52,21 +53,36 @@
 
 from tvb.simulator.lab import *
 
-# Define the population model to be used and state variables to be collected
-WC = models.WilsonCowan(variables_of_interest=['E','I'])
+# white matter transmission speed in mm/ms
+speed = 4.0
 
-# Define which connectivity is going to be used (74-node brain from TVB demo
+# define length of simulation in ms
+simulation_length = 5500
+
+# define global coupling strength as in Sanz-Leon (2015) Neuroimage paper
+# figure 17 3rd column 3rd row
+global_coupling_strength = 0.0042
+
+# Define the population model to be used and state variables to be collected
+WC = models.WilsonCowan(variables_of_interest=['E','I'],
+                        c_ee=16, c_ei=12, c_ie=15, c_ii=3,
+                        tau_e=8, tau_i=8, a_e=1.3, a_i=2,
+                        b_e=4, b_i=3.7, P=1.25)
+
+# Define connectivity to be used (74 ROI matrix from TVB demo set)
 white_matter = connectivity.Connectivity(load_default=True)
 
-# Define the transmission speed of white matter tracts (m/s)
-white_matter.speed = numpy.array([4.0])
+# Define the transmission speed of white matter tracts (4 mm/ms)
+white_matter.speed = numpy.array([speed])
 
 # Define the coupling function between white matter tracts and brain regions
-white_matter_coupling = coupling.Linear(a=0.033)
+#white_matter_coupling = coupling.Linear(a=0.033)
+white_matter_coupling = coupling.Linear(a=global_coupling_strength)
 
 # Define noise and integrator to be used
-hiss = noise.Additive(nsig=numpy.array([2 ** -10, ]))
-heunint = integrators.HeunStochastic(dt=0.06103515625, noise=hiss) 
+#hiss = noise.Additive(nsig=numpy.array([2 ** -10, ]))
+#heunint = integrators.HeunStochastic(dt=0.06103515625, noise=hiss) 
+heunint = integrators.HeunDeterministic(dt=2**-4)
 
 # Define a monitor to be used (i.e., simulated data to be collected)
 what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
@@ -78,10 +94,10 @@ sim = simulator.Simulator(model=WC, connectivity=white_matter,
 
 sim.configure()
 
-# Run the simulation for 5500 miliseconds
+# Run the simulation
 raw_data = []
 raw_time = []
-for raw in sim(simulation_length=5500):
+for raw in sim(simulation_length=simulation_length):
     if raw is not None:
         raw_time.append(raw[0][0]) 
         raw_data.append(raw[0][1])
