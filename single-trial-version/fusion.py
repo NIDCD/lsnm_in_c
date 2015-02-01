@@ -102,7 +102,7 @@ print white_matter.region_labels
 network = 'pethi1'
 
 # Define simulation command
-cmd = 'bin/sim1' + ' ' + network
+cmd = 'bin/sim' + ' ' + network
 
 # Execute simulation
 os.system(cmd)

@@ -51,80 +51,6 @@
 #include "externs.h"
 #include "macros.h"
 
-extern FILE *buggy;
-    
-/**************************************************************
-       Activation Rule  SigAct
-    
-       Non-differential style sigmoid
-    
-       Sigmoid rule in which new activation is just sigmoid of
-       the (input - threshold).
-***************************************************************/
-    
-#define N_SIG_PARAMS 2
-    
-#define SIG_K_INDEX                        0
-#define SIG_THRESH_INDEX               1
-    
-#define SIG_K(nset)            SET_ParamVal(nset,SIG_K_INDEX)
-#define SIG_THRESH(nset)  SET_ParamVal(nset,SIG_THRESH_INDEX)
-    
-    
-/* The set parameter initilalization function*/
-    
-void SigInitParams(struct NodeSet *Nset) 
-{
-    
-  if(SET_ParamAddress(Nset) == NULL) 
-    {
-      SET_ParamAddress(Nset) =
-	(struct ParamStruct*)calloc(N_SIG_PARAMS,sizeof(*SET_ParamAddress(Nset)));
-      SET_NumParams(Nset) = N_SIG_PARAMS;
-      strcpy(SET_ParamName(Nset,SIG_K_INDEX),"k");
-      strcpy(SET_ParamName(Nset,SIG_THRESH_INDEX),"thresh");
-      SIG_K(Nset) = 10.0;
-      SIG_THRESH(Nset) = 0.5;
-    }
-}
-    
-/* Initilaization of the sigmoid activation function*/
-/* Call once at beginning*/
-    
-void SigActInit(struct NodeSet *Nset) 
-{
-    
-  struct NodeStruct *Nodeptr;
-    
-  SigInitParams(Nset);
-  for(int i=0; i<SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_OldAct(Nodeptr) = NODE_Act(Nodeptr);
-      NODE_SumAct(Nodeptr) = 0.0;
-      NODE_SumInput(Nodeptr) = 0.0;
-      NODE_SumExInput(Nodeptr) = 0.0;
-      NODE_SumInhInput(Nodeptr) = 0.0;
-    
-    }
-}
-    
-void SigAct(struct NodeSet *Nset) 
-{
-    
-  struct NodeStruct *Nodeptr;
-    
-  for(int i=0; i < SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_Act(Nodeptr) = SIGMOID((NODE_InputVal(Nodeptr,0) - SIG_THRESH(Nset)),SIG_K(Nset));
-      NODE_SumAct(Nodeptr) += NODE_Act(Nodeptr);
-      NODE_SumInput(Nodeptr) += fabs(NODE_InputVal(Nodeptr,0));
-      NODE_InputVal(Nodeptr,0) = 0.0;
-    }
-}
-    
-    
 /**************************************************************
        Activation Rule  DSigAct
     
@@ -215,81 +141,6 @@ void DSigAct(struct NodeSet *Nset)
 }
     
     
-/* ***********   LINEAR ACTIVATION RULE*/
- 
-#define N_LIN_PARAMS 4
-    
-#define DELTA_INDEX   0
-#define THRESH_INDEX   1
-#define DECAY_INDEX    2
-#define LIN_NOISE_INDEX 3
-    
-#define DELTA(nset)    SET_ParamVal(nset,DELTA_INDEX)
-#define THRESH(nset)      SET_ParamVal(nset,THRESH_INDEX)
-#define DECAY(nset)      SET_ParamVal(nset,DECAY_INDEX)
-#define LIN_NOISE(nset)      SET_ParamVal(nset,LIN_NOISE_INDEX)
-    
-    
-/* The set parameter initilalization function  */
-    
-void LinInitParams(struct NodeSet *Nset) 
-{
-  if(SET_ParamAddress(Nset) == NULL) 
-    {
-      SET_ParamAddress(Nset) =
-	(struct ParamStruct*)calloc(N_LIN_PARAMS,sizeof(*SET_ParamAddress(Nset)));
-      SET_NumParams(Nset) = N_LIN_PARAMS;
-      strcpy(SET_ParamName(Nset,DELTA_INDEX),"delta");
-      strcpy(SET_ParamName(Nset,THRESH_INDEX),"thresh");
-      strcpy(SET_ParamName(Nset,DECAY_INDEX),"decay");
-      strcpy(SET_ParamName(Nset,LIN_NOISE_INDEX),"noise");
-      DELTA(Nset) = 0.05;
-      THRESH(Nset) = 0.2;
-      DECAY(Nset) = 0.2;
-      LIN_NOISE(Nset) = 0.0;
-    }
-}
-    
-/* Initialization of the linear activation function*/
-/* Call once at beginning*/
-    
-void LinActInit(struct NodeSet *Nset) 
-{
-    
-  struct NodeStruct *Nodeptr;
-    
-  LinInitParams(Nset);
-  for(int i=0; i<SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_OldAct(Nodeptr) = NODE_Act(Nodeptr);
-      NODE_SumAct(Nodeptr) = 0.0;
-      NODE_SumInput(Nodeptr) = 0.0;
-      NODE_SumExInput(Nodeptr) = 0.0;
-      NODE_SumInhInput(Nodeptr) = 0.0;
-    
-    }
-}
-    
-      
-void LinearAct(struct NodeSet *Nset) 
-{
-  struct NodeStruct *Nodeptr;
-  float noise;
-    
-  for(int i=0; i < SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      noise = (float)drand48() - 0.5;
-      noise =  noise * LIN_NOISE(Nset);
-      NODE_Act(Nodeptr) -= DECAY(Nset)*NODE_Act(Nodeptr);
-      NODE_Act(Nodeptr) += DELTA(Nset)*(NODE_InputVal(Nodeptr,0)-THRESH(Nset)+noise);
-      NODE_SumAct(Nodeptr) += NODE_Act(Nodeptr);
-      NODE_SumInput(Nodeptr) += fabs(NODE_InputVal(Nodeptr,0));
-      NODE_InputVal(Nodeptr,0) = 0.0;
-    }
-}
-    
 /********* TVB activation matrix ****************/
 #define TVB_PARAMS 0
 
@@ -332,8 +183,8 @@ void TvbAct(struct NodeSet *Nset)
   for(int i=0; i < SET_NumNodes(Nset); i++) 
     {
       Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_Act(Nodeptr) += 0.0;
-      NODE_SumAct(Nodeptr) += NODE_Act(Nodeptr);
+      NODE_Act(Nodeptr) = 0.0;
+      NODE_SumAct(Nodeptr) = NODE_Act(Nodeptr);
       NODE_SumInput(Nodeptr) += fabs(NODE_InputVal(Nodeptr,0));
       NODE_InputVal(Nodeptr,0) = 0.0;
     }
@@ -404,84 +255,3 @@ void ClampAct(struct NodeSet *Nset)
       NODE_InputVal(Nodeptr,0) = 0.0;
     }
 }
-
-
-/* *********** SHIFT Activation Rule: 
-               Just shifts the clamped activation by DX every DELTA iterations */
-/*             Useful for learning invariance os position of an object   */
-
-#define N_SHIFT_PARAMS 2
-
-#define S_DELTA_INDEX   0
-#define S_DX_INDEX   1
-
-#define S_DELTA(nset)   SET_ParamVal(nset,S_DELTA_INDEX)
-#define S_DX(nset)      SET_ParamVal(nset,S_DX_INDEX)
-
-
-/* The set parameter initilalization function*/
-
-void ShiftInitParams(struct NodeSet *Nset) 
-{
-
-  if(SET_ParamAddress(Nset) == NULL) 
-    {
-      SET_ParamAddress(Nset) =
-	(struct ParamStruct*)calloc(N_SHIFT_PARAMS,sizeof(*SET_ParamAddress(Nset)));
-      SET_NumParams(Nset) = N_SHIFT_PARAMS;
-      strcpy(SET_ParamName(Nset,S_DELTA_INDEX),"Delta");
-      strcpy(SET_ParamName(Nset,S_DX_INDEX),"Dx");
-      S_DELTA(Nset) = 100.0;
-      S_DX(Nset) = 1.0;
-    }
-}
-
-/* Initialization of the Shift activation function*/
-/* Call once at beginning*/
-
-void ShiftActInit(struct NodeSet *Nset) 
-{
-
-  struct NodeStruct *Nodeptr;
-
-  ShiftInitParams(Nset);
-  for(int i=0; i<SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_OldAct(Nodeptr) = NODE_Act(Nodeptr);
-      NODE_SumAct(Nodeptr) = 0.0;
-      NODE_SumInput(Nodeptr) = 0.0;
-      NODE_SumExInput(Nodeptr) = 0.0;
-      NODE_SumInhInput(Nodeptr) = 0.0;
-      
-    }
-}
-
-
-void Shift_activation(struct NodeSet *Nset)
-
-{
-  struct NodeStruct *Nodeptr;
-  int	i, j;
-
-  
-  if(Cur_Iter%(int)S_DELTA(Nset))
-    return;
-  /* First collect current activations into each node's input holder */
-  for(i=0; i < SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      j = (int)(i+S_DX(Nset))%SET_NumNodes(Nset);
-      NODE_InputVal(Nodeptr,0) = NODE_Act(SET_NodeAddress(Nset,j));
-    }
-  /* Then set activations to the inputs and reset inputs */
-  for(i=0; i < SET_NumNodes(Nset); i++) 
-    {
-      Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_Act(Nodeptr) = NODE_InputVal(Nodeptr,0);
-      NODE_InputVal(Nodeptr,0) = 0.0;
-    }
-  return;
-}
-
-

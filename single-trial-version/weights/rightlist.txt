@@ -107,5 +107,5 @@
 
 % TMP #include weights/exss.wt	%  Learned feedback weights to IT from V4
 
-#include weights/lv1ev1h.w
-#include weights/lv1ev1v.w
+#include weights/env1ev1h.w
+#include weights/env1ev1v.w

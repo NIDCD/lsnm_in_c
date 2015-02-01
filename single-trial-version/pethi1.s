@@ -329,7 +329,7 @@ set(AttV,1)
 set(ENV1, 1)
   {
     Write 5
-    Actrule:	 TVB
+    Actrule: TVB
     OutputRule:	 SumOut
 	
     Node Activation {All 0.3}
@@ -339,7 +339,7 @@ set(ENV1, 1)
 set(INV1, 1)
   {
     Write 5
-    Actrule:TVB
+    Actrule: TVB
     OutputRule:	 SumOut
 
     Node Activation {All 0.3}	
