@@ -40,7 +40,7 @@
 #   This program makes use of The Virtual Brain library toolbox, downloaded
 #   from the TVB GitHub page.
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 30 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 31 2015  
 # **************************************************************************/
 #
 # simulate_Wilson_Cowan_Brain_74_nodes.py
@@ -64,6 +64,8 @@ simulation_length = 5500
 global_coupling_strength = 0.0042
 
 # Define the population model to be used and state variables to be collected
+# the parameters are same as those used by Sanz-Leon (2015) Neuroimage article,
+# as shown in table 11 case 'c'
 WC = models.WilsonCowan(variables_of_interest=['E','I'],
                         c_ee=16, c_ei=12, c_ie=15, c_ii=3,
                         tau_e=8, tau_i=8, a_e=1.3, a_i=2,

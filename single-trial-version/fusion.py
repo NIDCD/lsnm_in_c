@@ -69,8 +69,8 @@ import os
 # The TVB Wilson Cowan simulation has been preprocessed and it is located
 # in an 'npy' data file. Thus, we just need to load that data file onto
 # a numpy array
-# The data file contains array of 3 dimensions as follows:
-# [state_variable_E, state_variable_I, node_number]
+# The data file contains an array of 5 dimensions as follows:
+# [timestep, state_variable_E, state_variable_I, node_number, mode]
 RawData = np.load("wilson_cowan_brain_74_nodes.npy")
 
 print RawData.shape
