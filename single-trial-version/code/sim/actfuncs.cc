@@ -51,6 +51,8 @@
 #include "externs.h"
 #include "macros.h"
 
+extern float tvb_v1[1100][2];
+
 /**************************************************************
        Activation Rule  DSigAct
     
@@ -179,11 +181,11 @@ void TvbAct(struct NodeSet *Nset)
 {
 
   struct NodeStruct *Nodeptr;
-
+  
   for(int i=0; i < SET_NumNodes(Nset); i++) 
     {
       Nodeptr = SET_NodeAddress(Nset,i);
-      NODE_Act(Nodeptr) = 0.0;
+      NODE_Act(Nodeptr) = tvb_v1[Cur_Iter][0];
       NODE_SumAct(Nodeptr) = NODE_Act(Nodeptr);
       NODE_SumInput(Nodeptr) += fabs(NODE_InputVal(Nodeptr,0));
       NODE_InputVal(Nodeptr,0) = 0.0;

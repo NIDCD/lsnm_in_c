@@ -36,10 +36,11 @@
    This file (simulate.cc) was last modified on January 18, 2015.
 
 
-   Author: Malle Tagamets, last updated by Antonio Ulloa on January 18 2015  
+   Author: Malle Tagamets, last updated by Antonio Ulloa on February 1 2015  
 * *************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
@@ -50,6 +51,7 @@
 #include "simproto.h"
 #include "macros.h"
 
+float tvb_v1[1100][2];
 
 //                   SIMULATE
 //              Run the simulation
@@ -59,17 +61,34 @@
 
 int simulate(HWND TheWind, FILE *out_fd)
 
-
 {
-   int      iteration, j, n_written;
+
+   int iteration, j, n_written;
+
+   FILE *tvb_nodes;
+
+   float excitatory, inhibitory;
+
    DisplayInit(TheWind);
    WriteHeader(out_fd);
+
+   tvb_nodes = fopen ("tvb_node.txt", "r");
+   if (tvb_nodes!=NULL) {
+      for(j=0; j<1100; j++) {
+         fscanf(tvb_nodes, "%f %f", &excitatory, &inhibitory);
+	 tvb_v1[j][0]= excitatory;
+         tvb_v1[j][1]=inhibitory;
+      }
+   fclose (tvb_nodes);
+   } else
+     fprintf(stderr, "Cannot write read from tvb_node.txt");
+
    for(j=0; j<N_Sets; j++)  {
      if(Set[j]->InitSet && SET_NumNodes(Set[j]) > 0)
        Set[j]->InitSet(Set[j]);
    }
    for(iteration=1; iteration<=N_Iter; iteration++)   {
-     for(j=0; j<N_Sets; j++)   {
+      for(j=0; j<N_Sets; j++)   {
        if(Set[j]->OutputRule && SET_NumNodes(Set[j]) > 0)
        Set[j]->OutputRule(Set[j]);
       }
@@ -105,6 +124,7 @@ int simulate(HWND TheWind, FILE *out_fd)
        if(Set[j]->WriteWts > 0)
           WriteWts(out_fd, Tot_Iter+iteration, Set[j]);
       }
+   Cur_Iter++;
    }
    Tot_Iter += N_Iter;
    printf("\nTotal number of iterations was %d\n", Tot_Iter);
