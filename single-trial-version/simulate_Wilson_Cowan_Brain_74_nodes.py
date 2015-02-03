@@ -78,12 +78,9 @@ white_matter = connectivity.Connectivity(load_default=True)
 white_matter.speed = numpy.array([speed])
 
 # Define the coupling function between white matter tracts and brain regions
-#white_matter_coupling = coupling.Linear(a=0.033)
 white_matter_coupling = coupling.Linear(a=global_coupling_strength)
 
 # Define noise and integrator to be used
-#hiss = noise.Additive(nsig=numpy.array([2 ** -10, ]))
-#heunint = integrators.HeunStochastic(dt=0.06103515625, noise=hiss) 
 heunint = integrators.HeunDeterministic(dt=2**-4)
 
 # Define a monitor to be used (i.e., simulated data to be collected)
