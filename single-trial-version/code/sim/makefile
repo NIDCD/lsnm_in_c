@@ -55,7 +55,7 @@ parse.o:	win.h simdefs.h simproto.h parse.cc
 actfuncs.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h actfuncs.cc
 	$(CC) -c 	actfuncs.cc
 init.o:		win.h simdefs.h macros.h classdef.h externs.h simproto.h init.cc
-	$(CC) -c 		init.cc
+	$(CC) -c 	init.cc
 messages.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h messages.cc
 	$(CC) -c 	messages.cc
 outfuncs.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h outfuncs.cc

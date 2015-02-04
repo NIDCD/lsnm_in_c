@@ -4,7 +4,7 @@
 // Define Basic Message functions
 
 int Errmsg(char *str) {
-  return(MessageBox(NULL, str, NULL, MB_OKCANCEL));
+  return(MessageBox(NULL, str, "", MB_OKCANCEL));
 }
 
 void Message(char *str1, char *str2) {

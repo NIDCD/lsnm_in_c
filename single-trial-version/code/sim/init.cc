@@ -261,8 +261,7 @@ int init(HWND ThisWind, FILE *ifd, FILE *ofd)
 	      if(ofd != NULL) 
 		{
 		  /* Need a function called "status" here*/
-		  sprintf(MsgStr, "Run: %d\n", N_Iter);
-		  fprintf(stderr, MsgStr);
+		  printf("Run: %d\n", N_Iter);
 		  simulate(ThisWind, ofd);
 		}
 	      else 

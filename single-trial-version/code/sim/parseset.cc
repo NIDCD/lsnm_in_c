@@ -462,7 +462,7 @@ int parseSet(FILE *ifd)
 	    {
 	      sprintf(MsgStr,
 		      "Unexpected EOF parsing parameter, line %d",
-		      sname, n_line);
+		      n_line);
 	      Errmsg(MsgStr);
 	      return(ENDFILE);
 	    }
