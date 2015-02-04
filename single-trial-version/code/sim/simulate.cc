@@ -36,7 +36,7 @@
    This file (simulate.cc) was last modified on January 18, 2015.
 
 
-   Author: Malle Tagamets, last updated by Antonio Ulloa on February 1 2015  
+   Author: Malle Tagamets, last updated by Antonio Ulloa on February 4 2015  
 * *************************************************************************/
 
 #include <stdio.h>
@@ -72,62 +72,78 @@ int simulate(HWND TheWind, FILE *out_fd)
    DisplayInit(TheWind);
    WriteHeader(out_fd);
 
+   // the following dumps a TVB file of neural activations into an LSNM array
+   // so that we can use it in our LSNM simulation
    tvb_nodes = fopen ("tvb_node.txt", "r");
    if (tvb_nodes!=NULL) {
       for(j=0; j<1100; j++) {
          fscanf(tvb_nodes, "%f %f", &excitatory, &inhibitory);
-	 tvb_v1[j][0]= excitatory;
-         tvb_v1[j][1]=inhibitory;
+	 tvb_v1[j][0]=0; //excitatory;
+	 tvb_v1[j][1]=0; //inhibitory;
       }
    fclose (tvb_nodes);
    } else
-     fprintf(stderr, "Cannot write read from tvb_node.txt");
+     fprintf(stderr, "Cannot read from tvb_node.txt");
 
+   // the following initializes all nodes in the network
    for(j=0; j<N_Sets; j++)  {
      if(Set[j]->InitSet && SET_NumNodes(Set[j]) > 0)
        Set[j]->InitSet(Set[j]);
    }
+
+   // the following runs a simulation for N_iter number of iterations
    for(iteration=1; iteration<=N_Iter; iteration++)   {
-      for(j=0; j<N_Sets; j++)   {
+
+     for(j=0; j<N_Sets; j++)   {
        if(Set[j]->OutputRule && SET_NumNodes(Set[j]) > 0)
        Set[j]->OutputRule(Set[j]);
-      }
-      for(j=0; j<N_Sets; j++)        {
-       if(Set[j]->InputRule && SET_NumNodes(Set[j]) > 0)
-          Set[j]->InputRule(Set[j]);
-      }
-      for(j=0; j<N_Sets; j++) {
-       if(Set[j]->ActRule && SET_NumNodes(Set[j]) > 0)
-          Set[j]->ActRule(Set[j]);
-      }
-      for(j=0; j<N_Sets; j++)   {
-       if(Set[j]->Update && SET_NumNodes(Set[j]) > 0)
-          Set[j]->Update(Set[j]);
-      }
-      for(j=0; j<N_Sets; j++)   {
-       if(Set[j]->LearnRule && SET_NumNodes(Set[j]) > 0)
-          Set[j]->LearnRule(Set[j]);
-      }
-      if(WritePet > 0) {
-       if((Tot_Iter+iteration)%WritePet == 0)
-	      WritePET(Pet_fs);
-      }
-	  if(WriteAbsPet > 0) {
-       if((Tot_Iter+iteration)%WriteAbsPet == 0)
-	      Write_APET(Pet_fs);
-      }
+     }
 
-      n_written = 0;
-      for(j=0; j<N_Sets; j++)     {
+     for(j=0; j<N_Sets; j++)        {
+       if(Set[j]->InputRule && SET_NumNodes(Set[j]) > 0)
+	 Set[j]->InputRule(Set[j]);
+     }
+
+     for(j=0; j<N_Sets; j++) {
+       if(Set[j]->ActRule && SET_NumNodes(Set[j]) > 0)
+	 Set[j]->ActRule(Set[j]);
+     }
+
+     for(j=0; j<N_Sets; j++)   {
+       if(Set[j]->Update && SET_NumNodes(Set[j]) > 0)
+	 Set[j]->Update(Set[j]);
+     }
+
+     // the following writes neural activity (PET format) to a single file
+     // useful for later computing PET and/or fMRI BOLD 
+     if(WritePet > 0) {
+       if((Tot_Iter+iteration)%WritePet == 0)
+	 WritePET(Pet_fs);
+     }
+     if(WriteAbsPet > 0) {
+       if((Tot_Iter+iteration)%WriteAbsPet == 0)
+	 Write_APET(Pet_fs);
+     }
+     
+     // the following writes out neural activity to separate files, one
+     // file per module/sub-module
+     // But note that only those module that the WriteOut flag ON will
+     // be written out.
+     n_written = 0;
+     for(j=0; j<N_Sets; j++)     {
        if(Set[j]->WriteOut > 0)
-          n_written += WriteSet_Matlab(out_fd, Tot_Iter+iteration, Set[j]);
+	 n_written += WriteSet_Matlab(out_fd, Tot_Iter+iteration, Set[j]);
        if(Set[j]->WriteWts > 0)
-          WriteWts(out_fd, Tot_Iter+iteration, Set[j]);
-      }
-   Cur_Iter++;
+	 WriteWts(out_fd, Tot_Iter+iteration, Set[j]);
+     }
+
+     // the following global variable keep track of the total number of
+     // iteration, i.e, time steps
+     Cur_Iter++;
    }
+
    Tot_Iter += N_Iter;
    printf("\nTotal number of iterations was %d\n", Tot_Iter);
-
+   
    return(1);
 }
