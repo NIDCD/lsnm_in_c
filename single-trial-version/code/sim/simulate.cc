@@ -91,12 +91,11 @@ int simulate(HWND TheWind, FILE *out_fd)
    // the following runs a simulation for N_iter number of iterations
    for(iteration=1; iteration<=N_Iter; iteration++)   {
 
-     // The following propagates neural activity to post-synaptic nodes using
-     // connecting weights provided
+     // The following computes sum of excitatory and sum of inhibitory activities
+     // in destination nodes using source nodes and connecting weights provided
      for(j=0; j<N_Sets; j++)   {
        if(Set[j]->OutputRule && SET_NumNodes(Set[j]) > 0)
-       Set[j]->OutputRule(Set[j]);
-       
+       Set[j]->OutputRule(Set[j]);      
      }
 
      // The following updates neural activity in all nodes using Wilson-Cowan

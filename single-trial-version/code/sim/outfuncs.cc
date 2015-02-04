@@ -33,10 +33,12 @@
    National Institute on Deafness and Other Communication Disorders
    National Institutes of Health
 
-   This file (outfuncs.cc) was last modified on January 18, 2015.
+   This file (outfuncs.cc) computes sum of excitatory inputs and sum of inhibitory
+   inputs at each (destination) node in the network using connecting weights provided
 
 
-   Author: Malle Tagamets  
+   Author: Malle Tagamets 
+   Last updated by Antonio Ulloa on February 4 2015 
 * *************************************************************************/
 
 #include "win.h"
