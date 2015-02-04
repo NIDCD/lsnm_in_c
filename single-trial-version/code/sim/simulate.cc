@@ -51,11 +51,14 @@
 #include "simproto.h"
 #include "macros.h"
 
-float tvb_v1[1100][2];
+// Declare a matrix where the neural activities from the TVB simulation
+// will be stored.
+float tvb_v1[1100][2]; 
 
+/***************************************************************/
 //                   SIMULATE
 //              Run the simulation
-
+//
 /***************************************************************/
 
 
@@ -85,33 +88,21 @@ int simulate(HWND TheWind, FILE *out_fd)
    } else
      fprintf(stderr, "Cannot read from tvb_node.txt");
 
-   // the following initializes all nodes in the network
-   for(j=0; j<N_Sets; j++)  {
-     if(Set[j]->InitSet && SET_NumNodes(Set[j]) > 0)
-       Set[j]->InitSet(Set[j]);
-   }
-
    // the following runs a simulation for N_iter number of iterations
    for(iteration=1; iteration<=N_Iter; iteration++)   {
 
+     // The following propagates neural activity to post-synaptic nodes using
+     // connecting weights provided
      for(j=0; j<N_Sets; j++)   {
        if(Set[j]->OutputRule && SET_NumNodes(Set[j]) > 0)
        Set[j]->OutputRule(Set[j]);
+       
      }
 
-     for(j=0; j<N_Sets; j++)        {
-       if(Set[j]->InputRule && SET_NumNodes(Set[j]) > 0)
-	 Set[j]->InputRule(Set[j]);
-     }
-
+     // The following updates neural activity in all nodes using Wilson-Cowan
      for(j=0; j<N_Sets; j++) {
        if(Set[j]->ActRule && SET_NumNodes(Set[j]) > 0)
 	 Set[j]->ActRule(Set[j]);
-     }
-
-     for(j=0; j<N_Sets; j++)   {
-       if(Set[j]->Update && SET_NumNodes(Set[j]) > 0)
-	 Set[j]->Update(Set[j]);
      }
 
      // the following writes neural activity (PET format) to a single file

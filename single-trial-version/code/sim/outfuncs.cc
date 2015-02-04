@@ -52,7 +52,7 @@ void SumOut(struct NodeSet *Nset) {
   TWeightClass *Weightptr;
   int      j;
   float       output;
-
+  
   for(int i=0; i < SET_NumNodes(Nset); i++) {
     Sourcenode = SET_NodeAddress(Nset,i);
     j = 0;
@@ -64,9 +64,9 @@ void SumOut(struct NodeSet *Nset) {
       // Sum up excitatory and inhibitory outputs separately at
       // the destination node
       if(output > 0.0)
-      NODE_SumExInput(Destnode) += output;
+	NODE_SumExInput(Destnode) += output;
       else
-    NODE_SumInhInput(Destnode) += output;
+	NODE_SumInhInput(Destnode) += output;
       j++;
     }
   }
