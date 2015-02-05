@@ -100,6 +100,9 @@ struct VarStruct {
 };
 
 // Define a structure for a module or "set of nodes"
+// please note that the list of nodes in the struct
+// grows dynamically and will be accessed as if it was
+// an array
 struct NodeSet
 {
   char SetName[SET_NAME_SIZE];
