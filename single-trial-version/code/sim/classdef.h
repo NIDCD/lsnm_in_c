@@ -43,6 +43,7 @@
 
 #include <stdio.h>
 
+// define a structure for each connecting weight
 struct WeightStruct {
   int        LearnOn;
   struct NodeSet *Set;
@@ -51,6 +52,7 @@ struct WeightStruct {
   float WtVar;
 };
 
+// put all weights together in a single class
 _CLASSDEF(TWeightClass)
 class TWeightClass
 {
@@ -65,26 +67,26 @@ public:
 
 };
 
-
+// Define a structure for each node or unit in the model
 struct NodeStruct {
-   int     Index;
+  int     Index;
   float   Act;
-    float   OldAct;
- float   MaxAct;
- float   SumAct;
- float   SumInput;
-       float   SumExInput;
-     float   SumInhInput;
-    float   SumWeight;
-      float   Receptor;
-       int     Phase;
+  float   OldAct;
+  float   MaxAct;
+  float   SumAct;
+  float   SumInput;
+  float   SumExInput;
+  float   SumInhInput;
+  float   SumWeight;
+  float   Receptor;
+  int     Phase;
   float   Output;
- float   Input;
+  float   Input;
   float   *InputPtr;
-      float   *AltInputPtr;
-   TWeightClass *InWt;
-     TWeightClass *OutWt;
-    TWeightClass *AltWt;
+  float   *AltInputPtr;
+  TWeightClass *InWt;
+  TWeightClass *OutWt;
+  TWeightClass *AltWt;
 };
 
 struct ParamStruct {
@@ -97,6 +99,7 @@ struct VarStruct {
   float     *Value;
 };
 
+// Define a structure for a module or "set of nodes"
 struct NodeSet
 {
   char SetName[SET_NAME_SIZE];
