@@ -1,25 +1,25 @@
-Atts 1 clamp 0 0 0 0 0 0
-ECtl 81 wilson_cowan 0.3 0.5 0.5 9.0 0.2 0.2
-ICtl 81 wilson_cowan 0.1 0.5 0.5 20.0 0.2 0.2
-LGNs 81 clamp 0 0 0 0 0 0.01
-EV1h 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IV1h 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EV1v 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IV1v 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EV4c 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IV4c 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EV4h 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IV4h 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EV4v 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IV4v 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-ExSs 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.5
-InSs 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-ExFs 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-InFs 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EFD1 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IFD1 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-EFD2 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-IFD2 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-ExFR 81 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
-InFR 81 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-AttV 1 clamp 0 0 0 0 0 1.0
+Atts 1 1 clamp 0 0 0 0 0 0
+ECtl 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.2 0.2
+ICtl 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.2 0.2
+LGNs 9 9 clamp 0 0 0 0 0 0.01
+EV1h 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IV1h 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EV1v 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IV1v 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EV4c 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IV4c 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EV4h 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IV4h 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EV4v 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IV4v 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+ExSs 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.5
+InSs 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+ExFs 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+InFs 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EFD1 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IFD1 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+EFD2 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+IFD2 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+ExFR 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
+InFR 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
+AttV 1 1 clamp 0 0 0 0 0 1.0

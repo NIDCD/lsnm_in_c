@@ -47,22 +47,46 @@
 # First, assign the name of the input file
 input_file = 'model.txt'
 
-# create a list with labels to be used as indexes
-index = ['module_name', 'num_units', 'act_rule', 'threshold', 'delta', 'decay', 'K', 'noise', 'init_value']
+# create labels to be used as indexes, thus avoiding the use of a
+# python dictionary
+module_name = 0
+x_dim = 1
+y_dim = 2
+activation_rule = 3
+threshold = 4
+delta = 5
+decay = 6
+K = 7
+noise = 8
+initial_value = 9
 
 # initialize an empty list to keep ALL of the modules of the neural network
 modules = []
 
-# open the file with module declarations
+# open the file containing module declarations
 f = open(input_file, 'r')
 
 # load the file into a python list of lists
 modules = [line.split() for line in f.readlines()]
 
-# add a list of nodes belongig to each module in the list, using the number of nodes specified
-# in the input file (num_units) and initializing those nodes to 'init_value'
+# convert ALL module dimensions into integers
 for module in modules:
-    module.append([float(module[8])] * int(module[1]))
+    module[x_dim] = int(module[x_dim])
+    module[y_dim] = int(module[y_dim])
+
+# convert ALL parameters in the list of lists into float
+for module in modules:
+    module[threshold] = float(module[threshold])
+    module[delta] = float(module[delta])
+    module[decay] = float(module[decay])
+    module[K] = float(module[K])
+    module[noise] = float(module[noise])
+    module[initial_value] = float(module[initial_value])
+
+# add a list of nodes belonging to each module in the list, using the module dimensions specified
+# in the input file (x_dim * y_dim) and initializing those nodes to 'initial_value'
+for module in modules:
+    module.append([[[float(module[initial_value])] * int(module[x_dim])] * int(module[y_dim])])
 
 print modules
 
