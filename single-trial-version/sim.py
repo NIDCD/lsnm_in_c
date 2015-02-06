@@ -44,18 +44,29 @@
 # Simulates delayed match-to-sample experiment using Wilson-Cowan neuronal
 # population model.
 
+# First, assign the name of the input file
 input_file = 'model.txt'
 
-list_of_modules = []
+# create a list with labels to be used as indexes
+index = ['module_name', 'num_units', 'act_rule', 'threshold', 'delta', 'decay', 'K', 'noise', 'init_value']
 
+# initialize an empty list to keep ALL of the modules of the neural network
+modules = []
+
+# open the file with module declarations
 f = open(input_file, 'r')
 
-list_of_modules = [line.split() for line in f.readlines()]
+# load the file into a python list of lists
+modules = [line.split() for line in f.readlines()]
 
-print list_of_modules
+# add a list of nodes belongig to each module in the list, using the number of nodes specified
+# in the input file (num_units) and initializing those nodes to 'init_value'
+for module in modules:
+    module.append([float(module[8])] * int(module[1]))
 
-print len(list_of_modules)
+print modules
 
+# close our input file
 f.close()
 
 
