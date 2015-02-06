@@ -1,11 +1,7 @@
-
 #include weights/attsefd2.w
 #include weights/attvatts.w
 
-
 % Begin self-connections
-
-%#include weights/rightetoe.txt
 
 #include weights/ev1hev1h.w
 #include weights/ev1vev1v.w

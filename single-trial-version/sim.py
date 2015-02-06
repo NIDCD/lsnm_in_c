@@ -46,6 +46,7 @@
 
 # First, assign the name of the input file
 model = 'model.txt'
+weights = 'weights.txt'
 
 # create labels to be used as indexes to information about each module, thus
 # avoiding the use of a python dictionary
