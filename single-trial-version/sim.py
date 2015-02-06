@@ -36,7 +36,7 @@
 #   This file (sim.py) was created on February 5, 2015.
 #
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on February 5 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on February 6 2015  
 # **************************************************************************/
 
 # sim.py
@@ -45,10 +45,10 @@
 # population model.
 
 # First, assign the name of the input file
-input_file = 'model.txt'
+model = 'model.txt'
 
-# create labels to be used as indexes, thus avoiding the use of a
-# python dictionary
+# create labels to be used as indexes to information about each module, thus
+# avoiding the use of a python dictionary
 module_name = 0
 x_dim = 1
 y_dim = 2
@@ -59,22 +59,28 @@ decay = 6
 K = 7
 noise = 8
 initial_value = 9
+unit_matrix = 10
 
-# initialize an empty list to keep ALL of the modules of the neural network
+# initialize an empty list to store ALL of the modules of the neural network
 modules = []
 
-# open the file containing module declarations
-f = open(input_file, 'r')
+# open the input file containing module declarations (i.e., the 'model')
+f = open(model, 'r')
 
-# load the file into a python list of lists
-modules = [line.split() for line in f.readlines()]
-
-# convert ALL module dimensions into integers
+# load the file into a python list of lists and close file safely
+try: 
+    modules = [line.split() for line in f.readlines()]
+finally:
+    f.close()
+    
+# convert ALL module dimensions to integers since we will need those numbers
+# later
 for module in modules:
     module[x_dim] = int(module[x_dim])
     module[y_dim] = int(module[y_dim])
 
-# convert ALL parameters in the list of lists into float
+# convert ALL parameters in the modules to float since we will need to use those
+# to solve Wilson-Cowan equations
 for module in modules:
     module[threshold] = float(module[threshold])
     module[delta] = float(module[delta])
@@ -83,15 +89,22 @@ for module in modules:
     module[noise] = float(module[noise])
     module[initial_value] = float(module[initial_value])
 
-# add a list of nodes belonging to each module in the list, using the module dimensions specified
-# in the input file (x_dim * y_dim) and initializing those nodes to 'initial_value'
+# add a list of units to each module, using the module dimensions specified
+# in the input file (x_dim * y_dim) and initialize all units in each module to 'initial_value'
 for module in modules:
-    module.append([[[float(module[initial_value])] * int(module[x_dim])] * int(module[y_dim])])
+    module.append([[[module[initial_value]] * module[x_dim]] * module[y_dim]])
 
-print modules
+# now convert each unit value into a list that contains: current neural activity,
+# sum of inhibitory inputs, sum of excitatory inputs, and a list of weights to other
+# units
+for module in modules:
+    for matrix in module[unit_matrix]:
+        for row in matrix:
+            for unit in row:
+                unit = [unit, 0, 0, [0, '', 0, 0]]
 
-# close our input file
-f.close()
+# now read weights from weight files and assign it to weight list of each unit in
+# each module
 
 
 
