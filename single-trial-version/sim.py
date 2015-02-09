@@ -44,9 +44,11 @@
 # Simulates delayed match-to-sample experiment using Wilson-Cowan neuronal
 # population model.
 
+import re
+
 # First, assign the name of the input file
 model = 'model.txt'
-weights = 'weights.txt'
+weights_list = 'weights/weightslist.txt'
 
 # create labels to be used as indexes to information about each module, thus
 # avoiding the use of a python dictionary
@@ -65,12 +67,11 @@ unit_matrix = 10
 # initialize an empty list to store ALL of the modules of the neural network
 modules = []
 
-# open the input file containing module declarations (i.e., the 'model')
-f = open(model, 'r')
-
+# open the input file containing module declarations (i.e., the 'model'), then
 # load the file into a python list of lists and close file safely
+f = open(model, 'r')
 try: 
-    modules = [line.split() for line in f.readlines()]
+    modules = [line.split() for line in f]
 finally:
     f.close()
     
@@ -104,8 +105,34 @@ for module in modules:
             for unit in row:
                 unit = [unit, 0, 0, [0, '', 0, 0]]
 
-# now read weights from weight files and assign it to weight list of each unit in
-# each module
+# read file that contains list of weight files, store the list of files in a python list,
+# and close the file safely
+f = open(weights_list, 'r')
+try:
+    weight_files = [line.strip() for line in f]
+finally:
+    f.close()
 
+# open each weight file in the list of weight files and transfer weights from those files to
+# each unit in the module list
+# Note: file f is closed automatically at the end of 'with' since block 'with' is a context manager
+# for file I/O)
+for file in weight_files:
+    with open(file) as f:
+        # read the whole file and store it in a string
+        whole_thing = f.read()
+        
+        # find what is connected to what
+        module_connection = re.search(r'Connect\((.+?),(.+?)\)', whole_thing)
 
+        # get rid of what spaces from origin and destination modules
+        origin_module = module_connection.group(1).strip()
+        destination_module = module_connection.group(2).strip()
 
+        # find a list of origin units which connect to units in other modules
+        origin_units = re.findall(r'From:\s*\((.+?), (.+?)\)', whole_thing)
+
+        # find a list of destination units for each origin unit obtained above
+        destination_units = re.findall(r'\(\[(.+?), (.+?)\]  (\d+\.\d+)\)', whole_thing)
+        
+        print origin_units, destination_units

@@ -81,8 +81,8 @@ int simulate(HWND TheWind, FILE *out_fd)
    if (tvb_nodes!=NULL) {
       for(j=0; j<1100; j++) {
          fscanf(tvb_nodes, "%f %f", &excitatory, &inhibitory);
-	 tvb_v1[j][0]=0; //excitatory;
-	 tvb_v1[j][1]=0; //inhibitory;
+	 tvb_v1[j][0]=0; // insert variable 'excitatory';
+	 tvb_v1[j][1]=0; // insert variable 'inhibitory';
       }
    fclose (tvb_nodes);
    } else
