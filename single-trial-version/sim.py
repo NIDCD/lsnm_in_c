@@ -110,6 +110,10 @@ try:
 finally:
     f.close()
 
+# build a dictionary of replacements for parsing the weight files
+replacements = {'Connect': '', 'From:': '', '(':'[', ')':'],', '{':'[', '}':'],', '|':'',
+                '],]':']]'}
+
 # open each weight file in the list of weight files, one by one, and transfer weights
 # from those files to each unit in the module list
 # Note: file f is closed automatically at the end of 'with' since block 'with' is a
@@ -126,18 +130,21 @@ for file in weight_files:
         origin_module = module_connection.group(1).strip()
         destination_module = module_connection.group(2).strip()
 
-        # extract a list of origin units which connect to units in other modules
+        # extract a list of origin units that connect to destinatin units in other modules
         origin_units = re.findall(r'From:\s*\((.+?), (.+?)\)', whole_thing)
         
         # extract a list of destination units and weights for each origin unit
         # obtained above
         destination_units = re.findall(r'\(\s*\[(.+?), (.+?)\]\s*([+-]?\d+\.\d+)\)', whole_thing)
-
+        
+        # print origin_units, destination_units
+        
         # adjust origin units coordinates given in weight files to Python indexes
         # (start at 0) and convert to integer
         origin_unit_x = int(origin_units[0][0])-1
         origin_unit_y = int(origin_units[0][1])-1
 
+            
         # convert destination unit list from list of tuples to list of lists
         dest_units = [list(destination) for destination in destination_units]
 
@@ -147,4 +154,24 @@ for file in weight_files:
         
         # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
         # unit location of the modules list
-        print modules[origin_module][9][0][origin_unit_x][origin_unit_y]
+        modules[origin_module][9][0][origin_unit_x][origin_unit_y].append (
+            [destination_module] + dest_units[0]) 
+        #print modules[origin_module][9][0][origin_unit_x][origin_unit_y]
+
+        #the following is a test of using string eval instead of regesp to parse weight
+        #files
+
+        # gets rid of C-style comments at the beginning of weight files
+        whole_thing = re.sub(re.compile('%.*?\n'), '', whole_thing)
+
+        # removes all white spaces (space, tab, newline, etc) from weight files
+        whole_thing = ''.join(whole_thing.split())
+        
+        # replaces Malle-style language with python lists characters
+        for i, j in replacements.iteritems():
+            whole_thing = whole_thing.replace(i, j)
+
+        # removes the last comma for compatibility with Python lists
+        whole_thing = whole_thing[:-1]
+        
+        print whole_thing
