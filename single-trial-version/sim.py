@@ -131,9 +131,20 @@ for file in weight_files:
         
         # extract a list of destination units and weights for each origin unit
         # obtained above
-        destination_units = re.findall(r'\(\[(.+?), (.+?)\]  (\d+\.\d+)\)', whole_thing)
+        destination_units = re.findall(r'\(\s*\[(.+?), (.+?)\]\s*([+-]?\d+\.\d+)\)', whole_thing)
+
+        # adjust origin units coordinates given in weight files to Python indexes
+        # (start at 0) and convert to integer
+        origin_unit_x = int(origin_units[0][0])-1
+        origin_unit_y = int(origin_units[0][1])-1
+
+        # convert destination unit list from list of tuples to list of lists
+        dest_units = [list(destination) for destination in destination_units]
+
+        # adjust destination units coordinates to indexes that start at zero; also,
+        # change coordinates to integer and weights to float
+        dest_units = [[int(d[0])-1, int(d[1])-1, float(d[2])] for d in destination_units]
         
-        # store weights in the corresponding unit list of the modules list
-        print modules[origin_module][9]
-        
-        
+        # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
+        # unit location of the modules list
+        print modules[origin_module][9][0][origin_unit_x][origin_unit_y]
