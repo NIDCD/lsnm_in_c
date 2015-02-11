@@ -80,7 +80,7 @@ finally:
 for module in modules:
     module[x_dim] = int(module[x_dim])
     module[y_dim] = int(module[y_dim])
-
+    
 # convert ALL parameters in the modules to float since we will need to use those
 # to solve Wilson-Cowan equations
 for module in modules:
@@ -93,17 +93,14 @@ for module in modules:
 
 # add a list of units to each module, using the module dimensions specified
 # in the input file (x_dim * y_dim) and initialize all units in each module to 'initial_value'
+# It also adds two extra elements per each unit to store sum of inbititory and sum
+# of excitatory activity at the current time step.
 for module in modules:
-    module.append([[[module[initial_value]] * module[x_dim]] * module[y_dim]])
+    module.append([[[[module[initial_value]] + [0, 0]] * module[x_dim]] * module[y_dim]])
 
-# now convert each unit value into a list that contains: current neural activity,
-# sum of inhibitory inputs, sum of excitatory inputs, and a list of weights to other
-# units
-for module in modules:
-    for matrix in module[unit_matrix]:
-        for row in matrix:
-            for unit in row:
-                unit = [unit, 0, 0, [0, '', 0, 0]]
+# now turn the list modules into a dictionary so we can access each module using the
+# module name as key
+modules = {m[0]: m[1:] for m in modules}
 
 # read file that contains list of weight files, store the list of files in a python list,
 # and close the file safely
@@ -113,26 +110,30 @@ try:
 finally:
     f.close()
 
-# open each weight file in the list of weight files and transfer weights from those files to
-# each unit in the module list
-# Note: file f is closed automatically at the end of 'with' since block 'with' is a context manager
-# for file I/O)
+# open each weight file in the list of weight files, one by one, and transfer weights
+# from those files to each unit in the module list
+# Note: file f is closed automatically at the end of 'with' since block 'with' is a
+# context manager for file I/O
 for file in weight_files:
     with open(file) as f:
         # read the whole file and store it in a string
         whole_thing = f.read()
         
-        # find what is connected to what
+        # find which module is connected to which module
         module_connection = re.search(r'Connect\((.+?),(.+?)\)', whole_thing)
 
-        # get rid of what spaces from origin and destination modules
+        # get rid of white spaces from origin and destination modules
         origin_module = module_connection.group(1).strip()
         destination_module = module_connection.group(2).strip()
 
-        # find a list of origin units which connect to units in other modules
+        # extract a list of origin units which connect to units in other modules
         origin_units = re.findall(r'From:\s*\((.+?), (.+?)\)', whole_thing)
-
-        # find a list of destination units for each origin unit obtained above
+        
+        # extract a list of destination units and weights for each origin unit
+        # obtained above
         destination_units = re.findall(r'\(\[(.+?), (.+?)\]  (\d+\.\d+)\)', whole_thing)
         
-        print origin_units, destination_units
+        # store weights in the corresponding unit list of the modules list
+        print modules[origin_module][9]
+        
+        
