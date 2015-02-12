@@ -111,13 +111,7 @@ finally:
     f.close()
 
 # build a dictionary of replacements for parsing the weight files
-replacements = {'Connect': '',
-                'From:': '',
-                '(':'[',
-                ')':']',
-                '{':'[',
-                '}':']',
-                '|':''}
+replacements = {'Connect': '', 'From:': '', '(':'[', ')':']', '{':'[', '}':']', '|':''}
 
 # open each weight file in the list of weight files, one by one, and transfer weights
 # from those files to each unit in the module list
@@ -134,6 +128,33 @@ for file in weight_files:
         # get rid of white spaces from origin and destination modules
         origin_module = module_connection.group(1).strip()
         destination_module = module_connection.group(2).strip()
+
+        # extract a list of origin units that connect to destinatin units in other modules
+        origin_units = re.findall(r'From:\s*\((.+?), (.+?)\)', whole_thing)
+        
+        # extract a list of destination units and weights for each origin unit
+        # obtained above
+        destination_units = re.findall(r'\(\s*\[(.+?), (.+?)\]\s*([+-]?\d+\.\d+)\)', whole_thing)
+        
+        # print origin_units, destination_units
+        
+        # adjust origin units coordinates given in weight files to Python indexes
+        # (start at 0) and convert to integer
+        origin_unit_x = int(origin_units[0][0])-1
+        origin_unit_y = int(origin_units[0][1])-1
+            
+        # convert destination unit list from list of tuples to list of lists
+        dest_units = [list(destination) for destination in destination_units]
+
+        # adjust destination units coordinates to indexes that start at zero; also,
+        # change coordinates to integer and weights to float
+        dest_units = [[int(d[0])-1, int(d[1])-1, float(d[2])] for d in destination_units]
+        
+        # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
+        # unit location of the modules list
+        modules[origin_module][9][0][origin_unit_x][origin_unit_y].append (
+            [destination_module] + dest_units[0]) 
+        #print modules[origin_module][9][0][origin_unit_x][origin_unit_y]
 
         # gets rid of C-style comments at the beginning of weight files
         whole_thing = re.sub(re.compile('%.*?\n'), '', whole_thing)
@@ -162,16 +183,5 @@ for file in weight_files:
         # now convert the whole thing into a python list of lists, using Python's
         # own interpreter 
         whole_thing = eval(whole_thing)
-        
-        # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
-        # unit location of the modules list while adjusting (x_dest, y_dest) coordinates
-        # to a zero-based format (as used in Python)
-        #for connection in whole_thing[1]:
-        #    for destination in connection[1]:
-        #        modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1].append (
-        #            [destination_module,        # insert name of destination module
-        #             destination[0][0],         # insert x coordinate of destination unit
-        #             destination[0][1],         # insert y coordinate of destination unit
-        #             destination[1]])           # insert connection weight
-        
         print whole_thing
+        
