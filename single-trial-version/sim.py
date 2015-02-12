@@ -162,16 +162,24 @@ for file in weight_files:
         # now convert the whole thing into a python list of lists, using Python's
         # own interpreter 
         whole_thing = eval(whole_thing)
+
+        # remove [origin_module, destination_module] from list of connections
+        whole_thing = whole_thing[1]
+        
+        # now groups items in the form: [(origin_unit), [[[destination_unit], weight],
+        # ..., [[destination_unit_2], weight_2]])]
+        whole_thing = zip(whole_thing, whole_thing[1:])[::2]
         
         # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
         # unit location of the modules list while adjusting (x_dest, y_dest) coordinates
         # to a zero-based format (as used in Python)
-        #for connection in whole_thing[1]:
-        #    for destination in connection[1]:
-        #        modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1].append (
-        #            [destination_module,        # insert name of destination module
-        #             destination[0][0],         # insert x coordinate of destination unit
-        #             destination[0][1],         # insert y coordinate of destination unit
-        #             destination[1]])           # insert connection weight
-        
-        print whole_thing
+        for connection in whole_thing:
+            for destination in connection[1]:
+                modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1].append (
+                    [destination_module,        # insert name of destination module
+                     destination[0][0],         # insert x coordinate of destination unit
+                     destination[0][1],         # insert y coordinate of destination unit
+                     destination[1]])           # insert connection weight
+
+print modules['efd2']
+
