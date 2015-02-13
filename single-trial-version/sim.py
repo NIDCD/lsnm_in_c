@@ -181,5 +181,25 @@ for file in weight_files:
                      destination[0][1],         # insert y coordinate of destination unit
                      destination[1]])           # insert connection weight
 
-print modules['efd1']
+# write the values over time of all units to an output data file in text format
+fs=[]
+try:
+    for module_name in modules.keys():
+        # open one output file per module
+        fs.append(open(module_name + '.out', 'w'))
+    
+    # create a dictionary so that each module name is associated with one output file
+    fs_dict = dict(zip(modules.keys(),fs))
+    
+    for module_name in modules.keys():
+        # write the neural activity to output file of each unit at time t
+        for unit_x in range(modules[module_name][0]):
+            for unit_y in range(modules[module_name][1]):
+                fs_dict[module_name].write(str(modules[module_name][9][0][unit_x][unit_y][0]) + ' ')
 
+finally:
+    for f in fs:
+        f.close()
+    
+
+    
