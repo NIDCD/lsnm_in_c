@@ -181,5 +181,5 @@ for file in weight_files:
                      destination[0][1],         # insert y coordinate of destination unit
                      destination[1]])           # insert connection weight
 
-print modules['efd2']
+print modules['efd1']
 
