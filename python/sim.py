@@ -182,6 +182,53 @@ try:
     # run the simulation for the number of timesteps given
     for t in range(1100):
 
+        # write the neural activity to output file of each unit at timestep t
+        # the reason we write to the outut files before we do any computations is that we
+        # want to keep track of the initial values of each units in all modules
+        for m in modules.keys():
+            for x in range(modules[m][0]):
+                for y in range(modules[m][1]):
+                    fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
+
+######### TMP: the following is a test to introduce input into the LGN module at an time t ######
+
+        if t in range (201,401):
+
+            # turn attention to HI, as the input stimulus has just been presented
+            modules['atts'][9][0][0][0][0] = 0.3
+
+            # insert the inputs stimulus into LGN and see what happens
+            for x in range(modules['lgns'][0]):
+                for y in range(modules['lgns'][1]):
+                    modules['lgns'][9][0][x][y][0] = 0.0
+            modules['lgns'][9][0][2][3][0] = 0.92
+            modules['lgns'][9][0][2][4][0] = 0.92
+            modules['lgns'][9][0][2][5][0] = 0.92
+            modules['lgns'][9][0][2][6][0] = 0.92
+            modules['lgns'][9][0][2][7][0] = 0.92
+            modules['lgns'][9][0][2][8][0] = 0.92
+            modules['lgns'][9][0][3][3][0] = 0.92
+            modules['lgns'][9][0][3][8][0] = 0.92
+            modules['lgns'][9][0][4][3][0] = 0.92
+            modules['lgns'][9][0][4][8][0] = 0.92
+            modules['lgns'][9][0][5][3][0] = 0.92
+            modules['lgns'][9][0][5][8][0] = 0.92
+            modules['lgns'][9][0][6][3][0] = 0.92
+            modules['lgns'][9][0][6][4][0] = 0.92
+            modules['lgns'][9][0][6][5][0] = 0.92
+            modules['lgns'][9][0][6][6][0] = 0.92
+            modules['lgns'][9][0][6][7][0] = 0.92
+            modules['lgns'][9][0][6][8][0] = 0.92
+
+        if t in range (401,701):
+
+            # turn off input stimulus
+            for x in range(modules['lgns'][0]):
+                for y in range(modules['lgns'][1]):
+                    modules['lgns'][9][0][x][y][0] = 0.05
+
+######## END OF TMP TEST #######################################################################
+                    
         # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
         # in destination nodes using destination units and connecting weights provided
         for module in modules.keys():
@@ -244,12 +291,6 @@ try:
                         # now multiply by delta parameter and subtract decay parameter
                         modules[m][9][0][x][y][0] += Delta * in_value - decay * modules[m][9][0][x][y][0]
         
-        # write the neural activity to output file of each unit at timestep t
-        for m in modules.keys():
-            for x in range(modules[m][0]):
-                for y in range(modules[m][1]):
-                    fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
-
 finally:
     for f in fs:
         f.close()

@@ -1,5 +1,5 @@
 atts 1 1 clamp 0 0 0 0 0 0
-lgns 9 9 clamp 0 0 0 0 0 0.01
+lgns 9 9 clamp 0 0 0 0 0 0.05
 ev1h 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 iv1h 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 ev1v 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
@@ -10,7 +10,7 @@ ev4h 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 iv4h 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 ev4v 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 iv4v 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
-exss 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.5
+exss 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.05
 inss 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 exfs 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 infs 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
@@ -21,5 +21,5 @@ ifd2 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 exfr 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 infr 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 attv 1 1 clamp 0 0 0 0 0 1.0
-env1 1 1 tvb 0 0 0 0 0 0.3
-inv1 1 1 tvb 0 0 0 0 0 0.3
+env1 1 1 tvb 0 0 0 0 0 0.0
+inv1 1 1 tvb 0 0 0 0 0 0.0
