@@ -10,9 +10,6 @@ weights/exfsexfs.w
 weights/efd1efd1.w
 weights/efd2efd2.w
 weights/exfrexfr.w
-weights/ectlectl.w
-weights/ectlictl.w
-weights/ictlectl.w
 weights/ev1hiv1h.w
 weights/iv1hev1h.w
 weights/ev1viv1v.w

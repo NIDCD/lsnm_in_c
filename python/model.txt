@@ -1,6 +1,4 @@
 atts 1 1 clamp 0 0 0 0 0 0
-ectl 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.2 0.2
-ictl 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.2 0.2
 lgns 9 9 clamp 0 0 0 0 0 0.01
 ev1h 9 9 wilson_cowan 0.3 0.5 0.5 9.0 0.05 0.2
 iv1h 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2

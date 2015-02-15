@@ -45,24 +45,12 @@
 # population model.
 
 import re
+import random
+import math
 
 # First, assign the name of the input file
 model = 'model.txt'
 weights_list = 'weights/weightslist.txt'
-
-# create labels to be used as indexes to information about each module, thus
-# avoiding the use of a python dictionary
-module_name = 0
-x_dim = 1
-y_dim = 2
-activation_rule = 3
-threshold = 4
-delta = 5
-decay = 6
-K = 7
-noise = 8
-initial_value = 9
-unit_matrix = 10
 
 # initialize an empty list to store ALL of the modules of the neural network
 modules = []
@@ -78,28 +66,28 @@ finally:
 # convert ALL module dimensions to integers since we will need those numbers
 # later
 for module in modules:
-    module[x_dim] = int(module[x_dim])
-    module[y_dim] = int(module[y_dim])
+    module[1] = int(module[1])
+    module[2] = int(module[2])
     
 # convert ALL parameters in the modules to float since we will need to use those
 # to solve Wilson-Cowan equations
 for module in modules:
-    module[threshold] = float(module[threshold])
-    module[delta] = float(module[delta])
-    module[decay] = float(module[decay])
-    module[K] = float(module[K])
-    module[noise] = float(module[noise])
-    module[initial_value] = float(module[initial_value])
+    module[4] = float(module[4])
+    module[5] = float(module[5])
+    module[6] = float(module[6])
+    module[7] = float(module[7])
+    module[8] = float(module[8])
+    module[9] = float(module[9])
 
 # add a list of units to each module, using the module dimensions specified
 # in the input file (x_dim * y_dim) and initialize all units in each module to 'initial_value'
 # It also adds two extra elements per each unit to store sum of inbititory and sum
 # of excitatory activity at the current time step.
 for module in modules:
-    module.append([[[[module[initial_value]] + [0, 0]] * module[x_dim]] * module[y_dim]])
+    module.append([[[[module[9]] + [0, 0]] * module[1]] * module[2]])
 
 # now turn the list modules into a dictionary so we can access each module using the
-# module name as key
+# module name as key (this makes index 0 dissapear and all other indexes are decremented by 1
 modules = {m[0]: m[1:] for m in modules}
 
 # read file that contains list of weight files, store the list of files in a python list,
@@ -186,27 +174,81 @@ fs=[]
 try:
     for module in modules.keys():
         # open one output file per module
-        fs.append(open(module + '.out', 'w'))
+        fs.append(open('./output/' + module + '.out', 'w'))
     
     # create a dictionary so that each module name is associated with one output file
     fs_dict = dict(zip(modules.keys(),fs))
 
     # run the simulation for the number of timesteps given
-    for t in range(40):
+    for t in range(1100):
 
-        # The following computes sum of excitatory and sum of inhibitory activities
+        # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
         # in destination nodes using destination units and connecting weights provided
         for module in modules.keys():
-            modules[module][9][0]
-        
-        # The following updates neural activity in all nodes using Wilson-Cowan
-        
+            for x in range(modules[module][0]):
+                for y in range(modules[module][1]):
+
+                    # we are going to do the following only for those units in the network that
+                    # have weights that project to other units elsewhere
+                    try:
+
+                        # First, find outgoing weights for all units and (except for those that do not
+                        # have outgoing weights, in which case do nothing) and compute weight * value
+                        # at destination units
+                        w = modules[module][9][0][x][y][3][3]
+                        x_dest = modules[module][9][0][x][y][3][1]
+                        y_dest = modules[module][9][0][x][y][3][2]
+                        dest_module = modules[module][9][0][x][y][3][0]
+                        value_times_weight = modules[module][9][0][x][y][0] * w
+
+                        # Now, store those values at the destination units data structure, to
+                        # be used later during neural activity computation
+                        if value_times_weight > 0:
+                            modules[dest_module][9][0][x_dest][y_dest][1] += value_times_weight
+                        else:
+                            modules[dest_module][9][0][x_dest][y_dest][2] += value_times_weight
+
+                    # for those units that do not have outgoing weights, do nothing
+                    except IndexError:
+                        pass
+
+        # the following 'for loop' computes the neural activity at each unit in the network,
+        # depending on their 'activation rule'
+        for m in modules.keys():
+            for x in range(modules[m][0]):
+                for y in range(modules[m][1]):
+                    if modules[m][2] == 'wilson_cowan':
+                        
+                        # extract Wilson-Cowan parameters from the list
+                        threshold = modules[m][3]
+                        noise = modules[m][7]
+                        K = modules[m][6]
+                        decay = modules[m][5]
+                        Delta = modules[m][4] 
+
+                        # compute weighted sum of excitatory and inhibitory input to current unit
+                        in_value = modules[m][9][0][x][y][1] + modules[m][9][0][x][y][2]
+
+                        # now subtract the threshold parameter from that sum
+                        in_value = in_value - threshold
+
+                        # now compute a random value between 0 and 1
+                        r_value = random.uniform(0,1) - 0.5
+
+                        # multiply it by the noise parameter and add it to input value
+                        in_value = in_value + r_value * noise
+
+                        # now multiply by parameter K and apply sigmoid function e
+                        in_value = 1.0 / (1.0 + math.exp(-K * in_value))
+
+                        # now multiply by delta parameter and subtract decay parameter
+                        modules[m][9][0][x][y][0] += Delta * in_value - decay * modules[m][9][0][x][y][0]
         
         # write the neural activity to output file of each unit at timestep t
-        for module in modules.keys():
-            for unit_x in range(modules[module][0]):
-                for unit_y in range(modules[module][1]):
-                    fs_dict[module].write(str(modules[module][9][0][unit_x][unit_y][0]) + ' ')
+        for m in modules.keys():
+            for x in range(modules[m][0]):
+                for y in range(modules[m][1]):
+                    fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
 
 finally:
     for f in fs:
