@@ -182,8 +182,17 @@ try:
     # run the simulation for the number of timesteps given
     for t in range(1100):
 
-        # write the neural activity to output file of each unit at timestep t
-        # the reason we write to the outut files before we do any computations is that we
+        # Let's first initialize the sum of excitatory and inhibitory activities at each module's
+        # unit. At every time step, we need to calculate a new sum of excitatory and inhibitory
+        # activations based on unit activations and connecting weights projecting to other units
+        for m in modules.keys():
+            for x in range(modules[m][0]):
+                for y in range(modules[m][1]):
+                    modules[m][9][0][x][y][1] = 0.0
+                    modules[m][9][0][x][y][2] = 0.0
+        
+        # write the neural activity to output file of each unit at timestep t.
+        # The reason we write to the outut files before we do any computations is that we
         # want to keep track of the initial values of each units in all modules
         for m in modules.keys():
             for x in range(modules[m][0]):
@@ -248,6 +257,7 @@ try:
                         dest_module = modules[module][9][0][x][y][3][0]
                         value_times_weight = modules[module][9][0][x][y][0] * w
 
+                        
                         # Now, store those values at the destination units data structure, to
                         # be used later during neural activity computation
                         if value_times_weight > 0:
@@ -279,17 +289,17 @@ try:
                         # now subtract the threshold parameter from that sum
                         in_value = in_value - threshold
 
-                        # now compute a random value between 0 and 1
+                        # now compute a random value between -0.5 and 0.5
                         r_value = random.uniform(0,1) - 0.5
 
                         # multiply it by the noise parameter and add it to input value
                         in_value = in_value + r_value * noise
 
                         # now multiply by parameter K and apply sigmoid function e
-                        in_value = 1.0 / (1.0 + math.exp(-K * in_value))
-
+                        sigmoid = 1.0 / (1.0 + math.exp(-K * in_value))
+                        
                         # now multiply by delta parameter and subtract decay parameter
-                        modules[m][9][0][x][y][0] += Delta * in_value - decay * modules[m][9][0][x][y][0]
+                        modules[m][9][0][x][y][0] += Delta * sigmoid - decay * modules[m][9][0][x][y][0]
         
 finally:
     for f in fs:
