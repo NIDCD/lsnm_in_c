@@ -82,12 +82,13 @@ for module in modules:
 # add a list of units to each module, using the module dimensions specified
 # in the input file (x_dim * y_dim) and initialize all units in each module to 'initial_value'
 # It also adds two extra elements per each unit to store sum of inbititory and sum
-# of excitatory activity at the current time step.
+# of excitatory activity at the current time step. It also add an empty list, '[]', to store
+# list of outgoing weights
 for module in modules:
-    module.append([[[[module[9]] + [0, 0]] * module[1]] * module[2]])
+    module.append([[[[module[9]] + [0, 0, []]] * module[1]] * module[2]])
 
 # now turn the list modules into a dictionary so we can access each module using the
-# module name as key (this makes index 0 dissapear and all other indexes are decremented by 1
+# module name as key (this makes index 0 dissapear and shifts all other list indexes by 1)
 modules = {m[0]: m[1:] for m in modules}
 
 # read file that contains list of weight files, store the list of files in a python list,
@@ -163,147 +164,139 @@ for file in weight_files:
         # to a zero-based format (as used in Python)
         for connection in whole_thing:
             for destination in connection[1]:
-                modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1].append (
+                modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1][3].append (
                     [destination_module,        # insert name of destination module
-                     destination[0][0],         # insert x coordinate of destination unit
-                     destination[0][1],         # insert y coordinate of destination unit
+                     destination[0][0]-1,         # insert x coordinate of destination unit
+                     destination[0][1]-1,         # insert y coordinate of destination unit
                      destination[1]])           # insert connection weight
 
 # write the values over time of all units to an output data file in text format
 fs=[]
-try:
-    for module in modules.keys():
-        # open one output file per module
-        fs.append(open('./output/' + module + '.out', 'w'))
+
+for module in modules.keys():
+    # open one output file per module
+    fs.append(open('./output/' + module + '.out', 'w'))
     
-    # create a dictionary so that each module name is associated with one output file
-    fs_dict = dict(zip(modules.keys(),fs))
+# create a dictionary so that each module name is associated with one output file
+fs_dict = dict(zip(modules.keys(),fs))
 
-    # run the simulation for the number of timesteps given
-    for t in range(1100):
+# run the simulation for the number of timesteps given
+for t in range(45):
 
-        # Let's first initialize the sum of excitatory and inhibitory activities at each module's
-        # unit. At every time step, we need to calculate a new sum of excitatory and inhibitory
-        # activations based on unit activations and connecting weights projecting to other units
-        for m in modules.keys():
-            for x in range(modules[m][0]):
-                for y in range(modules[m][1]):
-                    modules[m][9][0][x][y][1] = 0.0
-                    modules[m][9][0][x][y][2] = 0.0
-        
-        # write the neural activity to output file of each unit at timestep t.
-        # The reason we write to the outut files before we do any computations is that we
-        # want to keep track of the initial values of each units in all modules
-        for m in modules.keys():
-            for x in range(modules[m][0]):
-                for y in range(modules[m][1]):
-                    fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
+    # write the neural activity to output file of each unit at timestep t.
+    # The reason we write to the outut files before we do any computations is that we
+    # want to keep track of the initial values of each units in all modules
+    for m in modules.keys():
+        for x in range(modules[m][0]):
+            for y in range(modules[m][1]):
+                fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
+        # finally, insert a newline character so we can start next set of units on a
+        # new line
+        fs_dict[m].write('\n')
 
 ######### TMP: the following is a test to introduce input into the LGN module at an time t ######
 
-        if t in range (201,401):
+    if t == 21:
 
-            # turn attention to HI, as the input stimulus has just been presented
-            modules['atts'][9][0][0][0][0] = 0.3
+        # turn attention to 'HI', as the input stimulus has just been presented
+        modules['atts'][9][0][0][0][0] = 0.3
 
-            # insert the inputs stimulus into LGN and see what happens
-            for x in range(modules['lgns'][0]):
-                for y in range(modules['lgns'][1]):
-                    modules['lgns'][9][0][x][y][0] = 0.0
-            modules['lgns'][9][0][2][3][0] = 0.92
-            modules['lgns'][9][0][2][4][0] = 0.92
-            modules['lgns'][9][0][2][5][0] = 0.92
-            modules['lgns'][9][0][2][6][0] = 0.92
-            modules['lgns'][9][0][2][7][0] = 0.92
-            modules['lgns'][9][0][2][8][0] = 0.92
-            modules['lgns'][9][0][3][3][0] = 0.92
-            modules['lgns'][9][0][3][8][0] = 0.92
-            modules['lgns'][9][0][4][3][0] = 0.92
-            modules['lgns'][9][0][4][8][0] = 0.92
-            modules['lgns'][9][0][5][3][0] = 0.92
-            modules['lgns'][9][0][5][8][0] = 0.92
-            modules['lgns'][9][0][6][3][0] = 0.92
-            modules['lgns'][9][0][6][4][0] = 0.92
-            modules['lgns'][9][0][6][5][0] = 0.92
-            modules['lgns'][9][0][6][6][0] = 0.92
-            modules['lgns'][9][0][6][7][0] = 0.92
-            modules['lgns'][9][0][6][8][0] = 0.92
+        # insert the inputs stimulus into LGN and see what happens
+        modules['lgns'][9][0][2][3][0] = 0.92
+        modules['lgns'][9][0][2][4][0] = 0.92
+        modules['lgns'][9][0][2][5][0] = 0.92
+        modules['lgns'][9][0][2][6][0] = 0.92
+        modules['lgns'][9][0][2][7][0] = 0.92
+        modules['lgns'][9][0][2][8][0] = 0.92
+        modules['lgns'][9][0][3][3][0] = 0.92
+        modules['lgns'][9][0][3][8][0] = 0.92
+        modules['lgns'][9][0][4][3][0] = 0.92
+        modules['lgns'][9][0][4][8][0] = 0.92
+        modules['lgns'][9][0][5][3][0] = 0.92
+        modules['lgns'][9][0][5][8][0] = 0.92
+        modules['lgns'][9][0][6][3][0] = 0.92
+        modules['lgns'][9][0][6][4][0] = 0.92
+        modules['lgns'][9][0][6][5][0] = 0.92
+        modules['lgns'][9][0][6][6][0] = 0.92
+        modules['lgns'][9][0][6][7][0] = 0.92
+        modules['lgns'][9][0][6][8][0] = 0.92
+    
+    if t ==41:
 
-        if t in range (401,701):
-
-            # turn off input stimulus
-            for x in range(modules['lgns'][0]):
-                for y in range(modules['lgns'][1]):
-                    modules['lgns'][9][0][x][y][0] = 0.05
+        # turn off input stimulus
+        for x in range(modules['lgns'][0]):
+            for y in range(modules['lgns'][1]):
+                modules['lgns'][9][0][x][y][0] = 0.05
 
 ######## END OF TMP TEST #######################################################################
                     
-        # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
-        # in destination nodes using destination units and connecting weights provided
-        for module in modules.keys():
-            for x in range(modules[module][0]):
-                for y in range(modules[module][1]):
+    # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
+    # at destination nodes using destination units and connecting weights provided
+    for m in modules.keys():
+        for x in range(modules[m][0]):
+            for y in range(modules[m][1]):
+                
+                # we are going to do the following only for those units in the network that
+                # have weights that project to other units elsewhere
 
-                    # we are going to do the following only for those units in the network that
-                    # have weights that project to other units elsewhere
-                    try:
-
-                        # First, find outgoing weights for all units and (except for those that do not
-                        # have outgoing weights, in which case do nothing) and compute weight * value
-                        # at destination units
-                        w = modules[module][9][0][x][y][3][3]
-                        x_dest = modules[module][9][0][x][y][3][1]
-                        y_dest = modules[module][9][0][x][y][3][2]
-                        dest_module = modules[module][9][0][x][y][3][0]
-                        value_times_weight = modules[module][9][0][x][y][0] * w
-
+                for w in modules[m][9][0][x][y][3]:
                         
-                        # Now, store those values at the destination units data structure, to
-                        # be used later during neural activity computation
-                        if value_times_weight > 0:
-                            modules[dest_module][9][0][x_dest][y_dest][1] += value_times_weight
-                        else:
-                            modules[dest_module][9][0][x_dest][y_dest][2] += value_times_weight
-
-                    # for those units that do not have outgoing weights, do nothing
-                    except IndexError:
-                        pass
-
-        # the following 'for loop' computes the neural activity at each unit in the network,
-        # depending on their 'activation rule'
-        for m in modules.keys():
-            for x in range(modules[m][0]):
-                for y in range(modules[m][1]):
-                    if modules[m][2] == 'wilson_cowan':
+                    # First, find outgoing weights for all units and (except for those that do not
+                    # have outgoing weights, in which case do nothing) and compute weight * value
+                    # at destination units
+                    dest_module = w[0]
+                    x_dest = w[1]
+                    y_dest = w[2]
+                    weight = w[3]
+                    value_x_weight = modules[m][9][0][x][y][0] * weight 
                         
-                        # extract Wilson-Cowan parameters from the list
-                        threshold = modules[m][3]
-                        noise = modules[m][7]
-                        K = modules[m][6]
-                        decay = modules[m][5]
-                        Delta = modules[m][4] 
-
-                        # compute weighted sum of excitatory and inhibitory input to current unit
-                        in_value = modules[m][9][0][x][y][1] + modules[m][9][0][x][y][2]
-
-                        # now subtract the threshold parameter from that sum
-                        in_value = in_value - threshold
-
-                        # now compute a random value between -0.5 and 0.5
-                        r_value = random.uniform(0,1) - 0.5
-
-                        # multiply it by the noise parameter and add it to input value
-                        in_value = in_value + r_value * noise
-
-                        # now multiply by parameter K and apply sigmoid function e
-                        sigmoid = 1.0 / (1.0 + math.exp(-K * in_value))
+                    # Now, store those values at the destination units data structure, to
+                    # be used later during neural activity computation
+                    if value_x_weight > 0:
+                        modules[dest_module][9][0][x_dest][y_dest][1] += value_x_weight
+                    else:
+                        modules[dest_module][9][0][x_dest][y_dest][2] += value_x_weight
+                            
+    # the following 'for loop' computes the neural activity at each unit in the network,
+    # depending on their 'activation rule'
+    for m in modules.keys():
+        for x in range(modules[m][0]):
+            for y in range(modules[m][1]):
+                if modules[m][2] == 'wilson_cowan':
                         
-                        # now multiply by delta parameter and subtract decay parameter
-                        modules[m][9][0][x][y][0] += Delta * sigmoid - decay * modules[m][9][0][x][y][0]
+                    # extract Wilson-Cowan parameters from the list
+                    threshold = modules[m][3]
+                    noise = modules[m][7]
+                    K = modules[m][6]
+                    decay = modules[m][5]
+                    Delta = modules[m][4] 
+
+                    # compute weighted sum of excitatory and inhibitory input to current unit
+                    in_value = modules[m][9][0][x][y][1] + modules[m][9][0][x][y][2]
+
+                    # now subtract the threshold parameter from that sum
+                    in_value = in_value - threshold
+
+                    # now compute a random value between -0.5 and 0.5
+                    r_value = random.uniform(0,1) - 0.5
+
+                    # multiply it by the noise parameter and add it to input value
+                    in_value = in_value + r_value * noise
+
+                    # now multiply by parameter K and apply sigmoid function e
+                    sigmoid = 1.0 / (1.0 + math.exp(-K * in_value))
+                        
+                    # now multiply by delta parameter and subtract decay parameter
+                    modules[m][9][0][x][y][0] += Delta * sigmoid - decay * modules[m][9][0][x][y][0]
+
+                    # now reset the sum of excitatory and inhibitory weigths at each unit,
+                    # since we do not need it for the current timestep (new sums of excitatory and
+                    # inhibitory unit activations will be computed at the next time step)
+                    modules[m][9][0][x][y][1] = 0.0
+                    modules[m][9][0][x][y][2] = 0.0
         
-finally:
-    for f in fs:
-        f.close()
+for f in fs:
+    f.close()
     
 
     
