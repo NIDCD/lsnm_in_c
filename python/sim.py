@@ -85,7 +85,18 @@ for module in modules:
 # of excitatory activity at the current time step. It also add an empty list, '[]', to store
 # list of outgoing weights
 for module in modules:
-    module.append([[[[module[9]] + [0, 0, []]] * module[1]] * module[2]])
+    # remove initial value from the list
+    initial_value = module.pop()
+    x_dim = module[1]
+    y_dim = module[2]
+    
+    # create a matrix for each unit in the module, to contain unit value,
+    # sum of excitatory inputs, sum of inhibitory inputs, and connection
+    # weights
+    unit_matrix = [[[initial_value, 0, 0, []] for x in range(x_dim)] for y in range(y_dim)]
+
+    # now append that matrix to the current module
+    module.append(unit_matrix)
 
 # now turn the list modules into a dictionary so we can access each module using the
 # module name as key (this makes index 0 dissapear and shifts all other list indexes by 1)
@@ -164,7 +175,7 @@ for file in weight_files:
         # to a zero-based format (as used in Python)
         for connection in whole_thing:
             for destination in connection[1]:
-                modules[origin_module][9][0][connection[0][0]-1][connection[0][1]-1][3].append (
+                modules[origin_module][8][connection[0][0]-1][connection[0][1]-1][3].append (
                     [destination_module,        # insert name of destination module
                      destination[0][0]-1,         # insert x coordinate of destination unit
                      destination[0][1]-1,         # insert y coordinate of destination unit
@@ -181,7 +192,7 @@ for module in modules.keys():
 fs_dict = dict(zip(modules.keys(),fs))
 
 # run the simulation for the number of timesteps given
-for t in range(45):
+for t in range(1100):
 
     # write the neural activity to output file of each unit at timestep t.
     # The reason we write to the outut files before we do any computations is that we
@@ -189,44 +200,85 @@ for t in range(45):
     for m in modules.keys():
         for x in range(modules[m][0]):
             for y in range(modules[m][1]):
-                fs_dict[m].write(repr(modules[m][9][0][x][y][0]) + ' ')
+                fs_dict[m].write(repr(modules[m][8][x][y][0]) + ' ')
         # finally, insert a newline character so we can start next set of units on a
         # new line
         fs_dict[m].write('\n')
 
 ######### TMP: the following is a test to introduce input into the LGN module at an time t ######
 
-    if t == 21:
+    if t == 201:
 
         # turn attention to 'HI', as the input stimulus has just been presented
-        modules['atts'][9][0][0][0][0] = 0.3
+        modules['atts'][8][0][0][0] = 0.3
+
+        for x in range(modules['lgns'][0]):
+            for y in range(modules['lgns'][1]):
+                modules['lgns'][8][x][y][0] = 0.0
 
         # insert the inputs stimulus into LGN and see what happens
-        modules['lgns'][9][0][2][3][0] = 0.92
-        modules['lgns'][9][0][2][4][0] = 0.92
-        modules['lgns'][9][0][2][5][0] = 0.92
-        modules['lgns'][9][0][2][6][0] = 0.92
-        modules['lgns'][9][0][2][7][0] = 0.92
-        modules['lgns'][9][0][2][8][0] = 0.92
-        modules['lgns'][9][0][3][3][0] = 0.92
-        modules['lgns'][9][0][3][8][0] = 0.92
-        modules['lgns'][9][0][4][3][0] = 0.92
-        modules['lgns'][9][0][4][8][0] = 0.92
-        modules['lgns'][9][0][5][3][0] = 0.92
-        modules['lgns'][9][0][5][8][0] = 0.92
-        modules['lgns'][9][0][6][3][0] = 0.92
-        modules['lgns'][9][0][6][4][0] = 0.92
-        modules['lgns'][9][0][6][5][0] = 0.92
-        modules['lgns'][9][0][6][6][0] = 0.92
-        modules['lgns'][9][0][6][7][0] = 0.92
-        modules['lgns'][9][0][6][8][0] = 0.92
+        modules['lgns'][8][2][3][0] = 0.92
+        modules['lgns'][8][2][4][0] = 0.92
+        modules['lgns'][8][2][5][0] = 0.92
+        modules['lgns'][8][2][6][0] = 0.92
+        modules['lgns'][8][2][7][0] = 0.92
+        modules['lgns'][8][2][8][0] = 0.92
+        modules['lgns'][8][3][3][0] = 0.92
+        modules['lgns'][8][3][8][0] = 0.92
+        modules['lgns'][8][4][3][0] = 0.92
+        modules['lgns'][8][4][8][0] = 0.92
+        modules['lgns'][8][5][3][0] = 0.92
+        modules['lgns'][8][5][8][0] = 0.92
+        modules['lgns'][8][6][3][0] = 0.92
+        modules['lgns'][8][6][4][0] = 0.92
+        modules['lgns'][8][6][5][0] = 0.92
+        modules['lgns'][8][6][6][0] = 0.92
+        modules['lgns'][8][6][7][0] = 0.92
+        modules['lgns'][8][6][8][0] = 0.92
     
-    if t ==41:
+    if t == 401:
 
         # turn off input stimulus
         for x in range(modules['lgns'][0]):
             for y in range(modules['lgns'][1]):
-                modules['lgns'][9][0][x][y][0] = 0.05
+                modules['lgns'][8][x][y][0] = 0.05
+
+    if t == 701:
+
+        for x in range(modules['lgns'][0]):
+            for y in range(modules['lgns'][1]):
+                modules['lgns'][8][x][y][0] = 0.0
+
+        # insert the inputs stimulus into LGN and see what happens
+        modules['lgns'][8][2][3][0] = 0.92
+        modules['lgns'][8][2][4][0] = 0.92
+        modules['lgns'][8][2][5][0] = 0.92
+        modules['lgns'][8][2][6][0] = 0.92
+        modules['lgns'][8][2][7][0] = 0.92
+        modules['lgns'][8][2][8][0] = 0.92
+        modules['lgns'][8][3][3][0] = 0.92
+        modules['lgns'][8][3][8][0] = 0.92
+        modules['lgns'][8][4][3][0] = 0.92
+        modules['lgns'][8][4][8][0] = 0.92
+        modules['lgns'][8][5][3][0] = 0.92
+        modules['lgns'][8][5][8][0] = 0.92
+        modules['lgns'][8][6][3][0] = 0.92
+        modules['lgns'][8][6][4][0] = 0.92
+        modules['lgns'][8][6][5][0] = 0.92
+        modules['lgns'][8][6][6][0] = 0.92
+        modules['lgns'][8][6][7][0] = 0.92
+        modules['lgns'][8][6][8][0] = 0.92
+
+    if t == 901:
+            
+        # turn off input stimulus
+        for x in range(modules['lgns'][0]):
+            for y in range(modules['lgns'][1]):
+                modules['lgns'][8][x][y][0] = 0.05
+
+        # turn attention to 'LO', as the current trial has ended
+        modules['atts'][8][0][0][0] = 0.3
+
 
 ######## END OF TMP TEST #######################################################################
                     
@@ -239,7 +291,10 @@ for t in range(45):
                 # we are going to do the following only for those units in the network that
                 # have weights that project to other units elsewhere
 
-                for w in modules[m][9][0][x][y][3]:
+                # extract value of origin unit (unit projecting weights elsewhere
+                origin_unit = modules[m][8][x][y][0]
+                
+                for w in modules[m][8][x][y][3]:
                         
                     # First, find outgoing weights for all units and (except for those that do not
                     # have outgoing weights, in which case do nothing) and compute weight * value
@@ -248,14 +303,14 @@ for t in range(45):
                     x_dest = w[1]
                     y_dest = w[2]
                     weight = w[3]
-                    value_x_weight = modules[m][9][0][x][y][0] * weight 
+                    value_x_weight = origin_unit * weight 
                         
-                    # Now, store those values at the destination units data structure, to
-                    # be used later during neural activity computation
+                    # Now, accumulate store those values at the destination units data structure,
+                    # to be used later during neural activity computation
                     if value_x_weight > 0:
-                        modules[dest_module][9][0][x_dest][y_dest][1] += value_x_weight
+                        modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
                     else:
-                        modules[dest_module][9][0][x_dest][y_dest][2] += value_x_weight
+                        modules[dest_module][8][x_dest][y_dest][2] += value_x_weight
                             
     # the following 'for loop' computes the neural activity at each unit in the network,
     # depending on their 'activation rule'
@@ -272,7 +327,7 @@ for t in range(45):
                     Delta = modules[m][4] 
 
                     # compute weighted sum of excitatory and inhibitory input to current unit
-                    in_value = modules[m][9][0][x][y][1] + modules[m][9][0][x][y][2]
+                    in_value = modules[m][8][x][y][1] + modules[m][8][x][y][2]
 
                     # now subtract the threshold parameter from that sum
                     in_value = in_value - threshold
@@ -287,13 +342,13 @@ for t in range(45):
                     sigmoid = 1.0 / (1.0 + math.exp(-K * in_value))
                         
                     # now multiply by delta parameter and subtract decay parameter
-                    modules[m][9][0][x][y][0] += Delta * sigmoid - decay * modules[m][9][0][x][y][0]
+                    modules[m][8][x][y][0] += Delta * sigmoid - decay * modules[m][8][x][y][0]
 
                     # now reset the sum of excitatory and inhibitory weigths at each unit,
-                    # since we do not need it for the current timestep (new sums of excitatory and
+                    # since we only need it for the current timestep (new sums of excitatory and
                     # inhibitory unit activations will be computed at the next time step)
-                    modules[m][9][0][x][y][1] = 0.0
-                    modules[m][9][0][x][y][2] = 0.0
+                    modules[m][8][x][y][1] = 0.0
+                    modules[m][8][x][y][2] = 0.0
         
 for f in fs:
     f.close()
