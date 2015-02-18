@@ -36,7 +36,7 @@
 #   This file (sim.py) was created on February 5, 2015.
 #
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on February 14 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on February 16 2015  
 # **************************************************************************/
 
 # sim.py
