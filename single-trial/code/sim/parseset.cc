@@ -349,12 +349,12 @@ int parseSet(FILE *ifd)
 	       Nset->LearnRule = NULL;  // OFF:  No learning
 	       break;
 	     case 'a':          // Afferent Hebbian
-	       //Nset->LearnRule = NormAffHebb;
-	       //AHebbInit(Nset);
+	       Nset->LearnRule = NormAffHebb;
+	       AHebbInit(Nset);
 	       break;
 	     case 'e':          // Efferent Hebbian
-	       //Nset->LearnRule = NormEffHebb;
-	       //EHebbInit(Nset);
+	       Nset->LearnRule = NormEffHebb;
+	       EHebbInit(Nset);
 	       break;
 
 	     default:

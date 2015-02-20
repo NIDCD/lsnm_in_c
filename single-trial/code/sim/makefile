@@ -47,7 +47,7 @@ BASE = ../../bin
 CC = g++
 
 sim: actfuncs.o init.o messages.o outfuncs.o parsecxn.o parseset.o \
- 	parse.o siminit.o simulate.o unixmain.o writeout.o win.o
+ 	parse.o siminit.o simulate.o simlearn.o unixmain.o writeout.o win.o
 	$(CC) *.o -lm -lc -o $(BASE)/sim
 
 parse.o:	win.h simdefs.h simproto.h parse.cc
@@ -68,6 +68,8 @@ siminit.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h siminit.cc
 	$(CC) -c 	siminit.cc
 simulate.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h simulate.cc
 	$(CC) -c 	simulate.cc
+simlearn.o:	win.h simdefs.h macros.h classdef.h externs.h simproto.h simlearn.cc
+	$(CC) -c 	simlearn.cc
 unixmain.o:	win.h simdefs.h macros.h classdef.h simdecls.h simproto.h unixmain.cc
 	$(CC) -c 	unixmain.cc
 writeout.o:	win.h simdefs.h macros.h classdef.h simdecls.h simproto.h writeout.cc

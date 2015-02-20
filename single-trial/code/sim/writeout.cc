@@ -336,7 +336,8 @@ int WriteWts(FILE *fd, int iter, struct NodeSet *Nset)
       Weightptr = NODE_WeightLoc(Nodeptr);
       j = 0;
       while(j < NODE_NumWts(Nodeptr))  {
-	if(WT_Learn(Weightptr,j)) {
+        if(WT_Learn(Weightptr,j)) {
+           printf("if");	
 	   writeweight = 1;
            if(WT_DestSetPtr(Weightptr,j) != Destset) {
               writeweight = 0;

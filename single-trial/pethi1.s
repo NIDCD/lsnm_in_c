@@ -80,7 +80,7 @@ set(LGNs,81)
   {
     Write 5
     Topology: Rect(9,9)
-    ActRule: Clamp
+    ActRule: Clamp	 
     OutputRule: SumOut
  
 
@@ -269,8 +269,10 @@ set(IFD1,81)
 set(EFD2,81)
   {
     Write 5
+    Ww 5
     Topology: Rect(9,9)
     ActRule: DiffSig
+    L: e
     OutputRule: SumOut
  
     Parameters: {(THRESH  0.3 ) (DELTA  0.5 ) (DECAY  0.5 ) (K 9.0 ) (NOISE 0.05)}
