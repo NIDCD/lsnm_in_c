@@ -108,7 +108,7 @@ class SimGUI(QtGui.QMainWindow):
 
         # display a message box to confirm user really intended to quit current session
         reply = QtGui.QMessageBox.question(self, 'Message',
-                                           'Are you sure you want to quit?',
+                                           'Are you sure you want to quit LSNM?',
                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
                                            QtGui.QMessageBox.No)
         if reply == QtGui.QMessageBox.Yes:
