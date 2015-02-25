@@ -355,7 +355,7 @@ void addweight(struct NodeSet *set1, int fromnode,
        Errmsg(MsgStr);
        return;
      }
-   if(type == VOLTAGE_IND)
+   if(type == VOLTAGE_IND) 
      set1->Node[fromnode].OutWt->NewWeight(set2, tonode,weight);
    else if(type == CHANGE_CXN) 
      {

@@ -199,6 +199,10 @@ def main():
                     '}':']',
                     '|':''}
 
+    # the following variable counts the total number of synapses in the network (for
+    # informational purposes
+    synapse_count = 0
+    
     # open each weight file in the list of weight files, one by one, and transfer weights
     # from those files to each unit in the module list
     # Note: file f is closed automatically at the end of 'with' since block 'with' is a
@@ -260,6 +264,7 @@ def main():
                         destination[0][0]-1,         # insert x coordinate of destination unit
                         destination[0][1]-1,         # insert y coordinate of destination unit
                         destination[1]])           # insert connection weight
+                    synapse_count += 1
 
     # write the values over time of all units to an output data file in text format
     fs=[]
@@ -279,7 +284,7 @@ def main():
 
         # print out percentage of execution time that has elapsed
         print 'Processing ==> {}% done'.format(t*100/simulation_time)
-    
+
         # write the neural activity to output file of each unit at timestep t.
         # The reason we write to the outut files before we do any computations is that we
         # want to keep track of the initial values of each units in all modules
@@ -397,6 +402,9 @@ def main():
                             modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
                         else:
                             modules[dest_module][8][x_dest][y_dest][2] += value_x_weight
+
+        # the following variable will keep track of total number of units in the network
+        unit_count = 0
                             
         # the following 'for loop' computes the neural activity at each unit in the network,
         # depending on their 'activation rule'
@@ -435,9 +443,17 @@ def main():
                         # inhibitory unit activations will be computed at the next time step)
                         modules[m][8][x][y][1] = 0.0
                         modules[m][8][x][y][2] = 0.0
+
+                    unit_count += 1
         
     for f in fs:
         f.close()
+
+    # print out total number of units and synapses
+    print 'Total number of unit: {}'.format(unit_count)
+    print 'Total number of synapses: {}'.format(synapse_count)
+    
+        
 
     # main loop of application with a clean exit
     sys.exit(app.exec_())

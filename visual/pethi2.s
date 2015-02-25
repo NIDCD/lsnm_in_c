@@ -524,7 +524,7 @@ set(GGNs,81)
 
     Node Activation { ALL 0.01 }
   }
-#include /home/ulloa/lsnm/visual/weights/right/rightlist.txt
-#include /home/ulloa/lsnm/visual/weights/left/leftlist.txtn
-#include /home/ulloa/lsnm/visual/weights/cross/crosslist.txt
-#include /home/ulloa/lsnm/visual/inputs/pethi2.rsb
+#include /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/right/rightlist.txt
+#include /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/left/leftlist.txtn
+#include /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross/crosslist.txt
+#include /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/inputs/pethi2.rsb

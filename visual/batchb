@@ -1,13 +1,13 @@
 #
 #
 #
-cd /home/ulloa/lsnm/visual/sfiles
-/home/ulloa/lsnm/visual/bin/mkattn hiattn_l.s 0.30
-/home/ulloa/lsnm/visual/bin/mkattn loattn_l.s 0.30
-/home/ulloa/lsnm/visual/bin/mkattn loattn_r.s 0.05
-cd /home/ulloa/lsnm/visual/weights/cross
-/home/ulloa/lsnm/visual/bin/crossws
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/sfiles
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkattn hiattn_l.s 0.30
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkattn loattn_l.s 0.30
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkattn loattn_r.s 0.05
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/crossws
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 rm pethi1.s
 cat $LSNM/weights/right/right.s $LSNM/weights/left/left.sn $LSNM/code/appb1 > pethi1.s
 rm $LSNM/code/appb1
@@ -23,95 +23,83 @@ cp input21.inp input2.inp
 cp input31.inp input3.inp
 #
 #
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 mkdir noisy
-cd /home/ulloa/lsnm/visual/code
-/home/ulloa/lsnm/visual/bin/altgenw 99 85 92 90 98 95 89 80 96 89 92 95 98
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/code
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/altgenw 99 85 92 90 98 95 89 80 96 89 92 95 98
 #
-cd /home/ulloa/lsnm/visual/sfiles
-/home/ulloa/lsnm/visual/bin/mkattn hiattn_r.s 0.30
-cd /home/ulloa/lsnm/visual/inputs
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1419178171
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/sfiles
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkattn hiattn_r.s 0.30
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/inputs
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkinput l 12 1424617566
 mv ggns.inp ggns1.inp
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1419178172
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkinput l 12 1424617567
 mv ggns.inp ggns2.inp
-/home/ulloa/lsnm/visual/bin/mkinput l 12 1419178173
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/mkinput l 12 1424617568
 mv ggns.inp ggns3.inp
-cd /home/ulloa/lsnm/visual/weights/right
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/right
 for file in *.ws ; do
-  /home/ulloa/lsnm/visual/bin/netgenC $file
+  /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/netgenC $file
   done
 cd ../left
 for file in *.ws ; do
-  /home/ulloa/lsnm/visual/bin/netgenC $file
+  /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/netgenC $file
   done
 echo attn level: 0.30
-cd /home/ulloa/lsnm/visual/noisy
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/noisy
 mkdir b30
-cd /home/ulloa/lsnm/visual/weights/cross
-/home/ulloa/lsnm/visual/bin/crosswt_i netgenC
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/crosswt_i netgenC
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/ulloa/lsnm/visual/
-/home/ulloa/lsnm/visual/bin/sim1 pethi1
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/sim1 pethi1
 gzip *.out
 cd $LSNM/noisy/b30
 mkdir trial1
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 mv spec_pet.m $LSNM/noisy/b30/trial1/
 mv *.out* $LSNM/noisy/b30/trial1/
-cp /home/ulloa/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial1/crosslist1.txt
+cp /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial1/crosslist1.txt
 #
-cd /home/ulloa/lsnm/visual/weights/cross
-/home/ulloa/lsnm/visual/bin/crosswt_i netgenC
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/crosswt_i netgenC
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/ulloa/lsnm/visual/
-/home/ulloa/lsnm/visual/bin/sim1 pethi2
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/sim1 pethi2
 gzip *.out
 cd $LSNM/noisy/b30
 mkdir trial2
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 mv spec_pet.m $LSNM/noisy/b30/trial2/
 mv *.out* $LSNM/noisy/b30/trial2/
-cp /home/ulloa/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial2/crosslist2.txt
+cp /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial2/crosslist2.txt
 #
-cd /home/ulloa/lsnm/visual/weights/cross
-/home/ulloa/lsnm/visual/bin/crosswt_i netgenC
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/crosswt_i netgenC
 chmod u+x sh_cross
 echo Building cross connections...
 ./sh_cross
 rm sh_cross
-cd /home/ulloa/lsnm/visual/
-/home/ulloa/lsnm/visual/bin/sim1 pethi3
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
+/Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/bin/sim1 pethi3
 gzip *.out
 cd $LSNM/noisy/b30
 mkdir trial3
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 mv spec_pet.m $LSNM/noisy/b30/trial3/
 mv *.out* $LSNM/noisy/b30/trial3/
-cp /home/ulloa/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial3/crosslist3.txt
+cp /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/weights/cross/crosslist.txt $LSNM/noisy/b30/trial3/crosslist3.txt
 #
 mv $LSNM/noisy $LSNM/RGC/subj1
 
 rm $LSNM/weights/right/*.w
 rm $LSNM/weights/left/*.w
-cd $LSNM/weights/cross
-rm crosslist.txt
-rm ev*.w
-rm ev*.ws
-rm eg*.w
-rm eg*.ws
-rm iv*.w
-rm iv*.ws
-rm ig*.w
-rm ig*.ws
-rm *.w
-rm *.ws
-cd /home/ulloa/lsnm/visual/
+cd /Users/Antonio/Documents/NEURALBYTES/NIHPROJECT2/lsnm/visual/
 rm $LSNM/code/netgenC.in
 rm $LSNM/sfiles/*attn*.s

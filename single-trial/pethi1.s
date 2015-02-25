@@ -272,7 +272,7 @@ set(EFD2,81)
     Ww 5
     Topology: Rect(9,9)
     ActRule: DiffSig
-    L: e
+    LearningRule: Efferent
     OutputRule: SumOut
  
     Parameters: {(THRESH  0.3 ) (DELTA  0.5 ) (DECAY  0.5 ) (K 9.0 ) (NOISE 0.05)}
