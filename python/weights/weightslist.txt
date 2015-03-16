@@ -61,3 +61,5 @@ weights/exssev4h.w
 weights/exssev4c.w
 weights/env1ev1h.w
 weights/env1ev1v.w
+weights/enitexss.w
+weights/enpfexfs.w

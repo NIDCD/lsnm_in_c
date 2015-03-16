@@ -23,3 +23,7 @@ infr 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 attv 1 1 clamp 0 0 0 0 0 1.0
 env1 1 1 tvb 0 0 0 0 0 0.0
 inv1 1 1 tvb 0 0 0 0 0 0.0
+enit 1 1 tvb 0 0 0 0 0 0.0
+init 1 1 tvb 0 0 0 0 0 0.0
+enpf 1 1 tvb 0 0 0 0 0 0.0
+inpf 1 1 tvb 0 0 0 0 0 0.0
