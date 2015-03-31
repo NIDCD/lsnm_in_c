@@ -86,36 +86,17 @@ class LSNM(QtGui.QWidget):
         self.progressBar.setRange(0,100)
         layout.addWidget(self.progressBar)
 
-        # initialize a status bar at the bottom of the window
-        #self.statusBar()
-
-        # display a menu on top of the toolbar (not working on MAC)   
-        #menubar = self.menuBar()
-        #fileMenu = menubar.addMenu('&File')
-        #fileMenu.addAction(exitAction)
-
-        # display a toolbar 
-        #toolbar = self.addToolBar('Exit')
-        #toolbar.addAction(exitAction)
-        
         # create a push button object labeled 'Run'
         runButton = QtGui.QPushButton('Run simulation', self)
         layout.addWidget(runButton)
         # define the action to be taken if Run button is clicked on
         runButton.clicked.connect(self.onStart)
-        # apply a standard size to the button
-        #runButton.resize(runButton.sizeHint())
-        # position the button within the window
-        #runButton.move(50, 20)
-
+        
         self.myLongTask = TaskThread()
         self.myLongTask.notifyProgress.connect(self.onProgress)
-
-        # set window's (x_position, y_position, width, height) 
-        #self.setGeometry(0, 0, 1000, 500)
         
         # set window's title
-        #self.setWindowTitle('Large-Scale Neural Modeling (LSNM)')
+        self.setWindowTitle('Large-Scale Neural Modeling (LSNM)')
 
     def onStart(self):
         #self.progressBar.setRange(0,0)
@@ -185,8 +166,9 @@ class TaskThread(QtCore.QThread):
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
         # First, assign the name of the input file
-        model = 'model.txt'
-        weights_list = 'weights/weightslist.txt'
+        model = 'auditory_model/model.txt'
+        weights_list = 'auditory_model/weightslist.txt'
+        script = 'auditory_model/script.txt'
 
         # initialize an empty list to store ALL of the modules of the neural network
         modules = []
@@ -229,7 +211,7 @@ class TaskThread(QtCore.QThread):
             # create a matrix for each unit in the module, to contain unit value,
             # sum of excitatory inputs, sum of inhibitory inputs, and connection
             # weights
-            unit_matrix = [[[initial_value, 0, 0, []] for x in range(x_dim)] for y in range(y_dim)]
+            unit_matrix = [[[initial_value, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
 
             # now append that matrix to the current module
             module.append(unit_matrix)
@@ -309,7 +291,7 @@ class TaskThread(QtCore.QThread):
                 # now groups items in the form: [(origin_unit), [[[destination_unit], weight],
                 # ..., [[destination_unit_2], weight_2]])]
                 whole_thing = zip(whole_thing, whole_thing[1:])[::2]
-        
+                
                 # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
                 # unit location of the modules list while adjusting (x_dest, y_dest) coordinates
                 # to a zero-based format (as used in Python)
@@ -336,6 +318,10 @@ class TaskThread(QtCore.QThread):
         simulation_time = 1100
         sim_percentage = 100.0/simulation_time
 
+        # open the file with the experimental script and store the script in a string
+        with open(script) as s:
+            experiment_script = s.read()
+        
         # run the simulation for the number of timesteps given
         for t in range(simulation_time):
 
@@ -352,84 +338,8 @@ class TaskThread(QtCore.QThread):
                 # new line
                 fs_dict[m].write('\n')
 
-        ######### TMP: the following is a test to introduce input into the LGN module at an time t ######
-
-            if t == 201:
-
-                # turn attention to 'HI', as the input stimulus has just been presented
-                modules['atts'][8][0][0][0] = 0.3
-
-                # reset LGN activity prior to stimulus presentation
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.0
-
-                # insert the inputs stimulus into LGN and see what happens
-                modules['lgns'][8][2][3][0] = 0.92
-                modules['lgns'][8][2][4][0] = 0.92
-                modules['lgns'][8][2][5][0] = 0.92
-                modules['lgns'][8][2][6][0] = 0.92
-                modules['lgns'][8][2][7][0] = 0.92
-                modules['lgns'][8][2][8][0] = 0.92
-                modules['lgns'][8][3][3][0] = 0.92
-                modules['lgns'][8][3][8][0] = 0.92
-                modules['lgns'][8][4][3][0] = 0.92
-                modules['lgns'][8][4][8][0] = 0.92
-                modules['lgns'][8][5][3][0] = 0.92
-                modules['lgns'][8][5][8][0] = 0.92
-                modules['lgns'][8][6][3][0] = 0.92
-                modules['lgns'][8][6][4][0] = 0.92
-                modules['lgns'][8][6][5][0] = 0.92
-                modules['lgns'][8][6][6][0] = 0.92
-                modules['lgns'][8][6][7][0] = 0.92
-                modules['lgns'][8][6][8][0] = 0.92
-                
-            if t == 401:
-
-                # turn off input stimulus but leave small level of activity there
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.05
-
-            if t == 701:
-
-                # reset LGN activity prior to stimulus presentation
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.0
-
-                # insert the inputs stimulus into LGN and see what happens
-                modules['lgns'][8][2][3][0] = 0.92
-                modules['lgns'][8][2][4][0] = 0.92
-                modules['lgns'][8][2][5][0] = 0.92
-                modules['lgns'][8][2][6][0] = 0.92
-                modules['lgns'][8][2][7][0] = 0.92
-                modules['lgns'][8][2][8][0] = 0.92
-                modules['lgns'][8][3][3][0] = 0.92
-                modules['lgns'][8][3][8][0] = 0.92
-                modules['lgns'][8][4][3][0] = 0.92
-                modules['lgns'][8][4][8][0] = 0.92
-                modules['lgns'][8][5][3][0] = 0.92
-                modules['lgns'][8][5][8][0] = 0.92
-                modules['lgns'][8][6][3][0] = 0.92
-                modules['lgns'][8][6][4][0] = 0.92
-                modules['lgns'][8][6][5][0] = 0.92
-                modules['lgns'][8][6][6][0] = 0.92
-                modules['lgns'][8][6][7][0] = 0.92
-                modules['lgns'][8][6][8][0] = 0.92
-
-            if t == 901:
-             
-                # turn off input stimulus but leave small level of activity there
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.05
-
-                # turn attention to 'LO', as the current trial has ended
-                modules['atts'][8][0][0][0] = 0.05
-
-
-        ######## END OF TMP TEST #######################################################################
+            # run the experimental script given in script file
+            exec(experiment_script)
                     
             # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
             # at destination nodes using destination units and connecting weights provided

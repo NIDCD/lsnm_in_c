@@ -1,0 +1,203 @@
+if t == 200:
+
+    # turn attention to 'HI', as the input stimulus has just been presented
+    modules['atts'][8][0][0][0] = 0.3
+
+    # reset MGN activity prior to stimulus presentation
+    for x in range(modules['mgns'][0]):
+        for y in range(modules['mgns'][1]):
+            modules['mgns'][8][x][y][0] = 0.0
+
+    # insert the inputs stimulus into MGN
+    modules['mgns'][8][0][41][0] = 1.0
+    modules['mgns'][8][0][42][0] = 1.0
+
+if t == 205:
+
+    # reset prior unit activation
+    modules['mgns'][8][0][41][0] = 0.0
+    modules['mgns'][8][0][42][0] = 0.0
+
+    # insert current unit activation
+    modules['mgns'][8][0][42][0] = 1.0
+    modules['mgns'][8][0][43][0] = 1.0
+
+if t == 210:
+
+    modules['mgns'][8][0][42][0] = 0.0
+    modules['mgns'][8][0][43][0] = 0.0
+
+    modules['mgns'][8][0][43][0] = 1.0
+    modules['mgns'][8][0][44][0] = 1.0
+
+if t == 215:
+
+    modules['mgns'][8][0][43][0] = 0.0
+    modules['mgns'][8][0][44][0] = 0.0
+ 
+    modules['mgns'][8][0][44][0] = 1.0
+    modules['mgns'][8][0][45][0] = 1.0
+
+if t == 220:
+
+    modules['mgns'][8][0][44][0] = 0.0
+    modules['mgns'][8][0][45][0] = 0.0
+
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0
+
+if t == 225:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0
+    modules['mgns'][8][0][47][0] = 1.0
+
+if t == 245:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+    modules['mgns'][8][0][47][0] = 0.0
+    
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0	
+
+if t == 250:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+    
+    modules['mgns'][8][0][44][0] = 1.0
+    modules['mgns'][8][0][45][0] = 1.0
+
+
+if t == 255:
+
+    modules['mgns'][8][0][44][0] = 0.0
+    modules['mgns'][8][0][45][0] = 0.0
+    
+    modules['mgns'][8][0][43][0] = 1.0
+    modules['mgns'][8][0][44][0] = 1.0
+
+if t == 260:
+
+    modules['mgns'][8][0][43][0] = 0.0
+    modules['mgns'][8][0][44][0] = 0.0
+    
+    modules['mgns'][8][0][42][0] = 1.0
+    modules['mgns'][8][0][43][0] = 1.0
+
+if t == 265:
+
+    modules['mgns'][8][0][42][0] = 0.0
+    modules['mgns'][8][0][43][0] = 0.0
+    
+    modules['mgns'][8][0][41][0] = 1.0
+    modules['mgns'][8][0][42][0] = 1.0
+
+if t == 270:
+
+    modules['mgns'][8][0][41][0] = 0.0
+    modules['mgns'][8][0][42][0] = 0.0
+                
+if t == 470:
+
+    # insert the inputs stimulus into MGN
+    modules['mgns'][8][0][41][0] = 1.0
+    modules['mgns'][8][0][42][0] = 1.0
+
+if t == 475:
+
+    # reset prior unit activation
+    modules['mgns'][8][0][41][0] = 0.0
+    modules['mgns'][8][0][42][0] = 0.0
+
+    # insert current unit activation
+    modules['mgns'][8][0][42][0] = 1.0
+    modules['mgns'][8][0][43][0] = 1.0
+
+if t == 480:
+
+    modules['mgns'][8][0][42][0] = 0.0
+    modules['mgns'][8][0][43][0] = 0.0
+
+    modules['mgns'][8][0][43][0] = 1.0
+    modules['mgns'][8][0][44][0] = 1.0
+
+if t == 485:
+
+    modules['mgns'][8][0][43][0] = 0.0
+    modules['mgns'][8][0][44][0] = 0.0
+ 
+    modules['mgns'][8][0][44][0] = 1.0
+    modules['mgns'][8][0][45][0] = 1.0
+
+if t == 490:
+
+    modules['mgns'][8][0][44][0] = 0.0
+    modules['mgns'][8][0][45][0] = 0.0
+
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0
+
+if t == 495:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0
+    modules['mgns'][8][0][47][0] = 1.0
+
+if t == 500:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+    modules['mgns'][8][0][47][0] = 0.0
+    
+    modules['mgns'][8][0][45][0] = 1.0
+    modules['mgns'][8][0][46][0] = 1.0	
+
+if t == 505:
+
+    modules['mgns'][8][0][45][0] = 0.0
+    modules['mgns'][8][0][46][0] = 0.0
+    
+    modules['mgns'][8][0][44][0] = 1.0
+    modules['mgns'][8][0][45][0] = 1.0
+
+
+if t == 510:
+
+    modules['mgns'][8][0][44][0] = 0.0
+    modules['mgns'][8][0][45][0] = 0.0
+    
+    modules['mgns'][8][0][43][0] = 1.0
+    modules['mgns'][8][0][44][0] = 1.0
+
+if t == 515:
+
+    modules['mgns'][8][0][43][0] = 0.0
+    modules['mgns'][8][0][44][0] = 0.0
+    
+    modules['mgns'][8][0][42][0] = 1.0
+    modules['mgns'][8][0][43][0] = 1.0
+
+if t == 520:
+
+    modules['mgns'][8][0][42][0] = 0.0
+    modules['mgns'][8][0][43][0] = 0.0
+    
+    modules['mgns'][8][0][41][0] = 1.0
+    modules['mgns'][8][0][42][0] = 1.0
+
+if t == 525:
+
+    modules['mgns'][8][0][41][0] = 0.0
+    modules['mgns'][8][0][42][0] = 0.0
+                
+
+
+
