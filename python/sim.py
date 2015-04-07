@@ -55,7 +55,10 @@ from tvb.simulator.plot.tools import *
 import tvb.simulator.plot.timeseries_interactive as ts_int
 # end of TVB modules import
 
-from matplotlib.widgets import Slider
+from matplotlib.figure import Figure
+
+from matplotlib.backends.backend_qt4agg \
+    import FigureCanvasQTAgg as FigureCanvas
 
 import numpy as np
 
@@ -73,7 +76,16 @@ class LSNM(QtGui.QWidget):
 
     def initUI(self):
 
-        layout = QtGui.QVBoxLayout(self)
+        # the following three global variables will names of text files that contain
+        # model definition, list of network weights, and experimental script to be
+        # simulated
+        model=''
+        weights_list=''
+        script=''
+
+        # create a grid layout and set a spacing of 10 between widgets
+        layout = QtGui.QGridLayout(self)
+        layout.setSpacing(10)
 
         # Define what happens if users press EXIT on the toolbar
         exitAction = QtGui.QAction(QtGui.QIcon.fromTheme('exit'), 'Exit', self)
@@ -81,25 +93,119 @@ class LSNM(QtGui.QWidget):
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(self.close)
 
+        # create a push button object for opening file with model description
+        uploadModelButton = QtGui.QPushButton('STEP ONE: Upload your model: ' + model, self)
+        layout.addWidget(uploadModelButton, 0, 0)
+        # define the action to be taken if upload model button is clicked on
+        uploadModelButton.clicked.connect(self.browseModels)
+
+        # create a text edit object for reading file with model description
+        self.modelTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.modelTextEdit, 1, 0)
+
+        # create a push button for uploading file containing list of network weights
+        uploadWeightsButton = QtGui.QPushButton('STEP TWO: Upload your weights: ' + weights_list, self)
+        layout.addWidget(uploadWeightsButton, 0, 1)
+        # define the action to be taken if upload weights button is clicked on
+        uploadWeightsButton.clicked.connect(self.browseWeights)
+        
+        # create a text edit object for reading file with model description
+        self.weightsTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.weightsTextEdit, 1, 1)
+
+        # create a button for uploading file containing experimental script to be simulated
+        uploadScriptButton = QtGui.QPushButton('STEP THREE: Upload your script: ' + script, self)
+        layout.addWidget(uploadScriptButton, 0, 2)
+        # define the action to be taken if upload script button is clicked on
+        uploadScriptButton.clicked.connect(self.browseScripts)
+
+        # create a text edit object for reading file with model description
+        self.scriptTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.scriptTextEdit, 1, 2)
+
+        # create a push button object labeled 'Run'
+        runButton = QtGui.QPushButton('STEP FOUR: Run simulation', self)
+        layout.addWidget(runButton, 0, 3)
+        # define the action to be taken if Run button is clicked on
+        runButton.clicked.connect(self.onStart)
+    
         # define progress bar so user can see simulation progress status
         self.progressBar = QtGui.QProgressBar(self)
         self.progressBar.setRange(0,100)
-        layout.addWidget(self.progressBar)
-
-        # create a push button object labeled 'Run'
-        runButton = QtGui.QPushButton('Run simulation', self)
-        layout.addWidget(runButton)
-        # define the action to be taken if Run button is clicked on
-        runButton.clicked.connect(self.onStart)
+        layout.addWidget(self.progressBar, 1, 3)
         
+        # create a push button object labeled 'Plot results'
+        plotButton = QtGui.QPushButton('STEP FIVE: Plot your results', self)
+        layout.addWidget(plotButton, 0, 4)
+        # define the action to be taken if Plot button is clicked on
+        plotButton.clicked.connect(self.plotElectricalActivity)
+
+        # create a figure widget to display the simulation plot
+        self.plotCanvas = FigureCanvas
+        
+        # create a push button object labeled 'Exit'
+        exitButton = QtGui.QPushButton('Quit LSNM', self)
+        layout.addWidget(exitButton, 2, 0)
+        # define the action to be taken if Exit button is clicked on
+        exitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
+
         self.myLongTask = TaskThread()
         self.myLongTask.notifyProgress.connect(self.onProgress)
-        
+                
+        # set the layout to the grid layout we defined in the lines above
+        self.setLayout(layout)
+
+        # set main window's size
+        self.setGeometry(0, 0, 1000, 1000)
+
         # set window's title
         self.setWindowTitle('Large-Scale Neural Modeling (LSNM)')
+        
+    def browseModels(self):
 
+        global model
+        # allow the user to browse files to find desired input file describing the modules
+        # of the network
+        model = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains model', '.')
+
+        # open the file containing model description
+        f = open(model, 'r')
+
+        # display the contents of file containing model description
+        with f:
+            data = f.read()
+            self.modelTextEdit.setText(data)
+        
+    def browseWeights(self):
+
+        global weights_list
+        # allow the user to browse files to find desired input file with a list of network weights
+        weights_list = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains weights list', '.')
+
+        # open file containing list of weights
+        f = open(weights_list, 'r')
+
+        # display contents of file containing list of weights
+        with f:
+            data = f.read()
+            self.weightsTextEdit.setText(data)
+        
+    def browseScripts(self):
+
+        global script
+        # allow user to browse files to find desired input file containing experimental script
+        # to be simulated
+        script = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains script', '.')
+
+        # open file containing experimental script
+        f = open(script, 'r')
+
+        # display contents of file containing experimental script
+        with f:
+            data = f.read()
+            self.scriptTextEdit.setText(data)
+        
     def onStart(self):
-        #self.progressBar.setRange(0,0)
         self.myLongTask.start()
         
     def onProgress(self, i):
@@ -116,6 +222,10 @@ class LSNM(QtGui.QWidget):
             event.accept()
         else:
             event.ignore()
+
+    def plotElectricalActivity(self):
+
+        pass
 
 class TaskThread(QtCore.QThread):
 
@@ -165,11 +275,6 @@ class TaskThread(QtCore.QThread):
         print white_matter.region_labels
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
-        # First, assign the name of the input file
-        model = 'auditory_model/model.txt'
-        weights_list = 'auditory_model/weightslist.txt'
-        script = 'auditory_model/script.txt'
-
         # initialize an empty list to store ALL of the modules of the neural network
         modules = []
 
