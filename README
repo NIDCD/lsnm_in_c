@@ -43,6 +43,14 @@ Software that simulates auditory working memory during a delay match to sample t
 
 Software that simulates visual working memory during a delay match to sample task. It includes batch processing written in Unix bash and C++ to simualte multi-trial and multi-subject experiments, as well as matlab scrpits for input generation and post-processing / visualization of output data.
 
+* single-trial:
+
+Light-weight piece of software that simulates one single trial of visual working memory during a delay match to sample task experiment.
+
+* python:
+
+Python version of LSNM (IN DEVELOPMENT)
+
 * documents: 
 
 Documents that describe the theory and implementation of LSNM. 
