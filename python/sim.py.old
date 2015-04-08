@@ -48,19 +48,55 @@ import re
 import random
 import math
 
+# the following modules are imported from TVB library
+from tvb.simulator.lab import *
+import tvb.datatypes.time_series
+from tvb.simulator.plot.tools import *
+import tvb.simulator.plot.timeseries_interactive as ts_int
+# end of TVB modules import
+
+from matplotlib.figure import Figure
+
+# import the Qt4Agg FigureCanvas object
+from matplotlib.backends.backend_qt4agg \
+    import FigureCanvasQTAgg as FigureCanvas
+
+import numpy as np
+
 import sys
 from PyQt4 import QtGui, QtCore
 
+class MyStream(QtCore.QObject):
+
+    message = QtCore.pyqtSignal(str)
+
+    def __init__(self, parent=None):
+        super(MyStream, self).__init__(parent)
+
+    def write(self, message):
+        self.message.emit(str(message))
+
 # create a class for our GUI and define its methods
-class LSNM(QtGui.QMainWindow):
+class LSNM(QtGui.QWidget):
 
     def __init__(self):
 
         super(LSNM, self).__init__()
-
+        
         self.initUI()
 
     def initUI(self):
+
+        # the following three global variables will names of text files that contain
+        # model definition, list of network weights, and experimental script to be
+        # simulated
+        model=''
+        weights_list=''
+        script=''
+
+        # create a grid layout and set a spacing of 10 between widgets
+        layout = QtGui.QGridLayout(self)
+        layout.setSpacing(10)
 
         # Define what happens if users press EXIT on the toolbar
         exitAction = QtGui.QAction(QtGui.QIcon.fromTheme('exit'), 'Exit', self)
@@ -68,52 +104,118 @@ class LSNM(QtGui.QMainWindow):
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(self.close)
 
-        # define progress bar so user can see simulation progress status
-        self.progressBar = QtGui.QProgressBar(self)
-        self.progressBar.setRange(0, 1)
-        self.progressBar.setGeometry(30, 40, 200, 25)
+        # create a push button object for opening file with model description
+        uploadModelButton = QtGui.QPushButton('STEP ONE: Upload your model: ' + model, self)
+        layout.addWidget(uploadModelButton, 0, 0)
+        # define the action to be taken if upload model button is clicked on
+        uploadModelButton.clicked.connect(self.browseModels)
 
-        # initialize a status bar at the bottom of the window
-        self.statusBar()
+        # create a text edit object for reading file with model description
+        self.modelTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.modelTextEdit, 1, 0)
 
-        # display a menu on top of the toolbar (not working on MAC)   
-        menubar = self.menuBar()
-        fileMenu = menubar.addMenu('&File')
-        fileMenu.addAction(exitAction)
-
-        # display a toolbar 
-        toolbar = self.addToolBar('Exit')
-        toolbar.addAction(exitAction)
+        # create a push button for uploading file containing list of network weights
+        uploadWeightsButton = QtGui.QPushButton('STEP TWO: Upload your weights: ' + weights_list, self)
+        layout.addWidget(uploadWeightsButton, 0, 1)
+        # define the action to be taken if upload weights button is clicked on
+        uploadWeightsButton.clicked.connect(self.browseWeights)
         
+        # create a text edit object for reading file with model description
+        self.weightsTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.weightsTextEdit, 1, 1)
+
+        # create a button for uploading file containing experimental script to be simulated
+        uploadScriptButton = QtGui.QPushButton('STEP THREE: Upload your script: ' + script, self)
+        layout.addWidget(uploadScriptButton, 0, 2)
+        # define the action to be taken if upload script button is clicked on
+        uploadScriptButton.clicked.connect(self.browseScripts)
+
+        # create a text edit object for reading file with model description
+        self.scriptTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.scriptTextEdit, 1, 2)
+
         # create a push button object labeled 'Run'
-        runButton = QtGui.QPushButton('Run simulation', self)
+        runButton = QtGui.QPushButton('STEP FOUR: Run simulation', self)
+        layout.addWidget(runButton, 0, 3)
         # define the action to be taken if Run button is clicked on
         runButton.clicked.connect(self.onStart)
-        # apply a standard size to the button
-        runButton.resize(runButton.sizeHint())
-        # position the button within the window
-        runButton.move(50, 20)
+    
+        # define progress bar so user can see simulation progress status
+        self.runTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.runTextEdit, 1, 3)
+        #self.progressBar = QtGui.QProgressBar(self)
+        #self.progressBar.setRange(0,100)
+        #layout.addWidget(self.progressBar, 1, 3)
+        
+        # create a push button object labeled 'Exit'
+        exitButton = QtGui.QPushButton('Quit LSNM', self)
+        layout.addWidget(exitButton, 2, 0)
+        # define the action to be taken if Exit button is clicked on
+        exitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
 
         self.myLongTask = TaskThread()
-        self.myLongTask.taskFinished.connect(self.onFinished)
+        self.myLongTask.notifyProgress.connect(self.onProgress)
+                
+        # set the layout to the grid layout we defined in the lines above
+        self.setLayout(layout)
 
-        # set window's (x_position, y_position, width, height) 
-        self.setGeometry(0, 0, 1000, 500)
-        
+        # set main window's size
+        self.setGeometry(0, 0, 1000, 1000)
+
         # set window's title
         self.setWindowTitle('Large-Scale Neural Modeling (LSNM)')
+        
+    def browseModels(self):
 
-        # ... and display it on the screen!
-        self.show()
+        global model
+        # allow the user to browse files to find desired input file describing the modules
+        # of the network
+        model = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains model', '.')
 
+        # open the file containing model description
+        f = open(model, 'r')
+
+        # display the contents of file containing model description
+        with f:
+            data = f.read()
+            self.modelTextEdit.setText(data)
+        
+    def browseWeights(self):
+
+        global weights_list
+        # allow the user to browse files to find desired input file with a list of network weights
+        weights_list = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains weights list', '.')
+
+        # open file containing list of weights
+        f = open(weights_list, 'r')
+
+        # display contents of file containing list of weights
+        with f:
+            data = f.read()
+            self.weightsTextEdit.setText(data)
+        
+    def browseScripts(self):
+
+        global script
+        # allow user to browse files to find desired input file containing experimental script
+        # to be simulated
+        script = QtGui.QFileDialog.getOpenFileName(self, 'Select *.txt file that contains script', '.')
+
+        # open file containing experimental script
+        f = open(script, 'r')
+
+        # display contents of file containing experimental script
+        with f:
+            data = f.read()
+            self.scriptTextEdit.setText(data)
+        
+    @QtCore.pyqtSlot()
     def onStart(self):
-        self.progressBar.setRange(0,0)
         self.myLongTask.start()
         
-    def onFinished(self):
-        # Stop the pulsation
-        self.progressBar.setRange(0,1)
-        self.progressBar.setValue(1)
+    def onProgress(self, i):
+        pass
+        #self.progressBar.setValue(i)
 
     def closeEvent(self, event):
 
@@ -127,16 +229,60 @@ class LSNM(QtGui.QMainWindow):
         else:
             event.ignore()
 
+    @QtCore.pyqtSlot(str)
+    def on_myStream_message(self, message):
+        self.runTextEdit.moveCursor(QtGui.QTextCursor.End)
+        self.runTextEdit.insertPlainText(message)
+
+            
 class TaskThread(QtCore.QThread):
 
-    taskFinished = QtCore.pyqtSignal()
+    def __init__(self):
+        QtCore.QThread.__init__(self)
+
+    notifyProgress = QtCore.pyqtSignal(int)
     
     def run(self):
             
-        # First, assign the name of the input file
-        model = 'model.txt'
-        weights_list = 'weights/weightslist.txt'
+        # load a TVB simulation of a 74-node brain and uses it to provide variability
+        # to an LSNM visual model network. It runs a simulation of the LSNM visual
+        # network and writes out neural activities for each LSNM node and -relevant-
+        # TVB nodes. Plots output as well.
 
+        ########## THE FOLLOWING SIMULATES TVB NETWORK'S #######################
+        # The TVB Wilson Cowan simulation has been preprocessed and it is located
+        # in an 'npy' data file. Thus, we just need to load that data file onto
+        # a numpy array
+        # The data file contains an array of 5 dimensions as follows:
+        # [timestep, state_variable_E, state_variable_I, node_number, mode]
+        RawData = np.load("wilson_cowan_brain_74_nodes.npy")
+
+        # sample TVB raw data array to extract 220 data points (for plotting only)
+        RAW = RawData[::400]    # round(88000 / 220) = 400
+
+        # sample TVB raw data array file to extract 1100 data points 
+        RawData = RawData[::80] # round(8800 / 1100) = 80
+
+        print RawData.shape
+        
+        # Extract area 72 time series (rV1), and 
+        # Extract area 68 time series (rTCi, aka IT, inferior temporal cortex), and
+        # Extract area 55 time series (rPFCdl, dorsolateral prefrontal cortex), and
+        # create a dictionary of nonspecific module time series
+        nonspecific_units = {'env1':RawData[:,0,72],
+                             'inv1':RawData[:,1,72],
+                             'enit':RawData[:,0,68],
+                             'init':RawData[:,1,68],
+                             'enpf':RawData[:,0,55],
+                             'inpf':RawData[:,1,55] }
+
+        # now load white matter connectivity
+        white_matter = connectivity.Connectivity(load_default=True)
+        white_matter.configure()
+
+        print white_matter.region_labels
+
+        ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
         # initialize an empty list to store ALL of the modules of the neural network
         modules = []
 
@@ -178,7 +324,7 @@ class TaskThread(QtCore.QThread):
             # create a matrix for each unit in the module, to contain unit value,
             # sum of excitatory inputs, sum of inhibitory inputs, and connection
             # weights
-            unit_matrix = [[[initial_value, 0, 0, []] for x in range(x_dim)] for y in range(y_dim)]
+            unit_matrix = [[[initial_value, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
 
             # now append that matrix to the current module
             module.append(unit_matrix)
@@ -258,7 +404,7 @@ class TaskThread(QtCore.QThread):
                 # now groups items in the form: [(origin_unit), [[[destination_unit], weight],
                 # ..., [[destination_unit_2], weight_2]])]
                 whole_thing = zip(whole_thing, whole_thing[1:])[::2]
-        
+                
                 # insert [destination_module, x_dest, y_dest, weight] in the corresponding origin
                 # unit location of the modules list while adjusting (x_dest, y_dest) coordinates
                 # to a zero-based format (as used in Python)
@@ -283,10 +429,17 @@ class TaskThread(QtCore.QThread):
 
         # initialize number of timesteps for simulation
         simulation_time = 1100
+        sim_percentage = 100.0/simulation_time
 
+        # open the file with the experimental script and store the script in a string
+        with open(script) as s:
+            experiment_script = s.read()
+        
         # run the simulation for the number of timesteps given
         for t in range(simulation_time):
 
+            self.notifyProgress.emit(int(t*sim_percentage))
+            
             # write the neural activity to output file of each unit at timestep t.
             # The reason we write to the outut files before we do any computations is that we
             # want to keep track of the initial values of each units in all modules
@@ -298,82 +451,8 @@ class TaskThread(QtCore.QThread):
                 # new line
                 fs_dict[m].write('\n')
 
-        ######### TMP: the following is a test to introduce input into the LGN module at an time t ######
-
-            if t == 201:
-
-                # turn attention to 'HI', as the input stimulus has just been presented
-                modules['atts'][8][0][0][0] = 0.3
-
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.0
-
-                # insert the inputs stimulus into LGN and see what happens
-                modules['lgns'][8][2][3][0] = 0.92
-                modules['lgns'][8][2][4][0] = 0.92
-                modules['lgns'][8][2][5][0] = 0.92
-                modules['lgns'][8][2][6][0] = 0.92
-                modules['lgns'][8][2][7][0] = 0.92
-                modules['lgns'][8][2][8][0] = 0.92
-                modules['lgns'][8][3][3][0] = 0.92
-                modules['lgns'][8][3][8][0] = 0.92
-                modules['lgns'][8][4][3][0] = 0.92
-                modules['lgns'][8][4][8][0] = 0.92
-                modules['lgns'][8][5][3][0] = 0.92
-                modules['lgns'][8][5][8][0] = 0.92
-                modules['lgns'][8][6][3][0] = 0.92
-                modules['lgns'][8][6][4][0] = 0.92
-                modules['lgns'][8][6][5][0] = 0.92
-                modules['lgns'][8][6][6][0] = 0.92
-                modules['lgns'][8][6][7][0] = 0.92
-                modules['lgns'][8][6][8][0] = 0.92
-                
-            if t == 401:
-
-                # turn off input stimulus
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.05
-
-            if t == 701:
-
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.0
-
-                # insert the inputs stimulus into LGN and see what happens
-                modules['lgns'][8][2][3][0] = 0.92
-                modules['lgns'][8][2][4][0] = 0.92
-                modules['lgns'][8][2][5][0] = 0.92
-                modules['lgns'][8][2][6][0] = 0.92
-                modules['lgns'][8][2][7][0] = 0.92
-                modules['lgns'][8][2][8][0] = 0.92
-                modules['lgns'][8][3][3][0] = 0.92
-                modules['lgns'][8][3][8][0] = 0.92
-                modules['lgns'][8][4][3][0] = 0.92
-                modules['lgns'][8][4][8][0] = 0.92
-                modules['lgns'][8][5][3][0] = 0.92
-                modules['lgns'][8][5][8][0] = 0.92
-                modules['lgns'][8][6][3][0] = 0.92
-                modules['lgns'][8][6][4][0] = 0.92
-                modules['lgns'][8][6][5][0] = 0.92
-                modules['lgns'][8][6][6][0] = 0.92
-                modules['lgns'][8][6][7][0] = 0.92
-                modules['lgns'][8][6][8][0] = 0.92
-
-            if t == 901:
-             
-                # turn off input stimulus
-                for x in range(modules['lgns'][0]):
-                    for y in range(modules['lgns'][1]):
-                        modules['lgns'][8][x][y][0] = 0.05
-
-                # turn attention to 'LO', as the current trial has ended
-                modules['atts'][8][0][0][0] = 0.3
-
-
-        ######## END OF TMP TEST #######################################################################
+            # run the experimental script given in script file
+            exec(experiment_script)
                     
             # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
             # at destination nodes using destination units and connecting weights provided
@@ -446,6 +525,10 @@ class TaskThread(QtCore.QThread):
                             modules[m][8][x][y][1] = 0.0
                             modules[m][8][x][y][2] = 0.0
 
+                        elif modules[m][2] == 'tvb':
+
+                            modules[m][8][x][y][0] = nonspecific_units[m][t]
+                            
                         unit_count += 1
         
         for f in fs:
@@ -455,7 +538,6 @@ class TaskThread(QtCore.QThread):
         print 'Total number of unit: {}'.format(unit_count)
         print 'Total number of synapses: {}'.format(synapse_count)
     
-        self.taskFinished.emit()
         
 def main():
     
@@ -465,6 +547,15 @@ def main():
     # create a widget window called "lsnm"
     lsnm = LSNM()
 
+    lsnm.resize(640, 480)
+
+    lsnm.show()
+
+    myStream = MyStream()
+    myStream.message.connect(lsnm.on_myStream_message)
+
+    sys.stdout = myStream
+    
     # main loop of application with a clean exit
     sys.exit(app.exec_())
         

@@ -57,6 +57,7 @@ import tvb.simulator.plot.timeseries_interactive as ts_int
 
 from matplotlib.figure import Figure
 
+# import the Qt4Agg FigureCanvas object
 from matplotlib.backends.backend_qt4agg \
     import FigureCanvasQTAgg as FigureCanvas
 
@@ -64,6 +65,17 @@ import numpy as np
 
 import sys
 from PyQt4 import QtGui, QtCore
+
+# create a class that will allow us to print output to our GUI widget
+class MyStream(QtCore.QObject):
+
+    message = QtCore.pyqtSignal(str)
+
+    def __init__(self, parent=None):
+        super(MyStream, self).__init__(parent)
+
+    def write(self, message):
+        self.message.emit(str(message))
 
 # create a class for our GUI and define its methods
 class LSNM(QtGui.QWidget):
@@ -129,28 +141,18 @@ class LSNM(QtGui.QWidget):
         # define the action to be taken if Run button is clicked on
         runButton.clicked.connect(self.onStart)
     
-        # define progress bar so user can see simulation progress status
-        self.progressBar = QtGui.QProgressBar(self)
-        self.progressBar.setRange(0,100)
-        layout.addWidget(self.progressBar, 1, 3)
-        
-        # create a push button object labeled 'Plot results'
-        plotButton = QtGui.QPushButton('STEP FIVE: Plot your results', self)
-        layout.addWidget(plotButton, 0, 4)
-        # define the action to be taken if Plot button is clicked on
-        plotButton.clicked.connect(self.plotElectricalActivity)
-
-        # create a figure widget to display the simulation plot
-        self.plotCanvas = FigureCanvas
-        
+        # define output display to keep user updated with simulation progress status
+        self.runTextEdit = QtGui.QTextEdit()
+        layout.addWidget(self.runTextEdit, 1, 3)
+                
         # create a push button object labeled 'Exit'
         exitButton = QtGui.QPushButton('Quit LSNM', self)
         layout.addWidget(exitButton, 2, 0)
         # define the action to be taken if Exit button is clicked on
         exitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
 
+        # define the main thread as the main simulation code
         self.myLongTask = TaskThread()
-        self.myLongTask.notifyProgress.connect(self.onProgress)
                 
         # set the layout to the grid layout we defined in the lines above
         self.setLayout(layout)
@@ -205,12 +207,10 @@ class LSNM(QtGui.QWidget):
             data = f.read()
             self.scriptTextEdit.setText(data)
         
+    @QtCore.pyqtSlot()
     def onStart(self):
         self.myLongTask.start()
         
-    def onProgress(self, i):
-        self.progressBar.setValue(i)
-
     def closeEvent(self, event):
 
         # display a message box to confirm user really intended to quit current session
@@ -223,10 +223,12 @@ class LSNM(QtGui.QWidget):
         else:
             event.ignore()
 
-    def plotElectricalActivity(self):
+    @QtCore.pyqtSlot(str)
+    def on_myStream_message(self, message):
+        self.runTextEdit.moveCursor(QtGui.QTextCursor.End)
+        self.runTextEdit.insertPlainText(message)
 
-        pass
-
+            
 class TaskThread(QtCore.QThread):
 
     def __init__(self):
@@ -421,8 +423,7 @@ class TaskThread(QtCore.QThread):
 
         # initialize number of timesteps for simulation
         simulation_time = 1100
-        sim_percentage = 100.0/simulation_time
-
+        
         # open the file with the experimental script and store the script in a string
         with open(script) as s:
             experiment_script = s.read()
@@ -430,8 +431,6 @@ class TaskThread(QtCore.QThread):
         # run the simulation for the number of timesteps given
         for t in range(simulation_time):
 
-            self.notifyProgress.emit(int(t*sim_percentage))
-            
             # write the neural activity to output file of each unit at timestep t.
             # The reason we write to the outut files before we do any computations is that we
             # want to keep track of the initial values of each units in all modules
@@ -542,6 +541,11 @@ def main():
     lsnm.resize(640, 480)
 
     lsnm.show()
+
+    myStream = MyStream()
+    myStream.message.connect(lsnm.on_myStream_message)
+
+    sys.stdout = myStream
     
     # main loop of application with a clean exit
     sys.exit(app.exec_())
