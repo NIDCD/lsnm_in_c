@@ -432,11 +432,11 @@ class TaskThread(QtCore.QThread):
             experiment_script = s.read()
         
         # run the simulation for the number of timesteps given
-        print 'Running simulation...';
+        print 'Running simulation...',
         for t in range(simulation_time):
 
             # let the user know the percentage of simulation that has been finished
-            print '[' + str(int(round(t * sim_percentage, 0))) + '%]';
+            # print '[' + str(int(round(t * sim_percentage, 0))) + '%]',
             
             # write the neural activity to output file of each unit at timestep t.
             # The reason we write to the outut files before we do any computations is that we
