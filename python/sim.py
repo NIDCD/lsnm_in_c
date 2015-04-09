@@ -144,7 +144,12 @@ class LSNM(QtGui.QWidget):
         # define output display to keep user updated with simulation progress status
         self.runTextEdit = QtGui.QTextEdit()
         layout.addWidget(self.runTextEdit, 1, 3)
-                
+
+        # define progress bar to keep user informed of simulation progress status
+        self.progressBar = QtGui.QProgressBar(self)
+        self.progressBar.setRange(0,100)
+        layout.addWidget(self.progressBar, 2, 3)
+                        
         # create a push button object labeled 'Exit'
         exitButton = QtGui.QPushButton('Quit LSNM', self)
         layout.addWidget(exitButton, 2, 0)
@@ -153,6 +158,7 @@ class LSNM(QtGui.QWidget):
 
         # define the main thread as the main simulation code
         self.myLongTask = TaskThread()
+        self.myLongTask.notifyProgress.connect(self.onProgress)
                 
         # set the layout to the grid layout we defined in the lines above
         self.setLayout(layout)
@@ -210,6 +216,9 @@ class LSNM(QtGui.QWidget):
     @QtCore.pyqtSlot()
     def onStart(self):
         self.myLongTask.start()
+
+    def onProgress(self, i):
+        self.progressBar.setValue(i)    
         
     def closeEvent(self, event):
 
@@ -234,6 +243,8 @@ class TaskThread(QtCore.QThread):
     def __init__(self):
         QtCore.QThread.__init__(self)
 
+    notifyProgress = QtCore.pyqtSignal(int)
+    
     def run(self):
             
         print 'Building network...'
@@ -432,11 +443,11 @@ class TaskThread(QtCore.QThread):
             experiment_script = s.read()
         
         # run the simulation for the number of timesteps given
-        print 'Running simulation...',
+        print 'Running simulation...'
         for t in range(simulation_time):
 
             # let the user know the percentage of simulation that has been finished
-            # print '[' + str(int(round(t * sim_percentage, 0))) + '%]',
+            self.notifyProgress.emit(int(round(t*sim_percentage,0)))
             
             # write the neural activity to output file of each unit at timestep t.
             # The reason we write to the outut files before we do any computations is that we
