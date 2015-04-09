@@ -234,10 +234,10 @@ class TaskThread(QtCore.QThread):
     def __init__(self):
         QtCore.QThread.__init__(self)
 
-    notifyProgress = QtCore.pyqtSignal(int)
-    
     def run(self):
             
+        print 'Building network...'
+
         # load a TVB simulation of a 74-node brain and uses it to provide variability
         # to an LSNM visual model network. It runs a simulation of the LSNM visual
         # network and writes out neural activities for each LSNM node and -relevant-
@@ -257,7 +257,7 @@ class TaskThread(QtCore.QThread):
         # sample TVB raw data array file to extract 1100 data points 
         RawData = RawData[::80] # round(8800 / 1100) = 80
 
-        print RawData.shape
+        # print RawData.shape
         
         # Extract area 72 time series (rV1), and 
         # Extract area 68 time series (rTCi, aka IT, inferior temporal cortex), and
@@ -274,7 +274,8 @@ class TaskThread(QtCore.QThread):
         white_matter = connectivity.Connectivity(load_default=True)
         white_matter.configure()
 
-        print white_matter.region_labels
+        
+        # print white_matter.region_labels
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
         # initialize an empty list to store ALL of the modules of the neural network
@@ -354,7 +355,8 @@ class TaskThread(QtCore.QThread):
         # context manager for file I/O
         for file in weight_files:
             with open(file) as f:
-            # read the whole file and store it in a string
+
+                # read the whole file and store it in a string
                 whole_thing = f.read()
         
                 # find which module is connected to which module
@@ -423,14 +425,18 @@ class TaskThread(QtCore.QThread):
 
         # initialize number of timesteps for simulation
         simulation_time = 1100
+        sim_percentage = 100.0/simulation_time
         
         # open the file with the experimental script and store the script in a string
         with open(script) as s:
             experiment_script = s.read()
         
         # run the simulation for the number of timesteps given
+        print 'Running simulation...';
         for t in range(simulation_time):
 
+            print '[' + str(round(t * sim_percentage, 0)) + '%]';
+            
             # write the neural activity to output file of each unit at timestep t.
             # The reason we write to the outut files before we do any computations is that we
             # want to keep track of the initial values of each units in all modules
@@ -525,9 +531,7 @@ class TaskThread(QtCore.QThread):
         for f in fs:
             f.close()
 
-        # print out total number of units and synapses
-        print 'Total number of unit: {}'.format(unit_count)
-        print 'Total number of synapses: {}'.format(synapse_count)
+        print 'Done.'
     
         
 def main():
