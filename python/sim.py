@@ -148,6 +148,7 @@ class LSNM(QtGui.QWidget):
         # define progress bar to keep user informed of simulation progress status
         self.progressBar = QtGui.QProgressBar(self)
         self.progressBar.setRange(0,100)
+        self.progressBar.reset()
         layout.addWidget(self.progressBar, 2, 3)
                         
         # create a push button object labeled 'Exit'
@@ -544,6 +545,9 @@ class TaskThread(QtCore.QThread):
             f.close()
 
         print 'Done.'
+        # reset progress bar
+        self.notifyProgress.emit(0)
+            
     
         
 def main():
