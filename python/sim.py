@@ -148,7 +148,6 @@ class LSNM(QtGui.QWidget):
         # define progress bar to keep user informed of simulation progress status
         self.progressBar = QtGui.QProgressBar(self)
         self.progressBar.setRange(0,100)
-        self.progressBar.reset()
         layout.addWidget(self.progressBar, 2, 3)
                         
         # create a push button object labeled 'Exit'
@@ -287,6 +286,7 @@ class TaskThread(QtCore.QThread):
         white_matter.configure()
 
         
+        # print 'Brain areas from TVB are',
         # print white_matter.region_labels
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
@@ -526,7 +526,8 @@ class TaskThread(QtCore.QThread):
                             # now multiply by parameter K and apply sigmoid function e
                             sigmoid = 1.0 / (1.0 + math.exp(-K * in_value))
                         
-                            # now multiply by delta parameter and subtract decay parameter
+                            # now multiply sigmoid by delta parameter, subtract decay parameter,
+                            # ... and add all to current value of unit (x, y) in module m
                             modules[m][8][x][y][0] += Delta * sigmoid - decay * modules[m][8][x][y][0]
 
                             # now reset the sum of excitatory and inhibitory weigths at each unit,
@@ -544,10 +545,7 @@ class TaskThread(QtCore.QThread):
         for f in fs:
             f.close()
 
-        print 'Done.'
-        # reset progress bar
-        self.notifyProgress.emit(0)
-            
+        print 'Done.'            
     
         
 def main():
