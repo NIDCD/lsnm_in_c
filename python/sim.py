@@ -294,8 +294,8 @@ class TaskThread(QtCore.QThread):
         
         # print 'Brain areas from TVB are',
         print 'Hybrid TVB/LSNM units are:' + white_matter.region_labels[72] + \
-            white_matter.regions_labels[68] + white_matter.regions_labels[53] + \
-            white_matter.regions_labels[37] + white_matter.regions_labels[70]
+            white_matter.region_labels[68] + white_matter.region_labels[53] + \
+            white_matter.region_labels[37] + white_matter.region_labels[70]
         
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
