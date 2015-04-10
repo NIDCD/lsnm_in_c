@@ -561,7 +561,8 @@ class TaskThread(QtCore.QThread):
         for f in fs:
             f.close()
 
-        print 'Done.'            
+        print 'Done.'
+        plot_connectivity(white_matter)
     
         
 def main():
