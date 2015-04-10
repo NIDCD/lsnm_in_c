@@ -279,7 +279,11 @@ class TaskThread(QtCore.QThread):
                              'enit':RawData[:,0,68],
                              'init':RawData[:,1,68],
                              'enpf':RawData[:,0,55],
-                             'inpf':RawData[:,1,55] }
+                             'inpf':RawData[:,1,55],
+                             'ena1':RawData[:,0,37],
+                             'ina1':RawData[:,1,37],
+                             'enst':RawData[:,0,70],
+                             'inst':RawData[:,1,70]}
 
         # now load white matter connectivity
         white_matter = connectivity.Connectivity(load_default=True)
@@ -502,6 +506,8 @@ class TaskThread(QtCore.QThread):
             for m in modules.keys():
                 for x in range(modules[m][0]):
                     for y in range(modules[m][1]):
+                        # if the current module is an LSNM unit, use in-house wilson-cowan
+                        # lgorithm below (based on original Tagamets and Horwitz, 1995)
                         if modules[m][2] == 'wilson_cowan':
                         
                             # extract Wilson-Cowan parameters from the list
@@ -536,6 +542,8 @@ class TaskThread(QtCore.QThread):
                             modules[m][8][x][y][1] = 0.0
                             modules[m][8][x][y][2] = 0.0
 
+                        # if the current module is a 'hybrid' one, use the value given by TBV
+                        # time series...
                         elif modules[m][2] == 'tvb':
 
                             modules[m][8][x][y][0] = nonspecific_units[m][t]

@@ -57,3 +57,7 @@ auditory_model/efd2ea2c.w
 auditory_model/efd2ea2d.w
 auditory_model/attsefd2.w
 auditory_model/attvatts.w
+auditory_model/ena1ea1d.w
+auditory_model/ena1ea1u.w
+auditory_model/enstestg.w
+auditory_model/enpfexfs.w
