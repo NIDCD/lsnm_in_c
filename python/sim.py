@@ -272,7 +272,7 @@ class TaskThread(QtCore.QThread):
         
         # Extract area 72 time series (rV1), and 
         # Extract area 68 time series (rTCi, aka IT, inferior temporal cortex), and
-        # Extract area 53 time series (rPFCvl, ventrolateral prefrontal cortex), and
+        # Extract area 60 time series (rPFCvl, ventrolateral prefrontal cortex), and
         # Extract area 37 time series (rA1, primary auditory cortex, and
         # EXtract area 70 time series (rTCs, aka ST, superior temporal cortex
         # create a dictionary of nonspecific module time series
@@ -280,8 +280,8 @@ class TaskThread(QtCore.QThread):
                              'inv1':RawData[:,1,72],
                              'enit':RawData[:,0,68],
                              'init':RawData[:,1,68],
-                             'enpf':RawData[:,0,53],
-                             'inpf':RawData[:,1,53],
+                             'enpf':RawData[:,0,60],
+                             'inpf':RawData[:,1,60],
                              'ena1':RawData[:,0,37],
                              'ina1':RawData[:,1,37],
                              'enst':RawData[:,0,70],
@@ -293,7 +293,10 @@ class TaskThread(QtCore.QThread):
 
         
         # print 'Brain areas from TVB are',
-        print white_matter.region_labels
+        print 'Hybrid TVB/LSNM units are:' + white_matter.region_labels[72] + \
+            white_matter.regions_labels[68] + white_matter.regions_labels[53] + \
+            white_matter.regions_labels[37] + white_matter.regions_labels[70]
+        
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
         # initialize an empty list to store ALL of the modules of the neural network
