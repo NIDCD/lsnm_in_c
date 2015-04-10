@@ -293,7 +293,7 @@ class TaskThread(QtCore.QThread):
 
         
         # print 'Brain areas from TVB are',
-        print white_matter.region_labels[53]
+        print white_matter.region_labels
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
         # initialize an empty list to store ALL of the modules of the neural network
