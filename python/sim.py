@@ -164,7 +164,7 @@ class LSNM(QtGui.QWidget):
         self.setLayout(layout)
 
         # set main window's size
-        self.setGeometry(0, 0, 1000, 1000)
+        self.setGeometry(0, 0, 1300, 600)
 
         # set window's title
         self.setWindowTitle('Large-Scale Neural Modeling (LSNM)')
@@ -300,22 +300,32 @@ class TaskThread(QtCore.QThread):
         print '*' + white_matter.region_labels[72],
         print 'connected to: ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[72])]
+        print 'with the following weights: ',
+        print white_matter.weights[72][np.nonzero(white_matter.weights[72])]
         
         print '*' + white_matter.region_labels[68],
         print 'connected to: ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[68])]
+        print 'with the following weights: ',
+        print white_matter.weights[68][np.nonzero(white_matter.weights[68])]
         
         print '*' + white_matter.region_labels[60],
         print 'connected to: ',        
         print white_matter.region_labels[np.nonzero(white_matter.weights[60])]
+        print 'with the following weights: ',
+        print white_matter.weights[60][np.nonzero(white_matter.weights[60])]
         
         print '*' + white_matter.region_labels[37],
         print 'connected to: ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[37])]
+        print 'with the following weights: ',
+        print white_matter.weights[37][np.nonzero(white_matter.weights[37])]
         
         print '*' + white_matter.region_labels[70],
         print 'connected to: ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[70])]
+        print 'with the following weights: ',
+        print white_matter.weights[70][np.nonzero(white_matter.weights[70])]
         
         
 
@@ -589,8 +599,6 @@ def main():
 
     # create a widget window called "lsnm"
     lsnm = LSNM()
-
-    lsnm.resize(640, 480)
 
     lsnm.show()
 
