@@ -292,13 +292,31 @@ class TaskThread(QtCore.QThread):
         white_matter.configure()
 
         
-        # print 'Brain areas from TVB are',
-        print 'Hybrid TVB/LSNM units are: ',
-        print white_matter.region_labels[72],
-        print white_matter.region_labels[68],
-        print white_matter.region_labels[60],
-        print white_matter.region_labels[37],
-        print white_matter.region_labels[70]
+        # print which brain areas from TVB we are using,
+        # as well as 'first degree' connections of the TVB areas listed
+
+        print '\r Hybrid TVB/LSNM units are: '
+
+        print '*' + white_matter.region_labels[72],
+        print 'connected to: ',
+        print white_matter.region_labels[np.nonzero(white_matter.weights[72])]
+        
+        print '*' + white_matter.region_labels[68],
+        print 'connected to: ',
+        print white_matter.region_labels[np.nonzero(white_matter.weights[68])]
+        
+        print '*' + white_matter.region_labels[60],
+        print 'connected to: ',        
+        print white_matter.region_labels[np.nonzero(white_matter.weights[60])]
+        
+        print '*' + white_matter.region_labels[37],
+        print 'connected to: ',
+        print white_matter.region_labels[np.nonzero(white_matter.weights[37])]
+        
+        print '*' + white_matter.region_labels[70],
+        print 'connected to: ',
+        print white_matter.region_labels[np.nonzero(white_matter.weights[70])]
+        
         
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
@@ -456,7 +474,7 @@ class TaskThread(QtCore.QThread):
             experiment_script = s.read()
         
         # run the simulation for the number of timesteps given
-        print 'Running simulation...'
+        print '\r Running simulation...'
         for t in range(simulation_time):
 
             # let the user know the percentage of simulation that has been finished
@@ -561,8 +579,7 @@ class TaskThread(QtCore.QThread):
         for f in fs:
             f.close()
 
-        print 'Done.'
-        plot_connectivity(white_matter)
+        print '\r Done.'
     
         
 def main():
