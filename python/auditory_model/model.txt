@@ -21,9 +21,3 @@ ifd2 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 exfr 9 9 wilson_cowan 0.3 0.89 1.0 9.0 0.05 0.2 
 infr 9 9 wilson_cowan 0.1 0.5 0.5 20.0 0.05 0.2
 attv 1 1 clamp 0 0 0 0 0 1.0
-ena1 1 1 tvb 0 0 0 0 0 0.0
-ina1 1 1 tvb 0 0 0 0 0 0.0
-enst 1 1 tvb 0 0 0 0 0 0.0
-inst 1 1 tvb 0 0 0 0 0 0.0
-enpf 1 1 tvb 0 0 0 0 0 0.0
-inpf 1 1 tvb 0 0 0 0 0 0.0

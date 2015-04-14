@@ -59,7 +59,3 @@ visual_model/efd2ev4v.w
 visual_model/exssev4v.w
 visual_model/exssev4h.w
 visual_model/exssev4c.w
-visual_model/env1ev1h.w
-visual_model/env1ev1v.w
-visual_model/enitexss.w
-visual_model/enpfexfs.w

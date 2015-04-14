@@ -270,63 +270,70 @@ class TaskThread(QtCore.QThread):
 
         # print RawData.shape
         
-        # Extract area 72 time series (rV1), and 
-        # Extract area 68 time series (rTCi, aka IT, inferior temporal cortex), and
-        # Extract area 60 time series (rPFCvl, ventrolateral prefrontal cortex), and
-        # Extract area 37 time series (rA1, primary auditory cortex, and
-        # EXtract area 70 time series (rTCs, aka ST, superior temporal cortex
-        # create a dictionary of nonspecific module time series
-        nonspecific_units = {'env1':RawData[:,0,72],
-                             'inv1':RawData[:,1,72],
-                             'enit':RawData[:,0,68],
-                             'init':RawData[:,1,68],
-                             'enpf':RawData[:,0,60],
-                             'inpf':RawData[:,1,60],
-                             'ena1':RawData[:,0,37],
-                             'ina1':RawData[:,1,37],
-                             'enst':RawData[:,0,70],
-                             'inst':RawData[:,1,70]}
+        # The TVB brain areas where our LSNM units are going to be embedded it
+        # hardcoded for now, but will be included in as an option in the LSNM GUI.
+        
+        # LSNM V1 module is embedded into TVB rV1 (node 72 in TVB)
+        # LSNM A1 module is embedded into TVB rA1 (node 37 in TVB)
+        # LSNM IT module is embedded into TVB rTCi (node 68 in TVB, i.e., inferior temporal cortex)
+        # LSNM STG module is embedded into TVB rTCs (node 70 in TVB, i.e., superior temporal cortex)
+        # LSNM FS module is embedded into TVB rPFCvl (node 60 in TVB, i.e., ventrolateral prefrontal cortex)
+        # create a dictionary linking LSNM modules and TVB nodes
+        #nonspecific_units = {'env1':RawData[:,0,72],
+        #                     'enit':RawData[:,0,68],
+        #                     'enpf':RawData[:,0,60],
+        #                     'ena1':RawData[:,0,37],
+        #                     'enst':RawData[:,0,70] }
+        lsnm_tvb_link = {'ev1v': 72,
+                         'ev1h': 72,
+                         'ea1u': 37,
+                         'ea1d': 37,
+                         'exss': 68,
+                         'estg': 70,
+                         'exfs': 60 }
 
+        # declare a gain for the link from TVB to LSNM
+        lsnm_tvb_gain = 0.001
+        
         # now load white matter connectivity
         white_matter = connectivity.Connectivity(load_default=True)
         white_matter.configure()
 
-        
         # print which brain areas from TVB we are using,
         # as well as 'first degree' connections of the TVB areas listed
+        # the folowing printout is only for informational purposes
 
-        print '\r Hybrid TVB/LSNM units are: '
+        print '\rIncoming units from TVB are: '
 
-        print '*' + white_matter.region_labels[72],
-        print 'connected to: ',
+        print '\rInto ' + white_matter.region_labels[72],
+        print ': ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[72])]
         print 'with the following weights: ',
         print white_matter.weights[72][np.nonzero(white_matter.weights[72])]
         
-        print '*' + white_matter.region_labels[68],
-        print 'connected to: ',
+        print '\rInto ' + white_matter.region_labels[68],
+        print ': ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[68])]
         print 'with the following weights: ',
         print white_matter.weights[68][np.nonzero(white_matter.weights[68])]
         
-        print '*' + white_matter.region_labels[60],
-        print 'connected to: ',        
+        print '\rInto ' + white_matter.region_labels[60],
+        print ': ',        
         print white_matter.region_labels[np.nonzero(white_matter.weights[60])]
         print 'with the following weights: ',
         print white_matter.weights[60][np.nonzero(white_matter.weights[60])]
         
-        print '*' + white_matter.region_labels[37],
-        print 'connected to: ',
+        print '\rInto ' + white_matter.region_labels[37],
+        print ': ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[37])]
         print 'with the following weights: ',
         print white_matter.weights[37][np.nonzero(white_matter.weights[37])]
         
-        print '*' + white_matter.region_labels[70],
-        print 'connected to: ',
+        print '\rInto ' + white_matter.region_labels[70],
+        print ': ',
         print white_matter.region_labels[np.nonzero(white_matter.weights[70])]
         print 'with the following weights: ',
         print white_matter.weights[70][np.nonzero(white_matter.weights[70])]
-        
         
 
         ######### THE FOLLOWING SIMULATES LSNM NETWORK ########################
@@ -513,13 +520,13 @@ class TaskThread(QtCore.QThread):
                         # we are going to do the following only for those units in the network that
                         # have weights that project to other units elsewhere
 
-                        # extract value of origin unit (unit projecting weights elsewhere
+                        # extract value of origin unit (unit projecting weights elsewhere)
                         origin_unit = modules[m][8][x][y][0]
                 
                         for w in modules[m][8][x][y][3]:
                         
                             # First, find outgoing weights for all units and (except for those that do not
-                            # have outgoing weights, in which case do nothing) and compute weight * value
+                            # have outgoing weights, in which case do nothing) compute weight * value
                             # at destination units
                             dest_module = w[0]
                             x_dest = w[1]
@@ -527,12 +534,58 @@ class TaskThread(QtCore.QThread):
                             weight = w[3]
                             value_x_weight = origin_unit * weight 
                         
-                            # Now, accumulate store those values at the destination units data structure,
+                            # Now, accumulate & store those values at the destination units data structure,
                             # to be used later during neural activity computation
                             if value_x_weight > 0:
                                 modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
                             else:
                                 modules[dest_module][8][x_dest][y_dest][2] += value_x_weight
+
+            # the following 'for loop' goes through each LSNM module that is 'embeded' into The Virtual
+            # Brain, and adds the product of each TVB -> LSNM unit value times their respective
+            # connection weight (provided by white matter tract weights) to the sum of excitatory
+            # activities of each embedded LSNM unit. THIS IS THE STEP
+            # WHERE THE INTERACTION BETWEEN LSNM AND TVB HAPPENS. THAT INTERACTION IS SO FAR
+            # UNIDIRECTIONAL TVB -> LSNM, but will add a feedback connection soon.
+            # Please note that whereas the previous 'for loop' goes though the network updating
+            # unit sum of activities at destination units, the 'for loop' below goes through the
+            # network updating the sum of activities of the CURRENT unit
+
+            # we are going to do the following only for those modules/units in the LSNM
+            # network that have connections from TVB nodes
+            for m in lsnm_tvb_link.keys():
+                if modules.has_key(m):
+
+                    # extract TVB node number where module is embedded
+                    tvb_node = lsnm_tvb_link[m]
+
+                    # extract TVB node numbers that are conected to TVB node above
+                    tvb_conn = np.nonzero(white_matter.weights[tvb_node])
+                    # extract the numpy array from it
+                    tvb_conn = tvb_conn[0]
+
+                    # build a numpy array of weights from TVB connections to TVB homologous nodes
+                    wm = white_matter.weights[tvb_node][tvb_conn]
+                    
+                    # now go through all the units of current LSNM modules...
+                    for x in range(modules[m][0]):
+                        for y in range(modules[m][1]):
+
+                            # do the following for each white matter connection to current LSNM unit
+                            for i in range(tvb_conn.size):
+                                
+                                # extract the value of TVB node from preprocessed raw time series
+                                value =  RawData[t, 0, tvb_conn[i]]
+                                # calculate a incoming weight by applying a gain into the LSNM unit
+                                weight = wm[i] * lsnm_tvb_gain
+                                value_x_weight = value * weight
+                        
+                                # ... and add the incoming value_x_weight to the summed synaptic
+                                # activity of the current unit
+                                if value_x_weight > 0:
+                                    modules[m][8][x][y][1] += value_x_weight
+                                else:
+                                    modules[m][8][x][y][2] += value_x_weight
 
             # the following variable will keep track of total number of units in the network
             unit_count = 0
@@ -578,12 +631,12 @@ class TaskThread(QtCore.QThread):
                             modules[m][8][x][y][1] = 0.0
                             modules[m][8][x][y][2] = 0.0
 
-                        # if the current module is a 'hybrid' one, use the value given by TBV
+                        # if the current module is a 'hybrid' one, use the value given by the TVB
                         # time series...
-                        elif modules[m][2] == 'tvb':
-
-                            modules[m][8][x][y][0] = nonspecific_units[m][t]
-                            
+                        #elif modules[m][2] == 'tvb':
+                        #
+                        #    modules[m][8][x][y][0] = nonspecific_units[m][t]
+                        #    
                         unit_count += 1
         
         for f in fs:
