@@ -55,11 +55,7 @@ from tvb.simulator.plot.tools import *
 import tvb.simulator.plot.timeseries_interactive as ts_int
 # end of TVB modules import
 
-from matplotlib.figure import Figure
-
-# import the Qt4Agg FigureCanvas object
-from matplotlib.backends.backend_qt4agg \
-    import FigureCanvasQTAgg as FigureCanvas
+import matplotlib.pyplot as plt
 
 import numpy as np
 
@@ -279,11 +275,6 @@ class TaskThread(QtCore.QThread):
         # LSNM STG module is embedded into TVB rTCs (node 70 in TVB, i.e., superior temporal cortex)
         # LSNM FS module is embedded into TVB rPFCvl (node 60 in TVB, i.e., ventrolateral prefrontal cortex)
         # create a dictionary linking LSNM modules and TVB nodes
-        #nonspecific_units = {'env1':RawData[:,0,72],
-        #                     'enit':RawData[:,0,68],
-        #                     'enpf':RawData[:,0,60],
-        #                     'ena1':RawData[:,0,37],
-        #                     'enst':RawData[:,0,70] }
         lsnm_tvb_link = {'ev1v': 72,
                          'ev1h': 72,
                          'ea1u': 37,
@@ -642,8 +633,8 @@ class TaskThread(QtCore.QThread):
         for f in fs:
             f.close()
 
-        print '\r Done.'
-    
+        print '\r Simulation Fisnihed.'
+
         
 def main():
     
