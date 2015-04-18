@@ -84,7 +84,7 @@ class LSNM(QtGui.QWidget):
 
     def initUI(self):
 
-        # the following three global variables will names of text files that contain
+        # the following three global variables are names of text files that contain
         # model definition, list of network weights, and experimental script to be
         # simulated
         model=''
@@ -264,6 +264,12 @@ class TaskThread(QtCore.QThread):
         # sample TVB raw data array file to extract 1100 data points 
         RawData = RawData[::80] # round(8800 / 1100) = 80
 
+        # the current simulation is 1100 timesteps long. To maintain consistency with
+        # Husain et al (2004) and Tagamets and Horwitz (1998), we are assuming that each
+        # simulation timestep is equivalent to 5 milliseconds of real time. Thus, the total
+        # simulation time for the current simulation would be 1100 * 5 = 5.5 seconds
+
+        
         # print RawData.shape
         
         # The TVB brain areas where our LSNM units are going to be embedded it
@@ -367,8 +373,8 @@ class TaskThread(QtCore.QThread):
             y_dim = module[2]
     
             # create a matrix for each unit in the module, to contain unit value,
-            # sum of excitatory inputs, sum of inhibitory inputs, and connection
-            # weights
+            # total sum of inputs, sum of excitatory inputs, sum of inhibitory inputs,
+            # and connection weights
             unit_matrix = [[[initial_value, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
 
             # now append that matrix to the current module
@@ -463,15 +469,21 @@ class TaskThread(QtCore.QThread):
                             destination[1]])           # insert connection weight
                         synapse_count += 1
 
-        # write the values over time of all units to an output data file in text format
-        fs=[]
+        # the following stores values over time of all units (both electrical activity and
+        # synaptic activity) to output data files in text format
+
+        fs_neuronal = []
+        fs_synaptic = []
+        
 
         for module in modules.keys():
             # open one output file per module
-            fs.append(open('./output/' + module + '.out', 'w'))
+            fs_neuronal.append(open('./output/' + module + '.out', 'w'))
+            fs_synaptic.append(open('./output/' + module + '_synaptic.out', 'w'))
     
         # create a dictionary so that each module name is associated with one output file
-        fs_dict = dict(zip(modules.keys(),fs))
+        fs_dict_neuronal = dict(zip(modules.keys(),fs_neuronal))
+        fs_dict_synaptic = dict(zip(modules.keys(),fs_synaptic))
 
         # initialize number of timesteps for simulation
         simulation_time = 1100
@@ -485,21 +497,10 @@ class TaskThread(QtCore.QThread):
         print '\r Running simulation...'
         for t in range(simulation_time):
 
-            # let the user know the percentage of simulation that has been finished
+            # let the user know the percentage of simulation that has elapsed
             self.notifyProgress.emit(int(round(t*sim_percentage,0)))
             
-            # write the neural activity to output file of each unit at timestep t.
-            # The reason we write to the outut files before we do any computations is that we
-            # want to keep track of the initial values of each units in all modules
-            for m in modules.keys():
-                for x in range(modules[m][0]):
-                    for y in range(modules[m][1]):
-                        fs_dict[m].write(repr(modules[m][8][x][y][0]) + ' ')
-                # finally, insert a newline character so we can start next set of units on a
-                # new line
-                fs_dict[m].write('\n')
-
-            # run the experimental script given in script file
+            # run the experimental script given by user's script file
             exec(experiment_script)
                     
             # The following 'for loop' computes sum of excitatory and sum of inhibitory activities
@@ -516,7 +517,8 @@ class TaskThread(QtCore.QThread):
                 
                         for w in modules[m][8][x][y][3]:
                         
-                            # First, find outgoing weights for all units and (except for those that do not
+                            # First, find outgoing weights for all destination units and (except
+                            # for those that do not
                             # have outgoing weights, in which case do nothing) compute weight * value
                             # at destination units
                             dest_module = w[0]
@@ -567,6 +569,7 @@ class TaskThread(QtCore.QThread):
                                 
                                 # extract the value of TVB node from preprocessed raw time series
                                 value =  RawData[t, 0, tvb_conn[i]]
+                                value =  value[0]
                                 # calculate a incoming weight by applying a gain into the LSNM unit
                                 weight = wm[i] * lsnm_tvb_gain
                                 value_x_weight = value * weight
@@ -580,14 +583,33 @@ class TaskThread(QtCore.QThread):
 
             # the following variable will keep track of total number of units in the network
             unit_count = 0
-                            
+
+
+            # write the neural and synaptic activity to output files of each unit at timestep t.
+            # The reason we write to the output files before we do any computations is that we
+            # want to keep track of the initial values of each unit in all modules
+            for m in modules.keys():
+                for x in range(modules[m][0]):
+                    for y in range(modules[m][1]):
+                        fs_dict_neuronal[m].write(repr(modules[m][8][x][y][0]) + ' ')
+
+                        synaptic = modules[m][8][x][y][1] + abs(modules[m][8][x][y][2])
+                        fs_dict_synaptic[m].write(repr(synaptic) + ' ')
+
+                        
+                # finally, insert a newline character so we can start next set of units on a
+                # new line
+                fs_dict_neuronal[m].write('\n')
+                fs_dict_synaptic[m].write('\n')
+
+            
             # the following 'for loop' computes the neural activity at each unit in the network,
             # depending on their 'activation rule'
             for m in modules.keys():
                 for x in range(modules[m][0]):
                     for y in range(modules[m][1]):
                         # if the current module is an LSNM unit, use in-house wilson-cowan
-                        # lgorithm below (based on original Tagamets and Horwitz, 1995)
+                        # algorithm below (based on original Tagamets and Horwitz, 1995)
                         if modules[m][2] == 'wilson_cowan':
                         
                             # extract Wilson-Cowan parameters from the list
@@ -622,18 +644,16 @@ class TaskThread(QtCore.QThread):
                             modules[m][8][x][y][1] = 0.0
                             modules[m][8][x][y][2] = 0.0
 
-                        # if the current module is a 'hybrid' one, use the value given by the TVB
-                        # time series...
-                        #elif modules[m][2] == 'tvb':
-                        #
-                        #    modules[m][8][x][y][0] = nonspecific_units[m][t]
-                        #    
                         unit_count += 1
-        
-        for f in fs:
+
+        # be safe and close output files properly
+        for f in fs_neuronal:
+            f.close()
+        for f in fs_synaptic:
             f.close()
 
-        print '\r Simulation Fisnihed.'
+        print '\r Simulation Finished.'
+        print '\r Output data files saved.'
 
         
 def main():
