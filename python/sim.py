@@ -291,7 +291,11 @@ class TaskThread(QtCore.QThread):
 
         # declare a gain for the link from TVB to LSNM
         lsnm_tvb_gain = 0.001
-        
+
+        # declare a integration interval for the 'integrated' synaptic activity,
+        # for fMRI computation, in number of timesteps
+        synaptic_interval = 10
+                
         # now load white matter connectivity
         white_matter = connectivity.Connectivity(load_default=True)
         white_matter.configure()
@@ -375,7 +379,7 @@ class TaskThread(QtCore.QThread):
             # create a matrix for each unit in the module, to contain unit value,
             # total sum of inputs, sum of excitatory inputs, sum of inhibitory inputs,
             # and connection weights
-            unit_matrix = [[[initial_value, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
+            unit_matrix = [[[initial_value, 0, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
 
             # now append that matrix to the current module
             module.append(unit_matrix)
@@ -462,7 +466,7 @@ class TaskThread(QtCore.QThread):
                 # to a zero-based format (as used in Python)
                 for connection in whole_thing:
                     for destination in connection[1]:
-                        modules[origin_module][8][connection[0][0]-1][connection[0][1]-1][3].append (
+                        modules[origin_module][8][connection[0][0]-1][connection[0][1]-1][4].append (
                             [destination_module,        # insert name of destination module
                             destination[0][0]-1,         # insert x coordinate of destination unit
                             destination[0][1]-1,         # insert y coordinate of destination unit
@@ -515,7 +519,7 @@ class TaskThread(QtCore.QThread):
                         # extract value of origin unit (unit projecting weights elsewhere)
                         origin_unit = modules[m][8][x][y][0]
                 
-                        for w in modules[m][8][x][y][3]:
+                        for w in modules[m][8][x][y][4]:
                         
                             # First, find outgoing weights for all destination units and (except
                             # for those that do not
@@ -527,12 +531,25 @@ class TaskThread(QtCore.QThread):
                             weight = w[3]
                             value_x_weight = origin_unit * weight 
                         
-                            # Now, accumulate & store those values at the destination units data structure,
-                            # to be used later during neural activity computation
+                            # Now, accumulate (i.e., 'integrate') & store those values at the
+                            # destination units data structure,
+                            # to be used later during neural activity computation.
+                            # Note: Keep track of inhibitory and excitatory input summation
+                            # separately, as shown below:
                             if value_x_weight > 0:
-                                modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
-                            else:
                                 modules[dest_module][8][x_dest][y_dest][2] += value_x_weight
+                            else:
+                                modules[dest_module][8][x_dest][y_dest][3] += value_x_weight
+
+                            # ... but also keep track of the total input summation, as shown
+                            # below. The reason for this is that we need the input summation
+                            # to each neuronal population unit AT EACH TIME STEP, as well as
+                            # the excitatory and inhibitory input summations accumulated OVER
+                            # A NUMBER OF TIMESTEPS (that number is usually 10). We call such
+                            # accumulation of inputs
+                            # over a number of timesteps the 'integrated synaptic activity'
+                            # and it is used to computer fMRI and MEG.
+                            modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
 
             # the following 'for loop' goes through each LSNM module that is 'embeded' into The Virtual
             # Brain, and adds the product of each TVB -> LSNM unit value times their respective
@@ -577,9 +594,11 @@ class TaskThread(QtCore.QThread):
                                 # ... and add the incoming value_x_weight to the summed synaptic
                                 # activity of the current unit
                                 if value_x_weight > 0:
-                                    modules[m][8][x][y][1] += value_x_weight
-                                else:
                                     modules[m][8][x][y][2] += value_x_weight
+                                else:
+                                    modules[m][8][x][y][3] += value_x_weight
+                                # ... but store the total of inputs separately as well
+                                modules[m][8][x][y][1] += value_x_weight
 
             # the following variable will keep track of total number of units in the network
             unit_count = 0
@@ -593,8 +612,14 @@ class TaskThread(QtCore.QThread):
                     for y in range(modules[m][1]):
                         fs_dict_neuronal[m].write(repr(modules[m][8][x][y][0]) + ' ')
 
-                        synaptic = modules[m][8][x][y][1] + abs(modules[m][8][x][y][2])
-                        fs_dict_synaptic[m].write(repr(synaptic) + ' ')
+                        # Write out integrated synaptic activity to a data file and reset
+                        # integrated synaptic activity, but ONLY IF a number of timesteps
+                        # has elapsed (integration interval)
+                        if ((simulation_time + t) % synaptic_interval) == 0:
+                            synaptic = modules[m][8][x][y][2] + abs(modules[m][8][x][y][3])
+                            fs_dict_synaptic[m].write(repr(synaptic) + ' ')
+                            modules[m][8][x][y][2] = 0
+                            modules[m][8][x][y][3] = 0
 
                         
                 # finally, insert a newline character so we can start next set of units on a
@@ -619,8 +644,8 @@ class TaskThread(QtCore.QThread):
                             decay = modules[m][5]
                             Delta = modules[m][4] 
 
-                            # compute weighted sum of excitatory and inhibitory input to current unit
-                            in_value = modules[m][8][x][y][1] + modules[m][8][x][y][2]
+                            # compute input to current unit
+                            in_value = modules[m][8][x][y][1]
 
                             # now subtract the threshold parameter from that sum
                             in_value = in_value - threshold
@@ -642,8 +667,7 @@ class TaskThread(QtCore.QThread):
                             # since we only need it for the current timestep (new sums of excitatory and
                             # inhibitory unit activations will be computed at the next time step)
                             modules[m][8][x][y][1] = 0.0
-                            modules[m][8][x][y][2] = 0.0
-
+                            
                         unit_count += 1
 
         # be safe and close output files properly

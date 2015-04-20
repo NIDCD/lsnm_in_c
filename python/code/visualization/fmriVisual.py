@@ -49,14 +49,16 @@ import matplotlib.pyplot as plt
 
 import math as m
 
+from scipy.stats import poisson
+
 # define constants needed for hemodynamic function
-Lambda = 6.0
+lambda_ = 3.0
 
 # define neural synaptic time interval and total time of scanning
 # experiment (units are seconds)
-Ti = .005
+Ti = .005 * 10
 
-# the scanning happened every Tr interval below
+# the scanning happened every Tr interval below (in seconds)
 Tr = 2
 
 # Load V1 synaptic activity data files into a numpy array
@@ -77,19 +79,30 @@ ifd1 = np.loadtxt('../../output/ifd1_synaptic.out')
 # Extract number of timesteps from one of the matrices
 timesteps = ev1h.shape[0]
 
+print timesteps
+
 # given the number of total timesteps, calculate total time of scanning
 # experiment in seconds
 T = timesteps * Ti
+
+print T
 
 # Given neural synaptic time interval and total time of scanning experiment,
 # construct a numpy array of time points (data points provided in data files)
 t = np.arange(0, T, Ti)
 
+print t
+
 # the following calculates a Poisson distribution (that will represent a hemodynamic
 # function, given lambda (the Poisson time constant characterizing width and height
 # of hemodynamic function), and tau (the time step)
 #h = Lambda ** tau * m.exp(-Lambda) / m.factorial(tau)
-h = np.random.poisson(lam=Lambda, size=T)
+h = poisson.pmf(t, lambda_)
+
+print h
+
+plt.figure(1)
+plt.plot(t, h, '-o')
 
 # add all units within each region (V1, IT, and D1) together across space to calculate
 # synaptic activity in each brain region
@@ -100,9 +113,9 @@ d1 = np.sum(efd1 + ifd1, axis = 1)
 # now, we need to convolve the synaptic activity with a hemodynamic delay
 # function and sample the array at Tr regular intervals
 
-sampling_interval = int(round(Tr * timesteps / T))
+sampling_interval = int(round(Ti * timesteps / T))
 
-BOLD_interval = np.arange(0, timesteps, sampling_interval)
+BOLD_interval = np.arange(0, T, Tr)
 
 print BOLD_interval
 
@@ -111,7 +124,7 @@ it_BOLD = np.convolve(it, h)[BOLD_interval]
 d1_BOLD = np.convolve(d1, h)[BOLD_interval]
 
 # Set up figure to plot synaptic activity
-plt.figure(1)
+plt.figure(2)
 
 plt.suptitle('SIMULATED SYNAPTIC ACTIVITY')
 
@@ -121,7 +134,7 @@ plt.plot(t, it)
 plt.plot(t, d1)
 
 # Set up second figure to plot fMRI BOLD signal
-plt.figure(2)
+plt.figure(3)
 
 plt.suptitle('SIMULATED fMRI BOLD SIGNAL')
 
