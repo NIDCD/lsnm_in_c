@@ -261,8 +261,11 @@ class TaskThread(QtCore.QThread):
         # sample TVB raw data array to extract 220 data points (for plotting only)
         RAW = RawData[::400]    # round(88000 / 220) = 400
 
-        # sample TVB raw data array file to extract 1100 data points 
-        RawData = RawData[::80] # round(8800 / 1100) = 80
+        simulation_time = 4400
+        
+        # sample TVB raw data array file to extract 1100 data points
+        TVB_sampling_rate = int(round(88000 / simulation_time))
+        RawData = RawData[::TVB_sampling_rate]
 
         # the current simulation is 1100 timesteps long. To maintain consistency with
         # Husain et al (2004) and Tagamets and Horwitz (1998), we are assuming that each
@@ -489,14 +492,14 @@ class TaskThread(QtCore.QThread):
         fs_dict_neuronal = dict(zip(modules.keys(),fs_neuronal))
         fs_dict_synaptic = dict(zip(modules.keys(),fs_synaptic))
 
-        # initialize number of timesteps for simulation
-        simulation_time = 1100
-        sim_percentage = 100.0/simulation_time
         
         # open the file with the experimental script and store the script in a string
         with open(script) as s:
             experiment_script = s.read()
-        
+            
+        # initialize number of timesteps for simulation
+        sim_percentage = 100.0/simulation_time
+
         # run the simulation for the number of timesteps given
         print '\r Running simulation...'
         for t in range(simulation_time):

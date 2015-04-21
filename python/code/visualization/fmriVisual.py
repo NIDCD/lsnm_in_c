@@ -52,11 +52,11 @@ import math as m
 from scipy.stats import poisson
 
 # define constants needed for hemodynamic function
-lambda_ = 3.0
+lambda_ = 4.0
 
 # define neural synaptic time interval and total time of scanning
 # experiment (units are seconds)
-Ti = .005 * 10
+Ti = .004 * 10
 
 # the scanning happened every Tr interval below (in seconds)
 Tr = 2
@@ -79,19 +79,13 @@ ifd1 = np.loadtxt('../../output/ifd1_synaptic.out')
 # Extract number of timesteps from one of the matrices
 timesteps = ev1h.shape[0]
 
-print timesteps
-
 # given the number of total timesteps, calculate total time of scanning
 # experiment in seconds
-T = timesteps * Ti
-
-print T
+T = 22
 
 # Given neural synaptic time interval and total time of scanning experiment,
 # construct a numpy array of time points (data points provided in data files)
-t = np.arange(0, T, Ti)
-
-print t
+t = np.arange(0, T, Tr)
 
 # the following calculates a Poisson distribution (that will represent a hemodynamic
 # function, given lambda (the Poisson time constant characterizing width and height
@@ -99,10 +93,19 @@ print t
 #h = Lambda ** tau * m.exp(-Lambda) / m.factorial(tau)
 h = poisson.pmf(t, lambda_)
 
-print h
+# the following calculates the impulse response (convolution kernel) of the gamma
+# function, approximating the BOLD response (Boynton model).
+
+#a = (t - 2.5) / 1.25
+
+#a = a.clip(min=0)
+
+#h = [(x ** (3-1) * m.exp(-x)) / (1.25 * m.factorial(3-1)) for x in a]
+
+#h = np.asarray(h)
 
 plt.figure(1)
-plt.plot(t, h, '-o')
+plt.plot(h)
 
 # add all units within each region (V1, IT, and D1) together across space to calculate
 # synaptic activity in each brain region
@@ -113,15 +116,13 @@ d1 = np.sum(efd1 + ifd1, axis = 1)
 # now, we need to convolve the synaptic activity with a hemodynamic delay
 # function and sample the array at Tr regular intervals
 
-sampling_interval = int(round(Ti * timesteps / T))
-
 BOLD_interval = np.arange(0, T, Tr)
-
-print BOLD_interval
 
 v1_BOLD = np.convolve(v1, h)[BOLD_interval]
 it_BOLD = np.convolve(it, h)[BOLD_interval]
 d1_BOLD = np.convolve(d1, h)[BOLD_interval]
+
+print v1_BOLD.size
 
 # Set up figure to plot synaptic activity
 plt.figure(2)
@@ -129,9 +130,9 @@ plt.figure(2)
 plt.suptitle('SIMULATED SYNAPTIC ACTIVITY')
 
 # Plot V1 module
-plt.plot(t, v1)
-plt.plot(t, it)
-plt.plot(t, d1)
+plt.plot(v1)
+plt.plot(it)
+plt.plot(d1)
 
 # Set up second figure to plot fMRI BOLD signal
 plt.figure(3)
