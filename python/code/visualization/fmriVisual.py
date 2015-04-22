@@ -54,11 +54,20 @@ from scipy.stats import poisson
 # define constants needed for hemodynamic function
 lambda_ = 4.0
 
+# given the number of total timesteps, calculate total time of scanning
+# experiment in seconds
+T = 22
+
+# Time for one complete trial
+Ttrial = 5.5
+
 # define neural synaptic time interval and total time of scanning
 # experiment (units are seconds)
 Ti = .004 * 10
 
-# the scanning happened every Tr interval below (in seconds)
+# the scanning happened every Tr interval below (in seconds). This
+# is the time needed to sample hemodynamic activity to produce
+# each fMRI image.
 Tr = 2
 
 # Load V1 synaptic activity data files into a numpy array
@@ -79,9 +88,6 @@ ifd1 = np.loadtxt('../../output/ifd1_synaptic.out')
 # Extract number of timesteps from one of the matrices
 timesteps = ev1h.shape[0]
 
-# given the number of total timesteps, calculate total time of scanning
-# experiment in seconds
-T = 22
 
 # Given neural synaptic time interval and total time of scanning experiment,
 # construct a numpy array of time points (data points provided in data files)
@@ -118,9 +124,9 @@ d1 = np.sum(efd1 + ifd1, axis = 1)
 
 BOLD_interval = np.arange(0, T, Tr)
 
-v1_BOLD = np.convolve(v1, h)[BOLD_interval]
-it_BOLD = np.convolve(it, h)[BOLD_interval]
-d1_BOLD = np.convolve(d1, h)[BOLD_interval]
+v1_BOLD = np.convolve(v1, h, mode='valid')[BOLD_interval]
+it_BOLD = np.convolve(it, h, mode='valid')[BOLD_interval]
+d1_BOLD = np.convolve(d1, h, mode='valid')[BOLD_interval]
 
 print v1_BOLD.size
 
