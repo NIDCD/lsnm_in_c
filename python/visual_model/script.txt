@@ -347,7 +347,7 @@ if t == 4200:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
-    	for y in range(modules['exss'][1]):
+    	for y in range(modules['efd1'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
 	    
     # turn off input stimulus but leave small level of activity there
