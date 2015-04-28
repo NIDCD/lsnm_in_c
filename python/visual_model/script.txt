@@ -8,12 +8,11 @@ if t == 200:
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.3
 
-    # reset D1, D2 prior to each trial
-    for x in range(modules['exss'][0]):
-    	for y in range(modules['exss'][1]):
+    # reset D1 prior to each trial
+    for x in range(modules['efd1'][0]):
+    	for y in range(modules['efd1'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # reset LGNS activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
@@ -81,12 +80,11 @@ if t == 700:
 # the response period.
 if t == 900:
              
-    # reset D1, D2 prior to each trial
-    for x in range(modules['exss'][0]):
-    	for y in range(modules['exss'][1]):
+    # reset D1 prior to each trial
+    for x in range(modules['efd1'][0]):
+    	for y in range(modules['efd1'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
@@ -168,12 +166,11 @@ if t == 1800:
 # the response period.
 if t == 2000:
              
-    # reset D1, D2 prior to each trial
+    # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
-    	for y in range(modules['exss'][1]):
+    	for y in range(modules['efd1'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
@@ -255,12 +252,11 @@ if t == 2900:
 # the response period.
 if t == 3100:
              
-    # reset D1, D2 prior to each trial
-    for x in range(modules['exss'][0]):
-    	for y in range(modules['exss'][1]):
+    # reset D1 prior to each trial
+    for x in range(modules['efd1'][0]):
+    	for y in range(modules['efd1'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
@@ -277,12 +273,11 @@ if t == 3500:
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.3
 
-    # reset D1, D2 prior to each trial
+    # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
     	for y in range(modules['exss'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
@@ -350,12 +345,11 @@ if t == 4000:
 # the response period.
 if t == 4200:
              
-    # reset D1, D2 prior to each trial
-    for x in range(modules['exss'][0]):
+    # reset D1 prior to each trial
+    for x in range(modules['efd1'][0]):
     	for y in range(modules['exss'][1]):
 	    modules['efd1'][8][x][y][0] = 0.2
-	    modules['efd2'][8][x][y][0] = 0.2
-
+	    
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
         for y in range(modules['lgns'][1]):
