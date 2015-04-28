@@ -81,67 +81,67 @@ for (i,j), value in np.ndenumerate(mgns):
 ax = plt.subplot(3,4,1)
 plt.plot(mgns)
 plt.title('MGN')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render EV1h array in a colormap
 ax = plt.subplot(3,4,5)
 plt.plot(ea1u)
 plt.title('A1u')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render EV1v array in a colormap
 ax = plt.subplot(3,4,9)
 plt.plot(ea1d)
 plt.title('A1d')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,2)
 plt.plot(ea2u)
 plt.title('A2u')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,6)
 plt.plot(ea2d)
 plt.title('A2d')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,10)
 plt.plot(ea2c)
 plt.title('A2c')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,3)
 plt.plot(estg)
 plt.title('STG')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,7)
 plt.plot(exfs)
 plt.title('FS')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,11)
 plt.plot(efd1)
 plt.title('FD1')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,4)
 plt.plot(efd2)
 plt.title('FD2')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Render array in a colormap
 ax = plt.subplot(3,4,8)
 plt.plot(exfr)
 plt.title('FR')
-plt.ylim([38,59])
+plt.ylim([38,69])
 
 # Show the plot on the screen
 plt.show()
