@@ -17,7 +17,7 @@ Run 200		% 200 ticks without right input
 Run 200					 %  200=1sec. 
 #include input/noinp.lgn  	%right Input OFF
 Run 300					 %  Delay	
-#include input/input1.inp 	%right Input ON-match
+#include input/input2.inp 	%right Input ON-match
 Run 200
 #include input/noinp.lgn  	%right Input OFF
 #include input/loattn_r.s
