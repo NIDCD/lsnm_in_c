@@ -36,9 +36,9 @@ visual_model/ev1vev4v.w
 visual_model/ev1vev4c.w
 visual_model/ev1hev4h.w
 visual_model/ev1hev4c.w
-visual_model/ev4vexss.w
-visual_model/ev4hexss.w
-visual_model/ev4cexss.w
+visual_model/ev4h.wt
+visual_model/ev4c.wt
+visual_model/ev4v.wt
 visual_model/exssexfs.w
 visual_model/efd1efd2.w
 visual_model/efd2efd1.w
