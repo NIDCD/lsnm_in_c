@@ -89,16 +89,15 @@ if t == 1300:
             modules['lgns'][8][x][y][0] = 0.05
 
     # insert the inputs stimulus into LGN and see what happens
-    # the following is an 'U' shape
-    modules['lgns'][8][1][2][0] = 0.92
-    modules['lgns'][8][2][2][0] = 0.92
-    modules['lgns'][8][3][2][0] = 0.92
-    modules['lgns'][8][1][3][0] = 0.92
-    modules['lgns'][8][1][4][0] = 0.92
-    modules['lgns'][8][1][5][0] = 0.92
-    modules['lgns'][8][1][6][0] = 0.92
-    modules['lgns'][8][2][6][0] = 0.92
-    modules['lgns'][8][3][6][0] = 0.92
+    # the following is an 'I' shape
+    modules['lgns'][8][3][3][0] = 0.92
+    modules['lgns'][8][3][4][0] = 0.92
+    modules['lgns'][8][3][5][0] = 0.92
+    modules['lgns'][8][4][4][0] = 0.92
+    modules['lgns'][8][5][4][0] = 0.92
+    modules['lgns'][8][6][3][0] = 0.92
+    modules['lgns'][8][6][4][0] = 0.92
+    modules['lgns'][8][6][5][0] = 0.92
                     
 # What follows not is a DELAY period of 300 timesteps = 1.5 seconds 
 if t == 1500:
@@ -118,13 +117,14 @@ if t == 1800:
 
     # insert the inputs stimulus into LGN and see what happens
     # the following is an 'I' shape
-    modules['lgns'][8][1][4][0] = 0.92
-    modules['lgns'][8][2][4][0] = 0.92
+    modules['lgns'][8][3][3][0] = 0.92
     modules['lgns'][8][3][4][0] = 0.92
+    modules['lgns'][8][3][5][0] = 0.92
     modules['lgns'][8][4][4][0] = 0.92
     modules['lgns'][8][5][4][0] = 0.92
+    modules['lgns'][8][6][3][0] = 0.92
     modules['lgns'][8][6][4][0] = 0.92
-    modules['lgns'][8][7][4][0] = 0.92
+    modules['lgns'][8][6][5][0] = 0.92
                      
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
