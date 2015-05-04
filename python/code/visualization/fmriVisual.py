@@ -56,11 +56,11 @@ from scipy.stats import poisson
 from scipy import signal
 
 # define constants needed for hemodynamic function
-lambda_ = 4.0
+lambda_ = 6.0
 
 # given the number of total timesteps, calculate total time of scanning
 # experiment in seconds
-T = 22
+T = 266
 
 # Time for one complete trial
 Ttrial = 5.5

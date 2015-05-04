@@ -261,7 +261,7 @@ class TaskThread(QtCore.QThread):
         # sample TVB raw data array to extract 220 data points (for plotting only)
         RAW = RawData[::400]    # round(88000 / 220) = 400
 
-        simulation_time = 4400
+        simulation_time = 53200
         
         # sample TVB raw data array file to extract 1100 data points
         TVB_sampling_rate = int(round(88000 / simulation_time))
@@ -293,10 +293,12 @@ class TaskThread(QtCore.QThread):
                          'exfs': 60 }
 
         # declare a gain for the link from TVB to LSNM
-        lsnm_tvb_gain = 0.00
+        lsnm_tvb_gain = 0.001
 
         # declare a integration interval for the 'integrated' synaptic activity,
-        # for fMRI computation, in number of timesteps
+        # for fMRI computation, in number of timesteps.
+        # The same variable is used to know how often we are going to write to
+        # output files
         synaptic_interval = 10
                 
         # now load white matter connectivity
@@ -370,8 +372,9 @@ class TaskThread(QtCore.QThread):
 
         # add a list of units to each module, using the module dimensions specified
         # in the input file (x_dim * y_dim) and initialize all units in each module to 'initial_value'
-        # It also adds two extra elements per each unit to store sum of inbititory and sum
-        # of excitatory activity at the current time step. It also add an empty list, '[]', to store
+        # It also adds three extra elements per each unit to store (1) sum of all incoming activity,
+        # (2) sum of inbititory, and (3) sum
+        # of excitatory activity, at the current time step. It also add an empty list, '[]', to store
         # list of outgoing weights
         for module in modules:
             # remove initial value from the list
@@ -382,7 +385,7 @@ class TaskThread(QtCore.QThread):
             # create a matrix for each unit in the module, to contain unit value,
             # total sum of inputs, sum of excitatory inputs, sum of inhibitory inputs,
             # and connection weights
-            unit_matrix = [[[initial_value, 0, 0, 0, []] for x in range(y_dim)] for y in range(x_dim)]
+            unit_matrix = [[[initial_value, 0.0, 0.0, 0.0, []] for x in range(y_dim)] for y in range(x_dim)]
 
             # now append that matrix to the current module
             module.append(unit_matrix)
@@ -551,7 +554,7 @@ class TaskThread(QtCore.QThread):
                             # A NUMBER OF TIMESTEPS (that number is usually 10). We call such
                             # accumulation of inputs
                             # over a number of timesteps the 'integrated synaptic activity'
-                            # and it is used to computer fMRI and MEG.
+                            # and it is used to compute fMRI and MEG.
                             modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
 
             # the following 'for loop' goes through each LSNM module that is 'embeded' into The Virtual
@@ -607,22 +610,27 @@ class TaskThread(QtCore.QThread):
             unit_count = 0
 
 
-            # write the neural and synaptic activity to output files of each unit at timestep t.
+            # write the neural and synaptic activity to output files of each unit at a given
+            # timestep interval, given by the variable <synaptic interval>.
             # The reason we write to the output files before we do any computations is that we
             # want to keep track of the initial values of each unit in all modules
             for m in modules.keys():
                 for x in range(modules[m][0]):
                     for y in range(modules[m][1]):
-                        fs_dict_neuronal[m].write(repr(modules[m][8][x][y][0]) + ' ')
-
-                        # Write out integrated synaptic activity to a data file and reset
+                        
+                        # Write out neural and integrated synaptic activity to a data file
+                        # and reset
                         # integrated synaptic activity, but ONLY IF a number of timesteps
                         # has elapsed (integration interval)
                         if ((simulation_time + t) % synaptic_interval) == 0:
+                            # write out neural activity first...
+                            fs_dict_neuronal[m].write(repr(modules[m][8][x][y][0]) + ' ')
+                            # now calculate and write out synaptic activity...
                             synaptic = modules[m][8][x][y][2] + abs(modules[m][8][x][y][3])
                             fs_dict_synaptic[m].write(repr(synaptic) + ' ')
-                            modules[m][8][x][y][2] = 0
-                            modules[m][8][x][y][3] = 0
+                            # ...finally, reset synaptic activity.
+                            modules[m][8][x][y][2] = 0.0
+                            modules[m][8][x][y][3] = 0.0
 
                         
                 # finally, insert a newline character so we can start next set of units on a
