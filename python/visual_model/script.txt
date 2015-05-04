@@ -3760,7 +3760,7 @@ if t == 46400:
     modules['lgns'][8][7][8][0] = 0.7
     
 # What follows is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 46800:
+if t == 46600:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -3768,7 +3768,7 @@ if t == 46800:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 47100:
+if t == 46900:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3796,7 +3796,7 @@ if t == 47100:
        
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
-if t == 47300:
+if t == 47100:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -3814,7 +3814,7 @@ if t == 47300:
 
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).
-if t == 47700:
+if t == 47500:
 
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.3
@@ -3849,7 +3849,7 @@ if t == 47700:
 
 
 # What follows now is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 47900:
+if t == 47700:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -3857,7 +3857,7 @@ if t == 47900:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 48200:
+if t == 48000:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3887,7 +3887,7 @@ if t == 48200:
 
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
-if t == 48400:
+if t == 48200:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -3910,7 +3910,7 @@ if t == 48400:
 ################# DEGRADED SHAPES ARE PRESENTED AND LOW ATTENTION IS USED ##############
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).
-if t == 48800:
+if t == 48600:
 
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.05
@@ -3947,7 +3947,7 @@ if t == 48800:
     modules['lgns'][8][7][8][0] = 0.55
                 
 # What follows is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 49000:
+if t == 48800:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -3955,7 +3955,7 @@ if t == 49000:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 49300:
+if t == 49100:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3985,7 +3985,7 @@ if t == 49300:
     
 # what follows now is an intertrial interval of 400 timesteps (1 second), which includes
 # the response period.
-if t == 49500:
+if t == 49300:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -4003,7 +4003,7 @@ if t == 49500:
 
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).
-if t == 49900:
+if t == 49700:
 
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.05
@@ -4032,7 +4032,7 @@ if t == 49900:
     modules['lgns'][8][0][7][0] = 0.55
                     
 # What follows not is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 50100:
+if t == 49900:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -4040,7 +4040,7 @@ if t == 50100:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 50400:
+if t == 50200:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -4067,7 +4067,7 @@ if t == 50400:
                      
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
-if t == 50600:
+if t == 50400:
              
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
@@ -4084,7 +4084,7 @@ if t == 50600:
 
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).
-if t == 51000:
+if t == 50800:
 
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.05
@@ -4116,7 +4116,7 @@ if t == 51000:
     modules['lgns'][8][7][8][0] = 0.55
     
 # What follows is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 51200:
+if t == 51000:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -4124,7 +4124,7 @@ if t == 51200:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 51500:
+if t == 51300:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -4152,7 +4152,7 @@ if t == 51500:
        
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
-if t == 51700:
+if t == 51500:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -4170,7 +4170,7 @@ if t == 51700:
 
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).
-if t == 52100:
+if t == 51900:
 
     # turn attention to 'HI', as the input stimulus has just been presented
     modules['atts'][8][0][0][0] = 0.05
@@ -4205,7 +4205,7 @@ if t == 52100:
 
 
 # What follows now is a DELAY period of 300 timesteps = 1.5 seconds 
-if t == 52300:
+if t == 52100:
 
     # turn off input stimulus but leave small level of activity there
     for x in range(modules['lgns'][0]):
@@ -4213,7 +4213,7 @@ if t == 52300:
             modules['lgns'][8][x][y][0] = 0.05
 
 # ... and now, present S2 for 200 timesteps (1 second) 
-if t == 52600:
+if t == 52400:
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -4243,7 +4243,7 @@ if t == 52600:
 
 # what follows now is an intertrial interval of 400 timesteps (2 second), which includes
 # the response period.
-if t == 52800:
+if t == 52600:
              
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):

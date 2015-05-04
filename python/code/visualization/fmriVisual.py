@@ -60,7 +60,7 @@ lambda_ = 6.0
 
 # given the number of total timesteps, calculate total time of scanning
 # experiment in seconds
-T = 266
+T = 265
 
 # Time for one complete trial
 Ttrial = 5.5

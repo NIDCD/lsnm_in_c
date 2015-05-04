@@ -261,7 +261,9 @@ class TaskThread(QtCore.QThread):
         # sample TVB raw data array to extract 220 data points (for plotting only)
         RAW = RawData[::400]    # round(88000 / 220) = 400
 
-        simulation_time = 53200
+        # define the simulation time in total number of timesteps
+        # (each trial is 4400 timesteps long x 12 trials = 52800
+        simulation_time = 52800
         
         # sample TVB raw data array file to extract 1100 data points
         TVB_sampling_rate = int(round(88000 / simulation_time))
