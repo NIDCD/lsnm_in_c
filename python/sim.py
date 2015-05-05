@@ -295,7 +295,7 @@ class TaskThread(QtCore.QThread):
                          'exfs': 60 }
 
         # declare a gain for the link from TVB to LSNM
-        lsnm_tvb_gain = 0.001
+        lsnm_tvb_gain = 0.002
 
         # declare a integration interval for the 'integrated' synaptic activity,
         # for fMRI computation, in number of timesteps.

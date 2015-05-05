@@ -190,10 +190,17 @@ funct_conn_it_fs_ctl = IT_ctl_ts.corr(FS_ctl_ts)
 funct_conn_it_fr_ctl = IT_ctl_ts.corr(FR_ctl_ts)
 
 
+# define number of groups to plot
+N = 2
+
+# create a list of x locations for each group 
+index = np.arange(N)            
+width = 0.1                     # width of the bars
+
 fig, ax = plt.subplots()
 
-plt.suptitle('FUNCTIONAL CONNECTIVITY OF IT WITH ALL OTHER BRAIN REGIONS')
 
+# now, group the vaules to be plotted by brain module
 it_v1_corr = (funct_conn_it_v1_dms, funct_conn_it_v1_ctl)
 it_v4_corr = (funct_conn_it_v4_dms, funct_conn_it_v4_ctl)
 it_d1_corr = (funct_conn_it_d1_dms, funct_conn_it_d1_ctl)
@@ -201,20 +208,19 @@ it_d2_corr = (funct_conn_it_d2_dms, funct_conn_it_d2_ctl)
 it_fs_corr = (funct_conn_it_fs_dms, funct_conn_it_fs_ctl)
 it_fr_corr = (funct_conn_it_fr_dms, funct_conn_it_fr_ctl)
 
-index = np.arange(2)             # location of the bars
-bar_width = 0.35                     # width of the bars
+rects_v1 = ax.bar(index, it_v1_corr, width, color='purple', label='V1')
 
-rects_v1 = plt.bar(index, it_v1_corr, color='b', label='V1')
+rects_v4 = ax.bar(index + width, it_v4_corr, width, color='darkred', label='V4')
 
-rects_v4 = plt.bar(index + bar_width, it_v4_corr, color='r', label='V4')
+rects_fs = ax.bar(index + width*2, it_fs_corr, width, color='lightyellow', label='FS')
 
-rects_d1 = plt.bar(index + bar_width * 2, it_d1_corr, color='y', label='D1')
+rects_d1 = ax.bar(index + width*3, it_d1_corr, width, color='lightblue', label='D1')
 
-rects_d2 = plt.bar(index + bar_width * 3, it_d2_corr, color='g', label='D2')
+rects_d2 = ax.bar(index + width*4, it_d2_corr, width, color='yellow', label='D2')
 
-rects_fs = plt.bar(index + bar_width * 4, it_fs_corr, color='m', label='FS')
+rects_fr = ax.bar(index + width*5, it_fr_corr, width, color='red', label='FR')
 
-rects_fr = plt.bar(index + bar_width * 5, it_fr_corr, color='g', label='FR')
+ax.set_title('FUNCTIONAL CONNECTIVITY OF IT WITH ALL OTHER BRAIN REGIONS')
 
 # Show the plot on the screen
 plt.show()
