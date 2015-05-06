@@ -6,7 +6,7 @@
 if t == 200:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.15
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -99,7 +99,7 @@ if t == 900:
 if t == 1300:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.15
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -180,7 +180,7 @@ if t == 2000:
 if t == 2400:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.15
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -266,7 +266,7 @@ if t == 3100:
 if t == 3500:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.15
 
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
@@ -713,7 +713,7 @@ if t == 8600:
 if t == 9000:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.2
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -806,7 +806,7 @@ if t == 9700:
 if t == 10100:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.2
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -887,7 +887,7 @@ if t == 10800:
 if t == 11200:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.2
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -973,7 +973,7 @@ if t == 11900:
 if t == 12300:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.2
 
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
@@ -1424,7 +1424,7 @@ if t == 17400:
 if t == 17800:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.25
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -1517,7 +1517,7 @@ if t == 18500:
 if t == 18900:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.25
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -1598,7 +1598,7 @@ if t == 19600:
 if t == 20000:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.25
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -1684,7 +1684,7 @@ if t == 20700:
 if t == 21100:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.25
 
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
@@ -2846,7 +2846,7 @@ if t == 35000:
 if t == 35400:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.35
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -2939,7 +2939,7 @@ if t == 36100:
 if t == 36500:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.35
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3020,7 +3020,7 @@ if t == 37200:
 if t == 37600:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.35
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3106,7 +3106,7 @@ if t == 38300:
 if t == 38700:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.35
 
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
@@ -3557,7 +3557,7 @@ if t == 43800:
 if t == 44200:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.4
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
@@ -3650,7 +3650,7 @@ if t == 44900:
 if t == 45300:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.4
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3731,7 +3731,7 @@ if t == 46000:
 if t == 46400:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.4
 
     # reset LGN activity prior to stimulus presentation
     for x in range(modules['lgns'][0]):
@@ -3817,7 +3817,7 @@ if t == 47100:
 if t == 47500:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.3
+    modules['atts'][8][0][0][0] = 0.4
 
     # reset D1 prior to each trial
     for x in range(modules['exss'][0]):
