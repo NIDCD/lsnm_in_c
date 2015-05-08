@@ -263,7 +263,7 @@ class TaskThread(QtCore.QThread):
 
         # define the simulation time in total number of timesteps
         # (each trial is 4400 timesteps long x 12 trials = 52800)
-        simulation_time = 52800
+        simulation_time = 1300
         
         # sample TVB raw data array file to extract 1100 data points
         TVB_sampling_rate = int(round(88000 / simulation_time))
