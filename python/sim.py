@@ -486,6 +486,7 @@ class TaskThread(QtCore.QThread):
 
         fs_neuronal = []
         fs_synaptic = []
+        fs_tvb      = []
         
 
         for module in modules.keys():
@@ -559,7 +560,7 @@ class TaskThread(QtCore.QThread):
                             # and it is used to compute fMRI and MEG.
                             modules[dest_module][8][x_dest][y_dest][1] += value_x_weight
 
-            # the following 'for loop' goes through each LSNM module that is 'embeded' into The Virtual
+            # the following 'for loop' goes through each LSNM module that is 'embedded' into The Virtual
             # Brain, and adds the product of each TVB -> LSNM unit value times their respective
             # connection weight (provided by white matter tract weights) to the sum of excitatory
             # activities of each embedded LSNM unit. THIS IS THE STEP
@@ -622,7 +623,7 @@ class TaskThread(QtCore.QThread):
                         
                         # Write out neural and integrated synaptic activity to a data file
                         # and reset
-                        # integrated synaptic activity, but ONLY IF a number of timesteps
+                        # integrated synaptic activity, but ONLY IF a given number of timesteps
                         # has elapsed (integration interval)
                         if ((simulation_time + t) % synaptic_interval) == 0:
                             # write out neural activity first...
@@ -630,7 +631,7 @@ class TaskThread(QtCore.QThread):
                             # now calculate and write out synaptic activity...
                             synaptic = modules[m][8][x][y][2] + abs(modules[m][8][x][y][3])
                             fs_dict_synaptic[m].write(repr(synaptic) + ' ')
-                            # ...finally, reset synaptic activity.
+                            # ...finally, reset synaptic activity (but not neural activity).
                             modules[m][8][x][y][2] = 0.0
                             modules[m][8][x][y][3] = 0.0
 
