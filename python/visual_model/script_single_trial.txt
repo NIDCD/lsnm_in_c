@@ -1,6 +1,6 @@
-# The following is a short visual script to test or demonstrate LSNM in Python
-# the first 200 timesteps = 1000 ms we do nothing. We assume 1 timestep = 5 ms, as in Horwitz
-# et al (2005)
+# The following is a short visual script (1300 timesteps = 6.5 seconds) to test or demonstrate
+# LSNM in Python the first 200 timesteps = 1000 ms we do nothing. We assume 1 timestep = 5 ms, as
+# in Horwitz et al (2005)
 
 # now we present S1 by manually inserting it into the MGN module and leaving S1 there
 # for 200 timesteps (1 second).

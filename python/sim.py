@@ -44,8 +44,13 @@
 # Simulates delayed match-to-sample experiment using Wilson-Cowan neuronal
 # population model.
 
+# import regular expression modules (useful for reading weight files)
 import re
+
+# import random function modules
 import random
+
+# import math function modules
 import math
 
 # the following modules are imported from TVB library
@@ -55,11 +60,16 @@ from tvb.simulator.plot.tools import *
 import tvb.simulator.plot.timeseries_interactive as ts_int
 # end of TVB modules import
 
+# import 'pyplot' modules to visualize outputs
 import matplotlib.pyplot as plt
 
+# import 'numpy' module, which contains useful matrix functions
 import numpy as np
 
+# import 'sys' module, which gives you access to file read/write functions
 import sys
+
+# import 'PyQt4' modules, which give you access to GUI functions
 from PyQt4 import QtGui, QtCore
 
 # create a class that will allow us to print output to our GUI widget
@@ -252,16 +262,59 @@ class TaskThread(QtCore.QThread):
 
         ########## THE FOLLOWING SIMULATES TVB NETWORK'S #######################
         # The TVB Wilson Cowan simulation has been preprocessed and it is located
-        # in an 'npy' data file. Thus, we just need to load that data file onto
-        # a numpy array
+        # in an 'npy' data file. Thus, erase the commments from the following
+        # 'np.load' is you just need to load that data file onto a numpy array
         # The data file contains an array of 5 dimensions as follows:
         # [timestep, state_variable_E, state_variable_I, node_number, mode]
         RawData = np.load("wilson_cowan_brain_74_nodes.npy")
+
+        # define white matter transmission speed in mm/msfor TVB simulation
+        TVB_speed = 4.0
+
+        # define length of TVB simulation in ms
+        TVB_simulation_length = 6500
+
+        # define global coupling strength as in Sanz-Leon et al (2015), figure 17,
+        # 3rd column, 3rd row
+        TVB_global_coupling_strength = 0.0042
+
+        # define the population model to be used and state variables to be collected.
+        # the parameters below were taken from in Sanz-Leon et al (2015), table 11,
+        # case 'c'
+        TVB_WC = models.WilsonCowan(variables_of_interest=['E','I'],
+                                    c_ee=16, c_ei=12, c_ie=15, c_ii=3,
+                                    tau_e=8, tau_i=8, a_e=1.3, a_i=2,
+                                    b_e=4, b_i=3.7, P=1.25)
+
+        # now load white matter connectivity (74 ROI matrix from TVB demo set)
+        white_matter = connectivity.Connectivity(load_default=True)
+        white_matter.configure()
+
+        # Define the transmission speed of white matter tracts (4 mm/ms)
+        white_matter.speed = numpy.array([TVB_speed])
+
+        # Define the coupling function between white matter tracts and brain regions
+        white_matter_coupling = coupling.Linear(a=TVB_global_coupling_strength)
+
+        # Define noise and integrator to be used in TVB simulation
+        heunint = integrators.HeunDeterministic(dt=2**-4)
+
+        # Define a monitor to be used for TVB simulation (i.e., which simulated data is
+        # going to be collected
+        what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
+
+        # Initialize a TVB simulator
+        TVB_sim = simulator.Simulator(model=TVB_WC, connectivity=white_matter,
+                                      coupling=white_matter_coupling,
+                                      integrator=heunint, monitors=what_to_watch)
+
+        TVB_sim.configure()
 
         # sample TVB raw data array to extract 220 data points (for plotting only)
         RAW = RawData[::400]    # round(88000 / 220) = 400
 
         # define the simulation time in total number of timesteps
+        # Each timestep is roughly equivalent to 5ms
         # (each trial is 4400 timesteps long x 12 trials = 52800)
         simulation_time = 1300
         
@@ -303,10 +356,6 @@ class TaskThread(QtCore.QThread):
         # output files
         synaptic_interval = 10
                 
-        # now load white matter connectivity
-        white_matter = connectivity.Connectivity(load_default=True)
-        white_matter.configure()
-
         # print which brain areas from TVB we are using,
         # as well as 'first degree' connections of the TVB areas listed
         # the folowing printout is only for informational purposes
