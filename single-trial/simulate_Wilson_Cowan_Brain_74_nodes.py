@@ -57,7 +57,7 @@ from tvb.simulator.lab import *
 speed = 4.0
 
 # define length of simulation in ms
-simulation_length = 5500
+simulation_length = 6500
 
 # define global coupling strength as in Sanz-Leon (2015) Neuroimage paper
 # figure 17 3rd column 3rd row
@@ -84,7 +84,8 @@ white_matter_coupling = coupling.Linear(a=global_coupling_strength)
 heunint = integrators.HeunDeterministic(dt=2**-4)
 
 # Define a monitor to be used (i.e., simulated data to be collected)
-what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
+#what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
+what_to_watch = monitors.SubSample(period=5.0)
 
 # Initialise a Simulator -- Model, Connectivity, Integrator, and Monitors.
 sim = simulator.Simulator(model=WC, connectivity=white_matter,

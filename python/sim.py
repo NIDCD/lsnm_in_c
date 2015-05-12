@@ -266,13 +266,13 @@ class TaskThread(QtCore.QThread):
         # 'np.load' is you just need to load that data file onto a numpy array
         # The data file contains an array of 5 dimensions as follows:
         # [timestep, state_variable_E, state_variable_I, node_number, mode]
-        RawData = np.load("wilson_cowan_brain_74_nodes.npy")
+        #RawData = np.load("wilson_cowan_brain_74_nodes.npy")
 
         # define white matter transmission speed in mm/msfor TVB simulation
         TVB_speed = 4.0
 
         # define length of TVB simulation in ms
-        TVB_simulation_length = 6500
+        simulation_length = 6500
 
         # define global coupling strength as in Sanz-Leon et al (2015), figure 17,
         # 3rd column, 3rd row
@@ -288,7 +288,7 @@ class TaskThread(QtCore.QThread):
 
         # now load white matter connectivity (74 ROI matrix from TVB demo set)
         white_matter = connectivity.Connectivity(load_default=True)
-        white_matter.configure()
+        #white_matter.configure()
 
         # Define the transmission speed of white matter tracts (4 mm/ms)
         white_matter.speed = numpy.array([TVB_speed])
@@ -311,22 +311,20 @@ class TaskThread(QtCore.QThread):
         TVB_sim.configure()
 
         # sample TVB raw data array to extract 220 data points (for plotting only)
-        RAW = RawData[::400]    # round(88000 / 220) = 400
+        #RAW = RawData[::400]    # round(88000 / 220) = 400
 
         # define the simulation time in total number of timesteps
         # Each timestep is roughly equivalent to 5ms
         # (each trial is 4400 timesteps long x 12 trials = 52800)
-        simulation_time = 1300
+        LSNM_simulation_time = 1300
         
         # sample TVB raw data array file to extract 1100 data points
         TVB_sampling_rate = int(round(88000 / simulation_time))
         RawData = RawData[::TVB_sampling_rate]
 
-        # the current simulation is 1100 timesteps long. To maintain consistency with
-        # Husain et al (2004) and Tagamets and Horwitz (1998), we are assuming that each
-        # simulation timestep is equivalent to 5 milliseconds of real time. Thus, the total
-        # simulation time for the current simulation would be 1100 * 5 = 5.5 seconds
-
+        # To maintain consistency with Husain et al (2004) and Tagamets and Horwitz (1998),
+        # we are assuming that each simulation timestep is equivalent to 5 milliseconds
+        # of real time. 
         
         # print RawData.shape
         
@@ -553,11 +551,11 @@ class TaskThread(QtCore.QThread):
             experiment_script = s.read()
             
         # initialize number of timesteps for simulation
-        sim_percentage = 100.0/simulation_time
+        sim_percentage = 100.0/LSNM_simulation_time
 
         # run the simulation for the number of timesteps given
         print '\r Running simulation...'
-        for t in range(simulation_time):
+        for t in range(TVB_simulation_time):
 
             # let the user know the percentage of simulation that has elapsed
             self.notifyProgress.emit(int(round(t*sim_percentage,0)))

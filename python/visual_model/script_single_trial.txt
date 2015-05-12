@@ -7,7 +7,7 @@
 if t == 200:
 
     # turn attention to 'HI', as the input stimulus has just been presented
-    modules['atts'][8][0][0][0] = 0.15
+    modules['atts'][8][0][0][0] = 0.3
 
     # reset D1 prior to each trial
     for x in range(modules['efd1'][0]):
