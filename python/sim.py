@@ -268,7 +268,7 @@ class TaskThread(QtCore.QThread):
         # [timestep, state_variable_E, state_variable_I, node_number, mode]
         #RawData = np.load("wilson_cowan_brain_74_nodes.npy")
 
-        # define white matter transmission speed in mm/msfor TVB simulation
+        # define white matter transmission speed in mm/ms for TVB simulation
         TVB_speed = 4.0
 
         # define length of TVB simulation in ms
@@ -301,8 +301,9 @@ class TaskThread(QtCore.QThread):
 
         # Define a monitor to be used for TVB simulation (i.e., which simulated data is
         # going to be collected
-        what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
-
+        #what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
+        what_to_watch = monitors.SubSample(period=5.0)
+        
         # Initialize a TVB simulator
         TVB_sim = simulator.Simulator(model=TVB_WC, connectivity=white_matter,
                                       coupling=white_matter_coupling,
@@ -319,8 +320,8 @@ class TaskThread(QtCore.QThread):
         LSNM_simulation_time = 1300
         
         # sample TVB raw data array file to extract 1100 data points
-        TVB_sampling_rate = int(round(88000 / simulation_time))
-        RawData = RawData[::TVB_sampling_rate]
+        #TVB_sampling_rate = int(round(88000 / simulation_time))
+        #RawData = RawData[::TVB_sampling_rate]
 
         # To maintain consistency with Husain et al (2004) and Tagamets and Horwitz (1998),
         # we are assuming that each simulation timestep is equivalent to 5 milliseconds
@@ -555,7 +556,9 @@ class TaskThread(QtCore.QThread):
 
         # run the simulation for the number of timesteps given
         print '\r Running simulation...'
-        for t in range(TVB_simulation_time):
+        #for t in range(LSNM_simulation_time):
+        t = 0
+        for raw in TVB_sim(simulation_length=simulation_length):
 
             # let the user know the percentage of simulation that has elapsed
             self.notifyProgress.emit(int(round(t*sim_percentage,0)))
@@ -641,7 +644,9 @@ class TaskThread(QtCore.QThread):
                             for i in range(tvb_conn.size):
                                 
                                 # extract the value of TVB node from preprocessed raw time series
-                                value =  RawData[t, 0, tvb_conn[i]]
+                                #value =  RawData[t, 0, tvb_conn[i]]
+                                RawData = numpy.array(raw[0][1])
+                                value = RawData[0, tvb_conn[i]]
                                 value =  value[0]
                                 # calculate a incoming weight by applying a gain into the LSNM unit
                                 weight = wm[i] * lsnm_tvb_gain
@@ -672,7 +677,7 @@ class TaskThread(QtCore.QThread):
                         # and reset
                         # integrated synaptic activity, but ONLY IF a given number of timesteps
                         # has elapsed (integration interval)
-                        if ((simulation_time + t) % synaptic_interval) == 0:
+                        if ((LSNM_simulation_time + t) % synaptic_interval) == 0:
                             # write out neural activity first...
                             fs_dict_neuronal[m].write(repr(modules[m][8][x][y][0]) + ' ')
                             # now calculate and write out synaptic activity...
@@ -730,7 +735,10 @@ class TaskThread(QtCore.QThread):
                             modules[m][8][x][y][1] = 0.0
                             
                         unit_count += 1
-
+                        
+            # increase the number of timesteps
+            t = t + 1
+                        
         # be safe and close output files properly
         for f in fs_neuronal:
             f.close()
