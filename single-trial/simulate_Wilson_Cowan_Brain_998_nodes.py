@@ -64,13 +64,15 @@ simulation_length = 6500
 # figure 17 3rd column 3rd row
 global_coupling_strength = 0.0042
 
-# Define the population model to be used and state variables to be collected
-# the parameters are same as those used by Sanz-Leon (2015) Neuroimage article,
-# as shown in table 11 case 'c'
+
+# define the population model to be used and state variables to be collected.
+# the parameters below were taken from in Sanz-Leon et al (2015), table 11,
+# case 'a' 
 WC = models.WilsonCowan(variables_of_interest=['E','I'],
-                        c_ee=16, c_ei=12, c_ie=15, c_ii=3,
-                        tau_e=8, tau_i=8, a_e=1.3, a_i=2,
-                        b_e=4, b_i=3.7, P=1.25)
+                        r_i=1, r_e=1, k_e=1, k_i=1, tau_e=10, tau_i=10,
+                        c_ee=12, c_ei=4, c_ie=13, c_ii=11, alpha_e=1, alpha_i=1,
+                        a_e=1.2, a_i=1, b_e=2.8, b_i=4, c_e=1, c_i=1,
+                        P=0, Q=0)
 
 # Define connectivity to be used (998 ROI matrix from TVB demo set)
 white_matter = connectivity.Connectivity.from_file("connectivity_998.zip")
@@ -81,8 +83,13 @@ white_matter.speed = numpy.array([speed])
 # Define the coupling function between white matter tracts and brain regions
 white_matter_coupling = coupling.Linear(a=global_coupling_strength)
 
-# Define noise and integrator to be used
-heunint = integrators.HeunDeterministic(dt=2**-4)
+#Initialise an Integrator
+# set numpy's seed
+my_seed = 13
+my_random_state = numpy.random.RandomState(my_seed)
+hiss = noise.Additive(nsig=0.08)
+heunint = integrators.EulerStochastic(dt=2 ** -2, noise=hiss)
+heunint.configure()
 
 # Define a monitor to be used (i.e., simulated data to be collected)
 what_to_watch = monitors.SubSample(period=5.0)
