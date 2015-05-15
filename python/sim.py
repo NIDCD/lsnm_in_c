@@ -255,6 +255,8 @@ class TaskThread(QtCore.QThread):
             
         print 'Building network...'
 
+        global noise
+
         # load a TVB simulation of a 74-node brain and uses it to provide variability
         # to an LSNM visual model network. It runs a simulation of the LSNM visual
         # network and writes out neural activities for each LSNM node and -relevant-
@@ -263,7 +265,7 @@ class TaskThread(QtCore.QThread):
         ########## THE FOLLOWING SIMULATES TVB NETWORK'S #######################
         # The TVB Wilson Cowan simulation has been preprocessed and it is located
         # in an 'npy' data file. Thus, erase the commments from the following
-        # 'np.load' is you just need to load that data file onto a numpy array
+        # 'np.load' if you just need to load that data file onto a numpy array
         # The data file contains an array of 5 dimensions as follows:
         # [timestep, state_variable_E, state_variable_I, node_number, mode]
         #RawData = np.load("wilson_cowan_brain_74_nodes.npy")
@@ -280,11 +282,12 @@ class TaskThread(QtCore.QThread):
 
         # define the population model to be used and state variables to be collected.
         # the parameters below were taken from in Sanz-Leon et al (2015), table 11,
-        # case 'c'
+        # case 'a' 
         TVB_WC = models.WilsonCowan(variables_of_interest=['E','I'],
-                                    c_ee=16, c_ei=12, c_ie=15, c_ii=3,
-                                    tau_e=8, tau_i=8, a_e=1.3, a_i=2,
-                                    b_e=4, b_i=3.7, P=1.25)
+                                    r_i=1, r_e=1, k_e=1, k_i=1, tau_e=10, tau_i=10,
+                                    c_ee=12, c_ei=4, c_ie=13, c_ii=11, alpha_e=1, alpha_i=1,
+                                    a_e=1.2, a_i=1, b_e=2.8, b_i=4, c_e=1, c_i=1,
+                                    P=0, Q=0)
 
         # now load white matter connectivity (74 ROI matrix from TVB demo set)
         white_matter = connectivity.Connectivity(load_default=True)
@@ -296,8 +299,13 @@ class TaskThread(QtCore.QThread):
         # Define the coupling function between white matter tracts and brain regions
         white_matter_coupling = coupling.Linear(a=TVB_global_coupling_strength)
 
-        # Define noise and integrator to be used in TVB simulation
-        heunint = integrators.HeunDeterministic(dt=2**-4)
+        #Initialise an Integrator
+        # set numpy's seed
+        my_seed = 13
+        my_random_state = numpy.random.RandomState(my_seed)
+        hiss = noise.Additive(nsig=0.08)
+        heunint = integrators.EulerStochastic(dt=2 ** -2, noise=hiss)
+        heunint.configure()
 
         # Define a monitor to be used for TVB simulation (i.e., which simulated data is
         # going to be collected
@@ -320,6 +328,7 @@ class TaskThread(QtCore.QThread):
         LSNM_simulation_time = 1300
         
         # sample TVB raw data array file to extract 1100 data points
+        # (only use if you are loading a preprocessed TVB simulation)
         #TVB_sampling_rate = int(round(88000 / simulation_time))
         #RawData = RawData[::TVB_sampling_rate]
 
@@ -529,23 +538,32 @@ class TaskThread(QtCore.QThread):
                             destination[1]])           # insert connection weight
                         synapse_count += 1
 
-        # the following stores values over time of all units (both electrical activity and
-        # synaptic activity) to output data files in text format
+        # the following stores values over time of all units (electrical activity, synaptic activity,
+        # and tvb activity) to output data files in text format
 
         fs_neuronal = []
         fs_synaptic = []
         fs_tvb      = []
         
 
+        # open one output file per module to record electrical and synaptic activities
         for module in modules.keys():
             # open one output file per module
             fs_neuronal.append(open('./output/' + module + '.out', 'w'))
             fs_synaptic.append(open('./output/' + module + '_synaptic.out', 'w'))
+
+        # ...for TVB node activities, open one output file per 'host' node to record timeseries
+        # TVB 'host' nodes
+        for host_tvb_node in lsnm_tvb_link.keys():
+            fs_tvb.append(open('./output/' + host_tvb_node + '_tvb.out', 'w'))
+        
     
         # create a dictionary so that each module name is associated with one output file
-        fs_dict_neuronal = dict(zip(modules.keys(),fs_neuronal))
-        fs_dict_synaptic = dict(zip(modules.keys(),fs_synaptic))
+        fs_dict_neuronal = dict(zip(modules.keys(), fs_neuronal))
+        fs_dict_synaptic = dict(zip(modules.keys(), fs_synaptic))
 
+        # also create a dictionary for host TVB node activity output files
+        fs_dict_tvb = dict(zip(lsnm_tvb_link.keys(), fs_tvb)) 
         
         # open the file with the experimental script and store the script in a string
         with open(script) as s:
@@ -556,8 +574,17 @@ class TaskThread(QtCore.QThread):
 
         # run the simulation for the number of timesteps given
         print '\r Running simulation...'
+
+        # uncomment the following line and subsititute in the for loop below if you want
+        # LSNM to drive the whole simulation
         #for t in range(LSNM_simulation_time):
+
+        # initialize timestep counter for LSNM timesteps
         t = 0
+
+        # the following 'for loop' is the main loop of the TVB simulation with the parameters
+        # defined above. Note that the LSNM simulator is literally embedded into the TVB
+        # simulation and both run concurrently, timestep by timestep.
         for raw in TVB_sim(simulation_length=simulation_length):
 
             # let the user know the percentage of simulation that has elapsed
@@ -644,10 +671,16 @@ class TaskThread(QtCore.QThread):
                             for i in range(tvb_conn.size):
                                 
                                 # extract the value of TVB node from preprocessed raw time series
+                                # uncomment if you want to use preprocessed TVB timeseries
                                 #value =  RawData[t, 0, tvb_conn[i]]
+
+                                # convert current TVB electrical activity to a numpy array 
                                 RawData = numpy.array(raw[0][1])
+
+                                # extract value of TVB node
                                 value = RawData[0, tvb_conn[i]]
                                 value =  value[0]
+                                
                                 # calculate a incoming weight by applying a gain into the LSNM unit
                                 weight = wm[i] * lsnm_tvb_gain
                                 value_x_weight = value * weight
@@ -673,8 +706,7 @@ class TaskThread(QtCore.QThread):
                 for x in range(modules[m][0]):
                     for y in range(modules[m][1]):
                         
-                        # Write out neural and integrated synaptic activity to a data file
-                        # and reset
+                        # Write out neural and integrated synaptic activity, and reset
                         # integrated synaptic activity, but ONLY IF a given number of timesteps
                         # has elapsed (integration interval)
                         if ((LSNM_simulation_time + t) % synaptic_interval) == 0:
@@ -685,13 +717,21 @@ class TaskThread(QtCore.QThread):
                             fs_dict_synaptic[m].write(repr(synaptic) + ' ')
                             # ...finally, reset synaptic activity (but not neural activity).
                             modules[m][8][x][y][2] = 0.0
-                            modules[m][8][x][y][3] = 0.0
+                            modules[m][8][x][y][3] = 0.0                            
 
                         
                 # finally, insert a newline character so we can start next set of units on a
                 # new line
                 fs_dict_neuronal[m].write('\n')
                 fs_dict_synaptic[m].write('\n')
+
+            # also write neural activity of TVB host nodes to output files at the current
+            # time step
+            for host_node in lsnm_tvb_link.keys():
+                host_node_value = RawData[0, lsnm_tvb_link[host_node]]
+                host_node_value = host_node_value[0]
+                fs_dict_tvb[host_node].write(repr(host_node_value) + ' ')
+                            
 
             
             # the following 'for loop' computes the neural activity at each unit in the network,
@@ -743,6 +783,8 @@ class TaskThread(QtCore.QThread):
         for f in fs_neuronal:
             f.close()
         for f in fs_synaptic:
+            f.close()
+        for f in fs_tvb:
             f.close()
 
         print '\r Simulation Finished.'

@@ -36,7 +36,7 @@
 #   This file (plotVisual.py) was created on December 1, 2014.
 #
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 18 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on May 13 2015  
 # **************************************************************************/
 
 # plotVisual.py
@@ -59,6 +59,10 @@ exfr = np.loadtxt('../../output/exfr.out')
 exfs = np.loadtxt('../../output/exfs.out')
 exss = np.loadtxt('../../output/exss.out')
 
+tvb_v1 = np.loadtxt('../../output/ev1h_tvb.out')
+tvb_st = np.loadtxt('../../output/exss_tvb.out')
+tvb_pf = np.loadtxt('../../output/exfs_tvb.out')
+
 # Extract number of timesteps from one of the matrices
 timesteps = lgns.shape[0]
 
@@ -71,7 +75,7 @@ plt.figure(1)
 plt.suptitle('SIMULATED NEURAL ACTIVITY')
 
 # Plot LGN module
-ax = plt.subplot(11,1,1)
+ax = plt.subplot(14,1,1)
 ax.plot(t, lgns)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -79,14 +83,14 @@ ax.set_xlim(0,timesteps)
 plt.ylabel('LGN', rotation='horizontal', horizontalalignment='right')
 
 # Plot V1 module
-ax = plt.subplot(11,1,2)
+ax = plt.subplot(14,1,2)
 ax.plot(t, ev1h)
 ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('V1h', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(11,1,3)
+ax = plt.subplot(14,1,3)
 ax.plot(t, ev1v)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -94,21 +98,21 @@ ax.set_xlim(0,timesteps)
 plt.ylabel('V1v', rotation='horizontal', horizontalalignment='right')
 
 # Plot V4 module
-ax = plt.subplot(11,1,4)
+ax = plt.subplot(14,1,4)
 ax.plot(t, ev4h)
 ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('V4h', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(11,1,5)
+ax = plt.subplot(14,1,5)
 ax.plot(t, ev4c)
 ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('V4c', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(11,1,6)
+ax = plt.subplot(14,1,6)
 ax.plot(t, ev4v)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -116,7 +120,7 @@ ax.set_xlim(0,timesteps)
 plt.ylabel('V4v', rotation='horizontal', horizontalalignment='right')
 
 # Plot IT module
-ax = plt.subplot(11,1,7)
+ax = plt.subplot(14,1,7)
 ax.plot(t, exss)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -124,21 +128,21 @@ ax.set_xlim(0,timesteps)
 plt.ylabel('IT', rotation='horizontal', horizontalalignment='right')
 
 # Plot PFC modules FS, FD1, and FD2
-ax = plt.subplot(11,1,8)
+ax = plt.subplot(14,1,8)
 ax.plot(t, exfs)
 ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('FS', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(11,1,9)
+ax = plt.subplot(14,1,9)
 ax.plot(t, efd1)
 ax.set_xticks([])
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('D1', rotation='horizontal', horizontalalignment='right')
 
-ax = plt.subplot(11,1,10)
+ax = plt.subplot(14,1,10)
 ax.plot(t, efd2)
 ax.set_xticks([])
 ax.set_yticks([])
@@ -146,11 +150,34 @@ ax.set_xlim(0,timesteps)
 plt.ylabel('D2', rotation='horizontal', horizontalalignment='right')
 
 # Plot FR (Response module)
-ax = plt.subplot(11,1,11)
+ax = plt.subplot(14,1,11)
 ax.plot(t, exfr)
 ax.set_yticks([])
 ax.set_xlim(0,timesteps)
 plt.ylabel('R', rotation='horizontal', horizontalalignment='right')
+
+# Plot TVB V1 (host node)
+ax = plt.subplot(14,1,12)
+ax.plot(tvb_v1)
+ax.set_yticks([])
+#ax.set_xlim(0, timesteps)
+plt.ylabel('TVB_rV1', rotation='horizontal', horizontalalignment='right')
+
+# Plot TVB ST (host node)
+ax = plt.subplot(14,1,13)
+ax.plot(tvb_st)
+ax.set_yticks([])
+#ax.set_xlim(0, timesteps)
+plt.ylabel('TVB_rST', rotation='horizontal', horizontalalignment='right')
+
+# Plot TVB PFC (host node)
+ax = plt.subplot(14,1,14)
+ax.plot(tvb_pf)
+ax.set_yticks([])
+#ax.set_xlim(0, timesteps)
+plt.ylabel('TVB_rPF', rotation='horizontal', horizontalalignment='right')
+
+
 plt.xlabel('Timesteps (i.e., Data points)')
 
 # Show the plot on the screen

@@ -101,7 +101,6 @@ for raw in sim(simulation_length=simulation_length):
     if raw is not None:
         raw_time.append(raw[0][0]) 
         raw_data.append(raw[0][1])
-        print numpy.array(raw[0][1]).shape
 
 # Convert data list to a numpy array
 RawData = numpy.array(raw_data)

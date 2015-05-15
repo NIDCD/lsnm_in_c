@@ -58,7 +58,7 @@ from tvb.simulator.lab import *
 speed = 4.0
 
 # define length of simulation in ms
-simulation_length = 5500
+simulation_length = 6500
 
 # define global coupling strength as in Sanz-Leon (2015) Neuroimage paper
 # figure 17 3rd column 3rd row
@@ -72,7 +72,7 @@ WC = models.WilsonCowan(variables_of_interest=['E','I'],
                         tau_e=8, tau_i=8, a_e=1.3, a_i=2,
                         b_e=4, b_i=3.7, P=1.25)
 
-# Define connectivity to be used (74 ROI matrix from TVB demo set)
+# Define connectivity to be used (998 ROI matrix from TVB demo set)
 white_matter = connectivity.Connectivity.from_file("connectivity_998.zip")
 
 # Define the transmission speed of white matter tracts (4 mm/ms)
@@ -85,7 +85,7 @@ white_matter_coupling = coupling.Linear(a=global_coupling_strength)
 heunint = integrators.HeunDeterministic(dt=2**-4)
 
 # Define a monitor to be used (i.e., simulated data to be collected)
-what_to_watch = monitors.Raw(variables_of_interest=['E','I'])
+what_to_watch = monitors.SubSample(period=5.0)
 
 # Initialise a Simulator -- Model, Connectivity, Integrator, and Monitors.
 sim = simulator.Simulator(model=WC, connectivity=white_matter,
