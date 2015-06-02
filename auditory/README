@@ -106,7 +106,7 @@ in /code:
 
 $ make altgenw_au, 
 $ make altgenw_L_au
-$ make crossw_au
+$ make crossws_au
 $ make crosswt_au_i
 $ make genw_au
 $ make mkattn_au
