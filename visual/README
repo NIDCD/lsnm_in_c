@@ -107,7 +107,7 @@ in /code:
 
 $ make altgenw, 
 $ make altgenw_L
-$ make crossw
+$ make crossws
 $ make crosswt_i
 $ make genw
 $ make mkattn
