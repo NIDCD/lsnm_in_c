@@ -47,10 +47,6 @@ Software that simulates visual working memory during a delay match to sample tas
 
 Light-weight piece of software that simulates one single trial of visual working memory during a delay match to sample task experiment.
 
-* python:
-
-Python version of LSNM (Beta)
-
 * documents: 
 
 Documents that describe the theory and implementation of LSNM. 
