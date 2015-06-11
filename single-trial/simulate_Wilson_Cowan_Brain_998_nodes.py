@@ -33,14 +33,14 @@
 #   National Institute on Deafness and Other Communication Disorders
 #   National Institutes of Health
 #
-#   This file (simulate_Wilson_Cowan_Brain_74_nodes.py) was created on 01/29/15,
+#   This file (simulate_Wilson_Cowan_Brain_998_nodes.py) was created on 04/29/15,
 #   based on 'generate_region_demo_data.py' by Stuart A. Knock and
 #            'region_deterministic_bnm_wc.py' by Paula Sanz-Leon
 #
 #   This program makes use of The Virtual Brain library toolbox, downloaded
 #   from the TVB GitHub page.
 #
-#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on January 31 2015  
+#   Author: Antonio Ulloa. Last updated by Antonio Ulloa on June 9 2015  
 # **************************************************************************/
 #
 # simulate_Wilson_Cowan_Brain_998_nodes.py
